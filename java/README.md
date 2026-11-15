@@ -6,15 +6,15 @@ De los fundamentos de la orientación a objetos al diseño y la defensa de siste
 
 | Nivel | Tema | Sesiones |
 |---|---|---|
-| 1 | [Fundamentos de programación y orientación a objetos](nivel-1-fundamentos-oo/) | 9 |
-| 2 | [Principios SOLID](nivel-2-solid/) | 5 + taller integrador |
-| 3 | [Patrones de diseño (GoF)](nivel-3-patrones/) | 23 + taller integrador |
-| 4 | [Clean Code, refactorización y testing](nivel-4-clean-code-testing/) | 11 |
-| 5 | [Arquitectura de software](nivel-5-arquitectura/) | 11 + taller integrador |
-| 6 | [Java avanzado](nivel-6-java-avanzado/) | 6 |
-| 7 | [Spring Boot avanzado](nivel-7-spring-boot-avanzado/) | 7 |
-| 8 | [Bases de datos](nivel-8-bases-de-datos/) | 6 |
-| 9 | [Sistemas distribuidos](nivel-9-sistemas-distribuidos/) | 6 |
+| 1 | [Fundamentos de programación y orientación a objetos](nivel-01-fundamentos-oo/) | 9 |
+| 2 | [Principios SOLID](nivel-02-solid/) | 5 + taller integrador |
+| 3 | [Patrones de diseño (GoF)](nivel-03-patrones/) | 23 + taller integrador |
+| 4 | [Clean Code, refactorización y testing](nivel-04-clean-code-testing/) | 11 |
+| 5 | [Arquitectura de software](nivel-05-arquitectura/) | 11 + taller integrador |
+| 6 | [Java avanzado](nivel-06-java-avanzado/) | 6 |
+| 7 | [Spring Boot avanzado](nivel-07-spring-boot-avanzado/) | 7 |
+| 8 | [Bases de datos](nivel-08-bases-de-datos/) | 6 |
+| 9 | [Sistemas distribuidos](nivel-09-sistemas-distribuidos/) | 6 |
 | 10 | [Cloud](nivel-10-cloud/) | 5 |
 | 11 | [System Design](nivel-11-system-design/) | 5 |
 | 12 | [Liderazgo técnico](nivel-12-liderazgo-tecnico/) | 5 |
@@ -37,7 +37,7 @@ El orden de los niveles es obligatorio. Dentro del Nivel 3, sigue el orden de es
 Ejecutar un ejemplo:
 
 ```bash
-cd nivel-3-patrones/comportamiento/strategy/ejemplo
+cd nivel-03-patrones/comportamiento/strategy/ejemplo
 java Main.java
 ```
 

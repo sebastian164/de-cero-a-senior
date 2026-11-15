@@ -1,6 +1,6 @@
 # 02 — Calidad, entrega y observabilidad en el frontend
 
-Sesión común a las rutas de Angular y de React/Next. Los fundamentos de integración continua y de observabilidad están en los niveles [10](../../java/nivel-10-cloud/04-ci-cd/) y [9](../../java/nivel-9-sistemas-distribuidos/06-observabilidad-distribuida/) de Java.
+Sesión común a las rutas de Angular y de React/Next. Los fundamentos de integración continua y de observabilidad están en los niveles [10](../../java/nivel-10-cloud/04-ci-cd/) y [9](../../java/nivel-09-sistemas-distribuidos/06-observabilidad-distribuida/) de Java.
 
 ## Idea
 

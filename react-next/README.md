@@ -6,12 +6,12 @@ De los fundamentos de TypeScript y de React al diseño y la defensa de aplicacio
 
 | Nivel | Tema | Sesiones |
 |---|---|---|
-| 1 | [Fundamentos: TypeScript, React y Next.js](nivel-1-fundamentos/) | 3 de TypeScript + 3 |
-| 2 | [SOLID en React](nivel-2-solid/) | 5 |
-| 3 | [Patrones en React](nivel-3-patrones/) | 5 |
-| 4 | [Clean code, formularios y pruebas](nivel-4-clean-code-y-testing/) | 3 |
-| 5 | [Arquitectura con Next.js](nivel-5-arquitectura/) | 4 |
-| 6 | [React y Next.js avanzado](nivel-6-avanzado/) | 3 |
+| 1 | [Fundamentos: TypeScript, React y Next.js](nivel-01-fundamentos/) | 3 de TypeScript + 3 |
+| 2 | [SOLID en React](nivel-02-solid/) | 5 |
+| 3 | [Patrones en React](nivel-03-patrones/) | 5 |
+| 4 | [Clean code, formularios y pruebas](nivel-04-clean-code-y-testing/) | 3 |
+| 5 | [Arquitectura con Next.js](nivel-05-arquitectura/) | 4 |
+| 6 | [React y Next.js avanzado](nivel-06-avanzado/) | 3 |
 | 7 | [Nivel senior de frontend](../frontend-senior/) (común con Angular) | 3 |
 
 Al final de cada bloque: [proyectos de aplicación](proyectos/).

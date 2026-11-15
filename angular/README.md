@@ -6,12 +6,12 @@ De los fundamentos de TypeScript al diseño y la defensa de aplicaciones Angular
 
 | Nivel | Tema | Sesiones |
 |---|---|---|
-| 1 | [Fundamentos: TypeScript y Angular](nivel-1-fundamentos/) | 5 |
-| 2 | [SOLID en Angular](nivel-2-solid/) | 5 |
-| 3 | [Patrones en Angular](nivel-3-patrones/) | 6 |
-| 4 | [Clean code, formularios y pruebas](nivel-4-clean-code-y-testing/) | 4 |
-| 5 | [Arquitectura frontend](nivel-5-arquitectura/) | 5 |
-| 6 | [Angular avanzado](nivel-6-angular-avanzado/) | 4 |
+| 1 | [Fundamentos: TypeScript y Angular](nivel-01-fundamentos/) | 5 |
+| 2 | [SOLID en Angular](nivel-02-solid/) | 5 |
+| 3 | [Patrones en Angular](nivel-03-patrones/) | 6 |
+| 4 | [Clean code, formularios y pruebas](nivel-04-clean-code-y-testing/) | 4 |
+| 5 | [Arquitectura frontend](nivel-05-arquitectura/) | 5 |
+| 6 | [Angular avanzado](nivel-06-angular-avanzado/) | 4 |
 | 7 | [Nivel senior de frontend](../frontend-senior/) (común con React/Next) | 3 |
 
 Al final de cada bloque: [proyectos de aplicación](proyectos/).

@@ -1,6 +1,6 @@
 # 02 — Orientación a objetos en TypeScript
 
-Los conceptos son los mismos de la [ruta Java](../../java/nivel-1-fundamentos-oo/): si quieres la explicación larga de encapsulamiento, herencia o composición, está allí. Esta sesión muestra cómo se expresan en TypeScript y qué cambia.
+Los conceptos son los mismos de la [ruta Java](../../java/nivel-01-fundamentos-oo/): si quieres la explicación larga de encapsulamiento, herencia o composición, está allí. Esta sesión muestra cómo se expresan en TypeScript y qué cambia.
 
 ## Idea
 
