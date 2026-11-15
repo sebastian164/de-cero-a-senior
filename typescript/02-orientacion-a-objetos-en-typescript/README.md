@@ -1,10 +1,10 @@
 # 02 — Orientación a objetos en TypeScript
 
-Los conceptos son los mismos de la [ruta Java](../../../java/nivel-1-fundamentos-oo/): si quieres la explicación larga de encapsulamiento, herencia o composición, está allí. Esta sesión muestra cómo se expresan en TypeScript y qué cambia.
+Los conceptos son los mismos de la [ruta Java](../../java/nivel-1-fundamentos-oo/): si quieres la explicación larga de encapsulamiento, herencia o composición, está allí. Esta sesión muestra cómo se expresan en TypeScript y qué cambia.
 
 ## Idea
 
-Un objeto guarda sus datos, sabe qué hacer con ellos y protege sus propias reglas. En TypeScript eso se puede lograr con clases, y muchas veces también con funciones y objetos inmutables. Un buen desarrollador de Angular domina las dos formas y sabe cuándo usar cada una.
+Un objeto guarda sus datos, sabe qué hacer con ellos y protege sus propias reglas. En TypeScript eso se puede lograr con clases, y muchas veces también con funciones y objetos inmutables. Un buen desarrollador de frontend domina las dos formas y sabe cuándo usar cada una.
 
 ## Lo esencial
 
@@ -21,7 +21,7 @@ Un objeto guarda sus datos, sabe qué hacer con ellos y protege sus propias regl
 Diferencias que importan:
 
 - `private` de TypeScript solo existe al compilar. En ejecución el campo es accesible.
-- Las interfaces desaparecen al compilar: no se puede preguntar en ejecución si un objeto "implementa" una interfaz, y no sirven como identificador para la inyección de dependencias (por eso Angular usa `InjectionToken`).
+- Las interfaces desaparecen al compilar: no se puede preguntar en ejecución si un objeto "implementa" una interfaz, y no sirven como identificador en ejecución (por eso Angular, por ejemplo, usa `InjectionToken` para inyectar).
 - Funciones y objetos literales son ciudadanos de primera clase: muchas veces un tipo y un par de funciones reemplazan a una clase.
 
 ### Clase o datos con funciones
@@ -32,7 +32,7 @@ Diferencias que importan:
 | Es un servicio con dependencias | Las operaciones son transformaciones puras |
 | Hay varias implementaciones de un contrato | El objeto debe ser serializable y comparable |
 
-En Angular, el estado suele ser inmutable (objetos planos y señales) y los servicios son clases.
+En las aplicaciones de interfaz, el estado suele ser inmutable (objetos planos) y la lógica con dependencias se organiza en servicios o en funciones.
 
 ## Antes
 
@@ -89,7 +89,7 @@ class Carrito {
 }
 ```
 
-La misma idea, en estilo inmutable, que es el más común para el estado en Angular:
+La misma idea, en estilo inmutable, que es el más común para el estado de una interfaz:
 
 ```ts
 interface EstadoCarrito {
@@ -124,7 +124,7 @@ const total = (estado: EstadoCarrito) =>
 4. Reemplaza una jerarquía de herencia (`Empleado` → por horas, asalariado) por composición.
 5. Explica con código por qué una respuesta HTTP tipada como una clase no tiene los métodos de esa clase.
 
-Rama `taller/ng-n1-02-oo`.
+Rama `taller/ts-02-oo`.
 
 ## Preguntas senior
 

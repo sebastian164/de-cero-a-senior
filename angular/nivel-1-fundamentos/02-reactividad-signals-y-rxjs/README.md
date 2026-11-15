@@ -1,4 +1,4 @@
-# 05 — Reactividad: señales y RxJS
+# 02 — Reactividad: señales y RxJS
 
 ## Idea
 
@@ -117,7 +117,7 @@ Menos estado, sin carrera entre peticiones, sin suscripciones manuales y sin rie
 5. Cambia `switchMap` por `mergeMap` en el buscador y reproduce el error.
 6. Explica con tus palabras por qué `computed` es preferible a `effect` para derivar.
 
-Rama `taller/ng-n1-05-reactividad`.
+Rama `taller/ng-n1-02-reactividad`.
 
 ## Preguntas senior
 

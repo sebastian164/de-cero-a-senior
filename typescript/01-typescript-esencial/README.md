@@ -92,7 +92,7 @@ La unión discriminada con comprobación `never` es el equivalente en TypeScript
 4. Escribe un validador que reciba `unknown` (una respuesta de API) y devuelva un `Pedido` tipado o un error. No uses `as`.
 5. Convierte un archivo JavaScript de 50 líneas a TypeScript estricto sin `any`. Lista los errores reales que descubrió el compilador.
 
-Rama `taller/ng-n1-01-typescript`.
+Rama `taller/ts-01-typescript`.
 
 ## Preguntas senior
 

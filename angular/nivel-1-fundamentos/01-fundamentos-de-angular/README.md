@@ -1,4 +1,4 @@
-# 04 — Fundamentos de Angular
+# 01 — Fundamentos de Angular
 
 Angular cambia con cada versión mayor. Esta ruta usa la forma moderna (componentes independientes, señales, control de flujo integrado, `inject`). Confirma los detalles de tu versión en la documentación oficial (angular.dev).
 
@@ -159,7 +159,7 @@ Construye una lista de tareas:
 5. Dos rutas: la lista y el detalle de una tarea.
 6. Identifica qué lógica quedó en funciones puras y pruébala sin Angular.
 
-Rama `taller/ng-n1-04-angular`.
+Rama `taller/ng-n1-01-angular`.
 
 ## Preguntas senior
 

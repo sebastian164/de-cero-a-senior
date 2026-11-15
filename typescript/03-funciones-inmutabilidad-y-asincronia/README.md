@@ -34,7 +34,7 @@ Una promesa representa un valor futuro: pendiente, cumplida o rechazada.
 - `await` espera sin bloquear el hilo.
 - Los errores se capturan con `try/catch`.
 - `Promise.all` ejecuta en paralelo y falla si una falla; `Promise.allSettled` espera a todas.
-- Una promesa **no se puede cancelar** y entrega **un solo valor**. Por eso Angular usa observables para flujos (ver sesión 05).
+- Una promesa **no se puede cancelar** y entrega **un solo valor**. Por eso existen los observables y las bibliotecas de datos asíncronos, que se ven en cada ruta.
 
 ## Antes
 
@@ -103,7 +103,7 @@ async function cargarTableroTolerante(id: string): Promise<Tablero> {
 4. Reproduce una condición de carrera: un buscador que dispara una petición por tecla, donde una respuesta lenta pisa a una rápida. Corrígela.
 5. Explica en qué orden se imprime una secuencia con `console.log`, `setTimeout(…, 0)` y una promesa ya resuelta, y por qué.
 
-Rama `taller/ng-n1-03-funciones`.
+Rama `taller/ts-03-funciones`.
 
 ## Preguntas senior
 
