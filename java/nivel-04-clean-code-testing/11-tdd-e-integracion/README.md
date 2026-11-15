@@ -196,6 +196,8 @@ class TodoTest {
 
 Se revisará: tamaño de los ciclos, que cada prueba haya fallado antes de pasar y que cada nivel de prueba verifique lo que le corresponde. Rama `taller/n4-11-tdd`.
 
+Para practicar TDD a fondo, con katas, dobles de prueba y código heredado, están los [cuatro talleres de TDD](../../../practicas/tdd/).
+
 ## Aplicación profesional
 
 - **TDD donde hay lógica:** reglas de negocio, cálculos, validaciones, máquinas de estado. Es menos útil en código de pegamento y en exploración de una tecnología nueva.

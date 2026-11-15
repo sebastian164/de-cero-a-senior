@@ -1,0 +1,10 @@
+# Un entorno local de observabilidad en un contenedor. Solo para desarrollo.
+# Elige la etiqueta vigente de la imagen y pásala al arrancar:
+#   VERSION_LGTM=<etiqueta> docker compose up -d
+services:
+  observabilidad:
+    image: grafana/otel-lgtm:${VERSION_LGTM:?define VERSION_LGTM con la etiqueta vigente de la imagen}
+    ports:
+      - "3000:3000"     # la interfaz web
+      - "4317:4317"     # entrada de telemetría OTLP por gRPC
+      - "4318:4318"     # entrada de telemetría OTLP por HTTP

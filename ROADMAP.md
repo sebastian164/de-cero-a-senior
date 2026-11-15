@@ -64,6 +64,17 @@ Para la ruta Java, después del Nivel 9. Requieren los talleres de Docker.
 | 1 | [Kafka](kafka-y-sagas/kafka/) | 7 |
 | 2 | [Sagas](kafka-y-sagas/sagas/) | 6 |
 
+## Talleres de prácticas
+
+Comunes a las tres rutas. TDD va después del Nivel 4; las demás partes, cuando las necesites.
+
+| Parte | Tema | Sesiones |
+|---|---|---|
+| 1 | [TDD](practicas/tdd/) | 4 |
+| 2 | [Karate](practicas/karate/) | 3 |
+| 3 | [SDD](practicas/sdd/) | 3 |
+| 4 | [ODD](practicas/odd/) | 3 |
+
 ## Si vas a seguir más de una ruta
 
 Empieza por Java hasta el Nivel 5: ahí están las explicaciones completas de orientación a objetos, SOLID, patrones y arquitectura, a las que las rutas de frontend enlazan. Después, las rutas de frontend se recorren mucho más rápido.

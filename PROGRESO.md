@@ -85,6 +85,24 @@ Una lección pasa por tres estados: leída, taller entregado y aprobada. Solo "a
 | Sagas 05 — Sagas con Kafka y Spring Boot | ☐ | ☐ |
 | Sagas 06 — Taller integrador | ☐ | ☐ |
 
+## Talleres de prácticas
+
+| Taller | En curso | Aprobado |
+|---|---|---|
+| TDD 01 — Rojo, verde, refactor | ☐ | ☐ |
+| TDD 02 — De afuera hacia adentro y dobles de prueba | ☐ | ☐ |
+| TDD 03 — Código heredado | ☐ | ☐ |
+| TDD 04 — Límites y calidad de las pruebas | ☐ | ☐ |
+| Karate 01 — Primera prueba de API | ☐ | ☐ |
+| Karate 02 — Aserciones, datos y reutilización | ☐ | ☐ |
+| Karate 03 — Mocks, paralelo e integración continua | ☐ | ☐ |
+| SDD 01 — Especificar antes de construir | ☐ | ☐ |
+| SDD 02 — Del plan a las tareas | ☐ | ☐ |
+| SDD 03 — Mantener la especificación viva | ☐ | ☐ |
+| ODD 01 — Preguntas antes que código | ☐ | ☐ |
+| ODD 02 — Trazas, métricas y objetivos | ☐ | ☐ |
+| ODD 03 — Diagnosticar con telemetría | ☐ | ☐ |
+
 ## Bitácora
 
 Notas de cada revisión: qué lección, qué quedó flojo, qué hay que repasar y qué se decidió.
