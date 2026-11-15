@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: caso-8
+  namespace: averiado
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: caso-8
+  template:
+    metadata:
+      labels:
+        app: caso-8
+    spec:
+      containers:
+        - name: api
+          image: bitacora-api:1.0.0
+          ports:
+            - name: http
+              containerPort: 8080
+          readinessProbe:
+            httpGet:
+              path: /salud/listo
+              port: http
+            periodSeconds: 5
+          resources:
+            requests:
+              cpu: 50m
+              memory: 12Mi
+            limits:
+              memory: 12Mi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: caso-8
+  namespace: averiado
+spec:
+  selector:
+    app: caso-8
+  ports:
+    - name: http
+      port: 80
+      targetPort: http

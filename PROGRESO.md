@@ -46,6 +46,27 @@ Una lección pasa por tres estados: leída, taller entregado y aprobada. Solo "a
 | 7 — Nivel senior de frontend | ☐ | ☐ |
 | Proyectos de aplicación (5) | ☐ | ☐ |
 
+## Talleres de Docker y Kubernetes
+
+| Taller | En curso | Aprobado |
+|---|---|---|
+| Docker 01 — Contenedores desde cero | ☐ | ☐ |
+| Docker 02 — Tu primera imagen | ☐ | ☐ |
+| Docker 03 — Imágenes eficientes y seguras | ☐ | ☐ |
+| Docker 04 — Datos y redes | ☐ | ☐ |
+| Docker 05 — Docker Compose | ☐ | ☐ |
+| Docker 06 — De la imagen a producción | ☐ | ☐ |
+| Kubernetes 01 — Clúster local y primer pod | ☐ | ☐ |
+| Kubernetes 02 — Deployments y Services | ☐ | ☐ |
+| Kubernetes 03 — Configuración y secretos | ☐ | ☐ |
+| Kubernetes 04 — Sondas, recursos y apagado ordenado | ☐ | ☐ |
+| Kubernetes 05 — Tráfico de entrada: Gateway API | ☐ | ☐ |
+| Kubernetes 06 — Almacenamiento y estado | ☐ | ☐ |
+| Kubernetes 07 — Escalado y actualizaciones | ☐ | ☐ |
+| Kubernetes 08 — Seguridad del pod y de la red | ☐ | ☐ |
+| Kubernetes 09 — Diagnóstico | ☐ | ☐ |
+| Kubernetes 10 — Kustomize y taller integrador | ☐ | ☐ |
+
 ## Bitácora
 
 Notas de cada revisión: qué lección, qué quedó flojo, qué hay que repasar y qué se decidió.

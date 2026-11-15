@@ -1,0 +1,29 @@
+# 1. Nadie entra a ningún pod de este espacio de nombres…
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: denegar-entrada
+spec:
+  podSelector: {}
+  policyTypes:
+    - Ingress
+---
+# 2. …salvo la web, que puede llegar a pedidos por su puerto.
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: web-a-pedidos
+spec:
+  podSelector:
+    matchLabels:
+      app: pedidos
+  policyTypes:
+    - Ingress
+  ingress:
+    - from:
+        - podSelector:
+            matchLabels:
+              app: web
+      ports:
+        - protocol: TCP
+          port: 8080

@@ -1,0 +1,16 @@
+services:
+  app:
+    image: mi-app:latest
+    ports:
+      - "8080:8080"
+    environment:
+      DB_HOST: localhost
+      DB_PASSWORD: SuperSecreta123
+    depends_on:
+      - db
+  db:
+    image: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: SuperSecreta123

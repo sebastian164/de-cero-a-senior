@@ -1,0 +1,14 @@
+# Etapa de construcción: aquí están Node y las dependencias de desarrollo
+FROM node:24-alpine AS construccion
+WORKDIR /app
+COPY package.json package-lock.json ./
+RUN npm ci
+COPY . .
+RUN npm run build
+
+# Etapa final: solo nginx y los archivos generados
+FROM nginxinc/nginx-unprivileged:1.28-alpine
+COPY --from=construccion /app/dist /usr/share/nginx/html
+EXPOSE 8080
+HEALTHCHECK --interval=30s --timeout=3s --retries=3 \
+  CMD wget -q -O /dev/null http://localhost:8080/ || exit 1

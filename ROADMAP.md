@@ -46,6 +46,15 @@ El orden de los niveles dentro de cada ruta es obligatorio; el calendario no. Ca
 | 7 | [Nivel senior de frontend](frontend-senior/) | 3 |
 | — | [Proyectos de aplicación](react-next/proyectos/) | 5 proyectos |
 
+## Talleres de Docker y Kubernetes
+
+Comunes a las tres rutas. Se hacen después del Nivel 5 de cualquiera de ellas, primero Docker y después Kubernetes.
+
+| Parte | Tema | Sesiones |
+|---|---|---|
+| 1 | [Docker](docker-kubernetes/docker/) | 6 |
+| 2 | [Kubernetes](docker-kubernetes/kubernetes/) | 10 |
+
 ## Si vas a seguir más de una ruta
 
 Empieza por Java hasta el Nivel 5: ahí están las explicaciones completas de orientación a objetos, SOLID, patrones y arquitectura, a las que las rutas de frontend enlazan. Después, las rutas de frontend se recorren mucho más rápido.

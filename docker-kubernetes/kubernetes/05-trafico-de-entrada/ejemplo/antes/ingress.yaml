@@ -1,0 +1,46 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: tienda
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: tienda.localhost
+      http:
+        paths:
+          - path: /api
+            pathType: Prefix
+            backend:
+              service:
+                name: pedidos
+                port:
+                  number: 80
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: web
+                port:
+                  number: 80
+---
+# Para enviar el 10 % del tráfico a la versión nueva hace falta un segundo Ingress con anotaciones.
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: tienda-canario
+  annotations:
+    nginx.ingress.kubernetes.io/canary: "true"
+    nginx.ingress.kubernetes.io/canary-weight: "10"
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: tienda.localhost
+      http:
+        paths:
+          - path: /api
+            pathType: Prefix
+            backend:
+              service:
+                name: pedidos-v2
+                port:
+                  number: 80

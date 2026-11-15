@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bitácora</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 40rem; margin: 2rem auto; padding: 0 1rem; line-height: 1.5; }
+    h1 { margin-bottom: 0; }
+    dl { display: grid; grid-template-columns: max-content 1fr; gap: .25rem 1rem; }
+    dt { font-weight: 600; }
+    form { display: flex; gap: .5rem; }
+    input { flex: 1; padding: .5rem; }
+    button { padding: .5rem 1rem; }
+    #estado { min-height: 1.5rem; }
+  </style>
+</head>
+<body>
+  <h1>Bitácora</h1>
+  <p id="mensaje">Cargando…</p>
+
+  <dl>
+    <dt>Versión</dt><dd id="version">—</dd>
+    <dt>Respondió</dt><dd id="host">—</dd>
+    <dt>Visitas de esa copia</dt><dd id="visitas">—</dd>
+  </dl>
+
+  <h2>Notas</h2>
+  <form id="formulario">
+    <input id="nota" maxlength="500" placeholder="Escribe una nota" aria-label="Nota nueva" required>
+    <button>Guardar</button>
+  </form>
+  <p id="estado" role="status"></p>
+  <ul id="notas"></ul>
+
+  <script>
+    const el = (id) => document.getElementById(id);
+
+    async function cargar() {
+      try {
+        const info = await (await fetch('/api/info')).json();
+        el('mensaje').textContent = info.mensaje;
+        el('version').textContent = info.version;
+        el('host').textContent = info.host;
+        el('visitas').textContent = info.visitas;
+        const datos = await (await fetch('/api/notas')).json();
+        el('notas').replaceChildren(...datos.notas.map((texto) => {
+          const item = document.createElement('li');
+          item.textContent = texto;
+          return item;
+        }));
+      } catch (error) {
+        el('mensaje').textContent = 'No se pudo contactar a la API. Revisa el destino configurado en el servidor web.';
+      }
+    }
+
+    el('formulario').addEventListener('submit', async (evento) => {
+      evento.preventDefault();
+      const respuesta = await fetch('/api/notas', { method: 'POST', body: el('nota').value });
+      el('estado').textContent = respuesta.ok ? 'Nota guardada.' : 'La API respondió ' + respuesta.status + '.';
+      if (respuesta.ok) el('nota').value = '';
+      cargar();
+    });
+
+    cargar();
+  </script>
+</body>
+</html>

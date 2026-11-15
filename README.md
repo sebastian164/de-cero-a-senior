@@ -26,6 +26,12 @@ Material común a las dos rutas de frontend:
 | [Fundamentos de TypeScript](typescript/) | El lenguaje, orientación a objetos en TypeScript, funciones y asincronía | 3 |
 | [Nivel senior de frontend](frontend-senior/) | Diseño de sistemas frontend, calidad y entrega, liderazgo | 3 |
 
+Talleres prácticos comunes a las tres rutas:
+
+| Carpeta | Contenido | Sesiones |
+|---|---|---|
+| [Docker y Kubernetes](docker-kubernetes/) | Contenedores, imágenes, Compose, publicación; clúster local, despliegues, configuración, sondas, Gateway API, almacenamiento, escalado, seguridad, diagnóstico y Kustomize | 6 + 10 |
+
 Cada ruta termina con sus **proyectos de aplicación**: [Java](java/proyectos/), [Angular](angular/proyectos/), [React y Next.js](react-next/proyectos/).
 
 ## Cómo se relacionan las rutas
@@ -69,6 +75,7 @@ Las soluciones de referencia no se publican antes de la entrega. Ver la respuest
 | Java, niveles 1 a 3 y lecciones 01 a 08 del nivel 4 | Java puro, compilado y ejecutado con JDK 21 |
 | Java, resto (JUnit, Mockito, Spring, SQL, configuración) | Ilustrativo, sin ejecutar |
 | TypeScript, Angular, React y Next.js | Ilustrativo, sin ejecutar |
+| Docker y Kubernetes | La aplicación de práctica se ejecutó; los manifiestos estándar y los archivos de Compose se validaron; los Dockerfile y las órdenes no se ejecutaron. El detalle está en [su índice](docker-kubernetes/README.md#estado-del-código) |
 
 "Ilustrativo" significa que el código muestra la idea y la estructura, pero no se compiló al preparar el curso: puede requerir ajustes, y las versiones de los frameworks cambian. Hacerlo funcionar es parte de cada taller.
 
@@ -76,6 +83,7 @@ Las soluciones de referencia no se publican antes de la entrega. Ver la respuest
 
 - Ruta Java: JDK 21 o superior; Maven desde el nivel 4; Docker desde el nivel 7.
 - Rutas de frontend: Node.js en una versión LTS vigente.
+- Talleres de Docker y Kubernetes: Docker, `kubectl` y una herramienta de clúster local como kind.
 - Git.
 
 ## Autor

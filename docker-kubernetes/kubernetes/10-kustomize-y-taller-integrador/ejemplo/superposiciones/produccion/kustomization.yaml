@@ -1,0 +1,19 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: pedidos-produccion
+resources:
+  - ../../base
+  - espacio-de-nombres.yaml
+images:
+  - name: ghcr.io/ejemplo/pedidos
+    newTag: 2.3.1
+replicas:
+  - name: pedidos
+    count: 4
+configMapGenerator:
+  - name: pedidos-config
+    behavior: merge
+    literals:
+      - NIVEL_REGISTRO=WARN
+patches:
+  - path: recursos.yaml

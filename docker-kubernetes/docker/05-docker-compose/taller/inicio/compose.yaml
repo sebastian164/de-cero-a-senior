@@ -1,0 +1,11 @@
+# Punto de partida del taller. Funciona a medias: tu trabajo es dejarlo bien.
+services:
+  api:
+    image: bitacora-api:1.0.0
+    ports:
+      - "8080:8080"
+
+  web:
+    image: bitacora-web:0.1.0
+    ports:
+      - "8081:8080"

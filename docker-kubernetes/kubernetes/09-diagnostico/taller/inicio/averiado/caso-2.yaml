@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: caso-2
+  namespace: averiado
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: caso-2
+  template:
+    metadata:
+      labels:
+        app: caso-2
+    spec:
+      containers:
+        - name: api
+          image: bitacora-api:1.0.0
+          env:
+            - name: PUERTO
+              value: "8080 "
+            - name: MENSAJE
+              value: Caso dos
+          ports:
+            - name: http
+              containerPort: 8080
+          readinessProbe:
+            httpGet:
+              path: /salud/listo
+              port: http
+            periodSeconds: 5
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: caso-2
+  namespace: averiado
+spec:
+  selector:
+    app: caso-2
+  ports:
+    - name: http
+      port: 80
+      targetPort: http

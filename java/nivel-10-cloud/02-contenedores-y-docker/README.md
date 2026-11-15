@@ -100,6 +100,8 @@ services:
 
 Rama `taller/n10-02-docker`.
 
+Para practicar a fondo, paso a paso y con criterios de aceptación, están los [seis talleres de Docker](../../../docker-kubernetes/docker/).
+
 ## Preguntas senior
 
 1. Diferencia entre contenedor y máquina virtual.

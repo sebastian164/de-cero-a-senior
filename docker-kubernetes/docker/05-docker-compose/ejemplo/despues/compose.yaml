@@ -1,0 +1,35 @@
+services:
+  app:
+    image: mi-app:1.4.2
+    ports:
+      - "8080:8080"
+    environment:
+      DB_HOST: db
+      DB_PASSWORD_FILE: /run/secrets/clave_db
+    secrets:
+      - clave_db
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: unless-stopped
+
+  db:
+    image: postgres:17
+    environment:
+      POSTGRES_PASSWORD_FILE: /run/secrets/clave_db
+    secrets:
+      - clave_db
+    volumes:
+      - datos-db:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+volumes:
+  datos-db:
+
+secrets:
+  clave_db:
+    file: ./clave_db.txt
