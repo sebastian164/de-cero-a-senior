@@ -8,7 +8,7 @@ La prioridad es aprender bien, no terminar rápido. Memorizar una definición no
 
 ## Orden de aprendizaje
 
-La progresión es obligatoria y va de abajo hacia arriba:
+El curso tiene tres rutas (Java, Angular, React y Next.js). En todas, la progresión es obligatoria y va de abajo hacia arriba. Esta es la de la ruta Java, la más extensa; las de frontend siguen el mismo orden de ideas con su tecnología:
 
 1. Fundamentos de programación y orientación a objetos.
 2. Principios SOLID.
@@ -67,7 +67,7 @@ Se profundiza primero en los patrones más usados en aplicaciones empresariales 
 
 - No se presupone ningún conocimiento que no se haya demostrado.
 - No se entrega la solución de un taller antes de que exista un intento.
-- Java es el lenguaje principal. Spring Boot entra cuando los fundamentos están claros.
+- En la ruta Java, Java es el lenguaje principal y Spring Boot entra cuando los fundamentos están claros. En las rutas de frontend, TypeScript va antes que el framework.
 - Los ejemplos son progresivos: de clases sencillas a sistemas empresariales.
 - Toda decisión técnica se explica con sus razones.
 - SOLID y los patrones no son reglas absolutas. Cada lección dice cuándo no aplicarlos.
