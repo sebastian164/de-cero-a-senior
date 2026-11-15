@@ -6,7 +6,7 @@ El orden es obligatorio; el calendario no. Cada lección se cierra cuando su tal
 
 | # | Lección | Estado |
 |---|---|---|
-| 00 | [¿Qué es realmente la orientación a objetos?](nivel-1-fundamentos-oo/00-que-es-la-oo/) | Publicada |
+| 00 | [¿Qué es realmente la orientación a objetos?](java/nivel-1-fundamentos-oo/00-que-es-la-oo/) | Publicada |
 | 01 | Clases, objetos, atributos y métodos | Pendiente |
 | 02 | Encapsulamiento | Pendiente |
 | 03 | Herencia | Pendiente |
@@ -20,7 +20,7 @@ El orden es obligatorio; el calendario no. Cada lección se cierra cuando su tal
 
 | # | Lección | Estado |
 |---|---|---|
-| 01 | [S — Responsabilidad única (SRP)](nivel-2-solid/01-srp/) | Publicada |
+| 01 | [S — Responsabilidad única (SRP)](java/nivel-2-solid/01-srp/) | Publicada |
 | 02 | O — Abierto/cerrado (OCP) | Pendiente |
 | 03 | L — Sustitución de Liskov (LSP) | Pendiente |
 | 04 | I — Segregación de interfaces (ISP) | Pendiente |

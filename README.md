@@ -15,8 +15,8 @@ Regla de la casa: usar una tecnología no cuenta como saber el concepto. Inyecta
 
 | Nivel | Tema | Estado |
 |---|---|---|
-| 1 | [Fundamentos de programación y orientación a objetos](nivel-1-fundamentos-oo/) | En curso |
-| 2 | [Principios SOLID](nivel-2-solid/) | En curso |
+| 1 | [Fundamentos de programación y orientación a objetos](java/nivel-1-fundamentos-oo/) | En curso |
+| 2 | [Principios SOLID](java/nivel-2-solid/) | En curso |
 | 3 | Patrones de diseño (GoF) | Pendiente |
 | 4 | Clean Code, refactorización y testing | Pendiente |
 | 5 | Arquitectura de software | Pendiente |
@@ -27,8 +27,8 @@ El detalle de cada nivel está en [ROADMAP.md](ROADMAP.md) y el avance real en [
 ## Por dónde empezar
 
 1. Lee [METODOLOGIA.md](METODOLOGIA.md): son las reglas del curso.
-2. [Clase 0 — ¿Qué es realmente la orientación a objetos?](nivel-1-fundamentos-oo/00-que-es-la-oo/)
-3. [SRP — Principio de responsabilidad única](nivel-2-solid/01-srp/)
+2. [Clase 0 — ¿Qué es realmente la orientación a objetos?](java/nivel-1-fundamentos-oo/00-que-es-la-oo/)
+3. [SRP — Principio de responsabilidad única](java/nivel-2-solid/01-srp/)
 
 ## Cómo se trabaja cada lección
 
