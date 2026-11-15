@@ -119,6 +119,8 @@ En una aplicación real hay **un** productor para toda la aplicación, creado al
 
 **Objetivo:** escribir un productor fiable y demostrar, tumbando brokers, qué garantiza cada configuración.
 
+**Sobre tu servicio hexagonal:** si hiciste el [módulo de arquitectura hexagonal](../../../hexagonal/), el productor es un **adaptador de salida** de tu servicio de pedidos: el destino del mensajero de tu bandeja de salida. `acks`, reintentos e idempotencia del productor son configuración de ese adaptador; el caso de uso no los ve ni cambia.
+
 Parte A, con las herramientas de consola y el clúster de tres brokers ([`compose.cluster.yaml`](../../entorno/compose.cluster.yaml)):
 
 1. Crea un tema con tres particiones y factor de replicación 3. En la descripción, identifica la líder y las réplicas sincronizadas de cada partición.

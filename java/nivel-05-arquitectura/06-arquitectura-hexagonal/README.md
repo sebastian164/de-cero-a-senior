@@ -155,4 +155,6 @@ Rama `taller/n5-06-hexagonal`.
 5. ¿Cuándo el mapeo entre modelo de dominio y modelo de persistencia paga su costo?
 6. ¿Cómo migrarías una aplicación en capas a hexagonal de forma incremental?
 
+Para construirla entera, con código que se ejecuta, transacciones, concurrencia y persistencia con ORM, está el módulo de [arquitectura hexagonal con Java](../../../hexagonal/): ocho sesiones sobre un banco.
+
 Siguiente: [07 — Onion Architecture](../07-onion-architecture/).

@@ -1,4 +1,4 @@
-# 06 — Taller integrador: la tienda completa
+# 07 — Taller integrador: la tienda completa
 
 Esta sesión no trae conceptos nuevos. Es el examen de la ruta: entregar el sistema de la tienda funcionando, con todo lo visto, y defenderlo.
 
@@ -43,6 +43,8 @@ Además, por coreografía y sin tocar la saga: **Notificaciones** (avisa al clie
 | Lápidas, tiempos límite y compensaciones que insisten | Sagas 04 |
 | Contramedida explícita contra la doble venta | Sagas 04 |
 | La lógica de la saga se prueba sin infraestructura | Sagas 05 |
+| Cada servicio es un hexágono: Kafka y la base de datos aparecen solo en adaptadores | Kafka 08 |
+| El orquestador es un servicio de aplicación y cada participante, un puerto de salida | Sagas 06 |
 
 ### De operación
 
@@ -99,7 +101,7 @@ Un documento de tres páginas para quien vaya a operar esto:
 
 ## Entrega
 
-Rama `taller/sagas-06`, o un repositorio propio enlazado desde el pull request, con el código, el verificador, los resultados del simulacro y la defensa en `taller/solucion/`.
+Rama `taller/sagas-07`, o un repositorio propio enlazado desde el pull request, con el código, el verificador, los resultados del simulacro y la defensa en `taller/solucion/`.
 
 ## Preguntas de cierre
 

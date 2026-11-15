@@ -160,6 +160,8 @@ El saldo es correcto aunque haya repeticiones. Lo que hace que funcione no es el
 
 **Objetivo:** construir un consumidor que dé el resultado correcto con repeticiones, mensajes defectuosos y fallos pasajeros.
 
+**Sobre tu servicio hexagonal:** si hiciste el [módulo de arquitectura hexagonal](../../../hexagonal/), la deduplicación va en la **aplicación**, detrás de un puerto de salida que recuerda los eventos vistos, y se confirma en la misma unidad de trabajo que el efecto. El adaptador solo clasifica los fallos: reintentar, apartar o detenerse.
+
 Necesitas el entorno, tu productor y una base de datos (PostgreSQL en un contenedor sirve). El caso: un tema `abonos` cuyos mensajes suman saldo a cuentas.
 
 1. Escribe el consumidor ingenuo, que suma sin más. Produce cien abonos, mata el consumidor varias veces mientras procesa (confirmando después de procesar) y compara el saldo final con el esperado.

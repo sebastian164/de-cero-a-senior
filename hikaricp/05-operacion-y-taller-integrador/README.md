@@ -104,6 +104,8 @@ Con eso, la misma noche: la alerta temprana suena antes de que haya errores; el 
 
 **Objetivo:** dejar un servicio con su pool dimensionado, vigilado y probado contra los fallos que ya conoces, y demostrarlo con un simulacro.
 
+**Sobre tu servicio hexagonal:** si hiciste el [módulo de arquitectura hexagonal](../../hexagonal/), haz el simulacro sobre tu servicio de pedidos e incluye en el diagnóstico qué caso de uso retenía las conexiones y qué hacía mientras tanto.
+
 Con el [entorno](../entorno/), una aplicación Spring Boot con tres extremos (una lectura rápida, una escritura y una operación que llama a un servicio externo simulado) y una herramienta de carga.
 
 ### Parte 1 — Dimensionar

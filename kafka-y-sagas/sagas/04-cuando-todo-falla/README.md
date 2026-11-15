@@ -225,6 +225,8 @@ public class Main {
 
 **Objetivo:** someter tu saga a una mensajería hostil y dejarla correcta.
 
+**Sobre tu servicio hexagonal:** si hiciste el [módulo de arquitectura hexagonal](../../../hexagonal/), la mensajería hostil es **un adaptador más**: sustituye al de mensajería por uno que repite, desordena y pierde. Si para sobrevivir tienes que cambiar el dominio y no solo la aplicación, anota qué regla faltaba.
+
 Sobre tu orquestador de la sesión 02 (o la coreografía de la 03), en memoria.
 
 1. Escribe un **broker hostil**: una envoltura del bus que, de forma determinista y configurable, duplique mensajes, intercambie el orden de dos consecutivos, retrase uno varios ciclos o lo pierda. Determinista quiere decir que el mismo guion produce siempre el mismo resultado: sin azar.

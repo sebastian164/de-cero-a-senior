@@ -4,6 +4,8 @@ HikariCP es el pool de conexiones a base de datos que Spring Boot usa por defect
 
 Esta ruta es para la [ruta Java](../java/), después del [Nivel 8 (bases de datos)](../java/nivel-08-bases-de-datos/).
 
+**Punto de partida:** el servicio de pedidos que construyes en el módulo de [arquitectura hexagonal](../hexagonal/). Cada taller indica dónde va su trabajo en ese servicio, y la sesión 06 muestra, con código que se ejecuta sobre el banco de ese módulo, por qué la forma de un caso de uso decide el tamaño del pool.
+
 ## Orden
 
 | # | Sesión | Qué terminas sabiendo hacer |
@@ -13,6 +15,7 @@ Esta ruta es para la [ruta Java](../java/), después del [Nivel 8 (bases de dato
 | 03 | [Fugas de conexiones](03-fugas-de-conexiones/) | Encontrar y eliminar una fuga con las herramientas del pool |
 | 04 | [Agotamiento del pool](04-agotamiento-del-pool/) | Reconocer y corregir conexiones retenidas de más |
 | 05 | [Operación en producción y taller integrador](05-operacion-y-taller-integrador/) | Vigilar el pool y diagnosticarlo en un simulacro |
+| 06 | [El pool en un servicio hexagonal](06-el-pool-en-un-servicio-hexagonal/) | Ubicar el pool en la arquitectura y arreglar un agotamiento con una decisión de diseño |
 
 ## Qué necesitas
 
@@ -36,6 +39,7 @@ Una rama por taller (`taller/hikari-01`…), tu trabajo en `taller/solucion/` de
 | Qué | Cómo se comprobó al preparar el curso |
 |---|---|
 | Ejemplos en Java puro (sesiones 01, 03 y 04): seis programas | Compilados con `-Xlint:all -Werror` y ejecutados con JDK 21. El de la sesión 04 usa hilos y tiempos reales: en una máquina muy cargada, sus conteos pueden variar |
+| Ejemplo sobre el banco hexagonal (sesión 06): un proyecto de varios archivos, con un adaptador JDBC real | Compilado con `-Xlint:all -Werror` junto con el núcleo de [`hexagonal/proyecto`](../hexagonal/proyecto/) y ejecutado. El adaptador JDBC se ejercitó con conexiones falsas, **no contra una base de datos**. Usa hilos y tiempos reales: sus conteos pueden variar |
 | Compose del [entorno](entorno/) | Validado con `docker compose config`; no se levantó |
 | Código con HikariCP, archivos de configuración de Spring y consultas SQL | Ilustrativos: **no se ejecutaron** |
 

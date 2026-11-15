@@ -134,6 +134,8 @@ Los dos archivos son ilustrativos: no se cargaron en una aplicación al preparar
 
 **Objetivo:** dimensionar un pool con una cuenta y demostrar, midiendo, que más grande no es más rápido.
 
+**Sobre tu servicio hexagonal:** si hiciste el [módulo de arquitectura hexagonal](../../hexagonal/), el dato que alimenta la cuenta es cuánto retiene la conexión cada **caso de uso** dentro de su unidad de trabajo, no cuánto tarda cada consulta. Mídelo por caso de uso.
+
 Con el [entorno](../entorno/) (PostgreSQL limitado a 30 conexiones) y una aplicación Spring Boot mínima con un extremo que ejecute una consulta de unos 20 ms (por ejemplo, con `pg_sleep(0.02)`).
 
 1. Arranca con la configuración por defecto. Averigua, sin leer la documentación, qué valores está usando: actívalo en el registro o consúltalo por las métricas.

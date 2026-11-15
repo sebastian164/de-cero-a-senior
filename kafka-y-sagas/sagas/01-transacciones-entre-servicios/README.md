@@ -209,6 +209,8 @@ public class Main {
 
 **Objetivo:** diseñar en papel la saga de compra de la tienda y construir su primera versión en memoria.
 
+**Sobre tu servicio hexagonal:** si hiciste el [módulo de arquitectura hexagonal](../../../hexagonal/), en la versión en memoria, cada participante es un **puerto de salida** de tu servicio de pedidos con un doble en memoria, y quien coordina es un servicio de aplicación. Así, cuando llegue la infraestructura real, solo cambiarán adaptadores.
+
 El dominio es el de la sesión 05 de Kafka: **Pedidos**, **Pagos**, **Inventario** y **Envíos**.
 
 1. Escribe los pasos de "confirmar una compra" y decide su orden. Para cada uno: qué servicio lo hace, cuál es su compensación y si es compensable, pivote o reintentable.

@@ -196,6 +196,8 @@ class PublicadorDeEventos {
 
 **Objetivo:** construir el servicio de Inventario de la tienda con Spring Boot, con una política de errores defendible y pruebas de integración.
 
+**Sobre tu servicio hexagonal:** si hiciste el [módulo de arquitectura hexagonal](../../../hexagonal/), construye Inventario como otro hexágono. `@KafkaListener` va en un adaptador de entrada, el caso de uso no lleva anotaciones de Kafka y la raíz de composición lo declara con `@Bean`. El paso 2 lo pide; aquí se concreta en puertos.
+
 Usa los eventos que diseñaste en la sesión 05.
 
 1. Crea el servicio. Consume `PedidoConfirmado` y reserva existencias en una base de datos. Si no hay suficientes, publica `InventarioInsuficiente`; si las hay, `InventarioReservado`.

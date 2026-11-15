@@ -102,6 +102,8 @@ Las órdenes son ilustrativas: no se ejecutaron al preparar el curso.
 
 **Objetivo:** ver con tus propios ojos particiones, posiciones, claves y retención.
 
+**Sobre tu servicio hexagonal:** si hiciste el [módulo de arquitectura hexagonal](../../../hexagonal/), este taller es de consola y no tiene código que ubicar. Al terminar, anota qué clave usarías para los eventos de tu servicio de pedidos y qué debe quedar en orden: lo necesitarás en la [sesión 08](../08-kafka-en-un-servicio-hexagonal/).
+
 No hay archivos de inicio. Anota cada orden y su salida.
 
 1. Levanta el entorno. Crea el tema `pedidos` con tres particiones y descríbelo. Explica cada columna de la descripción.

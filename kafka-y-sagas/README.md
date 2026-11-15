@@ -2,6 +2,8 @@
 
 Ruta práctica sobre mensajería y consistencia entre servicios. Va después del [Nivel 9 de Java](../java/nivel-09-sistemas-distribuidos/), cuyas sesiones 03 y 04 dan el panorama; aquí se construye.
 
+**Punto de partida:** el servicio de pedidos que construyes en el módulo de [arquitectura hexagonal](../hexagonal/). Cada taller indica dónde va su trabajo en ese servicio: Kafka y las sagas entran como adaptadores y servicios de aplicación, sin tocar el dominio. Las sesiones 08 de Kafka y 06 de sagas lo muestran completo, con código que se ejecuta sobre el banco de ese módulo.
+
 Son dos partes en orden: primero **Kafka**, la herramienta para mover hechos entre servicios sin perderlos; después **sagas**, el patrón para que una operación de varios servicios termine bien o se deshaga bien.
 
 ## Orden
@@ -17,6 +19,7 @@ Son dos partes en orden: primero **Kafka**, la herramienta para mover hechos ent
 | 05 | [Eventos como contrato](kafka/05-eventos-como-contrato/) | Diseñar eventos y evolucionarlos sin romper |
 | 06 | [Kafka con Spring Boot](kafka/06-kafka-con-spring-boot/) | Listeners, política de errores y pruebas de integración |
 | 07 | [Outbox transaccional](kafka/07-outbox-transaccional/) | Guardar y publicar sin doble escritura |
+| 08 | [Kafka en un servicio hexagonal](kafka/08-kafka-en-un-servicio-hexagonal/) | Productor y consumidor como adaptadores; idempotencia en la aplicación |
 
 ### [Sagas](sagas/)
 
@@ -27,7 +30,8 @@ Son dos partes en orden: primero **Kafka**, la herramienta para mover hechos ent
 | 03 | [Saga coreografiada](sagas/03-saga-coreografiada/) | Coordinar por eventos y saber cuándo no |
 | 04 | [Cuando todo falla](sagas/04-cuando-todo-falla/) | Repeticiones, desorden, tiempos límite y aislamiento |
 | 05 | [Sagas con Kafka y Spring Boot](sagas/05-sagas-con-kafka-y-spring-boot/) | Llevarlo a infraestructura real |
-| 06 | [Taller integrador](sagas/06-taller-integrador/) | La tienda completa, con simulacro y defensa |
+| 06 | [Una saga en un servicio hexagonal](sagas/06-una-saga-en-un-servicio-hexagonal/) | El orquestador como servicio de aplicación y cada participante como puerto |
+| 07 | [Taller integrador](sagas/07-taller-integrador/) | La tienda completa, con simulacro y defensa |
 
 ## Qué necesitas
 
@@ -60,6 +64,7 @@ Una rama por taller (`taller/kafka-03`, `taller/sagas-02`…), tu trabajo en `ta
 | Qué | Cómo se comprobó al preparar el curso |
 |---|---|
 | Ejemplos en Java puro (Kafka 03, 04 y 07; sagas 01 a 04): catorce programas | Compilados con `-Xlint:all -Werror` y ejecutados con JDK 21; la salida de cada uno es la que describe su sesión |
+| Ejemplos sobre el banco hexagonal (Kafka 08 y sagas 06): dos proyectos de varios archivos | Compilados con `-Xlint:all -Werror` junto con el núcleo de [`hexagonal/proyecto`](../hexagonal/proyecto/) y ejecutados; todas sus comprobaciones pasan |
 | Archivos de Compose del [entorno](entorno/) | Validados con `docker compose config` |
 | Código con el cliente de Kafka y con Spring | Ilustrativo: **no se compiló**, porque requiere descargar bibliotecas que no estaban disponibles |
 | Órdenes de consola de Kafka y el propio broker | **No se ejecutaron**: no había motor de Docker |

@@ -137,6 +137,8 @@ Un **registro de esquemas** guarda las versiones del esquema de cada tema y **re
 
 **Objetivo:** diseñar los eventos de una tienda y demostrar que puedes cambiarlos sin romper a nadie.
 
+**Sobre tu servicio hexagonal:** si hiciste el [módulo de arquitectura hexagonal](../../../hexagonal/), el formato del contrato vive en los adaptadores, no en el dominio. Traduce desde el evento de tu aplicación al mensaje y comprueba que un cambio de contrato no te obliga a tocar el dominio ni los casos de uso.
+
 El dominio que usarás hasta el final de la ruta: una tienda con cuatro servicios, **Pedidos**, **Pagos**, **Inventario** y **Envíos**.
 
 1. Lista los hechos del negocio desde que el cliente confirma la compra hasta que recibe el paquete, incluidos los caminos tristes (pago rechazado, sin existencias, envío fallido). Dales nombre en pasado.

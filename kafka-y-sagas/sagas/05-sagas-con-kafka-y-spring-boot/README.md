@@ -205,6 +205,8 @@ Un participante sigue el mismo patrón: comprobar si el mensaje es repetido, hac
 
 **Objetivo:** llevar tu orquestador a Kafka, PostgreSQL y Spring Boot, sin perder ninguna de las garantías que ya probaste en memoria.
 
+**Sobre tu servicio hexagonal:** si hiciste el [módulo de arquitectura hexagonal](../../../hexagonal/), lo que cambia en este taller son adaptadores: de memoria a Kafka y PostgreSQL. Al terminar, `git diff` del dominio y de la aplicación de tu servicio debe estar vacío, salvo errores que la infraestructura real te haya descubierto.
+
 Cuatro servicios: orquestador, Pagos, Inventario y Envíos. Pueden ser cuatro módulos de un mismo repositorio.
 
 1. Define temas, claves y el formato de órdenes y respuestas, con el sobre de la sesión 05 de Kafka.

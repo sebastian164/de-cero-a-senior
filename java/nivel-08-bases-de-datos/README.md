@@ -13,4 +13,6 @@ Requisito: Nivel 7. La mayor parte de los problemas de rendimiento y de consiste
 
 Los ejemplos usan PostgreSQL. El SQL es ilustrativo y no se ejecutó al preparar el curso.
 
-Para practicar a fondo el pool de conexiones, que conecta todo este nivel con la aplicación, están los [cinco talleres de HikariCP](../../hikaricp/).
+Para practicar a fondo el pool de conexiones, que conecta todo este nivel con la aplicación, están los [seis talleres de HikariCP](../../hikaricp/).
+
+Las transacciones y la concurrencia de las lecciones 03 y 04 se ven funcionando, con pruebas que provocan cada fallo, en las sesiones de [transacciones](../../hexagonal/04-transacciones/) y de [concurrencia y aislamiento](../../hexagonal/05-concurrencia-y-aislamiento/) del módulo de arquitectura hexagonal.

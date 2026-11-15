@@ -283,6 +283,8 @@ public class Main {
 
 **Objetivo:** construir el orquestador de la compra de la tienda como máquina de estados con estado duradero.
 
+**Sobre tu servicio hexagonal:** si hiciste el [módulo de arquitectura hexagonal](../../../hexagonal/), el orquestador es un **servicio de aplicación** y su estado, una entidad con repositorio que se confirma en la misma unidad de trabajo que los pedidos. El ejemplo completo con esa forma está en la [sesión 06](../06-una-saga-en-un-servicio-hexagonal/).
+
 En Java puro y en memoria, como el ejemplo. El salto a Kafka es la sesión 05.
 
 1. Escribe la tabla de transiciones de tu saga de la sesión 01, con todos los caminos: éxito, pago rechazado, sin existencias, fallo de envío.

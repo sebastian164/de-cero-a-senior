@@ -228,6 +228,8 @@ public class Main {
 
 **Objetivo:** provocar una fuga con HikariCP real, encontrarla con las herramientas y no con la vista, y eliminarla.
 
+**Sobre tu servicio hexagonal:** si hiciste el [módulo de arquitectura hexagonal](../../hexagonal/), en un servicio hexagonal solo el adaptador de transacciones toma conexiones. Provoca la fuga ahí, en un camino que no la devuelve, y comprueba que el aviso de HikariCP señala ese único sitio.
+
 Con el [entorno](../entorno/) y una aplicación Spring Boot con un pool de cinco.
 
 1. Escribe un extremo que tome la conexión a mano desde el `DataSource` y que tenga una fuga en un camino poco frecuente (por ejemplo, cuando el parámetro es negativo). No uses `try-with-resources` todavía.

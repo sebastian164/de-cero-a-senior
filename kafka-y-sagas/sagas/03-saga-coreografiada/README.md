@@ -258,6 +258,8 @@ public class Main {
 
 **Objetivo:** reescribir la saga de la tienda como coreografía y comparar, con hechos, las dos versiones.
 
+**Sobre tu servicio hexagonal:** si hiciste el [módulo de arquitectura hexagonal](../../../hexagonal/), cada reacción a un evento es un consumidor, es decir, un adaptador de entrada que llama a un puerto de entrada; cada evento emitido sale por el puerto de eventos y la bandeja de salida. Ningún servicio importa clases de otro.
+
 1. A partir de tu orquestador de la sesión 02, define los eventos que publicaría cada servicio y a cuáles reaccionaría. Dibuja el grafo: servicios como nodos, eventos como flechas.
 2. Impleméntalo en Java puro con un bus en memoria. Cubre los mismos cuatro caminos.
 3. Compara con la versión orquestada: ¿en cuántos archivos está repartido el flujo?, ¿cuántos hay que abrir para explicar el camino "pago rechazado"?

@@ -105,7 +105,7 @@ El estado de la saga se persiste: debe sobrevivir a un reinicio y saber en qué 
 
 Rama `taller/n9-04-sagas-outbox`.
 
-Para practicar a fondo están el taller de [outbox](../../../kafka-y-sagas/kafka/07-outbox-transaccional/) y los [seis talleres de sagas](../../../kafka-y-sagas/sagas/), con ejemplos ejecutables.
+Para practicar a fondo están el taller de [outbox](../../../kafka-y-sagas/kafka/07-outbox-transaccional/) y los [siete talleres de sagas](../../../kafka-y-sagas/sagas/), con ejemplos ejecutables.
 
 ## Preguntas senior
 

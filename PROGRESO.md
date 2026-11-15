@@ -67,6 +67,19 @@ Una lección pasa por tres estados: leída, taller entregado y aprobada. Solo "a
 | Kubernetes 09 — Diagnóstico | ☐ | ☐ |
 | Kubernetes 10 — Kustomize y taller integrador | ☐ | ☐ |
 
+## Arquitectura hexagonal con Java
+
+| Taller | En curso | Aprobado |
+|---|---|---|
+| Hexagonal 01 — El problema | ☐ | ☐ |
+| Hexagonal 02 — El dominio | ☐ | ☐ |
+| Hexagonal 03 — Puertos y casos de uso | ☐ | ☐ |
+| Hexagonal 04 — Transacciones | ☐ | ☐ |
+| Hexagonal 05 — Concurrencia y aislamiento | ☐ | ☐ |
+| Hexagonal 06 — Adaptadores y composición | ☐ | ☐ |
+| Hexagonal 07 — Persistencia con ORM | ☐ | ☐ |
+| Hexagonal 08 — Pruebas y límites | ☐ | ☐ |
+
 ## Talleres de Kafka y sagas
 
 | Taller | En curso | Aprobado |
@@ -78,12 +91,14 @@ Una lección pasa por tres estados: leída, taller entregado y aprobada. Solo "a
 | Kafka 05 — Eventos como contrato | ☐ | ☐ |
 | Kafka 06 — Kafka con Spring Boot | ☐ | ☐ |
 | Kafka 07 — Outbox transaccional | ☐ | ☐ |
+| Kafka 08 — Kafka en un servicio hexagonal | ☐ | ☐ |
 | Sagas 01 — Transacciones entre servicios | ☐ | ☐ |
 | Sagas 02 — Saga orquestada | ☐ | ☐ |
 | Sagas 03 — Saga coreografiada | ☐ | ☐ |
 | Sagas 04 — Cuando todo falla | ☐ | ☐ |
 | Sagas 05 — Sagas con Kafka y Spring Boot | ☐ | ☐ |
-| Sagas 06 — Taller integrador | ☐ | ☐ |
+| Sagas 06 — Una saga en un servicio hexagonal | ☐ | ☐ |
+| Sagas 07 — Taller integrador | ☐ | ☐ |
 
 ## Talleres de HikariCP
 
@@ -94,6 +109,7 @@ Una lección pasa por tres estados: leída, taller entregado y aprobada. Solo "a
 | HikariCP 03 — Fugas de conexiones | ☐ | ☐ |
 | HikariCP 04 — Agotamiento del pool | ☐ | ☐ |
 | HikariCP 05 — Operación y taller integrador | ☐ | ☐ |
+| HikariCP 06 — El pool en un servicio hexagonal | ☐ | ☐ |
 
 ## Talleres de prácticas
 

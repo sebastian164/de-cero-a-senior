@@ -1,6 +1,6 @@
 # Kafka
 
-Siete talleres, en orden. Requisito: el [entorno](../entorno/) levantado.
+Ocho talleres, en orden. Requisito: el [entorno](../entorno/) levantado.
 
 | # | Sesión | Taller |
 |---|---|---|
@@ -11,7 +11,8 @@ Siete talleres, en orden. Requisito: el [entorno](../entorno/) levantado.
 | 05 | [Eventos como contrato](05-eventos-como-contrato/) | Los eventos de la tienda y su evolución sin romper |
 | 06 | [Kafka con Spring Boot](06-kafka-con-spring-boot/) | El servicio de Inventario con política de errores |
 | 07 | [Outbox transaccional](07-outbox-transaccional/) | Reproducir la doble escritura y eliminarla |
+| 08 | [Kafka en un servicio hexagonal](08-kafka-en-un-servicio-hexagonal/) | Conectar pedidos e Inventario por Kafka sin tocar el dominio de ninguno |
 
-Las sesiones 03, 04 y 07 traen un ejemplo en Java puro que se ejecuta con `java Main.java`. El resto del código es ilustrativo. El detalle está en el [índice de la ruta](../README.md#estado-del-código).
+Las sesiones 03, 04 y 07 traen un ejemplo en Java puro que se ejecuta con `java Main.java`. La 08 trae un proyecto de varios archivos que se compila junto con el banco del módulo de [arquitectura hexagonal](../../hexagonal/). El resto del código es ilustrativo. El detalle está en el [índice de la ruta](../README.md#estado-del-código).
 
 Sigue con las [sagas](../sagas/).

@@ -30,9 +30,10 @@ Talleres prácticos comunes a las tres rutas:
 
 | Carpeta | Contenido | Sesiones |
 |---|---|---|
+| [Arquitectura hexagonal con Java](hexagonal/) | Un banco construido sesión a sesión: dominio, puertos y casos de uso, transacciones (ACID, idempotencia, bandeja de salida), concurrencia y aislamiento, adaptadores HTTP y consola, persistencia con JPA y pruebas por capa. Es la base de los talleres de Kafka, sagas y HikariCP | 8 |
 | [Docker y Kubernetes](docker-kubernetes/) | Contenedores, imágenes, Compose, publicación; clúster local, despliegues, configuración, sondas, Gateway API, almacenamiento, escalado, seguridad, diagnóstico y Kustomize | 6 + 10 |
-| [Kafka y sagas](kafka-y-sagas/) | Registro de eventos, productores, consumidores, idempotencia, contratos, Spring Boot y outbox; sagas orquestadas y coreografiadas, fallos, aislamiento y un taller integrador | 7 + 6 |
-| [HikariCP](hikaricp/) | El pool de conexiones: qué es, cómo se dimensiona, fugas, agotamiento, métricas y un simulacro de diagnóstico | 5 |
+| [Kafka y sagas](kafka-y-sagas/) | Registro de eventos, productores, consumidores, idempotencia, contratos, Spring Boot y outbox; sagas orquestadas y coreografiadas, fallos, aislamiento, la saga dentro de un servicio hexagonal y un taller integrador | 8 + 7 |
+| [HikariCP](hikaricp/) | El pool de conexiones: qué es, cómo se dimensiona, fugas, agotamiento, métricas, un simulacro de diagnóstico y el pool dentro de un servicio hexagonal | 6 |
 | [Prácticas: TDD, Karate, SDD y ODD](practicas/) | Desarrollo guiado por pruebas, pruebas de API con Karate, desarrollo guiado por especificaciones y desarrollo guiado por la observabilidad | 4 + 3 + 3 + 3 |
 
 Cada ruta termina con sus **proyectos de aplicación**: [Java](java/proyectos/), [Angular](angular/proyectos/), [React y Next.js](react-next/proyectos/).
@@ -78,16 +79,17 @@ Las soluciones de referencia no se publican antes de la entrega. Ver la respuest
 | Java, niveles 1 a 3 y lecciones 01 a 08 del nivel 4 | Java puro, compilado y ejecutado con JDK 21 |
 | Java, resto (JUnit, Mockito, Spring, SQL, configuración) | Ilustrativo, sin ejecutar |
 | TypeScript, Angular, React y Next.js | Ilustrativo, sin ejecutar |
-| HikariCP | Los seis ejemplos en Java puro se compilaron y ejecutaron; el código con HikariCP y Spring es ilustrativo. El detalle está en [su índice](hikaricp/README.md#estado-del-código) |
+| Arquitectura hexagonal | El proyecto del banco (38 archivos, 79 comprobaciones) se compiló con `-Xlint:all -Werror` y se ejecutó, incluidos la consola y el servidor HTTP. El proyecto con Spring Boot y JPA **no se compiló** contra las bibliotecas reales. El detalle está en [su índice](hexagonal/README.md#qué-código-se-ejecutó) |
+| HikariCP | Los seis ejemplos en Java puro y el proyecto de la sesión 06 se compilaron y ejecutaron; el código con HikariCP y Spring es ilustrativo. El detalle está en [su índice](hikaricp/README.md#estado-del-código) |
 | Prácticas (TDD, Karate, SDD, ODD) | Los ejemplos en Java puro de TDD y ODD se compilaron y ejecutaron; los archivos de Karate son ilustrativos. El detalle está en [su índice](practicas/README.md#estado-del-código) |
-| Kafka y sagas | Los catorce ejemplos en Java puro se compilaron y ejecutaron; el código con el cliente de Kafka y con Spring es ilustrativo. El detalle está en [su índice](kafka-y-sagas/README.md#estado-del-código) |
+| Kafka y sagas | Los catorce ejemplos en Java puro y los dos proyectos sobre el banco hexagonal se compilaron y ejecutaron; el código con el cliente de Kafka y con Spring es ilustrativo. El detalle está en [su índice](kafka-y-sagas/README.md#estado-del-código) |
 | Docker y Kubernetes | La aplicación de práctica se ejecutó; los manifiestos estándar y los archivos de Compose se validaron; los Dockerfile y las órdenes no se ejecutaron. El detalle está en [su índice](docker-kubernetes/README.md#estado-del-código) |
 
 "Ilustrativo" significa que el código muestra la idea y la estructura, pero no se compiló al preparar el curso: puede requerir ajustes, y las versiones de los frameworks cambian. Hacerlo funcionar es parte de cada taller.
 
 ## Requisitos
 
-- Ruta Java: JDK 21 o superior; Maven desde el nivel 4; Docker desde el nivel 7.
+- Ruta Java: JDK 21 o superior; Maven desde el nivel 4; Docker desde el nivel 7. El módulo de arquitectura hexagonal solo necesita el JDK hasta su sesión 07.
 - Rutas de frontend: Node.js en una versión LTS vigente.
 - Talleres de Docker y Kubernetes: Docker, `kubectl` y una herramienta de clúster local como kind.
 - Git.

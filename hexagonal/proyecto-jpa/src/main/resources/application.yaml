@@ -1,0 +1,19 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/banco
+    username: banco
+    password: banco
+  jpa:
+    open-in-view: false          # la transacción termina en el caso de uso, no en la vista
+    hibernate:
+      ddl-auto: none             # el esquema es nuestro, no lo inventa Hibernate
+    properties:
+      hibernate:
+        format_sql: true
+  sql:
+    init:
+      mode: always               # ejecuta schema.sql al arrancar
+
+logging:
+  level:
+    org.hibernate.SQL: debug     # para ver cada sentencia mientras aprendes

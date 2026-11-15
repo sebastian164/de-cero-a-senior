@@ -192,6 +192,8 @@ try (KafkaConsumer<String, String> consumidor = new KafkaConsumer<>(config)) {
 
 **Objetivo:** ver el reparto de particiones, provocar una pérdida y una repetición con Kafka real, y medir el retraso.
 
+**Sobre tu servicio hexagonal:** si hiciste el [módulo de arquitectura hexagonal](../../../hexagonal/), el consumidor es un **adaptador de entrada**: recibe el mensaje, llama a un puerto de entrada y confirma la posición cuando el puerto retorna. Escríbelo con esa forma desde el principio, aunque el caso de uso de este taller sea trivial.
+
 Necesitas el [entorno](../../entorno/) y tu productor de la sesión 02.
 
 1. Crea un tema con tres particiones y prodúcele de forma continua, un mensaje por segundo con claves variadas.

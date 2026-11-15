@@ -274,6 +274,8 @@ FOR UPDATE SKIP LOCKED;
 
 **Objetivo:** reproducir la doble escritura con infraestructura real, eliminarla con outbox y dejar el publicador listo para producción.
 
+**Sobre tu servicio hexagonal:** si hiciste el [módulo de arquitectura hexagonal](../../../hexagonal/), tu servicio de pedidos ya tiene una bandeja de salida en memoria desde la sesión de [transacciones](../../../hexagonal/04-transacciones/). Aquí la llevas a PostgreSQL y a Kafka real: la tabla y el publicador son adaptadores de salida del mismo puerto de eventos. El caso de uso no cambia.
+
 Sobre el servicio de Pedidos de la tienda, con PostgreSQL y Kafka.
 
 1. Implementa "crear pedido" con doble escritura: guardar y luego publicar `PedidoCreado`.

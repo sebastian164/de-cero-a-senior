@@ -17,6 +17,10 @@ Requisito: Niveles 1 a 4. La arquitectura es diseño orientado a objetos y SOLID
 | 11 | [Patrones arquitectónicos](11-patrones-arquitectonicos/) |
 | 12 | [Taller integrador](12-taller-integrador/) |
 
+## Para practicar a fondo
+
+La lección 06 da el panorama de la arquitectura hexagonal. El módulo de [arquitectura hexagonal con Java](../../hexagonal/) la construye en ocho sesiones, con un banco de ejemplo que se compila y se ejecuta, y es la base de los talleres de Kafka, sagas y HikariCP.
+
 ## Sobre el orden
 
 Separación de responsabilidades e inversión de dependencias van antes de Clean, hexagonal y Onion porque esas tres arquitecturas son aplicaciones de las mismas dos ideas.

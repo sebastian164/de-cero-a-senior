@@ -55,22 +55,30 @@ Comunes a las tres rutas. Se hacen después del Nivel 5 de cualquiera de ellas, 
 | 1 | [Docker](docker-kubernetes/docker/) | 6 |
 | 2 | [Kubernetes](docker-kubernetes/kubernetes/) | 10 |
 
-## Talleres de Kafka y sagas
+## Arquitectura hexagonal con Java
 
-Para la ruta Java, después del Nivel 9. Requieren los talleres de Docker.
-
-| Parte | Tema | Sesiones |
-|---|---|---|
-| 1 | [Kafka](kafka-y-sagas/kafka/) | 7 |
-| 2 | [Sagas](kafka-y-sagas/sagas/) | 6 |
-
-## Talleres de HikariCP
-
-Para la ruta Java, después del Nivel 8.
+Para la ruta Java, después del Nivel 5. Es la base de los talleres de Kafka, sagas y HikariCP.
 
 | Tema | Sesiones |
 |---|---|
-| [HikariCP: el pool de conexiones](hikaricp/) | 5 |
+| [Arquitectura hexagonal: un banco con transacciones, concurrencia y ORM](hexagonal/) | 8 |
+
+## Talleres de Kafka y sagas
+
+Para la ruta Java, después del Nivel 9 y del módulo de arquitectura hexagonal. Requieren los talleres de Docker.
+
+| Parte | Tema | Sesiones |
+|---|---|---|
+| 1 | [Kafka](kafka-y-sagas/kafka/) | 8 |
+| 2 | [Sagas](kafka-y-sagas/sagas/) | 7 |
+
+## Talleres de HikariCP
+
+Para la ruta Java, después del Nivel 8 y del módulo de arquitectura hexagonal.
+
+| Tema | Sesiones |
+|---|---|
+| [HikariCP: el pool de conexiones](hikaricp/) | 6 |
 
 ## Talleres de prácticas
 

@@ -83,7 +83,7 @@ Registrar el identificador en la misma transacción que el efecto es lo que hace
 
 Rama `taller/n9-03-mensajeria`.
 
-Para practicar a fondo, con Kafka real y paso a paso, están los [siete talleres de Kafka](../../../kafka-y-sagas/kafka/).
+Para practicar a fondo, con Kafka real y paso a paso, están los [ocho talleres de Kafka](../../../kafka-y-sagas/kafka/).
 
 ## Preguntas senior
 

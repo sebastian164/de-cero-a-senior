@@ -197,6 +197,8 @@ El precio: ya no hay una sola transacción. Si el paso 3 falla después de que p
 
 **Objetivo:** reproducir el agotamiento con Spring Boot y PostgreSQL, diagnosticarlo con métricas y arreglarlo sin tocar el tamaño del pool.
 
+**Sobre tu servicio hexagonal:** si hiciste el [módulo de arquitectura hexagonal](../../hexagonal/), reproduce el agotamiento con un caso de uso de tu servicio de pedidos que llame a algo lento dentro de su unidad de trabajo. El arreglo es de diseño: sacar esa llamada, no agrandar el pool. La [sesión 06](../06-el-pool-en-un-servicio-hexagonal/) lo muestra con el banco.
+
 Con el [entorno](../entorno/), un pool de cinco y un servicio externo simulado que tarda lo que tú le indiques.
 
 1. Escribe "confirmar pedido" con `@Transactional` alrededor de todo: leer el pedido, llamar al servicio externo y guardar.

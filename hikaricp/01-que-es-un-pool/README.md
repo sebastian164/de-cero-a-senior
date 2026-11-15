@@ -217,6 +217,8 @@ Este fragmento es ilustrativo: no se compiló al preparar el curso.
 
 **Objetivo:** medir con una base real cuánto cuesta abrir conexiones, y usar HikariCP sin Spring.
 
+**Sobre tu servicio hexagonal:** si hiciste el [módulo de arquitectura hexagonal](../../hexagonal/), el pool se crea en la raíz de composición y se entrega al adaptador de tu puerto de transacciones, que es el único que pide conexiones. Mide el coste de abrir conexiones comparando ese adaptador con pool y sin él.
+
 Necesitas PostgreSQL en un contenedor (el [entorno](../entorno/) lo trae) y un proyecto Java con el controlador de PostgreSQL y HikariCP.
 
 1. Escribe un programa que ejecute `select 1` mil veces abriendo y cerrando una conexión cada vez con `DriverManager`. Mide el tiempo total y el promedio por operación.
