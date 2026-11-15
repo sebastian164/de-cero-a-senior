@@ -16,7 +16,7 @@ Regla de la casa: usar una tecnología no cuenta como saber el concepto. Inyecta
 | Ruta | Contenido | Sesiones |
 |---|---|---|
 | [Java y Spring Boot](java/) | Orientación a objetos, SOLID, los 23 patrones GoF, clean code y testing, arquitectura, Java avanzado, Spring Boot avanzado, bases de datos, sistemas distribuidos, cloud, system design y liderazgo técnico | 102 |
-| [Angular](angular/) | TypeScript, Angular, SOLID y patrones en la interfaz, formularios y pruebas, arquitectura frontend, rendimiento, renderizado en servidor, seguridad y accesibilidad | 26 + 6 comunes |
+| [Angular](angular/) | TypeScript, Angular 22 (señales, recursos, formularios con señales), SOLID y patrones en la interfaz, pruebas, arquitectura frontend, rendimiento, renderizado en servidor, seguridad y accesibilidad | 28 + 6 comunes |
 | [React y Next.js](react-next/) | TypeScript, React, Next.js, SOLID y patrones en React, formularios y pruebas, arquitectura con componentes de servidor, rendimiento y seguridad | 23 + 6 comunes |
 
 Material común a las dos rutas de frontend:
@@ -31,6 +31,7 @@ Talleres prácticos comunes a las tres rutas:
 | Carpeta | Contenido | Sesiones |
 |---|---|---|
 | [Docker y Kubernetes](docker-kubernetes/) | Contenedores, imágenes, Compose, publicación; clúster local, despliegues, configuración, sondas, Gateway API, almacenamiento, escalado, seguridad, diagnóstico y Kustomize | 6 + 10 |
+| [Kafka y sagas](kafka-y-sagas/) | Registro de eventos, productores, consumidores, idempotencia, contratos, Spring Boot y outbox; sagas orquestadas y coreografiadas, fallos, aislamiento y un taller integrador | 7 + 6 |
 
 Cada ruta termina con sus **proyectos de aplicación**: [Java](java/proyectos/), [Angular](angular/proyectos/), [React y Next.js](react-next/proyectos/).
 
@@ -75,6 +76,7 @@ Las soluciones de referencia no se publican antes de la entrega. Ver la respuest
 | Java, niveles 1 a 3 y lecciones 01 a 08 del nivel 4 | Java puro, compilado y ejecutado con JDK 21 |
 | Java, resto (JUnit, Mockito, Spring, SQL, configuración) | Ilustrativo, sin ejecutar |
 | TypeScript, Angular, React y Next.js | Ilustrativo, sin ejecutar |
+| Kafka y sagas | Los catorce ejemplos en Java puro se compilaron y ejecutaron; el código con el cliente de Kafka y con Spring es ilustrativo. El detalle está en [su índice](kafka-y-sagas/README.md#estado-del-código) |
 | Docker y Kubernetes | La aplicación de práctica se ejecutó; los manifiestos estándar y los archivos de Compose se validaron; los Dockerfile y las órdenes no se ejecutaron. El detalle está en [su índice](docker-kubernetes/README.md#estado-del-código) |
 
 "Ilustrativo" significa que el código muestra la idea y la estructura, pero no se compiló al preparar el curso: puede requerir ajustes, y las versiones de los frameworks cambian. Hacerlo funcionar es parte de cada taller.

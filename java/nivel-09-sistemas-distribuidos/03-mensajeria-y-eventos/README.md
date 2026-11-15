@@ -83,6 +83,8 @@ Registrar el identificador en la misma transacción que el efecto es lo que hace
 
 Rama `taller/n9-03-mensajeria`.
 
+Para practicar a fondo, con Kafka real y paso a paso, están los [siete talleres de Kafka](../../../kafka-y-sagas/kafka/).
+
 ## Preguntas senior
 
 1. Cola frente a registro de eventos: ¿cuándo cada uno?

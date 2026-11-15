@@ -10,6 +10,10 @@ Entre la interfaz y el servidor hay una red que falla, tarda y a veces responde 
 
 Todas las peticiones pasan por servicios de datos por funcionalidad. Los componentes nunca conocen URLs. Esa capa es responsable de: construir la petición, traducir DTO a modelos, y entregar errores con significado.
 
+Dentro de esa capa, las **lecturas** se expresan hoy como recursos (`httpResource`, visto en el [Nivel 1](../../nivel-01-fundamentos/04-datos-asincronos-con-resource/)) y las **escrituras** como métodos que usan `HttpClient`. Los dos pasan por los mismos interceptores.
+
+Desde Angular 22, `HttpClient` usa por defecto la API Fetch del navegador en lugar de `XMLHttpRequest`. Para casi todo es transparente; la excepción conocida es el progreso de subida de archivos, que con Fetch no está disponible y obliga a pedir el modo anterior de forma explícita.
+
 ### Los cuatro estados de toda petición
 
 Cargando, éxito, vacío y error. Cada pantalla debe tener diseñados los cuatro. El más olvidado es el error, y el segundo, el vacío.

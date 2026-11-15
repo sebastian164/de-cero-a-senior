@@ -24,7 +24,7 @@ El orden de los niveles dentro de cada ruta es obligatorio; el calendario no. Ca
 
 | Nivel | Tema | Sesiones |
 |---|---|---|
-| 1 | [Fundamentos: TypeScript y Angular](angular/nivel-01-fundamentos/) | 3 de [TypeScript](typescript/) + 2 |
+| 1 | [Fundamentos: TypeScript y Angular](angular/nivel-01-fundamentos/) | 3 de [TypeScript](typescript/) + 4 |
 | 2 | [SOLID en Angular](angular/nivel-02-solid/) | 5 |
 | 3 | [Patrones en Angular](angular/nivel-03-patrones/) | 6 |
 | 4 | [Clean code, formularios y pruebas](angular/nivel-04-clean-code-y-testing/) | 4 |
@@ -54,6 +54,15 @@ Comunes a las tres rutas. Se hacen después del Nivel 5 de cualquiera de ellas, 
 |---|---|---|
 | 1 | [Docker](docker-kubernetes/docker/) | 6 |
 | 2 | [Kubernetes](docker-kubernetes/kubernetes/) | 10 |
+
+## Talleres de Kafka y sagas
+
+Para la ruta Java, después del Nivel 9. Requieren los talleres de Docker.
+
+| Parte | Tema | Sesiones |
+|---|---|---|
+| 1 | [Kafka](kafka-y-sagas/kafka/) | 7 |
+| 2 | [Sagas](kafka-y-sagas/sagas/) | 6 |
 
 ## Si vas a seguir más de una ruta
 

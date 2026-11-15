@@ -1,6 +1,6 @@
 # 01 — Fundamentos de Angular
 
-Angular cambia con cada versión mayor. Esta ruta usa la forma moderna (componentes independientes, señales, control de flujo integrado, `inject`). Confirma los detalles de tu versión en la documentación oficial (angular.dev).
+Angular cambia con cada versión mayor. Esta ruta usa la forma moderna (componentes independientes, señales, control de flujo integrado, `inject`), tal como quedó en Angular 22. Confirma los detalles de tu versión en la documentación oficial (angular.dev).
 
 ## Idea
 
@@ -13,8 +13,8 @@ Una aplicación de Angular es un árbol de componentes. Cada componente es una p
 | **Componente** | Clase con `@Component`: plantilla, estilos y lógica de presentación |
 | **Plantilla** | HTML con enlaces: `{{ valor }}`, `[propiedad]`, `(evento)`, `[(ngModel)]` |
 | **Control de flujo** | `@if`, `@for` (con `track` obligatorio), `@switch` |
-| **Entradas y salidas** | `input()` recibe del padre; `output()` emite hacia el padre |
-| **Servicio** | Clase con `@Injectable` que contiene lógica o estado |
+| **Entradas y salidas** | `input()` recibe del padre; `output()` emite hacia el padre; `model()` hace las dos cosas ([sesión 03](../03-componentes-con-senales/)) |
+| **Servicio** | Clase con `@Injectable` que contiene lógica o estado. Desde Angular 22 existe también `@Service()`, equivalente a `@Injectable({ providedIn: 'root' })` |
 | **Inyección de dependencias** | `inject(Servicio)`: Angular crea y entrega las instancias |
 | **Enrutador** | Asocia rutas con componentes; admite carga diferida |
 | **Tubería (*pipe*)** | Transforma un valor en la plantilla: `{{ precio \| currency }}` |
@@ -137,6 +137,11 @@ export class PedidosComponent {
 export const totalConIva = (pedido: Pedido): number =>
   pedido.items.reduce((suma, i) => suma + i.precio * i.cantidad, 0) * 1.19;
 ```
+
+Dos notas sobre este ejemplo:
+
+- Desde Angular 22, `OnPush` es la estrategia por defecto de un componente y ya no hace falta declararla. Dejarla escrita no estorba y es necesaria en versiones anteriores.
+- La carga con tres señales (`pedidos`, `cargando`, `error`) y una suscripción muestra el mecanismo. Para leer datos, la forma recomendada hoy es un recurso: lo verás en la [sesión 04](../04-datos-asincronos-con-resource/).
 
 ## Errores comunes
 

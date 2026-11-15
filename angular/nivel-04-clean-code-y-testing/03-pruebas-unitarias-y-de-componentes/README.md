@@ -1,6 +1,6 @@
 # 03 — Pruebas unitarias y de componentes
 
-Los fundamentos (AAA, dobles, TDD, qué hace buena a una prueba) están en el [Nivel 4 de Java](../../../java/nivel-04-clean-code-testing/). El ejecutor de pruebas por defecto de Angular ha cambiado entre versiones (Karma y Jasmine, luego Vitest): la sintaxis de `describe`, `it` y `expect` es casi idéntica; revisa cuál usa tu proyecto.
+Los fundamentos (AAA, dobles, TDD, qué hace buena a una prueba) están en el [Nivel 4 de Java](../../../java/nivel-04-clean-code-testing/). Desde Angular 21, los proyectos nuevos usan Vitest como ejecutor de pruebas; los anteriores usan Karma con Jasmine. La sintaxis de `describe`, `it` y `expect` es casi idéntica, y la CLI trae una migración de uno a otro. Revisa cuál usa tu proyecto.
 
 ## Idea
 

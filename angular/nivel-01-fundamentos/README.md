@@ -16,3 +16,5 @@ El lenguaje, la orientación a objetos tal como se expresa en TypeScript, el mod
 |---|---|
 | 01 | [Fundamentos de Angular](01-fundamentos-de-angular/) |
 | 02 | [Reactividad: señales y RxJS](02-reactividad-signals-y-rxjs/) |
+| 03 | [Componentes con señales: entradas, modelos y consultas](03-componentes-con-senales/) |
+| 04 | [Datos asíncronos: resource y httpResource](04-datos-asincronos-con-resource/) |

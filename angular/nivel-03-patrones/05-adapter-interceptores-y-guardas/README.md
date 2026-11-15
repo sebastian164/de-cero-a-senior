@@ -95,6 +95,24 @@ export const rutas: Routes = [
 
 `canDeactivate` protege de perder cambios sin guardar; `canMatch` decide si una ruta aplica.
 
+Un *resolver* es una función que obtiene un dato antes de activar la ruta. Con `withComponentInputBinding()`, el resultado llega al componente como una entrada:
+
+```ts
+export const pedidoDeLaRuta: ResolveFn<Pedido> = (ruta) =>
+  inject(PedidosApi).obtener(ruta.paramMap.get('id')!);
+
+export const rutas: Routes = [
+  { path: 'pedidos/:id', resolve: { pedido: pedidoDeLaRuta }, loadComponent: () => import('./detalle-pedido') },
+];
+
+// En el componente: el nombre de la entrada coincide con la clave de "resolve"
+readonly pedido = input.required<Pedido>();
+```
+
+La navegación espera a que el dato llegue, así que el componente nunca se pinta a medias. El costo es que el usuario no ve nada mientras tanto. Para la mayoría de las pantallas es mejor navegar de inmediato y mostrar el estado de carga con un [recurso](../../nivel-01-fundamentos/04-datos-asincronos-con-resource/); el *resolver* se justifica cuando la pantalla no tiene sentido sin el dato.
+
+Interceptores, guardas y *resolvers* son hoy funciones. Las versiones basadas en clases (`HttpInterceptor`, `CanActivate`, `Resolve`) siguen apareciendo en código antiguo.
+
 **Advertencia de seguridad:** las guardas son experiencia de usuario, no seguridad. Todo el código del frontend es visible y modificable. La autorización real ocurre en el servidor.
 
 ## Cuándo no

@@ -12,9 +12,23 @@ Angular tiene que saber cuándo volver a pintar. Puede hacerlo revisando todo ca
 |---|---|
 | Con Zone.js (histórico) | Intercepta eventos, temporizadores y peticiones; tras cada uno, revisa el árbol de componentes |
 | `OnPush` | Un componente solo se revisa si cambió la referencia de una entrada, emitió un evento propio, o cambió una señal que su plantilla lee |
-| Sin zona (*zoneless*) | No hay Zone.js: Angular actualiza cuando las señales cambian o se le notifica explícitamente. Es el camino actual del framework |
+| Sin zona (*zoneless*) | No hay Zone.js: Angular actualiza cuando las señales cambian o se le notifica explícitamente |
 
 Consecuencia práctica: **señales + `OnPush` + datos inmutables** es la combinación que funciona en cualquier modelo. Si modificas un objeto en el sitio, `OnPush` no se entera.
+
+### Qué es lo predeterminado hoy
+
+| Versión | Cambio |
+|---|---|
+| Angular 21 | Las aplicaciones nuevas se crean sin Zone.js |
+| Angular 22 | `OnPush` es la estrategia por defecto de un componente. La antigua estrategia por defecto pasa a llamarse `Eager` y hay que pedirla de forma explícita |
+
+Dos consecuencias para quien mantiene código:
+
+- Al actualizar un proyecto existente, la migración automática marca como `Eager` los componentes que no declaraban estrategia, para que nada cambie de comportamiento. Esos componentes son tu lista de trabajo pendiente, no un estado final.
+- Un proyecto antiguo no se vuelve sin zona por actualizar la versión: se activa con `provideZonelessChangeDetection()` y se retira `zone.js`, después de comprobar que nada dependía de la revisión automática. El camino habitual es llevar primero todos los componentes a `OnPush` y luego quitar la zona.
+
+Lo que se rompe al quitar la zona es siempre lo mismo: estado que cambia fuera de una señal, de una entrada o de un evento de la plantilla. Un `setTimeout` que asigna un campo normal, una biblioteca que llama a tu función desde fuera de Angular, un objeto modificado en el sitio.
 
 ### Fuentes habituales de lentitud
 
@@ -93,10 +107,10 @@ export class TablaPedidosComponent {
 
 1. Mide una aplicación tuya con Lighthouse en perfil móvil y anota LCP, INP y CLS.
 2. Analiza el paquete (visualizador de mapas de código) y encuentra las tres dependencias más pesadas.
-3. Convierte los componentes a `OnPush` y corrige lo que deje de actualizarse; explica cada caso.
+3. Lleva todos los componentes a `OnPush` (en un proyecto actualizado a Angular 22, busca los marcados como `Eager`) y corrige lo que deje de actualizarse; explica cada caso.
 4. Pinta 10.000 filas, mide, y luego aplica desplazamiento virtual.
 5. Difiere con `@defer` dos componentes pesados y mide el paquete inicial.
-6. Migra una aplicación pequeña a detección sin zona y documenta lo que se rompió.
+6. Toma una aplicación que todavía use Zone.js, actívale la detección sin zona y documenta qué se rompió y por qué. Si no tienes ninguna, crea una con zona a propósito e introduce tres actualizaciones de estado que dependan de ella.
 
 Rama `taller/ng-n6-01-rendimiento`.
 

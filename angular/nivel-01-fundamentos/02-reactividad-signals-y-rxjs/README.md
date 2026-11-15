@@ -38,7 +38,8 @@ Un observable es un flujo de cero o más valores en el tiempo, que además se pu
 |---|---|
 | Estado de un componente o de la aplicación | Señal |
 | Valor derivado | `computed` |
-| Peticiones HTTP, eventos, temporizadores, WebSocket | Observable |
+| Leer datos del servidor y mostrarlos | Un recurso (`httpResource`, [sesión 04](../04-datos-asincronos-con-resource/)) |
+| Escrituras por HTTP, eventos, temporizadores, WebSocket | Observable |
 | Cancelar, esperar, reintentar, combinar en el tiempo | Operadores de RxJS |
 | Mostrar un flujo en la plantilla | `toSignal(observable)` |
 | Reaccionar a una señal con operadores | `toObservable(señal)` |

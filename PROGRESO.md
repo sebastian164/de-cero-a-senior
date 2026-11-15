@@ -67,6 +67,24 @@ Una lección pasa por tres estados: leída, taller entregado y aprobada. Solo "a
 | Kubernetes 09 — Diagnóstico | ☐ | ☐ |
 | Kubernetes 10 — Kustomize y taller integrador | ☐ | ☐ |
 
+## Talleres de Kafka y sagas
+
+| Taller | En curso | Aprobado |
+|---|---|---|
+| Kafka 01 — El registro de eventos | ☐ | ☐ |
+| Kafka 02 — Productores | ☐ | ☐ |
+| Kafka 03 — Consumidores y grupos | ☐ | ☐ |
+| Kafka 04 — Garantías de entrega e idempotencia | ☐ | ☐ |
+| Kafka 05 — Eventos como contrato | ☐ | ☐ |
+| Kafka 06 — Kafka con Spring Boot | ☐ | ☐ |
+| Kafka 07 — Outbox transaccional | ☐ | ☐ |
+| Sagas 01 — Transacciones entre servicios | ☐ | ☐ |
+| Sagas 02 — Saga orquestada | ☐ | ☐ |
+| Sagas 03 — Saga coreografiada | ☐ | ☐ |
+| Sagas 04 — Cuando todo falla | ☐ | ☐ |
+| Sagas 05 — Sagas con Kafka y Spring Boot | ☐ | ☐ |
+| Sagas 06 — Taller integrador | ☐ | ☐ |
+
 ## Bitácora
 
 Notas de cada revisión: qué lección, qué quedó flojo, qué hay que repasar y qué se decidió.

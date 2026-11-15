@@ -71,7 +71,7 @@ De mejor a peor: `toSignal` · tubería `async` · `takeUntilDestroyed()` · gua
 
 - **Señales** para el estado y los valores derivados.
 - **`async`/`await`** para una operación única sin cancelación.
-- **`resource` y `httpResource`** (API reciente de Angular; revisa su estado en tu versión) para cargar datos asíncronos en función de señales.
+- **`resource` y `httpResource`** (estables desde Angular 22) para leer datos asíncronos en función de señales. Están en el [Nivel 1](../../nivel-01-fundamentos/04-datos-asincronos-con-resource/).
 
 ## Errores comunes
 

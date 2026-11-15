@@ -6,7 +6,7 @@ De los fundamentos de TypeScript al diseño y la defensa de aplicaciones Angular
 
 | Nivel | Tema | Sesiones |
 |---|---|---|
-| 1 | [Fundamentos: TypeScript y Angular](nivel-01-fundamentos/) | 5 |
+| 1 | [Fundamentos: TypeScript y Angular](nivel-01-fundamentos/) | 7 |
 | 2 | [SOLID en Angular](nivel-02-solid/) | 5 |
 | 3 | [Patrones en Angular](nivel-03-patrones/) | 6 |
 | 4 | [Clean code, formularios y pruebas](nivel-04-clean-code-y-testing/) | 4 |
@@ -22,7 +22,19 @@ Los conceptos de diseño (orientación a objetos, SOLID, patrones, arquitectura,
 
 ## Versión de Angular
 
-Angular publica versiones mayores con frecuencia y ha cambiado varias recomendaciones en los últimos años. Esta ruta usa el estilo moderno: componentes independientes, señales, control de flujo integrado (`@if`, `@for`), `inject()`, `input()` y `output()`, y detección de cambios sin zona. Las API más recientes (formularios con señales, `resource`) se mencionan indicando que debes confirmar su estado. Ante cualquier diferencia, manda la documentación oficial de tu versión: angular.dev.
+Angular publica versiones mayores con frecuencia y ha cambiado varias recomendaciones en los últimos años. Esta ruta está escrita contra Angular 22 (junio de 2026) y usa su estilo: componentes independientes, señales, control de flujo integrado (`@if`, `@for`, `@defer`, `@let`), `inject()`, `input()`, `output()` y `model()`, consultas con señales, formularios con señales, recursos (`resource`, `httpResource`), `OnPush` por defecto y detección de cambios sin zona.
+
+| Novedad | Estado en Angular 22 | Dónde se ve |
+|---|---|---|
+| Entradas, salidas, modelos y consultas con señales | Estable | [Nivel 1, sesión 03](nivel-01-fundamentos/03-componentes-con-senales/) |
+| `resource`, `rxResource`, `httpResource` | Estable desde la 22 | [Nivel 1, sesión 04](nivel-01-fundamentos/04-datos-asincronos-con-resource/) |
+| Formularios con señales | Estable desde la 22 | [Nivel 4, sesión 02](nivel-04-clean-code-y-testing/02-formularios-y-validacion/) |
+| Interceptores, guardas y *resolvers* funcionales | Estable | [Nivel 3, sesión 05](nivel-03-patrones/05-adapter-interceptores-y-guardas/) |
+| Almacén con señales | Biblioteca (NgRx SignalStore) | [Nivel 5, sesión 02](nivel-05-arquitectura/02-gestion-de-estado/) |
+| `OnPush` por defecto y aplicaciones sin zona | Por defecto | [Nivel 6, sesión 01](nivel-06-angular-avanzado/01-deteccion-de-cambios-y-rendimiento/) |
+| Vitest como ejecutor de pruebas | Por defecto desde la 21 | [Nivel 4, sesión 03](nivel-04-clean-code-y-testing/03-pruebas-unitarias-y-de-componentes/) |
+
+Angular publica una versión mayor cada seis meses. Si usas una posterior, o una anterior en un proyecto existente, habrá diferencias: manda la documentación oficial de tu versión, angular.dev.
 
 ## Sobre el código
 

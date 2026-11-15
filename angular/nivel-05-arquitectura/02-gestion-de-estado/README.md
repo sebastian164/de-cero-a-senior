@@ -50,7 +50,53 @@ Da trazabilidad total (cada cambio es una acción registrada) y herramientas de 
 
 ### Estado de servidor
 
-Lo que hay que resolver: caché por clave, datos obsoletos y revalidación, deduplicación de peticiones, estados de carga y error, invalidación tras una mutación, y actualizaciones optimistas. Opciones: almacenes propios con cuidado, la API `resource` de Angular (revisa su estado en tu versión), o bibliotecas como TanStack Query para Angular.
+Lo que hay que resolver: caché por clave, datos obsoletos y revalidación, deduplicación de peticiones, estados de carga y error, invalidación tras una mutación, y actualizaciones optimistas. Opciones: los recursos de Angular (`resource`, `httpResource`, estables desde la versión 22 y vistos en el [Nivel 1](../../nivel-01-fundamentos/04-datos-asincronos-con-resource/)), que resuelven carga, error y cancelación pero no son una caché compartida; almacenes propios con cuidado; o bibliotecas como TanStack Query para Angular, que sí traen caché, revalidación e invalidación.
+
+## Ejemplo: el mismo almacén, a mano y con biblioteca
+
+Un servicio con señales (peldaño 4):
+
+```ts
+@Injectable({ providedIn: 'root' })
+export class Carrito {
+  private readonly lineasInternas = signal<readonly Linea[]>([]);
+
+  readonly lineas = this.lineasInternas.asReadonly();            // nadie de fuera puede escribir
+  readonly total = computed(() => this.lineas().reduce((suma, l) => suma + l.precio * l.cantidad, 0));
+  readonly cantidad = computed(() => this.lineas().reduce((suma, l) => suma + l.cantidad, 0));
+
+  agregar(linea: Linea): void {
+    this.lineasInternas.update((lineas) => [...lineas, linea]);
+  }
+
+  quitar(productoId: string): void {
+    this.lineasInternas.update((lineas) => lineas.filter((l) => l.productoId !== productoId));
+  }
+}
+```
+
+Lo mismo con NgRx SignalStore (peldaño 5):
+
+```ts
+export const CarritoStore = signalStore(
+  { providedIn: 'root' },
+  withState<{ lineas: readonly Linea[] }>({ lineas: [] }),
+  withComputed(({ lineas }) => ({
+    total: computed(() => lineas().reduce((suma, l) => suma + l.precio * l.cantidad, 0)),
+    cantidad: computed(() => lineas().reduce((suma, l) => suma + l.cantidad, 0)),
+  })),
+  withMethods((store) => ({
+    agregar(linea: Linea): void {
+      patchState(store, (estado) => ({ lineas: [...estado.lineas, linea] }));
+    },
+    quitar(productoId: string): void {
+      patchState(store, (estado) => ({ lineas: estado.lineas.filter((l) => l.productoId !== productoId) }));
+    },
+  })),
+);
+```
+
+Para un solo almacén, la biblioteca no aporta nada que el servicio no tenga. Empieza a pagar cuando hay veinte almacenes y se quiere que todos tengan la misma forma, con piezas reutilizables (carga de entidades, estados de petición, persistencia). Es una dependencia más y un vocabulario que el equipo tiene que aprender: esa es la cuenta que hay que hacer.
 
 ## Ejemplo: el filtro que debía estar en la URL
 

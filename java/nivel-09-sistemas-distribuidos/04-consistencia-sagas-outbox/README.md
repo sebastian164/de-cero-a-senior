@@ -105,6 +105,8 @@ El estado de la saga se persiste: debe sobrevivir a un reinicio y saber en qué 
 
 Rama `taller/n9-04-sagas-outbox`.
 
+Para practicar a fondo están el taller de [outbox](../../../kafka-y-sagas/kafka/07-outbox-transaccional/) y los [seis talleres de sagas](../../../kafka-y-sagas/sagas/), con ejemplos ejecutables.
+
 ## Preguntas senior
 
 1. Explica el problema de la doble escritura y por qué no se arregla cambiando el orden.
