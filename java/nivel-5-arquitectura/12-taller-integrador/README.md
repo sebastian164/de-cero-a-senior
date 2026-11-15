@@ -76,6 +76,6 @@ Imagina que un arquitecto con más experiencia revisa tu propuesta. Escribe las 
 
 ## Entrega
 
-Rama `taller/n5-12-integrador`. Su revisión cierra el Nivel 5 y la parte del curso que especificaste al detalle.
+Rama `taller/n5-12-integrador`. Su revisión cierra el Nivel 5.
 
 Siguiente: [Nivel 6 — Java avanzado](../../nivel-6-java-avanzado/).

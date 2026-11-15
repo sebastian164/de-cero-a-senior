@@ -1,0 +1,14 @@
+# Nivel 8 — Bases de datos
+
+Requisito: Nivel 7. La mayor parte de los problemas de rendimiento y de consistencia de una aplicación empresarial están en su base de datos.
+
+| # | Sesión |
+|---|---|
+| 01 | [Modelado relacional y normalización](01-modelado-relacional/) |
+| 02 | [Índices y planes de ejecución](02-indices-y-planes/) |
+| 03 | [Transacciones, ACID y niveles de aislamiento](03-transacciones-y-aislamiento/) |
+| 04 | [Control de concurrencia: bloqueo optimista y pesimista](04-concurrencia-y-bloqueos/) |
+| 05 | [Migraciones y evolución del esquema](05-migraciones/) |
+| 06 | [NoSQL y caché](06-nosql-y-cache/) |
+
+Los ejemplos usan PostgreSQL. El SQL es ilustrativo y no se ejecutó al preparar el curso.
