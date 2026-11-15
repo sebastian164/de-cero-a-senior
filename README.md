@@ -32,6 +32,7 @@ Talleres prácticos comunes a las tres rutas:
 |---|---|---|
 | [Docker y Kubernetes](docker-kubernetes/) | Contenedores, imágenes, Compose, publicación; clúster local, despliegues, configuración, sondas, Gateway API, almacenamiento, escalado, seguridad, diagnóstico y Kustomize | 6 + 10 |
 | [Kafka y sagas](kafka-y-sagas/) | Registro de eventos, productores, consumidores, idempotencia, contratos, Spring Boot y outbox; sagas orquestadas y coreografiadas, fallos, aislamiento y un taller integrador | 7 + 6 |
+| [HikariCP](hikaricp/) | El pool de conexiones: qué es, cómo se dimensiona, fugas, agotamiento, métricas y un simulacro de diagnóstico | 5 |
 | [Prácticas: TDD, Karate, SDD y ODD](practicas/) | Desarrollo guiado por pruebas, pruebas de API con Karate, desarrollo guiado por especificaciones y desarrollo guiado por la observabilidad | 4 + 3 + 3 + 3 |
 
 Cada ruta termina con sus **proyectos de aplicación**: [Java](java/proyectos/), [Angular](angular/proyectos/), [React y Next.js](react-next/proyectos/).
@@ -77,6 +78,7 @@ Las soluciones de referencia no se publican antes de la entrega. Ver la respuest
 | Java, niveles 1 a 3 y lecciones 01 a 08 del nivel 4 | Java puro, compilado y ejecutado con JDK 21 |
 | Java, resto (JUnit, Mockito, Spring, SQL, configuración) | Ilustrativo, sin ejecutar |
 | TypeScript, Angular, React y Next.js | Ilustrativo, sin ejecutar |
+| HikariCP | Los seis ejemplos en Java puro se compilaron y ejecutaron; el código con HikariCP y Spring es ilustrativo. El detalle está en [su índice](hikaricp/README.md#estado-del-código) |
 | Prácticas (TDD, Karate, SDD, ODD) | Los ejemplos en Java puro de TDD y ODD se compilaron y ejecutaron; los archivos de Karate son ilustrativos. El detalle está en [su índice](practicas/README.md#estado-del-código) |
 | Kafka y sagas | Los catorce ejemplos en Java puro se compilaron y ejecutaron; el código con el cliente de Kafka y con Spring es ilustrativo. El detalle está en [su índice](kafka-y-sagas/README.md#estado-del-código) |
 | Docker y Kubernetes | La aplicación de práctica se ejecutó; los manifiestos estándar y los archivos de Compose se validaron; los Dockerfile y las órdenes no se ejecutaron. El detalle está en [su índice](docker-kubernetes/README.md#estado-del-código) |

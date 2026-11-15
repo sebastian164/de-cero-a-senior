@@ -1,0 +1,10 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://db:5432/tienda
+    username: tienda
+    password: Tienda2026!
+    hikari:
+      maximum-pool-size: 200
+      minimum-idle: 1
+      connection-timeout: 120000
+      max-lifetime: 0

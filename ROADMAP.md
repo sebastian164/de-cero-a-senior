@@ -64,6 +64,14 @@ Para la ruta Java, después del Nivel 9. Requieren los talleres de Docker.
 | 1 | [Kafka](kafka-y-sagas/kafka/) | 7 |
 | 2 | [Sagas](kafka-y-sagas/sagas/) | 6 |
 
+## Talleres de HikariCP
+
+Para la ruta Java, después del Nivel 8.
+
+| Tema | Sesiones |
+|---|---|
+| [HikariCP: el pool de conexiones](hikaricp/) | 5 |
+
 ## Talleres de prácticas
 
 Comunes a las tres rutas. TDD va después del Nivel 4; las demás partes, cuando las necesites.

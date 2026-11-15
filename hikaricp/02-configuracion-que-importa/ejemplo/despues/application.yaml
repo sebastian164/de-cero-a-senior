@@ -1,0 +1,13 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://db:5432/tienda
+    username: tienda
+    password: ${DB_PASSWORD}             # llega del entorno, no del repositorio
+    hikari:
+      pool-name: pedidos
+      maximum-pool-size: 8               # 6 instancias x 8 = 48; hasta 96 durante un despliegue; el límite es 300
+      # minimum-idle no se declara: queda igual al máximo y el pool es de tamaño fijo
+      connection-timeout: 3000           # falla rápido
+      max-lifetime: 1500000              # 25 min: el proxy corta a los 30
+      keepalive-time: 120000             # 2 min
+      leak-detection-threshold: 20000    # ninguna operación legítima retiene una conexión 20 s

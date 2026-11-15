@@ -12,3 +12,5 @@ Requisito: Nivel 7. La mayor parte de los problemas de rendimiento y de consiste
 | 06 | [NoSQL y caché](06-nosql-y-cache/) |
 
 Los ejemplos usan PostgreSQL. El SQL es ilustrativo y no se ejecutó al preparar el curso.
+
+Para practicar a fondo el pool de conexiones, que conecta todo este nivel con la aplicación, están los [cinco talleres de HikariCP](../../hikaricp/).

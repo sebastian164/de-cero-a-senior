@@ -85,6 +85,16 @@ Una lección pasa por tres estados: leída, taller entregado y aprobada. Solo "a
 | Sagas 05 — Sagas con Kafka y Spring Boot | ☐ | ☐ |
 | Sagas 06 — Taller integrador | ☐ | ☐ |
 
+## Talleres de HikariCP
+
+| Taller | En curso | Aprobado |
+|---|---|---|
+| HikariCP 01 — Qué es un pool de conexiones | ☐ | ☐ |
+| HikariCP 02 — La configuración que importa | ☐ | ☐ |
+| HikariCP 03 — Fugas de conexiones | ☐ | ☐ |
+| HikariCP 04 — Agotamiento del pool | ☐ | ☐ |
+| HikariCP 05 — Operación y taller integrador | ☐ | ☐ |
+
 ## Talleres de prácticas
 
 | Taller | En curso | Aprobado |
