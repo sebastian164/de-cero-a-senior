@@ -66,7 +66,7 @@ Se profundiza primero en los patrones más usados en aplicaciones empresariales 
 ## Reglas
 
 - No se presupone ningún conocimiento que no se haya demostrado.
-- No se entrega la solución de un taller antes de que exista un intento.
+- Cada taller trae una solución de referencia en `taller/solucion-de-referencia/`, con su análisis y sus pruebas, para guiarse y comparar. Se abre después de intentarlo: ver la respuesta primero convierte un taller en lectura.
 - En la ruta Java, Java es el lenguaje principal y Spring Boot entra cuando los fundamentos están claros. En las rutas de frontend, TypeScript va antes que el framework.
 - Los ejemplos son progresivos: de clases sencillas a sistemas empresariales.
 - Toda decisión técnica se explica con sus razones.

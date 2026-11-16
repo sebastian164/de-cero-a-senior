@@ -55,7 +55,7 @@ Los conceptos de diseño no dependen del lenguaje. La explicación más completa
 3. Código que funciona pero tiene problemas de diseño.
 4. Análisis del problema y sus consecuencias.
 5. Código mejorado, paso a paso.
-6. Taller práctico, sin solución.
+6. Taller práctico, con una solución de referencia para comparar después de intentarlo.
 7. Revisión técnica de la entrega.
 8. Aplicación profesional.
 9. Evaluación senior: preguntas que exigen justificar decisiones.
@@ -70,7 +70,13 @@ Las lecciones de los primeros niveles de Java siguen este ciclo completo. Las de
 4. Abre un pull request contra `main`. La revisión técnica ocurre ahí.
 5. La lección se marca como aprobada en [PROGRESO.md](PROGRESO.md) cuando la revisión no deja problemas de fondo abiertos.
 
-Las soluciones de referencia no se publican antes de la entrega. Ver la respuesta primero convierte un taller en lectura.
+### Soluciones de referencia
+
+Cada taller trae su solución de referencia en `taller/solucion-de-referencia/`: el código completo, sus pruebas y un `ANALISIS.md` que explica las decisiones paso a paso. Todas se compilaron y se ejecutaron, y pasaron una revisión de arquitectura.
+
+Úsalas para guiarte cuando te atasques y para comparar cuando termines, no como punto de partida: ver la respuesta primero convierte un taller en lectura. Tu propia solución sigue yendo en `taller/solucion/`.
+
+Las soluciones se publican módulo a módulo a medida que se verifican. Hoy están en Java, niveles 1 y 2.
 
 ## Qué código se puede ejecutar tal cual
 
