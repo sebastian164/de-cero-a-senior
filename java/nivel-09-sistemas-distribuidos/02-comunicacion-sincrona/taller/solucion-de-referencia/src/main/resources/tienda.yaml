@@ -1,0 +1,22 @@
+server:
+  port: 43081
+  tomcat.threads.max: 10          # pocos hilos para que el agotamiento se vea con pocas peticiones
+spring:
+  application.name: tienda
+  autoconfigure.exclude: org.springframework.boot.jdbc.autoconfigure.DataSourceAutoConfiguration   # la tienda no tiene base
+inventario.url: http://localhost:43082
+
+# Reintento: 3 intentos, retroceso exponencial (100 ms, 200 ms) con variación aleatoria de ±50 %.
+# Solo errores transitorios: tiempo vencido o de red (ResourceAccessException) y 5xx. Nunca 4xx.
+resilience4j.retry.instances.inventario:
+  max-attempts: 3
+  wait-duration: 100ms
+  enable-exponential-backoff: true
+  exponential-backoff-multiplier: 2
+  enable-randomized-wait: true
+  randomized-wait-factor: 0.5
+  retry-exceptions:
+    - org.springframework.web.client.ResourceAccessException
+    - org.springframework.web.client.HttpServerErrorException
+  ignore-exceptions:
+    - org.springframework.web.client.HttpClientErrorException

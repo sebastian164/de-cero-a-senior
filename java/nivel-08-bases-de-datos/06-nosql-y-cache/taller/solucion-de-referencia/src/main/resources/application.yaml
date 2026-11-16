@@ -1,0 +1,11 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:43432/n8_06
+    username: curso
+    password: curso
+    hikari.maximum-pool-size: 210
+  data.redis:
+    host: localhost
+    port: 43379
+  cache.type: redis
+  cache.redis.time-to-live: 10m

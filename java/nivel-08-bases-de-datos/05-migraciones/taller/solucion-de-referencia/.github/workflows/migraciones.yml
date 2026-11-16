@@ -1,0 +1,37 @@
+# Paso 6: toda integración aplica las migraciones a una base limpia y valida el esquema contra las entidades.
+name: migraciones
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+# En tu repositorio los valores por defecto bastan. Las variables vars.* permiten ejecutar el mismo flujo con otro puerto o con el
+# proyecto dentro de un repositorio mayor.
+jobs:
+  base-limpia:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:18.7
+        env:
+          POSTGRES_USER: curso
+          POSTGRES_PASSWORD: curso
+          POSTGRES_DB: curso
+        ports: ["${{ vars.PG_PUERTO || '5432' }}:5432"]
+        options: >-
+          --health-cmd "pg_isready -U curso"
+          --health-interval 2s
+          --health-retries 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "21"
+          cache: maven
+      - name: Migraciones sobre base limpia y validación del esquema
+        run: ./ci/verificar-migraciones.sh
+        working-directory: ${{ vars.DIRECTORIO || '.' }}
+        env:
+          PG_PUERTO: ${{ vars.PG_PUERTO || '5432' }}

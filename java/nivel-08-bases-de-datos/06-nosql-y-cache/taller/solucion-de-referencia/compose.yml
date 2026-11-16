@@ -1,0 +1,33 @@
+# Infraestructura de la solución. Levantar: docker compose up -d --wait   Bajar: docker compose down -v
+name: taller-n8-06
+
+services:
+  postgres:
+    image: postgres:18.7
+    environment:
+      POSTGRES_USER: curso
+      POSTGRES_PASSWORD: curso
+      POSTGRES_DB: curso
+    command: ["postgres", "-c", "max_connections=300", "-c", "deadlock_timeout=200ms"]
+    ports: ["43432:5432"]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U curso -d curso"]
+      interval: 2s
+      retries: 30
+
+  redis:
+    image: redis:8.10.3
+    ports: ["43379:6379"]
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 2s
+      retries: 30
+
+  mongo:
+    image: mongo:9.0.8
+    command: ["mongod", "--wiredTigerCacheSizeGB", "0.25"]
+    ports: ["43017:27017"]
+    healthcheck:
+      test: ["CMD", "mongosh", "--quiet", "--eval", "db.adminCommand('ping').ok"]
+      interval: 3s
+      retries: 30

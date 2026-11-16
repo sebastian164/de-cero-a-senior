@@ -1,0 +1,57 @@
+# Pruebas de las reglas con promtool: series sintéticas con el mismo nombre y etiquetas que las reales.
+rule_files:
+  - alertas-curso.yml
+evaluation_interval: 1m
+tests:
+  - interval: 1m
+    input_series:
+      # 10 peticiones/s correctas y 1/s con error 500: 9 % de errores
+      - series: 'http_server_requests_milliseconds_count{service_name="servicio-a",uri="/pedidos/{id}",status="200"}'
+        values: '0+600x20'
+      - series: 'http_server_requests_milliseconds_count{service_name="servicio-a",uri="/pedidos/{id}",status="500"}'
+        values: '0+60x20'
+      # latencia: de cada 660 peticiones por minuto, 330 tardan <= 300 ms (50 % lentas)
+      - series: 'http_server_requests_milliseconds_bucket{service_name="servicio-a",uri="/pedidos/{id}",le="300"}'
+        values: '0+330x20'
+    alert_rule_test:
+      - eval_time: 1m
+        alertname: ServicioAErroresAltos
+        exp_alerts: []                   # todavía no cumple "for: 2m"
+      - eval_time: 10m
+        alertname: ServicioAErroresAltos
+        exp_alerts:
+          - exp_labels: {severity: page}
+            exp_annotations:
+              summary: "Más del 1 % de los pedidos de servicio-a responde con error 5xx (5 min)"
+              runbook: |
+                1. Mitigar: si hubo un despliegue en los últimos 30 minutos, revertirlo.
+                2. Abrir la traza de una petición fallida (Tempo, filtro status=error) y ver qué tramo falla.
+                3. Si el tramo es una dependencia, abrir su cortacircuitos o apagar la función que la usa.
+                4. Comunicar en el canal del incidente y registrar la hora de inicio para el análisis posterior.
+      - eval_time: 10m
+        alertname: ServicioALentitudAlta
+        exp_alerts:
+          - exp_labels: {severity: page}
+            exp_annotations:
+              summary: "Más del 5 % de los pedidos de servicio-a tarda más de 300 ms (5 min); el SLO permite 0,1 %"
+              runbook: |
+                1. Mitigar: desviar tráfico o reducir carga (apagar la función no esencial); no diagnosticar todavía.
+                2. Abrir una traza lenta en Tempo: el tramo más largo señala al servicio responsable.
+                3. Revisar el tablero de ese servicio (latencia, saturación) y sus dependencias.
+                4. Si pasa de 30 minutos, escalar al responsable del servicio señalado.
+  - interval: 1m
+    input_series:
+      # servicio sano: 0,3 % de errores y 99,9 % de peticiones rápidas
+      - series: 'http_server_requests_milliseconds_count{service_name="servicio-a",uri="/pedidos/{id}",status="200"}'
+        values: '0+998x20'
+      - series: 'http_server_requests_milliseconds_count{service_name="servicio-a",uri="/pedidos/{id}",status="500"}'
+        values: '0+2x20'
+      - series: 'http_server_requests_milliseconds_bucket{service_name="servicio-a",uri="/pedidos/{id}",le="300"}'
+        values: '0+999x20'
+    alert_rule_test:
+      - eval_time: 15m
+        alertname: ServicioAErroresAltos
+        exp_alerts: []
+      - eval_time: 15m
+        alertname: ServicioALentitudAlta
+        exp_alerts: []

@@ -1,0 +1,15 @@
+# Parte común de los dos servicios. Lo que viene del README (muestreo, exportación OTLP, patrón de registro y observación de Kafka) se añade aparte.
+spring:
+  kafka:
+    bootstrap-servers: localhost:43092
+    consumer:
+      auto-offset-reset: earliest
+servicio-b.url: http://localhost:43062
+management:
+  endpoints.web.exposure.include: health
+  otlp.metrics.export:
+    url: http://localhost:43318/v1/metrics
+    step: 5s
+  opentelemetry.resource-attributes:
+    service.name: ${spring.application.name}
+  metrics.distribution.slo.http.server.requests: 300ms      # crea el cubo le=300 para el SLI de latencia

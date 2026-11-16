@@ -1,0 +1,36 @@
+# Infraestructura de la solución. Levantar: docker compose up -d --wait   Bajar: docker compose down -v
+name: taller-n9-01
+
+services:
+  # Un primario y una réplica asíncrona que aplica el WAL con 2 s de retraso.
+  pg-primario:
+    image: postgres:18.7
+    environment:
+      POSTGRES_USER: curso
+      POSTGRES_PASSWORD: curso
+      POSTGRES_DB: curso
+    command: ["postgres", "-c", "wal_level=replica", "-c", "max_wal_senders=5", "-c", "hot_standby=on"]
+    volumes:
+      - ./infra/primario-init.sh:/docker-entrypoint-initdb.d/10-replicacion.sh:ro
+    ports: ["43433:5432"]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U curso -d curso"]
+      interval: 2s
+      retries: 30
+
+  pg-replica:
+    image: postgres:18.7
+    user: postgres
+    environment:
+      PGPASSWORD: replica
+    depends_on:
+      pg-primario:
+        condition: service_healthy
+    volumes:
+      - ./infra/replica-arranque.sh:/arranque.sh:ro
+    entrypoint: ["bash", "/arranque.sh"]
+    ports: ["43434:5432"]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U curso -d curso"]
+      interval: 2s
+      retries: 60

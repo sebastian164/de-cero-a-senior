@@ -1,0 +1,9 @@
+server:
+  port: 43082
+spring:
+  application.name: inventario
+  datasource:
+    url: jdbc:postgresql://localhost:43432/n9_02
+    username: curso
+    password: curso
+    hikari.maximum-pool-size: 30

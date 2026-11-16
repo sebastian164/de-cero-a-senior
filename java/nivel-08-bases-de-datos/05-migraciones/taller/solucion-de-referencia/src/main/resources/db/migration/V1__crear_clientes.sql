@@ -1,0 +1,5 @@
+CREATE TABLE clientes (
+    id         BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    documento  VARCHAR(20)  NOT NULL UNIQUE,
+    nombre     VARCHAR(120) NOT NULL
+);
