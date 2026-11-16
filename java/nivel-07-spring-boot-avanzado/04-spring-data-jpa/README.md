@@ -68,7 +68,7 @@ interface PedidoRepository extends JpaRepository<Pedido, Long> {
 - Cargar entidades completas para mostrar tres columnas.
 - `CascadeType.ALL` y `orphanRemoval` aplicados sin pensar.
 - `@ManyToMany` con `List` (genera borrados e inserciones masivos): usar `Set` o una entidad intermedia.
-- `JOIN FETCH` de dos colecciones a la vez (producto cartesiano) o con paginación (se pagina en memoria).
+- `JOIN FETCH` de dos colecciones a la vez (producto cartesiano) o con paginación. Hibernate 7.4 baja la paginación a una subconsulta cuando puede; cuando no puede (por ejemplo, si se ordena primero por la colección) trae todas las filas y pagina en memoria, con el aviso `HHH90003004`.
 - `equals`/`hashCode` generados por `@Data`.
 - Exponer entidades en la API.
 
@@ -78,7 +78,7 @@ interface PedidoRepository extends JpaRepository<Pedido, Long> {
 2. Desactiva `open-in-view` y arregla lo que se rompa.
 3. Reemplaza una consulta que carga entidades por una proyección a `record` y compara el SQL.
 4. Implementa un filtro dinámico con cuatro criterios opcionales usando `Specification`.
-5. Provoca el aviso de paginación en memoria con `JOIN FETCH` y resuélvelo.
+5. Provoca el aviso de paginación en memoria con `JOIN FETCH` (en Hibernate 7.4, ordenando por la colección) y resuélvelo.
 6. Demuestra la detección de cambios: modifica una entidad gestionada sin llamar a `save`.
 
 Rama `taller/n7-04-jpa`.

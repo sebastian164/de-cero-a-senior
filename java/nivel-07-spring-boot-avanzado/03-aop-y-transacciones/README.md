@@ -15,7 +15,7 @@ En un edificio, el vigilante de la entrada registra a todo el que entra sin que 
 ### Las tres consecuencias del proxy
 
 1. **Autoinvocación:** `this.metodo()` no pasa por el proxy. Las anotaciones del método llamado no se aplican.
-2. **Solo métodos públicos no `final`** de beans gestionados.
+2. **Solo métodos no privados y no `final`** de beans gestionados (con proxies de clase, desde Spring Framework 6; antes, solo públicos).
 3. **Objetos creados con `new`** no tienen proxy.
 
 ### `@Transactional`

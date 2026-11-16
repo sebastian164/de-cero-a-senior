@@ -82,6 +82,8 @@ server:
   shutdown: graceful
 ```
 
+Verificado con Spring Boot 4.1.1 (Micrometer, Prometheus v3.5.0): hacen falta `spring-boot-starter-actuator` y `micrometer-registry-prometheus`; con solo `publishPercentiles(0.95, 0.99)`, `/actuator/prometheus` publica `pagos_cobro_duracion_seconds{quantile="0.95"}` y `{quantile="0.99"}` por instancia. Esos cuantiles no se pueden sumar entre réplicas: si además se llama `publishPercentileHistogram()`, el registro publica solo los *buckets* y el p95 se calcula en Prometheus con `histogram_quantile(0.95, sum by (le) (rate(pagos_cobro_duracion_seconds_bucket[5m])))`. Las trazas necesitan `spring-boot-starter-opentelemetry`; ese *starter* también activa por defecto el envío de métricas por OTLP (`management.otlp.metrics.export.enabled=false` si no se quiere), y el registro JSON (`logging.structured.format.console=ecs`) incluye `traceId` y `spanId`.
+
 ## Errores comunes
 
 - Registrar todo en `INFO` o nada en absoluto.

@@ -77,7 +77,7 @@ class AuditoriaAutoConfiguration {
 1. Arranca una aplicación con `--debug` y explica por qué se configuraron tres beans y por qué no otros tres.
 2. Reemplaza cinco `@Value` por una clase `@ConfigurationProperties` validada. Haz que el arranque falle con un valor inválido.
 3. Define tres perfiles (dev, test, prod) y demuestra la precedencia sobrescribiendo una propiedad por variable de entorno.
-4. Sustituye un bean autoconfigurado (por ejemplo, `ObjectMapper`) por uno propio y verifica que la autoconfiguración se retiró.
+4. Sustituye un bean autoconfigurado (por ejemplo, el `JsonMapper` de Jackson 3: en Spring Boot 4 un bean declarado como `ObjectMapper` no retira la autoconfiguración) por uno propio y verifica que la autoconfiguración se retiró.
 5. Escribe un starter mínimo con su autoconfiguración y úsalo desde otra aplicación.
 
 Rama `taller/n7-02-autoconfiguracion`.

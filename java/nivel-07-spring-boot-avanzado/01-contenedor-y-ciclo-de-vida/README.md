@@ -25,8 +25,8 @@ Inyectar un bean de alcance corto en un singleton exige `ObjectProvider<T>` o un
 
 1. Se leen las definiciones de beans.
 2. Se instancia (constructor) y se inyectan dependencias.
-3. Se ejecutan los `BeanPostProcessor` (aquí se crean los proxies de AOP).
-4. `@PostConstruct`.
+3. Se ejecutan los `BeanPostProcessor` en su fase "antes de inicializar" y luego `@PostConstruct`.
+4. Se ejecutan los `BeanPostProcessor` en su fase "después de inicializar": aquí se crean los proxies de AOP. Dentro de `@PostConstruct` todavía se está en el objeto real, sin proxy.
 5. El bean está en uso.
 6. `@PreDestroy` al cerrar el contexto.
 

@@ -45,7 +45,7 @@ class SeguridadConfig {
     SecurityFilterChain api(HttpSecurity http) throws Exception {
         return http
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/actuator/health").permitAll()
+                        .requestMatchers("/actuator/health/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/v1/productos/**").permitAll()
                         .requestMatchers("/v1/admin/**").hasRole("ADMIN")
                         .anyRequest().authenticated())
@@ -63,6 +63,14 @@ class ConsultaPedidos {
     PedidoResponse buscar(Long id) { ... }
 }
 ```
+
+Tres detalles comprobados al ejecutarlo:
+
+- El método `esDueno` debe ser `public`; si no, SpEL falla en ejecución con `EL1004E: Method call: Method esDueno(...) cannot be found`. La clase puede ser de paquete.
+- El servidor de recursos usa `spring-boot-starter-security-oauth2-resource-server` y necesita un `JwtDecoder` (por `spring.security.oauth2.resourceserver.jwt.issuer-uri` o por clave). Con `issuer-uri` se validan firma, emisor y expiración; para validar también la audiencia hay que añadir `spring.security.oauth2.resourceserver.jwt.audiences=api-pedidos` y que el proveedor ponga ese valor en `aud` (en Keycloak, un *mapper* de audiencia): sin eso se acepta el token de cualquier cliente del realm.
+- Con `"/actuator/health"` a secas, las sondas `/actuator/health/liveness` y `/readiness` (que Kubernetes llama sin credenciales) responden 401; por eso la regla lleva `/**`.
+
+Verificado con Spring Boot 4.1.1, Spring Security 7.1.1 y Keycloak 26.0.
 
 ## Riesgos que todo backend debe cubrir
 
