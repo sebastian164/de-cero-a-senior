@@ -202,7 +202,7 @@ Observa que la solución fue partir un contrato en dos más pequeños. Eso antic
 
 ## 6. Ejemplo empresarial con Spring Boot
 
-Fragmentos ilustrativos.
+Fragmentos ilustrativos: no forman parte del código del repo. Se compilaron y probaron con Spring Boot 4.1.1 y Java 21; donde aparece `{ ... }` o `// ...` se omitió código que no aporta a la idea.
 
 **Implementaciones a medias de una interfaz.**
 

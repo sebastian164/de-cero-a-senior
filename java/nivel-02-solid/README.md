@@ -12,3 +12,5 @@ Cinco criterios para repartir responsabilidades y dependencias de modo que cambi
 | 06 | [Taller integrador](06-taller-integrador/) |
 
 Desde la lección 02, cada ejemplo es un único archivo: `java Main.java`.
+
+En la lección 01 cada ejemplo tiene varios archivos; se compila y ejecuta desde su carpeta con `javac *.java` y `java Main`.

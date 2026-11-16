@@ -23,4 +23,6 @@ cd 02-encapsulamiento/ejemplos/antes
 java Main.java
 ```
 
+En la lección 00 cada ejemplo tiene varios archivos; se compila y ejecuta desde su carpeta con `javac *.java` y `java Main`.
+
 La lección 08 cierra el nivel con un taller integrador.

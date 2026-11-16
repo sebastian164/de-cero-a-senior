@@ -152,7 +152,7 @@ class Multifuncional implements Impresora, Escaner, Fax {
 
 ## 6. Ejemplo empresarial con Spring Boot
 
-Fragmentos ilustrativos.
+Fragmentos ilustrativos: no forman parte del código del repo. Se compilaron y probaron con Spring Boot 4.1.1 y Java 21; donde aparece `{ ... }` o `// ...` se omitió código que no aporta a la idea.
 
 **Repositorios más estrechos que `JpaRepository`.** Al extender `JpaRepository` un repositorio expone decenas de métodos, incluidos `deleteAll()` y `deleteAllInBatch()`. Si una entidad nunca se elimina, ofrecer esa operación es una invitación al accidente. Spring Data permite declarar solo lo necesario extendiendo la interfaz marcadora `Repository`:
 

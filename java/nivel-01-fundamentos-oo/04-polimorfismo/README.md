@@ -14,8 +14,8 @@ Polimorfismo de subtipos: una variable de un tipo general puede referirse a obje
 - **Tipo dinámico**: el del objeto real. Decide qué implementación se ejecuta.
 
 ```java
-Canal canal = new CanalSms();   // estático: Canal; dinámico: CanalSms
-canal.enviar("hola");           // se ejecuta CanalSms.enviar
+Canal canal = new CanalSms("3001234567");   // estático: Canal; dinámico: CanalSms
+canal.enviar("hola");                       // se ejecuta CanalSms.enviar
 ```
 
 ### Sobrescritura y sobrecarga no son lo mismo

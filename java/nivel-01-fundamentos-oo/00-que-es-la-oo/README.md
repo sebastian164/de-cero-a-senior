@@ -187,6 +187,19 @@ Fíjate en que el ejemplo de esta clase ya los rozó sin nombrarlos. El movimien
 
 Una advertencia que se repetirá en cada lección: SOLID son heurísticas, no leyes. Aplicados sin criterio producen código con más clases, más interfaces y más confusión que el problema que querían evitar.
 
+## Paso 6 — Taller práctico
+
+El enunciado está en [`taller/`](taller/). No hay solución publicada: primero se intenta.
+
+## Paso 7 — Revisión técnica
+
+La revisión ocurre en el pull request de la entrega. Se evalúa:
+
+- ¿Se puede dejar un objeto en un estado inválido desde afuera?
+- ¿Cada regla de negocio vive en un único lugar?
+- ¿Qué hay que modificar para agregar un caso nuevo?
+- ¿Las decisiones están justificadas, incluidas las de no hacer algo?
+
 ## Paso 8 — Aplicación profesional: Java y Spring Boot
 
 **Por qué importa en el trabajo real.** El código se escribe una vez y se lee y se modifica durante años, por personas que no lo escribieron. Casi todo el costo de un sistema está en cambiarlo, no en crearlo. Un diseño con baja cohesión y alto acoplamiento no falla el primer día: hace que cada cambio sea más lento y más arriesgado que el anterior.
@@ -199,13 +212,17 @@ Una advertencia que se repetirá en cada lección: SOLID son heurísticas, no le
 @Entity
 @Data // genera getters y setters públicos para todo
 public class Cuenta {
+    @Id @GeneratedValue
     private Long id;
     private String tipo;
     private BigDecimal saldo;
 }
 
 @Service
+@RequiredArgsConstructor
 public class CuentaService {
+    private final CuentaRepository repositorio;
+
     public void retirar(Long id, BigDecimal monto) {
         Cuenta cuenta = repositorio.findById(id).orElseThrow();
         if (cuenta.getSaldo().compareTo(monto) >= 0) {
@@ -219,19 +236,6 @@ public class CuentaService {
 Los campos son privados, pero con un `setSaldo` público el efecto es el mismo que tener el campo público: cualquier servicio puede dejar el saldo en cualquier valor. Es el mismo programa procedural, con anotaciones.
 
 Esto no significa que toda entidad con setters esté mal. En un CRUD sin reglas de negocio, un modelo anémico es una decisión razonable. El problema aparece cuando hay reglas y esas reglas quedan repartidas por los servicios.
-
-## Paso 6 — Taller práctico
-
-El enunciado está en [`taller/`](taller/). No hay solución publicada: primero se intenta.
-
-## Paso 7 — Revisión técnica
-
-La revisión ocurre en el pull request de la entrega. Se evalúa:
-
-- ¿Se puede dejar un objeto en un estado inválido desde afuera?
-- ¿Cada regla de negocio vive en un único lugar?
-- ¿Qué hay que modificar para agregar un caso nuevo?
-- ¿Las decisiones están justificadas, incluidas las de no hacer algo?
 
 ## Paso 9 — Evaluación senior
 

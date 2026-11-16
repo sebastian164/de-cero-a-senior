@@ -151,7 +151,7 @@ public class ServicioFacturacion {
 
 ## 6. Ejemplo empresarial con Spring Boot
 
-Los fragmentos de esta sección son ilustrativos; no forman parte del código compilable del repo.
+Fragmentos ilustrativos: no forman parte del código del repo. Se compilaron y probaron con Spring Boot 4.1.1 y Java 21; donde aparece `{ ... }` o `// ...` se omitió código que no aporta a la idea.
 
 ### El controlador que hace todo
 
@@ -182,6 +182,8 @@ public class PedidoController {
         // formato de la respuesta
         return ResponseEntity.ok(Map.of("total", total));
     }
+
+    // ... calcularTotalConDescuento y buscarCorreo, omitidos
 }
 ```
 

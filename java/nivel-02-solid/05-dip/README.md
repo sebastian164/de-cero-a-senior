@@ -220,7 +220,7 @@ class NotificadorEspia implements Notificador {
 
 ## 6. Ejemplo empresarial con Spring Boot
 
-Fragmentos ilustrativos.
+Fragmentos ilustrativos: no forman parte del código del repo. Se compilaron y probaron con Spring Boot 4.1.1 y Java 21; donde aparece `{ ... }` o `// ...` se omitió código que no aporta a la idea.
 
 **Inyección por constructor.** Con un único constructor, Spring inyecta sin necesidad de `@Autowired`:
 
@@ -252,6 +252,8 @@ class NotificadorCorreo implements Notificador { ... }
 class NotificadorConsola implements Notificador { ... }
 ```
 
+Ojo: sin un perfil activo no existe ningún `Notificador` y la aplicación no arranca, porque Spring no encuentra con qué construir `ServicioPedidos`. Activa un perfil (`spring.profiles.active=dev`) o declara una implementación por defecto.
+
 **Usar Spring no garantiza cumplir DIP.** Este servicio usa inyección y lo viola: el negocio depende de detalles.
 
 ```java
@@ -260,12 +262,18 @@ public class ServicioPedidos {
     private final JdbcTemplate jdbc;          // detalle de persistencia
     private final JavaMailSender mailSender;  // detalle de correo
     private final RestTemplate restTemplate;  // detalle de HTTP
+
+    public ServicioPedidos(JdbcTemplate jdbc, JavaMailSender mailSender, RestTemplate restTemplate) {
+        this.jdbc = jdbc;
+        this.mailSender = mailSender;
+        this.restTemplate = restTemplate;
+    }
 }
 ```
 
 **Dónde vive la interfaz importa.** Si `RepositorioPedidos` está en el paquete de infraestructura junto a su implementación JPA, el negocio sigue importando infraestructura. En arquitectura hexagonal (Nivel 5) estas interfaces se llaman **puertos**, viven en el dominio, y las implementaciones (**adaptadores**) viven afuera.
 
-**Un matiz sobre Spring Data.** `interface PedidoRepository extends JpaRepository<Pedido, Long>` es una abstracción, pero expone conceptos de JPA (`Pageable`, `Specification`, `flush`). Para la mayoría de aplicaciones es un acoplamiento aceptable y pragmático. Cuando el dominio es complejo y debe sobrevivir a cambios de tecnología, se define un puerto propio y un adaptador que usa Spring Data por dentro.
+**Un matiz sobre Spring Data.** `interface PedidoRepository extends JpaRepository<Pedido, Long>` es una abstracción, pero expone conceptos de Spring Data y de JPA (`Pageable`, `Example`, `flush`). Para la mayoría de aplicaciones es un acoplamiento aceptable y pragmático. Cuando el dominio es complejo y debe sobrevivir a cambios de tecnología, se define un puerto propio y un adaptador que usa Spring Data por dentro.
 
 ## 7. Taller práctico
 

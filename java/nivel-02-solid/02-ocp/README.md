@@ -213,7 +213,7 @@ class ReglaCobertura implements ReglaValidacion {
 
 ## 6. Ejemplo empresarial con Spring Boot
 
-Fragmentos ilustrativos.
+Fragmentos ilustrativos: no forman parte del código del repo. Se compilaron y probaron con Spring Boot 4.1.1 y Java 21; donde aparece `{ ... }` o `// ...` se omitió código que no aporta a la idea.
 
 Spring convierte el punto de ensamblaje en automático: si un constructor pide una lista de una interfaz, recibe todos los beans que la implementan.
 
