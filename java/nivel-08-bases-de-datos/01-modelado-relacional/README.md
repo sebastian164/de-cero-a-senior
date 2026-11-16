@@ -48,6 +48,12 @@ CREATE TABLE pedidos (
     creado_en   TIMESTAMPTZ  NOT NULL DEFAULT now()
 );
 
+CREATE TABLE productos (
+    id          BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    nombre      VARCHAR(120)  NOT NULL,
+    precio      NUMERIC(12,2) NOT NULL CHECK (precio >= 0)
+);
+
 CREATE TABLE lineas_pedido (
     pedido_id       BIGINT        NOT NULL REFERENCES pedidos(id),
     producto_id     BIGINT        NOT NULL REFERENCES productos(id),

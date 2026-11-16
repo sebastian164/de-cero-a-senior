@@ -83,6 +83,7 @@ template: `@for (p of pedidos; track $index) { <tr><td>{{ calcularTotal(p) }}</t
 // Después
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [CurrencyPipe],
   template: `@for (fila of filas(); track fila.id) { <tr><td>{{ fila.total | currency }}</td></tr> }`,
 })
 export class TablaPedidosComponent {

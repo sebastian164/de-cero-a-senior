@@ -113,6 +113,10 @@ kafka /opt/kafka/bin/kafka-topics.sh --bootstrap-server localhost:9092 --list
 | Tu equipo (una aplicación que ejecutas fuera de Docker) | `localhost:9092` |
 | Otro contenedor en la misma red de Compose | `kafka:19092` |
 | Dentro del propio contenedor de Kafka | `localhost:9092` |
+| Con los tres brokers, desde tu equipo | `localhost:29092`, `localhost:39092` o `localhost:49092` |
+| Con los tres brokers, dentro de un contenedor | `kafka-1:19092` (o `kafka-2:19092`, `kafka-3:19092`). Aquí `localhost:9092` no sirve: ese broker anuncia `localhost:29092`, que dentro del contenedor no existe |
+
+Con los tres brokers el servicio no se llama `kafka`, así que el alias cambia: `alias kafka='docker compose -f compose.cluster.yaml exec kafka-1'`.
 
 Si una aplicación "conecta pero luego se queda colgada", casi siempre es esto: el broker le responde con la dirección anunciada, y esa dirección no es alcanzable desde donde está la aplicación.
 

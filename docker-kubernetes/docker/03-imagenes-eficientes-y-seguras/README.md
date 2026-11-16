@@ -87,7 +87,7 @@ FROM nginxinc/nginx-unprivileged:1.28-alpine
 COPY --from=construccion /app/dist /usr/share/nginx/html
 EXPOSE 8080
 HEALTHCHECK --interval=30s --timeout=3s --retries=3 \
-  CMD wget -q -O /dev/null http://localhost:8080/ || exit 1
+  CMD wget -q -O /dev/null http://127.0.0.1:8080/ || exit 1
 ```
 
 <!-- file: ejemplo/despues/.dockerignore -->
@@ -102,6 +102,7 @@ dist
 - Las dependencias se instalan en una capa que solo se invalida si cambian `package.json` o el archivo de bloqueo.
 - `npm ci` instala exactamente lo que dice el archivo de bloqueo.
 - La imagen final no tiene Node. La variante `nginx-unprivileged` ya se ejecuta sin privilegios y escucha en el 8080.
+- El `HEALTHCHECK` usa `127.0.0.1` y no `localhost`: dentro de esta imagen `localhost` se resuelve primero a la dirección IPv6 `::1`, y nginx solo escucha en IPv4. Con `localhost` el contenedor queda `unhealthy` aunque sirva bien.
 - La carpeta de salida depende de la herramienta: `dist/` en Vite, `dist/<proyecto>/browser` en Angular. Ajústala.
 
 Este Dockerfile es ilustrativo: no se construyó al preparar el curso.
