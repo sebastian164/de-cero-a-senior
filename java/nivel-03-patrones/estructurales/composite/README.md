@@ -117,7 +117,7 @@ class Combo implements ItemCatalogo {
 
 ## En Spring y en Java
 
-- `CompositeHealthContributor`, `CompositePropertySource`, `DelegatingFilterProxy` y los `Composite…` de Spring agrupan varios elementos tras la interfaz de uno.
+- `CompositeHealthContributor`, `CompositePropertySource`, `CompositeFilter` y los `Composite…` de Spring agrupan varios elementos tras la interfaz de uno.
 - Especificaciones de JPA combinadas con `and`/`or`; predicados compuestos (`Predicate.and`).
 - Reglas de validación o de autorización que se agrupan en reglas mayores.
 

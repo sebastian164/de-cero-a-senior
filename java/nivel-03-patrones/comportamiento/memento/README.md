@@ -104,7 +104,7 @@ El historial guarda instantáneas sin poder leerlas ni modificarlas. Si `Editor`
 
 ## En Spring y en Java
 
-- *Savepoints* de transacciones (`Connection.setSavepoint`, propagación `NESTED`): un punto al que volver.
+- *Savepoints* de transacciones (`Connection.setSavepoint`, propagación `NESTED`, que solo soporta el gestor JDBC y no `JpaTransactionManager`): un punto al que volver.
 - Hibernate guarda una instantánea del estado cargado de cada entidad para detectar qué cambió (*dirty checking*).
 - Hibernate Envers y las tablas de historial.
 - Serialización de estado de sesión.

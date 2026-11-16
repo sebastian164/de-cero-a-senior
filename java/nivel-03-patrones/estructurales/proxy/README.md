@@ -121,7 +121,7 @@ class ReportesConPermisos implements Reportes {
 
 ## En Spring
 
-Esta es la lección de patrones con más consecuencias prácticas. `@Transactional`, `@Cacheable`, `@Async`, `@PreAuthorize` y `@Retryable` funcionan porque Spring **no te entrega tu objeto: te entrega un proxy** que lo envuelve (un proxy dinámico del JDK si hay interfaz, o una subclase generada con CGLIB si no).
+Esta es la lección de patrones con más consecuencias prácticas. `@Transactional`, `@Cacheable`, `@Async`, `@PreAuthorize` y `@Retryable` funcionan porque Spring **no te entrega tu objeto: te entrega un proxy** que lo envuelve: en Spring Framework, un proxy dinámico del JDK si hay interfaz o una subclase generada con CGLIB si no; Spring Boot usa CGLIB en ambos casos por defecto (`spring.aop.proxy-target-class=true`).
 
 De ahí salen tres trampas que todo senior debe explicar:
 
