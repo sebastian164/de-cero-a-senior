@@ -5,4 +5,10 @@ out/
 *.iml
 .vscode/
 .DS_Store
-salida/
+# Salida de javac (-d salida) y archivos que generan los ejemplos.
+# Va anclado a esas carpetas: un "salida/" suelto ignoraba también los paquetes Java llamados salida.
+hexagonal/proyecto/salida/
+**/ejemplo/salida/
+**/ejemplos/*/salida/
+# Proyectos de verificación y soluciones de los talleres: comprueban que el curso corre, no se publican.
+.verificacion/
