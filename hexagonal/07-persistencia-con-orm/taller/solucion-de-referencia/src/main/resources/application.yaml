@@ -1,0 +1,23 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/tienda
+    username: banco
+    password: banco
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: none               # el esquema es nuestro
+    properties:
+      hibernate:
+        format_sql: true
+        order_updates: true        # UPDATE ordenados por id: dos pedidos cruzados no se interbloquean
+  sql:
+    init:
+      mode: always
+
+logging:
+  level:
+    org.hibernate.SQL: debug
