@@ -51,15 +51,20 @@ SELECT id, total FROM pedidos
 WHERE cliente_id = 42 AND estado = 'PENDIENTE'
 ORDER BY creado_en DESC
 LIMIT 20;
--- Seq Scan on pedidos  (actual time=0.02..310.4 rows=20)   ← recorre 2 millones de filas
+-- Limit -> Sort (top-N heapsort) -> Gather
+--   -> Parallel Seq Scan on pedidos  (actual time=1.016..17.076 rows=33.33 loops=3)
+--        Rows Removed by Filter: 666633      ← recorre los 2 millones de filas
+-- Execution Time: 27.433 ms
 
 CREATE INDEX idx_pedidos_cliente_pendientes
     ON pedidos (cliente_id, creado_en DESC)
     WHERE estado = 'PENDIENTE';
--- Index Scan using idx_pedidos_cliente_pendientes  (actual time=0.03..0.11 rows=20)
+-- Index Scan using idx_pedidos_cliente_pendientes  (actual time=0.030..0.126 rows=20.00 loops=1)
+--   Index Cond: (cliente_id = 42)                    ← sin Sort: el índice ya viene ordenado
+-- Execution Time: 0.135 ms
 ```
 
-El índice es compuesto (igualdad primero, orden después) y parcial (solo los pendientes, que son pocos): pequeño y exacto para esta consulta.
+Los planes son los de PostgreSQL 18.7 con 2 millones de filas, 100.000 clientes y un 2 % de pedidos pendientes; los milisegundos dependen de tu máquina. El índice es compuesto (igualdad primero, orden después) y parcial (solo los pendientes, que son pocos): pequeño y exacto para esta consulta.
 
 ## Errores comunes
 

@@ -11,4 +11,4 @@ Requisito: Niveles 5, 7 y 8. Qué cambia cuando las partes del sistema se comuni
 | 05 | [Resiliencia](05-resiliencia/) |
 | 06 | [Observabilidad distribuida y operación](06-observabilidad-distribuida/) |
 
-El código es ilustrativo. Los talleres requieren Docker para levantar brokers, bases y herramientas de observabilidad.
+El código de los fragmentos y los talleres se ejecutó con Spring Boot 4.1.1, Java 21, PostgreSQL 18.7, Apache Kafka 4.3.1, Resilience4j 2.4.0 y la pila `grafana/otel-lgtm` 0.40.0 (Collector, Tempo, Prometheus, Loki y Grafana). Los talleres requieren Docker para levantar brokers, bases y herramientas de observabilidad.

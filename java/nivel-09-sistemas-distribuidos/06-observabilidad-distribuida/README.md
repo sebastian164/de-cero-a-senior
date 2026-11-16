@@ -58,12 +58,15 @@ Separar **desplegar** de **liberar** reduce el riesgo.
 ```yaml
 management:
   tracing.sampling.probability: 0.1
-  otlp.tracing.endpoint: http://otel-collector:4318/v1/traces
+  opentelemetry.tracing.export.otlp.endpoint: http://otel-collector:4318/v1/traces
 logging:
   pattern.level: "%5p [${spring.application.name},%X{traceId},%X{spanId}]"
+spring.kafka:
+  template.observation-enabled: true
+  listener.observation-enabled: true
 ```
 
-Con Micrometer Tracing, las llamadas con `RestClient` o `WebClient` construidos a partir de los *builders* de Spring y los listeners de Kafka propagan el contexto automáticamente. Lo que se rompe con facilidad: hilos creados a mano y `@Async` sin un ejecutor que propague el contexto.
+En Spring Boot 4 hace falta el *starter* `spring-boot-starter-opentelemetry`, y la clave de exportación es `management.opentelemetry.tracing.export.otlp.endpoint`: la antigua `management.otlp.tracing.endpoint` ya no existe y, con ella, la aplicación sigue muestreando pero no exporta ninguna traza (verificado con Spring Boot 4.1.1 y Grafana Tempo). Con Micrometer Tracing, las llamadas con `RestClient` o `WebClient` construidos a partir de los *builders* de Spring propagan el contexto automáticamente. En Kafka no es automático: hay que activar la observación del `KafkaTemplate` y de los listeners (las dos últimas claves del YAML); sin ellas la traza HTTP sigue entera, pero el envío y la recepción del mensaje no dejan ningún tramo (comprobado con Spring Boot 4.1.1 y Tempo). Lo que se rompe con facilidad: hilos creados a mano y `@Async` sin un ejecutor que propague el contexto.
 
 ## Errores comunes
 

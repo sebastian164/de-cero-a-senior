@@ -11,7 +11,7 @@ Requisito: Nivel 7. La mayor parte de los problemas de rendimiento y de consiste
 | 05 | [Migraciones y evolución del esquema](05-migraciones/) |
 | 06 | [NoSQL y caché](06-nosql-y-cache/) |
 
-Los ejemplos usan PostgreSQL. El SQL es ilustrativo y no se ejecutó al preparar el curso.
+Los ejemplos usan PostgreSQL. El SQL, los fragmentos con Spring Data y los talleres se ejecutaron contra PostgreSQL 18.7 y Redis 8.10.3 con Spring Boot 4.1.1, Java 21 y Flyway 12.4.0 (el plan del ejemplo de la sesión 02 es la salida real de esa ejecución con 2 millones de filas; los tiempos exactos dependen de tu máquina y de la cantidad de datos).
 
 Para practicar a fondo el pool de conexiones, que conecta todo este nivel con la aplicación, están los [seis talleres de HikariCP](../../hikaricp/).
 

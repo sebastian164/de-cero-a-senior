@@ -79,6 +79,7 @@ class SagaDePedido {
     void manejar(EnvioFallido evento) {
         enviar(new ReembolsarPago(evento.pedidoId()));        // compensaciones en orden inverso
         enviar(new LiberarInventario(evento.pedidoId()));
+        marcar(evento.pedidoId(), EstadoSaga.CANCELADA);
     }
 }
 ```

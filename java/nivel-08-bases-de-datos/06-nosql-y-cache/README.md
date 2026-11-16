@@ -64,7 +64,7 @@ spring:
   cache.redis.time-to-live: 10m
 ```
 
-`@Cacheable` funciona mediante un proxy: las llamadas internas no pasan por la caché. Y el TTL es obligatorio: sin él, un error de invalidación dura para siempre.
+`@Cacheable` funciona mediante un proxy: las llamadas internas no pasan por la caché. Y el TTL es obligatorio: sin él, un error de invalidación dura para siempre. Dos advertencias medidas con Spring Boot 4.1.1 y Redis: `@Cacheable(sync = true)` no evita la estampida con la caché de Redis (el escritor por defecto no bloquea), y con Lettuce las escrituras y las invalidaciones de la caché son asíncronas por defecto: `RedisCacheWriter.create(conexiones, c -> c.immediateWrites())` las hace inmediatas.
 
 ## Errores comunes
 

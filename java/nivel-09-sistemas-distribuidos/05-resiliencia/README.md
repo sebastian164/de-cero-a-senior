@@ -52,10 +52,12 @@ public CompletableFuture<List<Producto>> recomendar(Long clienteId) {
     return CompletableFuture.supplyAsync(() -> cliente.recomendaciones(clienteId));
 }
 
-private CompletableFuture<List<Producto>> sinRecomendaciones(Long clienteId, Throwable causa) {
+public CompletableFuture<List<Producto>> sinRecomendaciones(Long clienteId, Throwable causa) {
     return CompletableFuture.completedFuture(masVendidos.enCache());    // degradado, pero responde
 }
 ```
+
+El método de respaldo es `public` a propósito: con Resilience4j 2.4.0, uno `private` o de paquete falla de forma intermitente bajo concurrencia (`IllegalAccessException`, porque Resilience4j abre y vuelve a cerrar el acceso al método en cada invocación y un hilo puede cerrarlo mientras otro lo usa). Se reprodujo con 200 llamadas simultáneas cuyo destino falla.
 
 ```yaml
 resilience4j:

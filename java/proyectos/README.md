@@ -8,6 +8,7 @@ Reglas comunes:
 - Lleva un `README` con cómo ejecutarlo, un `DECISIONES.md` con las decisiones de diseño y sus alternativas, y pruebas desde el proyecto 3.
 - No hay solución de referencia. La revisión se hace sobre tu entrega.
 - Antes de programar, escribe qué vas a construir y qué dejas fuera.
+- Los seis enunciados son realizables: se implementó y ejecutó una versión mínima de cada uno (Java 21, Spring Boot 4.1.1, PostgreSQL 18.7, Kafka 4.3.1, Testcontainers 2.0.5, Spring Security 7 y OpenTofu; el proyecto 6 en un clúster kind con una pila Grafana, Tempo y Prometheus). Lo que esa versión mínima **no** cubre, por proyecto: en el 1 al 3, las extensiones (revistas, promociones como datos, conversión de moneda); en el 4, el segundo adaptador de entrada y la validación de tokens contra un proveedor de identidad real (se probó con un JWT firmado con una clave local); en el 5, extraer un módulo a un servicio; en el 6, el despliegue en la nube, la ejecución del flujo en los servidores de GitHub (se ejecutó con `act`, sin su último paso de despliegue a un clúster remoto), el documento de diseño con estimaciones y el análisis estático de código. Y, por supuesto, lo que se evalúa en tu entrega: diseño, ADR, historial de commits y defensa.
 
 ## 1. Gestor de biblioteca en consola
 

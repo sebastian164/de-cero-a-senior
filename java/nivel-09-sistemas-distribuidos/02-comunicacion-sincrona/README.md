@@ -54,7 +54,7 @@ public ResultadoPago cobrar(String claveIdempotencia, CobroComando comando) {
 }
 ```
 
-La restricción única sobre la clave resuelve el caso de dos peticiones simultáneas con la misma clave.
+La restricción única sobre la clave evita que se guarden dos resultados, pero **no** evita el doble cobro con dos peticiones simultáneas: ambas pasan la búsqueda, ambas llaman a la pasarela y solo la segunda falla al guardar, cuando el cobro ya se hizo (verificado con PostgreSQL 18). Para ese caso, reserva la clave **antes** del efecto (`INSERT ... ON CONFLICT (clave) DO NOTHING` en la misma transacción): la segunda petición espera en el índice único y luego lee el resultado guardado. Si el efecto es una llamada remota (la pasarela), envíale también la misma clave: así cubres la caída entre el cobro y el *commit*, que revertiría la reserva y dejaría que el reintento cobre otra vez.
 
 Cliente con tiempos límite y reintento (Resilience4j):
 
