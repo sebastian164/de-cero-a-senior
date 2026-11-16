@@ -48,6 +48,9 @@ class Cuentas {
         if (monto <= 0) {
             throw new IllegalArgumentException("El monto debe ser positivo: " + monto);
         }
+        if (origen.equals(destino)) {
+            throw new IllegalArgumentException("El origen y el destino son la misma cuenta: " + origen);
+        }
         // Validar todo antes de modificar nada: o se hace completo o no se hace.
         long saldoOrigen = saldoDe(origen);
         long saldoDestino = saldoDe(destino);

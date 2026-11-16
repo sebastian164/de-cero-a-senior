@@ -1,6 +1,6 @@
 # 11 — TDD y pruebas de integración
 
-Código ilustrativo, no compilado en la preparación del curso.
+Código compilado y ejecutado con JDK 21, Spring Boot 4.1.1, Testcontainers 2.0.5 y PostgreSQL 16 (Docker), salvo el bloque de "Código con problemas": es un esquema (`servicio.crear(...)` y `servicio.descuento(...)` no existen) y no compila tal cual.
 
 ## Idea sencilla
 

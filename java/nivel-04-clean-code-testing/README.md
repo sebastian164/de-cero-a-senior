@@ -19,4 +19,4 @@ Requisito: Niveles 1 a 3. Aquí se pasa del diseño de clases a la calidad del c
 ## Sobre el código de este nivel
 
 - Lecciones 01 a 08: Java puro. Cada ejemplo se ejecuta con `java Main.java`.
-- Lecciones 09 a 11: requieren Maven y bibliotecas (JUnit, AssertJ, Mockito, Spring Boot, Testcontainers). El código es ilustrativo: no se compiló al preparar el curso. Parte del taller es montar el proyecto y hacerlo correr.
+- Lecciones 09 a 11: requieren Maven y bibliotecas (JUnit, AssertJ, Mockito, Spring Boot, Testcontainers). Los fragmentos se montaron en proyectos Maven y se ejecutaron (JDK 21, Maven 3.10, JUnit 5.11.4, AssertJ 3.27.3, Mockito 5.14.2, Spring Boot 4.1.1, Testcontainers 2.0.5, PostgreSQL 16). Excepción: el bloque "Código con problemas" de la lección 11 es un esquema y no compila tal cual. Parte del taller es montar el proyecto y hacerlo correr.

@@ -1,6 +1,6 @@
 # 09 — JUnit 5
 
-Desde esta lección el código usa bibliotecas externas. Los ejemplos son ilustrativos: no se compilaron en la preparación del curso. Para ejecutarlos, crea un proyecto Maven con el `pom.xml` de abajo. Verifica las versiones actuales antes de usarlas. Si tu proyecto ya usa una versión mayor más reciente de JUnit, la API de Jupiter que se muestra aquí es la misma.
+Desde esta lección el código usa bibliotecas externas. Los ejemplos se compilaron y ejecutaron con JDK 21, Maven 3.10, JUnit 5.11.4 y AssertJ 3.27.3. Para ejecutarlos, crea un proyecto Maven con el `pom.xml` de abajo. Verifica las versiones actuales antes de usarlas. Si tu proyecto ya usa una versión mayor más reciente de JUnit, la API de Jupiter que se muestra aquí es la misma.
 
 ## Idea sencilla
 

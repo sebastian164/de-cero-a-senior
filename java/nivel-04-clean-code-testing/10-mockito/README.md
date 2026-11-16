@@ -1,6 +1,6 @@
 # 10 — Mockito y dobles de prueba
 
-Código ilustrativo, no compilado en la preparación del curso. Usa el proyecto Maven de la lección anterior y agrega `org.mockito:mockito-junit-jupiter` (ya incluido en `spring-boot-starter-test`).
+Código compilado y ejecutado con JDK 21, JUnit 5.11.4, AssertJ 3.27.3 y Mockito 5.14.2. Usa el proyecto Maven de la lección anterior y agrega `org.mockito:mockito-junit-jupiter` (ya incluido en `spring-boot-starter-test`).
 
 ## Idea sencilla
 
@@ -100,7 +100,7 @@ void test() {
 
 ## Análisis
 
-- **La prueba es una copia de la implementación.** Verifica cada llamada y su orden. Cualquier refactor que no cambie el comportamiento (reordenar dos líneas, extraer un método) la rompe.
+- **La prueba es una copia de la implementación.** Verifica cada llamada y su orden. Muchos refactors que no cambian el comportamiento (reordenar dos líneas, mover el cálculo al propio `Pedido`) la rompen. Extraer un método privado dentro de `confirmar` no la rompe, porque las llamadas a los dobles son las mismas.
 - **Simula objetos de dominio.** `Pedido` y `Cliente` deberían ser objetos reales: son baratos de crear y contienen la lógica que se quiere ejercitar.
 - **No prueba ninguna lógica real.** La calculadora está simulada, el pedido está simulado: la prueba comprueba que Mockito funciona.
 - **`any()` en todas partes** oculta si se pasaron los argumentos correctos.
