@@ -125,6 +125,8 @@ Las interfaces hablan el idioma del negocio (`cobrar`, no `createPaymentIntent`)
 
 Rama `taller/n5-04-dip-arquitectura`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## Preguntas senior
 
 1. Explica con un dibujo la diferencia entre flujo de control y dependencia de código.

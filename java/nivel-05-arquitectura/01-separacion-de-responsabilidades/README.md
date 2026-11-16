@@ -109,6 +109,8 @@ Toma un endpoint real de un proyecto tuyo (o escribe uno como el del ejemplo).
 
 Rama `taller/n5-01-separacion`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## Preguntas senior
 
 1. Define arquitectura sin usar las palabras "capas", "componentes" ni "diagramas".

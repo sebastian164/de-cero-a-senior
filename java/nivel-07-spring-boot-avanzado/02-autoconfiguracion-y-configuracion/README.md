@@ -82,6 +82,8 @@ class AuditoriaAutoConfiguration {
 
 Rama `taller/n7-02-autoconfiguracion`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## Preguntas senior
 
 1. ¿Cómo decide Spring Boot qué configurar?

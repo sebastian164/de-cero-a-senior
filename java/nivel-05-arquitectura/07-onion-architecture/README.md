@@ -105,6 +105,8 @@ Usa el dominio de transferencias de la lección anterior o uno de préstamos de 
 
 Rama `taller/n5-07-onion`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## Preguntas senior
 
 1. ¿Qué problema concreto de la arquitectura en capas quiso resolver Onion?

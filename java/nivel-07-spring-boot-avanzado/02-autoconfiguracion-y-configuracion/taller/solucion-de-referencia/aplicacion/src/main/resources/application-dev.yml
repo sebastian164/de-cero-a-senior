@@ -1,0 +1,3 @@
+pagos:
+  reintentos: 0
+  url-pasarela: http://localhost:9999/simulador

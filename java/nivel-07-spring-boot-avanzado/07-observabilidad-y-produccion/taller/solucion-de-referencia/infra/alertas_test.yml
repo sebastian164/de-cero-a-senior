@@ -1,0 +1,74 @@
+# promtool test rules: cada alerta tiene un caso que dispara y otro que no.
+rule_files: [alertas.yml]
+evaluation_interval: 5s
+tests:
+  - name: latencia lenta dispara
+    interval: 5s
+    input_series:
+      - series: 'pagos_cobro_duracion_seconds_bucket{le="0.1"}'
+        values: '0+0x30'
+      - series: 'pagos_cobro_duracion_seconds_bucket{le="0.5"}'
+        values: '0+10x30'
+      - series: 'pagos_cobro_duracion_seconds_bucket{le="+Inf"}'
+        values: '0+10x30'
+    alert_rule_test:
+      - {eval_time: 10s, alertname: LatenciaDeCobroAlta, exp_alerts: []}      # pending: aún no cumple "for: 15s"
+      - eval_time: 60s
+        alertname: LatenciaDeCobroAlta
+        exp_alerts:
+          - exp_labels: {severidad: pagina}
+            exp_annotations:
+              resumen: "p95 del cobro > 300 ms"
+              accion: "Abrir el dashboard Pedidos, comparar http_server_requests de /b/cobro con pagos.cobro.duracion; si coinciden el retraso está dentro del cobro (pasarela): revisar su estado y el tiempo límite; si no, mirar red/pool. Escalar a pagos si dura más de 15 min."
+  - name: latencia normal no dispara
+    interval: 5s
+    input_series:
+      - series: 'pagos_cobro_duracion_seconds_bucket{le="0.1"}'
+        values: '0+10x30'
+      - series: 'pagos_cobro_duracion_seconds_bucket{le="0.5"}'
+        values: '0+10x30'
+      - series: 'pagos_cobro_duracion_seconds_bucket{le="+Inf"}'
+        values: '0+10x30'
+    alert_rule_test:
+      - {eval_time: 60s, alertname: LatenciaDeCobroAlta, exp_alerts: []}
+  - name: errores 5xx disparan
+    interval: 10s
+    input_series:
+      - series: 'http_server_requests_seconds_count{status="500"}'
+        values: '0+10x30'
+      - series: 'http_server_requests_seconds_count{status="200"}'
+        values: '0+90x30'
+    alert_rule_test:       # 10 de cada 100 = 10 %, más del 5 %, sostenido más de 2 m
+      - {eval_time: 1m, alertname: TasaDeErroresAlta, exp_alerts: []}
+      - eval_time: 4m
+        alertname: TasaDeErroresAlta
+        exp_alerts:
+          - exp_labels: {severidad: pagina}
+            exp_annotations:
+              resumen: "Más del 5 % de respuestas 5xx"
+              accion: "Buscar en los registros JSON por traceId las peticiones fallidas, identificar el servicio, y revertir el último despliegue si coincide con el inicio del incidente."
+  - name: errores por debajo del umbral no disparan
+    interval: 10s
+    input_series:
+      - series: 'http_server_requests_seconds_count{status="500"}'
+        values: '0+1x30'
+      - series: 'http_server_requests_seconds_count{status="200"}'
+        values: '0+99x30'
+    alert_rule_test:
+      - {eval_time: 4m, alertname: TasaDeErroresAlta, exp_alerts: []}
+  - name: instancia caida dispara
+    interval: 10s
+    input_series:
+      - series: 'up{job="servicios",instance="a"}'
+        values: '1x6 0x20'
+      - series: 'up{job="servicios",instance="b"}'
+        values: '1x26'
+    alert_rule_test:
+      - {eval_time: 30s, alertname: InstanciaCaida, exp_alerts: []}
+      - eval_time: 3m
+        alertname: InstanciaCaida
+        exp_alerts:
+          - exp_labels: {severidad: pagina, job: servicios, instance: a}
+            exp_annotations:
+              resumen: "Una instancia no responde al raspado"
+              accion: "Comprobar /actuator/health/liveness y los registros del pod; si la sonda de vida falla, el orquestador la reinicia: confirmar que vuelve; si se repite, escalar."

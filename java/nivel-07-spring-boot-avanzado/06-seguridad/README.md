@@ -108,6 +108,8 @@ Referencia obligada: OWASP Top 10 y OWASP API Security Top 10.
 
 Rama `taller/n7-06-seguridad`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## Preguntas senior
 
 1. Autenticación frente a autorización, con un ejemplo de fallo de cada una.

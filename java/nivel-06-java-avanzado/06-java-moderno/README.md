@@ -87,6 +87,8 @@ Spring Boot 3 exige Java 17 como mínimo. `record` sirve para DTOs de petición 
 
 Rama `taller/n6-06-java-moderno`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## Preguntas senior
 
 1. ¿Cuándo usar `record` y cuándo una clase?

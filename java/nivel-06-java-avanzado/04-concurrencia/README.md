@@ -107,6 +107,8 @@ mapa.computeIfAbsent(clave, c -> crear());                   // atómico
 
 Rama `taller/n6-04-concurrencia`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## Preguntas senior
 
 1. Diferencia entre `synchronized`, `volatile` y las clases atómicas.

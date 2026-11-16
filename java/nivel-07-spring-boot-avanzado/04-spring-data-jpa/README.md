@@ -83,6 +83,8 @@ interface PedidoRepository extends JpaRepository<Pedido, Long> {
 
 Rama `taller/n7-04-jpa`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## Preguntas senior
 
 1. ¿Qué es el problema N+1 y cómo lo detectas en un sistema en producción?

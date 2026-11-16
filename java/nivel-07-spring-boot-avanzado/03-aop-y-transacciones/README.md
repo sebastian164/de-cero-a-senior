@@ -96,6 +96,8 @@ class AspectoDeTiempos {
 
 Rama `taller/n7-03-aop-transacciones`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## Preguntas senior
 
 1. Explica por qué `@Transactional` no funciona en una llamada interna.

@@ -1,0 +1,18 @@
+spring:
+  application.name: ${APP_NOMBRE:obs}
+  lifecycle.timeout-per-shutdown-phase: 15s
+server:
+  shutdown: graceful
+management:
+  endpoints.web.exposure.include: health,info,prometheus
+  endpoint.health.probes.enabled: true
+  endpoint.health.show-details: never
+  health.livenessstate.enabled: true
+  tracing.sampling.probability: 1.0
+  otlp.metrics.export.enabled: false
+  opentelemetry.tracing.export.otlp.endpoint: ${OTLP_TRAZAS:http://localhost:42318/v1/traces}
+  metrics.tags.application: ${spring.application.name}
+  metrics.distribution.percentiles-histogram.http.server.requests: true
+logging:
+  structured.format.console: ecs
+  structured.ecs.service.name: ${spring.application.name}

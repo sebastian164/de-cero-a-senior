@@ -1,0 +1,25 @@
+groups:
+  - name: pedidos
+    rules:
+      - alert: LatenciaDeCobroAlta
+        # p95 del cobro por encima de 300 ms. En producción: "for: 5m"; aquí 15 s para poder verlo en la prueba.
+        expr: histogram_quantile(0.95, sum by (le) (rate(pagos_cobro_duracion_seconds_bucket[30s]))) > 0.3
+        for: 15s
+        labels: { severidad: pagina }
+        annotations:
+          resumen: "p95 del cobro > 300 ms"
+          accion: "Abrir el dashboard Pedidos, comparar http_server_requests de /b/cobro con pagos.cobro.duracion; si coinciden el retraso está dentro del cobro (pasarela): revisar su estado y el tiempo límite; si no, mirar red/pool. Escalar a pagos si dura más de 15 min."
+      - alert: TasaDeErroresAlta
+        expr: sum(rate(http_server_requests_seconds_count{status=~"5.."}[1m])) / sum(rate(http_server_requests_seconds_count[1m])) > 0.05
+        for: 2m
+        labels: { severidad: pagina }
+        annotations:
+          resumen: "Más del 5 % de respuestas 5xx"
+          accion: "Buscar en los registros JSON por traceId las peticiones fallidas, identificar el servicio, y revertir el último despliegue si coincide con el inicio del incidente."
+      - alert: InstanciaCaida
+        expr: up{job="servicios"} == 0
+        for: 1m
+        labels: { severidad: pagina }
+        annotations:
+          resumen: "Una instancia no responde al raspado"
+          accion: "Comprobar /actuator/health/liveness y los registros del pod; si la sonda de vida falla, el orquestador la reinicia: confirmar que vuelve; si se repite, escalar."

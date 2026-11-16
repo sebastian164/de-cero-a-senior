@@ -63,6 +63,8 @@ static <T extends Comparable<? super T>> T maximo(Collection<? extends T> elemen
 
 Rama `taller/n6-01-genericos`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## Preguntas senior
 
 1. ¿Qué es el borrado de tipos y qué limitaciones impone?

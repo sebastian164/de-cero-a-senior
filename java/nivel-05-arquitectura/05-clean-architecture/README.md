@@ -118,6 +118,8 @@ Reglas: una sala no puede tener dos reservas que se solapen; las reservas duran 
 
 Rama `taller/n5-05-clean-architecture`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## Preguntas senior
 
 1. Enuncia la regla de dependencia y explica cómo un caso de uso llama a la base de datos sin violarla.

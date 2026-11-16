@@ -120,6 +120,8 @@ Luego implementa en Java puro una de estas dos opciones: una saga orquestada de 
 
 Rama `taller/n5-11-patrones-arquitectonicos`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## Preguntas senior
 
 1. ¿CQRS exige Event Sourcing? ¿Y al revés?

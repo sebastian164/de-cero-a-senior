@@ -81,6 +81,8 @@ class ConfirmarPedido {
 
 Rama `taller/n7-01-contenedor`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## Preguntas senior
 
 1. ¿Por qué se prefiere la inyección por constructor?

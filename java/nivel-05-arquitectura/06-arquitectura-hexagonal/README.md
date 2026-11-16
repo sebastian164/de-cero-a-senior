@@ -146,6 +146,8 @@ Reglas: saldo suficiente; tope diario por cuenta; no se transfiere a la misma cu
 
 Rama `taller/n5-06-hexagonal`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## Preguntas senior
 
 1. Diferencia entre puerto y adaptador, y entre primario y secundario. Da dos ejemplos de cada uno.

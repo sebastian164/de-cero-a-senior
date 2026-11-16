@@ -1,0 +1,13 @@
+spring:
+  main:
+    banner-mode: off
+pagos:
+  clave-api: ${PAGOS_CLAVE_API}      # viene del entorno
+  tiempo-limite: 3s
+  reintentos: 2
+  moneda: COP
+  url-pasarela: https://pagos.example/api
+auditoria:
+  url: http://auditoria.local
+management:
+  endpoints.web.exposure.include: health,conditions

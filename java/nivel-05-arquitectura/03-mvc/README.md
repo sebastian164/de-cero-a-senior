@@ -108,6 +108,8 @@ MVC no se "elige" en el backend: viene con el framework. Lo que se decide es no 
 
 Rama `taller/n5-03-mvc`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## Preguntas senior
 
 1. ¿Por qué MVC no es una arquitectura de aplicación completa?

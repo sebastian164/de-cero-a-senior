@@ -1,0 +1,147 @@
+{
+  "realm": "curso",
+  "enabled": true,
+  "roles": {
+    "realm": [
+      {
+        "name": "CLIENTE"
+      },
+      {
+        "name": "SOPORTE"
+      },
+      {
+        "name": "ADMIN"
+      }
+    ]
+  },
+  "clients": [
+    {
+      "clientId": "api-curso",
+      "enabled": true,
+      "publicClient": true,
+      "directAccessGrantsEnabled": true,
+      "standardFlowEnabled": false,
+      "protocolMappers": [
+        {
+          "name": "roles-de-realm",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-usermodel-realm-role-mapper",
+          "config": {
+            "claim.name": "roles",
+            "multivalued": "true",
+            "jsonType.label": "String",
+            "access.token.claim": "true",
+            "id.token.claim": "false",
+            "userinfo.token.claim": "false"
+          }
+        },
+        {
+          "name": "audiencia-api-pedidos",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-audience-mapper",
+          "config": {
+            "included.custom.audience": "api-pedidos",
+            "access.token.claim": "true",
+            "id.token.claim": "false"
+          }
+        }
+      ]
+    },
+    {
+      "clientId": "otra-app",
+      "enabled": true,
+      "publicClient": true,
+      "directAccessGrantsEnabled": true,
+      "standardFlowEnabled": false,
+      "protocolMappers": [
+        {
+          "name": "roles-de-realm",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-usermodel-realm-role-mapper",
+          "config": {
+            "claim.name": "roles",
+            "multivalued": "true",
+            "jsonType.label": "String",
+            "access.token.claim": "true",
+            "id.token.claim": "false",
+            "userinfo.token.claim": "false"
+          }
+        }
+      ]
+    }
+  ],
+  "users": [
+    {
+      "username": "ana",
+      "enabled": true,
+      "email": "ana@example.com",
+      "firstName": "Ana",
+      "lastName": "A",
+      "emailVerified": true,
+      "credentials": [
+        {
+          "type": "password",
+          "value": "curso",
+          "temporary": false
+        }
+      ],
+      "realmRoles": [
+        "CLIENTE"
+      ]
+    },
+    {
+      "username": "luis",
+      "enabled": true,
+      "email": "luis@example.com",
+      "firstName": "Luis",
+      "lastName": "L",
+      "emailVerified": true,
+      "credentials": [
+        {
+          "type": "password",
+          "value": "curso",
+          "temporary": false
+        }
+      ],
+      "realmRoles": [
+        "CLIENTE"
+      ]
+    },
+    {
+      "username": "sara",
+      "enabled": true,
+      "email": "sara@example.com",
+      "firstName": "Sara",
+      "lastName": "S",
+      "emailVerified": true,
+      "credentials": [
+        {
+          "type": "password",
+          "value": "curso",
+          "temporary": false
+        }
+      ],
+      "realmRoles": [
+        "SOPORTE"
+      ]
+    },
+    {
+      "username": "root",
+      "enabled": true,
+      "email": "root@example.com",
+      "firstName": "Root",
+      "lastName": "R",
+      "emailVerified": true,
+      "credentials": [
+        {
+          "type": "password",
+          "value": "curso",
+          "temporary": false
+        }
+      ],
+      "realmRoles": [
+        "ADMIN"
+      ]
+    }
+  ]
+}

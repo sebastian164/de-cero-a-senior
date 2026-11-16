@@ -131,6 +131,8 @@ Diseña como monolito modular una plataforma de cursos (usa el dominio del talle
 
 Rama `taller/n5-09-modularidad`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## Preguntas senior
 
 1. ¿Qué diferencia hay entre modularidad y distribución?

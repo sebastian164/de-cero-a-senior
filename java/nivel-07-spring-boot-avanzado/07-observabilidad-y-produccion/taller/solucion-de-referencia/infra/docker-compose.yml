@@ -1,0 +1,20 @@
+# Puertos 42000-42999 en el anfitrión. Prometheus raspa las apps que corren en el host.
+name: taller-observabilidad
+services:
+  prometheus:
+    image: prom/prometheus:v3.5.0
+    command: ["--config.file=/etc/prometheus/prometheus.yml", "--web.enable-lifecycle"]
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - ./alertas.yml:/etc/prometheus/alertas.yml:ro
+    ports:
+      - "42390:9090"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+  lgtm:
+    # Grafana + Tempo (trazas por OTLP); las métricas las lleva el Prometheus de arriba.
+    image: grafana/otel-lgtm:0.40.0
+    ports:
+      - "42300:3000"   # Grafana
+      - "42318:4318"   # OTLP/HTTP (trazas)
+      - "42320:3200"   # API de Tempo

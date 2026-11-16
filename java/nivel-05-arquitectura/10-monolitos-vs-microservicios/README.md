@@ -89,6 +89,8 @@ Ninguna opción es superior. El monolito optimiza simplicidad y consistencia; lo
 
 Rama `taller/n5-10-monolito-microservicios`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## Preguntas senior
 
 1. ¿Qué problema resuelven principalmente los microservicios? ¿Es técnico u organizacional?

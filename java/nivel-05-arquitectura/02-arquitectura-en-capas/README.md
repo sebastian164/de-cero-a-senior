@@ -111,6 +111,8 @@ Construye (o toma) una aplicación en capas con dos entidades relacionadas y al 
 
 Rama `taller/n5-02-capas`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## Preguntas senior
 
 1. ¿Por qué se dice que en la arquitectura en capas "la base de datos es el centro" y qué problema trae?

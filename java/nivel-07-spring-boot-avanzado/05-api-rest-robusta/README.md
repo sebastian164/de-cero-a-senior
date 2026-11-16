@@ -102,6 +102,8 @@ Diseña e implementa la API de un sistema de reservas de citas médicas.
 
 Rama `taller/n7-05-api-rest`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## Preguntas senior
 
 1. ¿Qué es la idempotencia y por qué importa en una API de pagos?

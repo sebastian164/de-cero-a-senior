@@ -89,6 +89,8 @@ class RegistroDeSesiones {
 
 Rama `taller/n6-05-jvm`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## Preguntas senior
 
 1. ¿Cómo decide la JVM que un objeto es basura?

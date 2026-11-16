@@ -79,3 +79,5 @@ Imagina que un arquitecto con más experiencia revisa tu propuesta. Escribe las 
 Rama `taller/n5-12-integrador`. Su revisión cierra el Nivel 5.
 
 Siguiente: [Nivel 6 — Java avanzado](../../nivel-06-java-avanzado/).
+
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).

@@ -81,6 +81,8 @@ mapa.get(clave);                       // null: el valor quedó inalcanzable
 
 Rama `taller/n6-02-colecciones`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## Preguntas senior
 
 1. ¿Cómo funciona un `HashMap` por dentro? ¿Qué pasa con las colisiones?

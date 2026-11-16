@@ -104,6 +104,8 @@ Verificado con Spring Boot 4.1.1 (Micrometer, Prometheus v3.5.0): hacen falta `s
 
 Rama `taller/n7-07-observabilidad`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## Preguntas senior
 
 1. Diferencia entre monitoreo y observabilidad.

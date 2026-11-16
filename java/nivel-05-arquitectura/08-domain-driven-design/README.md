@@ -118,6 +118,8 @@ Elige un negocio que conozcas bien (uno en el que hayas trabajado).
 
 Rama `taller/n5-08-ddd`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## Preguntas senior
 
 1. ¿Qué es un contexto delimitado y por qué un modelo único para toda la empresa fracasa?

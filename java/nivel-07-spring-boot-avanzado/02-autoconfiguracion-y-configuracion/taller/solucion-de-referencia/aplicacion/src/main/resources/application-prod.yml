@@ -1,0 +1,3 @@
+pagos:
+  reintentos: 3
+  tiempo-limite: 2s
