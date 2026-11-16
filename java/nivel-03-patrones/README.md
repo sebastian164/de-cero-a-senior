@@ -74,7 +74,7 @@ Al terminar: [Taller integrador de patrones](taller-integrador/).
 - Ventajas, desventajas y trade-offs.
 - Errores comunes.
 - Cuándo no usarlo.
-- Taller, sin solución.
+- Taller, con una solución de referencia en `taller/solucion-de-referencia/` para comparar después de intentarlo.
 
 ## Una advertencia sobre Java moderno
 

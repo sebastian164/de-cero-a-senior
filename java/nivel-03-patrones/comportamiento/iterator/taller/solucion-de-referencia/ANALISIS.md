@@ -1,0 +1,11 @@
+# Iterator — análisis
+
+1. **`RangoFechas implements Iterable<LocalDate>`**: inclusivo en ambos extremos, cada `iterator()` es independiente y `next()` lanza `NoSuchElementException` al terminar (contrato de `Iterator`).
+
+2. **Días hábiles**: `diasHabiles()` devuelve otro `Iterable` que filtra sábados y domingos, reutilizando el iterador base. Del viernes 6 al martes 10 de junio de 2025 da 6, 9 y 10.
+
+3. **Con `Stream`**: `inicio.datesUntil(fin.plusDays(1))` (ojo: `datesUntil` excluye el final) y `.filter(RangoFechas::esHabil)`. Son 2 líneas frente a ~35 del iterador a mano. Mantendría la versión `Stream`; conservaría `Iterable` solo si se necesita `for-each` sobre el tipo propio, y en ese caso lo implementaría como `return streamDias().iterator();`.
+
+4. **`ConcurrentModificationException`**: borrar de un `ArrayList` dentro de un for-each cambia `modCount` y el siguiente `next()` del iterador lo detecta. Con `[1..6]` borrando pares se lanza la excepción (verificado). Correcciones: `Iterator.remove()` (el iterador hace la modificación y actualiza su cuenta) y `removeIf` (la colección filtra de una vez). Una tercera: recorrer una copia o construir una lista nueva con `stream().filter(...)`.
+
+5. **`Stream` desde Spring Data sin `@Transactional`**: un método de repositorio que devuelve `Stream<T>` mantiene abiertos la conexión y el cursor JDBC mientras se consume. Sin una transacción que abarque el consumo, Spring Data JPA lanza `InvalidDataAccessApiUsageException` ("You're trying to execute a streaming query method without a surrounding transaction that keeps the connection open..."), y si hay transacción pero no se cierra el stream (`try-with-resources`) la conexión queda tomada del pool. Por eso: `@Transactional(readOnly = true)` en el método que consume y `try (Stream<T> s = repo.streamAll()) { ... }`. Esto se comprobó con un proyecto Spring de pruebas (`SpringDataYHibernateTest`, Spring Boot 4.1.2, Spring Data JPA 4.1.2, H2 en memoria): `streamSinTransaccionFalla` recibe `InvalidDataAccessApiUsageException` cuyo mensaje contiene "without a surrounding transaction", y `streamDentroDeTransaccionYCerradoFunciona` consume el stream dentro de `TransactionTemplate` con `try-with-resources`.
