@@ -10,6 +10,7 @@ spring:
     properties:
       hibernate:
         format_sql: true
+        order_updates: true      # los UPDATE salen ordenados por id: dos transferencias cruzadas no se interbloquean
   sql:
     init:
       mode: always               # ejecuta schema.sql al arrancar

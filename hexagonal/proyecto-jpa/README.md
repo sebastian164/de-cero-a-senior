@@ -2,7 +2,7 @@
 
 El mismo núcleo de [`../proyecto/`](../proyecto/) con otros adaptadores: Spring Boot, JPA con Hibernate y PostgreSQL. Se explica en la [sesión 07](../07-persistencia-con-orm/).
 
-> Este proyecto **no se compiló ni se ejecutó** contra las bibliotecas reales al escribir el curso. Constrúyelo en tu máquina; comprueba antes la versión estable de Spring Boot y ajústala en el `pom.xml`.
+> Compilado y ejecutado con Spring Boot 4.1.1 (Hibernate 7.4.5), JDK 21, Maven 3.10 y PostgreSQL 17: las órdenes de abajo, el contrato del repositorio de la sesión 08 y transferencias cruzadas desde 8 hilos. Si usas otra versión de Spring Boot, ajústala en el `pom.xml`.
 
 El dominio y la aplicación no se copian: el `pom.xml` compila `../proyecto/src` y deja fuera sus adaptadores y su `Main`.
 

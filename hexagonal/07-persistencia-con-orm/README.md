@@ -1,6 +1,6 @@
 # 07 — Persistencia con ORM
 
-> **Sobre el código de esta sesión.** El núcleo del banco se compiló y se ejecutó. El proyecto de esta sesión, [`proyecto-jpa`](../proyecto-jpa/), usa Spring Boot, Hibernate y PostgreSQL, y **no se compiló ni se ejecutó al escribir el curso**: el entorno donde se preparó no tenía acceso a esas dependencias. Trátalo como una guía: constrúyelo en tu máquina y, si algo no encaja con tu versión, corrígelo. Ese ajuste es parte del taller.
+> **Sobre el código de esta sesión.** [`proyecto-jpa`](../proyecto-jpa/) se compiló y se ejecutó con Spring Boot 4.1.1 (Spring Framework 7.0.9, Hibernate 7.4.5.Final), JDK 21 y PostgreSQL 17: las órdenes `curl` de abajo, el contrato del repositorio de la sesión 08, la prueba de reintento de la sesión 05 y transferencias cruzadas desde 8 hilos. Si usas otra versión de Spring Boot y algo no encaja, corrígelo: ese ajuste es parte del taller.
 
 ## Idea
 
@@ -90,7 +90,7 @@ proyecto-jpa/
 
 ### Construcción
 
-Antes de usarlo, comprueba cuál es la última versión estable de Spring Boot y ajusta el `pom.xml`.
+Probado con Spring Boot 4.1.1. Si usas otra versión, ajústala en el `pom.xml`.
 
 <!-- file: ../proyecto-jpa/pom.xml -->
 ```xml
@@ -205,6 +205,7 @@ spring:
     properties:
       hibernate:
         format_sql: true
+        order_updates: true      # los UPDATE salen ordenados por id: dos transferencias cruzadas no se interbloquean
   sql:
     init:
       mode: always               # ejecuta schema.sql al arrancar
@@ -747,13 +748,17 @@ Esa tabla es el argumento entero de la arquitectura hexagonal.
 
 ### Con bloqueo pesimista
 
-Si las mismas cuentas se disputan mucho, el adaptador puede bloquear al leer. Es un cambio dentro del adaptador; el puerto no se entera. Fragmento ilustrativo:
+Si las mismas cuentas se disputan mucho, el adaptador puede bloquear al leer. Es un cambio dentro del adaptador; el puerto no se entera. Este fragmento se probó con Hibernate 7.4.5 y PostgreSQL 17: una segunda transacción que pide la misma fila espera a que la primera termine.
 
 ```java
-CuentaJpa fila = entidades.find(CuentaJpa.class, id, LockModeType.PESSIMISTIC_WRITE);   // SELECT … FOR UPDATE
+CuentaJpa fila = entidades.find(CuentaJpa.class, id, LockModeType.PESSIMISTIC_WRITE);   // SELECT … FOR NO KEY UPDATE en PostgreSQL
 ```
 
-Con dos cuentas por transferencia aparece el riesgo de interbloqueo de la sesión 05: habría que leerlas siempre en el mismo orden.
+Hibernate 7 traduce `PESSIMISTIC_WRITE` en PostgreSQL a `for no key update`, la variante de `FOR UPDATE` que no bloquea a quien solo inserta filas que apuntan a esa cuenta. Con dos cuentas por transferencia aparece el riesgo de interbloqueo de la sesión 05: habría que leerlas siempre en el mismo orden.
+
+### Interbloqueos también con bloqueo optimista
+
+El bloqueo optimista tampoco se libra del todo. Los `UPDATE` con `AND version = ?` también bloquean la fila hasta el final de la transacción, y Hibernate los emite, por defecto, en el orden en que se leyeron las cuentas. Una transferencia de Ana a Luis y otra de Luis a Ana, simultáneas, se interbloquean: PostgreSQL cancela una y llega como `CannotAcquireLockException`, que no es `OptimisticLockingFailureException` y no se reintenta. Con 8 hilos y transferencias cruzadas ocurrió decenas de veces en 800 (el número cambia en cada ejecución). Por eso `application.yaml` activa `hibernate.order_updates`: los `UPDATE` salen ordenados por id y el interbloqueo desaparece. Otra opción, compatible con esta, es que `UnidadDeTrabajoJpa` traduzca también el interbloqueo (`PessimisticLockingFailureException`) a `ConflictoDeConcurrencia`, para que el caso de uso se reintente como con cualquier otro conflicto.
 
 ## Errores comunes
 

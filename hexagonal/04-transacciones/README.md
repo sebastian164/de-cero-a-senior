@@ -72,7 +72,7 @@ Una base de datos real hace lo mismo con más ingeniería: un registro de escrit
 
 ### En SQL
 
-La misma transferencia, vista desde la base de datos (ilustrativo):
+La misma transferencia, vista desde la base de datos. Ejecutada en PostgreSQL 17 sobre una tabla `cuenta` con `saldo` y una `movimiento` con `valor`; cambiando `COMMIT` por `ROLLBACK`, los saldos quedan como estaban:
 
 ```sql
 BEGIN;

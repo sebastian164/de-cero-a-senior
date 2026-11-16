@@ -45,8 +45,8 @@ java -cp salida banco.TodasLasPruebas
 | Parte | Estado |
 |---|---|
 | [`proyecto/`](proyecto/): dominio, aplicación, adaptadores de memoria, consola y HTTP, y todas las pruebas | Compilado con `-Xlint:all -Werror` y ejecutado con JDK 21. La prueba con hilos se repitió varias veces |
-| [`proyecto-jpa/`](proyecto-jpa/): Spring Boot, JPA, Hibernate y PostgreSQL | **No compilado ni ejecutado** contra las bibliotecas reales. Se revisó su sintaxis y que encaja con los tipos del núcleo. Constrúyelo en tu máquina |
-| SQL de las sesiones 04 y 05 | Ilustrativo |
+| [`proyecto-jpa/`](proyecto-jpa/): Spring Boot, JPA, Hibernate y PostgreSQL | Compilado y ejecutado con Spring Boot 4.1.1 (Hibernate 7.4.5), JDK 21 y PostgreSQL 17: las órdenes `curl` de la sesión 07, el contrato del repositorio de la sesión 08, la prueba de reintento y una de 8 hilos con transferencias cruzadas. Esa prueba encontró interbloqueos; se corrigieron con `order_updates` en `application.yaml` |
+| SQL de las sesiones 04 y 05 | Ejecutado en PostgreSQL 17 con dos conexiones a la vez: la transferencia con `COMMIT` y `ROLLBACK`, la actualización perdida en `READ COMMITTED`, la actualización atómica, el bloqueo optimista, el sesgo de escritura en `REPEATABLE READ` y su cancelación en `SERIALIZABLE`, y el interbloqueo con `FOR UPDATE` sin orden y sin él con `ORDER BY id` |
 
 ## Qué necesitas
 

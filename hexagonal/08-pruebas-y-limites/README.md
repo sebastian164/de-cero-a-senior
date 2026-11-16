@@ -145,7 +145,7 @@ public final class ContratoDelRepositorio {
 }
 ```
 
-Ese mismo contrato es el que debe pasar `AlmacenJpa` de la sesión 07, ejecutado contra un PostgreSQL real. Si lo pasan los dos, las pruebas con memoria hablan también de producción.
+Ese mismo contrato es el que debe pasar `AlmacenJpa` de la sesión 07, ejecutado contra un PostgreSQL real. Si lo pasan los dos, las pruebas con memoria hablan también de producción. Comprobado con Testcontainers y PostgreSQL 17: lo pasa entero. Un detalle: `AlmacenJpa` necesita una transacción abierta para escribir, así que en esa prueba cada llamada del contrato va en la suya, que es lo que `AlmacenEnMemoria` hace solo cuando no hay ninguna abierta.
 
 ### La regla de dependencias
 

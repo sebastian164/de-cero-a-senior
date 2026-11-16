@@ -98,8 +98,10 @@ COMMIT;
 | Quien llega segundo | Falla y reintenta | Espera |
 | Coste sin conflictos | Casi ninguno | Bloqueos en cada operación |
 | Coste con muchos conflictos | Muchos reintentos | Colas de espera |
-| Interbloqueos | No | Sí, si no se ordena |
+| Interbloqueos | Raros, pero posibles en una base real si una transacción actualiza varias filas en distinto orden (sesión 07) | Sí, si no se ordena |
 | Encaja con | Lecturas frecuentes, conflictos raros | Filas muy disputadas |
+
+En el adaptador de memoria no hay interbloqueos porque no hay bloqueos de fila. En PostgreSQL, el `UPDATE ... AND version = ?` bloquea la fila hasta el final de la transacción, así que dos transferencias cruzadas pueden esperarse la una a la otra; la sesión 07 lo resuelve ordenando los `UPDATE`.
 
 ### Lo que ofrece el adaptador de memoria
 
