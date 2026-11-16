@@ -1,0 +1,18 @@
+F-1 Ana Ruiz <ana@correo.example> subtotal 230000 desc 0 iva 43700 envio 0 total 273700
+F-2 Obras SAS <compras@obras.example> subtotal 384000 desc 38400 iva 55296 envio 0 total 400896 [regalo]
+F-3 Luis Gil <luis@correo.example> subtotal 27000 desc 5400 iva 4104 envio 8000 total 33704
+ERROR: correo sin-arroba
+F-4 Pedro <pedro@correo.example> subtotal 27000 desc 1350 iva 0 envio 0 total 25650
+Reporte: CO=299404 MX=400896 PE=25650
+Comision CO: 7548
+21600
+Anulada F-3 por 21600
+No existe F-9
+Reporte: CO=273700 MX=400896 PE=25650
+ANA RUIZ
+Cra 10 # 20-30
+Tunja 150001
+Ana Ruiz tiene 250 puntos
+F-1;Ana Ruiz;230000;CO
+F-2;Obras SAS;345600;MX
+F-4;Pedro;25650;PE
