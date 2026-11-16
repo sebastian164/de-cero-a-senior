@@ -222,6 +222,8 @@ Un parqueadero cobra así:
 
 Entrega: rama `taller/n1-08-integrador`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## Paso 7 — Revisión técnica
 
 - ¿La versión B resiste los tres cambios tocando pocas clases?

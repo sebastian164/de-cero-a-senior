@@ -147,3 +147,5 @@ Tienes `interface FuenteDatos { String leer(String clave); void escribir(String 
 5. Explica qué diferencia hay entre tu decorador de registro y un aspecto de Spring que haga lo mismo.
 
 Entrega: rama `taller/n3-decorator`.
+
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).

@@ -158,3 +158,5 @@ Reglas: monto mayor que cero; plazo entre 6 y 84 meses; si el monto supera 50 mi
 5. Reescribe con `@Builder` de Lombok (solo en papel) y explica qué validación se perdería y cómo la recuperas.
 
 Entrega: rama `taller/n3-builder`.
+
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).

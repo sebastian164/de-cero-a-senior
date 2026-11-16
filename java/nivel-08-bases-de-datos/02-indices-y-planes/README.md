@@ -89,6 +89,8 @@ Los planes son los de PostgreSQL 18.7 con 2 millones de filas, 100.000 clientes 
 
 Rama `taller/n8-02-indices`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## Preguntas senior
 
 1. ¿Cómo decides qué índices crear?

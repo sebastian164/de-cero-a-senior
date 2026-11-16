@@ -135,3 +135,5 @@ Modela expresiones aritméticas: `Numero`, `Suma`, `Multiplicacion` y `Negacion`
 5. Con esos dos experimentos, formula tu propia regla para elegir entre polimorfismo, Visitor y `switch`.
 
 Entrega: rama `taller/n3-visitor`.
+
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).

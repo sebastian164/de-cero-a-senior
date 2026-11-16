@@ -90,6 +90,8 @@ public void reservar(Long productoId, int cantidad) { ... }
 
 Rama `taller/n8-03-transacciones`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## Preguntas senior
 
 1. Explica cada letra de ACID con un ejemplo de qué pasa si falta.

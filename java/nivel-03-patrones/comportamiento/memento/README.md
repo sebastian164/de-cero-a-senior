@@ -134,3 +134,5 @@ Un configurador de producto (por ejemplo, un computador a medida: procesador, me
 4. ¿En qué caso preferirías Command sobre Memento para deshacer? Da un criterio basado en tamaño de estado y costo de la operación inversa.
 
 Entrega: rama `taller/n3-memento`.
+
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).

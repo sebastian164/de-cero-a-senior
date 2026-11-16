@@ -79,6 +79,8 @@ spring:
 
 Rama `taller/n8-05-migraciones`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## Preguntas senior
 
 1. ¿Por qué no usar `ddl-auto=update`?

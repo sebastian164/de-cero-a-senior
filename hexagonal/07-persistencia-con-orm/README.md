@@ -803,6 +803,8 @@ Sobre tu servicio de la sesión 06. Necesitas Maven y Docker.
 
 **Entrega:** rama `taller/hexagonal-07`, con el proyecto en `taller/solucion/` y `ANALISIS.md` con la decisión del paso 3, el SQL del paso 7 y los conteos del paso 8.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## En el trabajo real
 
 Lo habitual es Spring Data JPA: una interfaz que extiende `JpaRepository` y te ahorra el `EntityManager`. Encaja igual en la arquitectura: la interfaz de Spring Data es un detalle **dentro** del adaptador, y el adaptador sigue implementando tu puerto. Lo que hay que saber es que `save` decide entre insertar y fusionar según considere que la entidad es nueva, y con identificadores asignados por ti esa decisión no siempre es la que esperas.

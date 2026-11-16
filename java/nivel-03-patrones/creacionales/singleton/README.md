@@ -161,3 +161,5 @@ Casi nunca hace falta escribirlo a mano si hay un contenedor. No lo uses para ev
 5. En papel: un `@Service` con un atributo `List<String> errores` que se llena en cada petición. Describe el error con dos peticiones simultáneas y tres formas de corregirlo.
 
 Entrega: rama `taller/n3-singleton`.
+
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).

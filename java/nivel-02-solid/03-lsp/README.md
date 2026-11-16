@@ -288,6 +288,8 @@ class DocumentoFirmado extends Documento {
 
 Entrega: rama `taller/03-lsp`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## 8. Preguntas de entrevista senior
 
 1. ¿Por qué LSP no se puede verificar solo con el sistema de tipos? ¿Qué herramientas ayudan?

@@ -210,6 +210,8 @@ Todos deben poder `pagar(monto)` y devolver un comprobante con el valor cobrado 
 
 Entrega: rama `taller/n1-05-abstraccion`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## Paso 7 — Revisión técnica
 
 - ¿El contrato tiene métodos que alguna implementación no puede cumplir con sentido?

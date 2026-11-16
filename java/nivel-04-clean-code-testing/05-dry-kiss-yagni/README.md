@@ -133,6 +133,8 @@ final class ExportadorCsv {
 
 Se revisará: que distingas conocimiento de texto y que cada decisión tenga un costo declarado. Rama `taller/n4-05-principios`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## Aplicación profesional
 
 - **Bibliotecas compartidas entre microservicios:** una biblioteca "común" con lógica de negocio obliga a desplegar todos los servicios juntos cuando cambia. Comparte lo técnico y estable; duplica lo de negocio.

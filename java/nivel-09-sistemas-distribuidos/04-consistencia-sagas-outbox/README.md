@@ -108,6 +108,8 @@ Rama `taller/n9-04-sagas-outbox`.
 
 Para practicar a fondo están el taller de [outbox](../../../kafka-y-sagas/kafka/07-outbox-transaccional/) y los [siete talleres de sagas](../../../kafka-y-sagas/sagas/), con ejemplos ejecutables.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## Preguntas senior
 
 1. Explica el problema de la doble escritura y por qué no se arregla cambiando el orden.

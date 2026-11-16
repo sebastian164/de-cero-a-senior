@@ -126,3 +126,5 @@ Modela una solicitud de vacaciones: borrador → enviada → aprobada o rechazad
 5. ¿Cómo guardarías el estado en una base de datos en cada versión?
 
 Entrega: rama `taller/n3-state`.
+
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).

@@ -85,6 +85,8 @@ Rama `taller/n9-03-mensajeria`.
 
 Para practicar a fondo, con Kafka real y paso a paso, están los [ocho talleres de Kafka](../../../kafka-y-sagas/kafka/).
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## Preguntas senior
 
 1. Cola frente a registro de eventos: ¿cuándo cada uno?

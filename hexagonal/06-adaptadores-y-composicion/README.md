@@ -622,6 +622,8 @@ Sobre tu servicio de la sesión 05. El punto de partida de la sesión 01 ya tra�
 
 **Entrega:** rama `taller/hexagonal-06`, con el proyecto en `taller/solucion/` y `ANALISIS.md` con la tabla del paso 2 y las respuestas de los pasos 5 y 8.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## En el trabajo real
 
 En Spring, el adaptador HTTP es un `@RestController` que recibe los puertos de entrada por constructor, y la traducción de errores vive en un `@RestControllerAdvice`. La raíz de composición es el contenedor: o bien anotas los adaptadores y dejas que los encuentre, o bien declaras el servicio de aplicación con `@Bean` en una clase de configuración y mantienes el núcleo sin una sola anotación de Spring. La segunda opción es la que respeta la regla de dependencias al pie de la letra; la sesión 07 la usa.

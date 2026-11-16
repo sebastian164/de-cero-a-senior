@@ -224,6 +224,8 @@ Reglas del negocio: las cantidades son positivas; el total siempre es la suma de
 
 Entrega: rama `taller/n1-02-encapsulamiento`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## Paso 7 — Revisión técnica
 
 - ¿Queda algún setter? ¿Qué regla lo justifica?

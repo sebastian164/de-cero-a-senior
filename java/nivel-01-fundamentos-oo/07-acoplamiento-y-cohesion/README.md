@@ -201,6 +201,8 @@ No copies código confidencial en la entrega: describe y anonimiza.
 
 Entrega: rama `taller/n1-07-acoplamiento-cohesion`, solo `ANALISIS.md` y el código del punto 5.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## Paso 7 — Revisión técnica
 
 - ¿Los problemas identificados son de acoplamiento o de cohesión? ¿Se distinguen bien?

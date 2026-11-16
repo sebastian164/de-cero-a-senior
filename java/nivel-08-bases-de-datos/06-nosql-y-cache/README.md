@@ -88,6 +88,8 @@ spring:
 
 Rama `taller/n8-06-nosql-cache`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## Preguntas senior
 
 1. ¿Cuándo justificas una base NoSQL en un proyecto?

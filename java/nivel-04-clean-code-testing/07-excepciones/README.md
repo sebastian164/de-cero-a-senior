@@ -201,6 +201,8 @@ class Importador {
 
 Se revisará: que no haya `catch` genéricos, que los mensajes tengan contexto y que la política de errores sea explícita. Rama `taller/n4-07-excepciones`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## Aplicación profesional
 
 Fragmentos compilados y ejecutados con Spring Boot 4.1.1 (el manejador devuelve 404 y 422 con Problem Details).

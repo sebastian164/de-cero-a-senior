@@ -235,6 +235,8 @@ Señales de alerta:
 
 El enunciado está en [`taller/`](taller/). No hay solución publicada: primero se intenta.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## 8. Preguntas de entrevista senior
 
 Respóndelas por escrito en tu entrega. Ninguna se contesta con la definición.

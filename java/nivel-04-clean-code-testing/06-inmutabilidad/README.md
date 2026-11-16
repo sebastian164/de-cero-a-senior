@@ -181,6 +181,8 @@ record Dinero(long pesos) {
 
 Se revisará: copias defensivas, ausencia de fugas de referencias y `equals`/`hashCode` coherentes. Rama `taller/n4-06-inmutabilidad`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## Aplicación profesional
 
 - **DTOs como `record`:** peticiones y respuestas de la API, eventos, mensajes y objetos de configuración (`@ConfigurationProperties` admite `record`).

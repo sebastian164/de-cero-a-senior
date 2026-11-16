@@ -178,6 +178,8 @@ public class Main {
 
 Se revisará: nombres, tamaño de métodos, ausencia de banderas, y que no haya sobre-fragmentación. Rama `taller/n4-02-metodos`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## Aplicación profesional
 
 - **Controladores delgados:** reciben, delegan y responden. Un método de controlador con lógica de negocio mezcla niveles de abstracción.

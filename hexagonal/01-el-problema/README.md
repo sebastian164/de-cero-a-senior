@@ -303,6 +303,8 @@ public class Pedidos {
 
 **Entrega:** rama `taller/hexagonal-01`, con `taller/solucion/ANALISIS.md` y el dibujo.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## En el trabajo real
 
 Este "antes" no es una caricatura: es el aspecto que tiene un controlador de Spring con la lógica dentro, o un servicio que recibe la petición, arma la consulta SQL y envía el correo en el mismo método. Empieza siendo cómodo y se vuelve caro justo cuando el producto tiene éxito y hay que cambiarlo a menudo.

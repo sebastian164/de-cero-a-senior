@@ -171,6 +171,8 @@ Usa el código de inicio del taller de la lección 02 (`liquidar`) o un método 
 
 Se revisará: tamaño de los pasos, separación entre refactor y cambio de comportamiento, y que la red de seguridad exista antes del primer cambio. Rama `taller/n4-04-refactoring`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## Aplicación profesional
 
 - **Pull requests separados:** uno de refactor puro (fácil de revisar: "no cambia comportamiento") y otro con la función nueva.

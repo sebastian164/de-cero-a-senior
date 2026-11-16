@@ -220,6 +220,8 @@ Cada una calcula `atacar()` (daño según el arma), `defender(int dano)` (reduce
 
 Entrega: rama `taller/n1-06-composicion`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## Paso 7 — Revisión técnica
 
 - ¿Las dimensiones de variación son piezas independientes?

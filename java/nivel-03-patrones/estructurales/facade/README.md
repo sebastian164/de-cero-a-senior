@@ -125,3 +125,5 @@ Un sistema de matrículas universitarias tiene: `RegistroAcademico` (verifica pr
 5. Tu fachada, ¿tiene reglas de negocio o solo coordina? Señala cada línea que sea una regla y decide dónde debería vivir.
 
 Entrega: rama `taller/n3-facade`.
+
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).

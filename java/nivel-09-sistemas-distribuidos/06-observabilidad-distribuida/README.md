@@ -90,6 +90,8 @@ En Spring Boot 4 hace falta el *starter* `spring-boot-starter-opentelemetry`, y 
 
 Rama `taller/n9-06-observabilidad`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## Preguntas senior
 
 1. ¿Cómo sigues una petición que atraviesa servicios síncronos y asíncronos?

@@ -330,6 +330,8 @@ class ArchivoLog {
 
 Entrega: rama `taller/05-dip`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## 8. Preguntas de entrevista senior
 
 1. Diferencia entre DIP, IoC y DI. Da un ejemplo de código que use DI y viole DIP.

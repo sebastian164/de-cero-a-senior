@@ -320,6 +320,8 @@ Tu servicio de pedidos es ahora la base de tres rutas. En cada una, el taller pa
 | [HikariCP](../../hikaricp/) | El pool de conexiones que hay debajo de tu adaptador de persistencia: tamaño, tiempos y diagnóstico |
 | [Prácticas](../../practicas/) | TDD sobre el dominio, pruebas de API con Karate sobre el adaptador HTTP y observabilidad |
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## En el trabajo real
 
 La regla de dependencias se automatiza con ArchUnit, que expresa estas mismas comprobaciones sobre las clases compiladas, o con módulos de construcción separados: si el módulo del dominio no declara la dependencia, el `import` ni compila. Los contratos de los adaptadores de persistencia se ejecutan con Testcontainers en la integración continua.

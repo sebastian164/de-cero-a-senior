@@ -75,6 +75,8 @@ Un usuario actualiza su perfil y recarga la página. La escritura fue al líder;
 
 Rama `taller/n9-01-fundamentos`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## Preguntas senior
 
 1. Explica CAP sin decir "elige dos de tres".

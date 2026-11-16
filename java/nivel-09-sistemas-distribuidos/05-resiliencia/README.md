@@ -91,6 +91,8 @@ resilience4j:
 
 Rama `taller/n9-05-resiliencia`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## Preguntas senior
 
 1. Explica los tres estados de un cortacircuitos.

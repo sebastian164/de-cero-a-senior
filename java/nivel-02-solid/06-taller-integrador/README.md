@@ -62,3 +62,5 @@ Si algún cambio te obligó a modificar más de dos clases existentes, explica q
 Rama `taller/06-solid-integrador`. Este taller cierra el Nivel 2: su revisión decide si se avanza a patrones.
 
 Siguiente: [Nivel 3 — Patrones de diseño](../../nivel-03-patrones/).
+
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).

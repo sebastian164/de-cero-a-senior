@@ -198,6 +198,8 @@ Se revisará: tamaño de los ciclos, que cada prueba haya fallado antes de pasar
 
 Para practicar TDD a fondo, con katas, dobles de prueba y código heredado, están los [cuatro talleres de TDD](../../../practicas/tdd/).
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## Aplicación profesional
 
 - **TDD donde hay lógica:** reglas de negocio, cálculos, validaciones, máquinas de estado. Es menos útil en código de pegamento y en exploración de una tecnología nueva.

@@ -151,3 +151,5 @@ Un sistema genera documentos: factura, cotización y nota crédito. Todos siguen
 5. Explica por qué `JdbcTemplate` eligió callbacks en lugar de obligarte a heredar.
 
 Entrega: rama `taller/n3-template-method`.
+
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).

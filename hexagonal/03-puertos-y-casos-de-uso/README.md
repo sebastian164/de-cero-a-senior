@@ -673,6 +673,8 @@ Sobre tu dominio de la sesión 02.
 
 **Entrega:** rama `taller/hexagonal-03`, con el proyecto en `taller/solucion/` y `ANALISIS.md`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## En el trabajo real
 
 En Spring, el servicio de aplicación es un `@Service`, los puertos de salida son interfaces que implementan clases anotadas con `@Repository` o `@Component`, y los puertos de entrada los llama un `@RestController`. La estructura es la misma; lo que cambia es quién conecta las piezas. Eso es la sesión 06.

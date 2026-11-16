@@ -132,3 +132,5 @@ Una calculadora de saldos de cuentas soporta `depositar`, `retirar` y `transferi
 5. Diferencia, con un ejemplo, `ConfirmarPedido` (comando) de `PedidoConfirmado` (evento).
 
 Entrega: rama `taller/n3-command`.
+
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).

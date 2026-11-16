@@ -129,3 +129,5 @@ Un sistema de nómina liquida horas extra. Hay tres políticas según el país d
 5. Indica dónde quedó la decisión de qué estrategia usar y quién es responsable de ella.
 
 Entrega: rama `taller/n3-strategy`.
+
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).

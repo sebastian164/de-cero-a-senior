@@ -111,6 +111,8 @@ Toma una clase de más de 150 líneas de un proyecto tuyo (anonimiza lo necesari
 
 Se revisará: que los nombres nuevos usen vocabulario del dominio y que no se haya cambiado comportamiento. Rama `taller/n4-01-nombres`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## Aplicación profesional
 
 - **Lenguaje ubicuo** (DDD, Nivel 5): el código usa las mismas palabras que el negocio. Si el usuario dice "póliza", no hay una clase `Contrato`.

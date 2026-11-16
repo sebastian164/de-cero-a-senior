@@ -390,6 +390,8 @@ Sobre tu análisis de la sesión 01. Crea un proyecto con la organización de [`
 
 **Entrega:** rama `taller/hexagonal-02`, con el proyecto en `taller/solucion/` y `ANALISIS.md`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## En el trabajo real
 
 En un proyecto con Spring y JPA, la tentación es que la entidad de la base de datos **sea** el dominio. A veces es un compromiso razonable; la sesión 07 muestra las dos opciones. Saber escribir un dominio limpio te permite decidir cuánto de esa pureza quieres pagar.

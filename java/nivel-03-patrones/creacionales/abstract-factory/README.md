@@ -98,3 +98,5 @@ Una aplicación de reportes debe generar documentos con tres piezas coherentes: 
 4. Reescribe la selección de familia como lo harías con perfiles de Spring (en papel).
 
 Entrega: rama `taller/n3-abstract-factory`.
+
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).

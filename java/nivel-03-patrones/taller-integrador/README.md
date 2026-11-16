@@ -71,3 +71,5 @@ Aplica y documenta qué tocaste:
 Rama `taller/n3-integrador`. Su revisión cierra el Nivel 3.
 
 Siguiente: [Nivel 4 — Clean Code, refactorización y testing](../../nivel-04-clean-code-testing/).
+
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).

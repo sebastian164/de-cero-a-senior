@@ -343,6 +343,8 @@ Sobre tu servicio de la sesión 03.
 
 **Entrega:** rama `taller/hexagonal-04`, con el proyecto en `taller/solucion/` y `ANALISIS.md` con la salida del paso 1 y las respuestas de los pasos 5 y 8.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## En el trabajo real
 
 En Spring, la unidad de trabajo es `@Transactional` sobre el método del servicio de aplicación, o un `TransactionTemplate` detrás de un puerto como el de aquí. Conviene saber qué hace por debajo: abre la transacción al entrar, la confirma al salir y la revierte si sale una `RuntimeException`. Con una excepción comprobada, **confirma** salvo que indiques `rollbackFor`. Y una llamada a un método `@Transactional` desde la misma clase no pasa por el proxy: no abre transacción.

@@ -151,3 +151,5 @@ Un sistema lee archivos de extractos bancarios en tres formatos: CSV, XML y un f
 5. Explica por qué en una aplicación Spring probablemente no escribirías esta fábrica y qué usarías.
 
 Entrega: rama `taller/n3-factory-method`.
+
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).

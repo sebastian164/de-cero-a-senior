@@ -422,6 +422,8 @@ Sobre tu servicio de la sesión 04.
 
 **Entrega:** rama `taller/hexagonal-05`, con el proyecto en `taller/solucion/` y `ANALISIS.md` con los resultados de los pasos 1 y 7 y las respuestas de los pasos 8 y 9.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## En el trabajo real
 
 Con JPA, el bloqueo optimista es un campo anotado con `@Version`: Hibernate añade `AND version = ?` a cada `UPDATE` y lanza `OptimisticLockException` si no afecta ninguna fila. El bloqueo pesimista es `@Lock(LockModeType.PESSIMISTIC_WRITE)` sobre una consulta. Ninguno de los dos reintenta por ti: el reintento sigue siendo tuyo.

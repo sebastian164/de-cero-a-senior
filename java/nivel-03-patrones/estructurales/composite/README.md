@@ -146,3 +146,5 @@ Modela el organigrama de una empresa: empleados y áreas que contienen empleados
 4. Reescribe con `sealed interface` y `switch`. ¿Cuándo preferirías esta versión?
 
 Entrega: rama `taller/n3-composite`.
+
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).

@@ -236,6 +236,8 @@ public class Main {
 
 Entrega: rama `taller/n1-04-polimorfismo`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## Paso 7 — Revisión técnica
 
 - ¿Queda algún `if`/`switch` por tipo fuera del punto de creación?

@@ -128,3 +128,5 @@ Cuando las reglas cambian poco; cuando la gramática es grande; cuando existe un
 5. Explica el riesgo de permitir que un usuario escriba una expresión SpEL y cómo se mitiga.
 
 Entrega: rama `taller/n3-interpreter`.
+
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).

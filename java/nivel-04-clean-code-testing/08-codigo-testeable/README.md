@@ -193,6 +193,8 @@ class Sms { void enviar(String paciente, String texto) { System.out.println("[sm
 
 Se revisará: que las pruebas sean deterministas e independientes entre sí. Rama `taller/n4-08-testeable`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## Aplicación profesional
 
 - **Inyección por constructor:** la clase se instancia en una prueba con `new`, sin levantar Spring. Si para probar un servicio necesitas `@SpringBootTest`, el diseño te está avisando.

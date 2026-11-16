@@ -136,3 +136,5 @@ Un sistema de biblioteca registra devoluciones de libros. Al devolver: se actual
 5. Escribe cómo quedaría con `ApplicationEventPublisher` y qué fase de transacción usarías para el aviso al usuario.
 
 Entrega: rama `taller/n3-observer`.
+
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).

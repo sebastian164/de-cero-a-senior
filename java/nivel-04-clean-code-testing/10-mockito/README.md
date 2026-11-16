@@ -145,6 +145,8 @@ Sobre el `ServicioSuscripciones` que refactorizaste en el taller de DIP (Nivel 2
 
 Se revisará: que no se simulen objetos de valor ni entidades, y que las pruebas no dupliquen la implementación. Rama `taller/n4-10-mockito`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## Aplicación profesional
 
 - **`@MockitoBean`** (antes `@MockBean`) reemplaza un bean en el contexto de Spring durante una prueba. Cada combinación distinta crea un contexto nuevo y alarga la ejecución; úsalo con moderación.

@@ -135,3 +135,5 @@ Un editor de texto representa cada carácter como un objeto con: letra, fuente, 
 4. Explica con código por qué `Integer a = 127, b = 127; a == b` es verdadero y con 128 es falso, y qué error real puede causar.
 
 Entrega: rama `taller/n3-flyweight`.
+
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).

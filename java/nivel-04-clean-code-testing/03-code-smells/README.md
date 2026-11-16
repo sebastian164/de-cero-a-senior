@@ -168,6 +168,8 @@ Auditoría de olores sobre un módulo real (anonimizado) o sobre un proyecto de 
 
 Se revisará: uso correcto del vocabulario y criterio de priorización. Rama `taller/n4-03-smells`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## Aplicación profesional
 
 - **Revisión de código con vocabulario compartido:** nombrar el olor despersonaliza la crítica.

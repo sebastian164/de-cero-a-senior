@@ -217,6 +217,8 @@ Crea un proyecto Maven y toma la clase `Cuentas` de la lección 07 (versión mej
 
 Se revisará: nombres, independencia entre pruebas, casos límite y que cada prueba pueda fallar. Rama `taller/n4-09-junit`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## Aplicación profesional
 
 - **La mayoría de las pruebas no necesitan Spring.** Las de dominio y de servicios con dependencias inyectadas son JUnit puro, y corren en milisegundos.

@@ -172,3 +172,5 @@ Un sistema de soporte recibe tiquetes con categoría, prioridad y cliente. Deben
 5. Relaciona tu diseño con un filtro de Spring Security: ¿qué equivale a `chain.doFilter`?
 
 Entrega: rama `taller/n3-chain-of-responsibility`.
+
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).

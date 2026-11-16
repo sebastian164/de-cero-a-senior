@@ -85,6 +85,8 @@ Modela una plataforma de reservas de canchas deportivas: sedes, canchas, tipos d
 
 Rama `taller/n8-01-modelado`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## Preguntas senior
 
 1. ¿Cuándo desnormalizar y qué riesgo se asume?

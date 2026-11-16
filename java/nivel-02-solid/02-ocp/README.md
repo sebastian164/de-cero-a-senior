@@ -324,6 +324,8 @@ class CalculadoraPrecio {
 
 Entrega: rama `taller/02-ocp`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## 8. Preguntas de entrevista senior
 
 1. "Cerrado a la modificación" es imposible en términos absolutos. ¿Cómo decides respecto a qué cambios cerrar un módulo?

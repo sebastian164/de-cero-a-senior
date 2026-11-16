@@ -148,3 +148,5 @@ Hay dos proveedores que no puedes modificar: uno devuelve un texto como `"TUNJA|
 5. Agrega reintentos ante fallo. ¿Lo pusiste en el adaptador? Argumenta dónde debería ir.
 
 Entrega: rama `taller/n3-adapter`.
+
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).

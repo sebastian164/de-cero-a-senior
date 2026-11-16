@@ -124,3 +124,5 @@ Modela `Pedido` con cliente, dirección de envío (objeto mutable) y lista de í
 4. Explica por qué `clone()` no es recomendable, con un ejemplo.
 
 Entrega: rama `taller/n3-prototype`.
+
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).

@@ -160,3 +160,5 @@ Cuando no hay acceso que controlar; cuando el comportamiento oculto sorprenderí
 5. Escribe (en papel, con Spring) una clase con dos métodos donde uno llama al otro, que es `@Transactional`. Explica qué ocurre y da dos formas de corregirlo.
 
 Entrega: rama `taller/n3-proxy`.
+
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).

@@ -203,6 +203,8 @@ public class Main {
 
 Entrega: rama `taller/n1-01-clases`, solución en `taller/solucion/` con `ANALISIS.md`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## Paso 7 — Revisión técnica
 
 - ¿Cada concepto del problema tiene una clase?

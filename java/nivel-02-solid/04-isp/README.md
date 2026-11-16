@@ -248,6 +248,8 @@ Los consumidores de esta interfaz son:
 
 Entrega: rama `taller/04-isp`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## 8. Preguntas de entrevista senior
 
 1. ¿Qué diferencia hay entre SRP e ISP? ¿Puede una clase cumplir SRP e implementar una interfaz que viola ISP?

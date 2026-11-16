@@ -136,3 +136,5 @@ Una torre de control coordina aviones que quieren aterrizar o despegar en una so
 4. Tu torre, ¿está creciendo demasiado? Propón cómo dividirla sin volver al diseño inicial.
 
 Entrega: rama `taller/n3-mediator`.
+
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).

@@ -190,6 +190,8 @@ Una aplicación de dibujo tiene tres clases sin relación entre sí: `Circulo` (
 
 Entrega: rama `taller/n1-03-herencia`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## Paso 7 — Revisión técnica
 
 - ¿Cada `extends` pasa la prueba "es un" en todos los usos, no solo en el nombre?

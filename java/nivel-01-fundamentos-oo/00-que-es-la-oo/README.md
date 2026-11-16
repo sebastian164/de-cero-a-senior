@@ -191,6 +191,8 @@ Una advertencia que se repetirá en cada lección: SOLID son heurísticas, no le
 
 El enunciado está en [`taller/`](taller/). No hay solución publicada: primero se intenta.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## Paso 7 — Revisión técnica
 
 La revisión ocurre en el pull request de la entrega. Se evalúa:

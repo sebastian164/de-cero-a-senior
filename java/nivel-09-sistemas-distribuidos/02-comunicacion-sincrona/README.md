@@ -87,6 +87,8 @@ public Existencias consultar(Long productoId) { ... }
 
 Rama `taller/n9-02-sincrona`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## Preguntas senior
 
 1. ¿Por qué toda llamada remota necesita tiempo límite?

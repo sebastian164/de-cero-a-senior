@@ -130,3 +130,5 @@ Casi nunca hace falta implementarlo: las colecciones y los streams ya lo traen. 
 5. Explica el riesgo de devolver un `Stream` desde un repositorio de Spring Data sin `@Transactional`.
 
 Entrega: rama `taller/n3-iterator`.
+
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).

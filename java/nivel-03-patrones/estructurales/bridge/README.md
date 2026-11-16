@@ -113,3 +113,5 @@ Un sistema de reportes tiene tipos de reporte (ventas, inventario, cartera) y fo
 4. El reporte de cartera necesita colores que solo PDF y Excel soportan. ¿Tu diseño lo aguanta? ¿Qué te dice eso sobre la independencia de las dimensiones?
 
 Entrega: rama `taller/n3-bridge`.
+
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
