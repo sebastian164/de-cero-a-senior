@@ -8,4 +8,4 @@ Tres talleres, en orden. Requisito: los [talleres de Docker](../../docker-kubern
 | 02 | [Trazas, métricas y objetivos de servicio](02-trazas-metricas-y-objetivos/) | OpenTelemetry, percentiles y un presupuesto de error |
 | 03 | [Diagnosticar con telemetría y probar la observabilidad](03-diagnosticar-con-telemetria/) | Un simulacro: encontrar cinco fallos sin leer el código |
 
-Los ejemplos de la sesión 01 se ejecutan con `java Main.java`. La configuración de OpenTelemetry es ilustrativa.
+Los ejemplos de la sesión 01 se ejecutan con `java Main.java`. La configuración de OpenTelemetry de las sesiones 02 y 03 se ejecutó con el agente 2.33.1 y `grafana/otel-lgtm:0.40.0`.

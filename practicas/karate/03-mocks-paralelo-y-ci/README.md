@@ -1,6 +1,6 @@
 # 03 — Mocks, ejecución en paralelo e integración continua
 
-Los archivos de esta sesión son ilustrativos: no se ejecutaron al preparar el curso. Las órdenes para arrancar un servidor simulado y para ejecutar en paralelo cambiaron entre la serie 1 y la 2 de Karate: tómalas de la documentación de tu versión.
+Los archivos de esta sesión se ejecutaron con Karate 2.1.4 y JDK 21. Las órdenes para arrancar un servidor simulado y para ejecutar en paralelo cambiaron entre la serie 1 y la 2 de Karate: tómalas de la documentación de tu versión. En 2.1.4 funcionan así: `MockServer.feature("classpath:simulador/bitacora-simulada.feature").port(48090).start()` y `Runner.path("classpath:bitacora").parallel(4)`, los dos de `io.karatelabs.core`.
 
 ## Idea
 
@@ -73,6 +73,8 @@ function fn() {
   };
 }
 ```
+
+Este esquema de `notas` no acepta la lista vacía en Karate 2.1.4 (véase la sesión 02): guarda una nota antes de usarlo, o comprueba la lista con `'#[]'`.
 
 <!-- file: ejemplo/bitacora-simulada.feature -->
 ```gherkin

@@ -1,6 +1,6 @@
 # 02 — Aserciones, datos y reutilización
 
-Los archivos de esta sesión son ilustrativos: no se ejecutaron al preparar el curso.
+Los archivos de esta sesión se ejecutaron con Karate 2.1.4 y JDK 21 contra Bitácora.
 
 ## Idea
 
@@ -21,6 +21,8 @@ Un formulario bien diseñado se imprime una vez y se rellena mil. Nadie redacta 
 | `match each lista == esquema` | Que **cada** elemento cumpla |
 | `match lista == '#[3]'` | Que tenga tres elementos |
 | `match lista == '#[] #string'` | Que sea una lista de textos |
+
+Una lista vacía no cumple `'#[] #string'` ni `match each`: en Karate 2.1.4 ambos fallan con `[]`. Si tu API puede devolver una lista vacía, guarda un dato antes de comprobar la forma, o comprueba con `'#[]'`.
 
 ### Esquemas reutilizables
 

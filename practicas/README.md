@@ -76,8 +76,9 @@ Una rama por taller (`taller/tdd-01`, `taller/karate-02`, `taller/sdd-03`, `tall
 | Ejemplos de TDD (cuatro programas) y el código heredado de inicio | Compilados con `-Xlint:all -Werror` y ejecutados con JDK 21 |
 | Ejemplos de ODD 01 (dos programas) | Compilados y ejecutados con JDK 21 |
 | API de Bitácora, contra la que corren Karate, SDD y ODD | Ejecutada; sus respuestas son las que esperan los archivos de Karate |
-| Archivos `.feature` y configuración de Karate | Ilustrativos: **no se ejecutaron**, porque requieren descargar Karate |
-| Compose del entorno de observabilidad | Validado con `docker compose config`; no se levantó |
-| Órdenes de herramientas (PIT, OpenTelemetry, herramientas de SDD) | No se ejecutaron: cada taller remite a la documentación de la herramienta |
+| Archivos `.feature` y configuración de Karate | Ejecutados con Karate 2.1.4 y JDK 21 contra la API real y contra el simulador de la sesión 03 |
+| Compose del entorno de observabilidad | Levantado con Docker Compose y `grafana/otel-lgtm:0.40.0`; la telemetría se consultó desde Grafana |
+| Órdenes de herramientas (PIT, OpenTelemetry) | Ejecutadas: PIT 1.30.2 con JaCoCo 0.8.14, y el agente de OpenTelemetry para Java 2.33.1 |
+| Herramientas de SDD | No se ejecutaron: cada taller remite a la documentación de la herramienta |
 
 Versiones vigentes al escribir: Karate 2.1 (requiere Java 21) y Angular, Kafka y Kubernetes como se indica en sus rutas. Las herramientas de SDD cambian cada pocos meses: por eso esa parte enseña la secuencia y las puertas de revisión, y no las órdenes de una herramienta concreta.

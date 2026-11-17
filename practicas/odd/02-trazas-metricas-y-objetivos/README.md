@@ -1,6 +1,6 @@
 # 02 — Trazas, métricas y objetivos de servicio
 
-Esta sesión usa OpenTelemetry, el estándar abierto para generar y enviar telemetría. Las órdenes y la configuración son ilustrativas: no se ejecutaron al preparar el curso. OpenTelemetry evoluciona rápido; ante cualquier diferencia, manda su documentación.
+Esta sesión usa OpenTelemetry, el estándar abierto para generar y enviar telemetría. Las órdenes y la configuración se ejecutaron con el agente de OpenTelemetry para Java 2.33.1 y `grafana/otel-lgtm:0.40.0`. OpenTelemetry evoluciona rápido; ante cualquier diferencia, manda su documentación.
 
 ## Idea
 
@@ -77,10 +77,13 @@ Y la aplicación le envía su telemetría con variables de entorno estándar:
 ```bash
 export OTEL_SERVICE_NAME=bitacora-api
 export OTEL_EXPORTER_OTLP_ENDPOINT=http://localhost:4318
-java -javaagent:opentelemetry-javaagent.jar Servidor.java
+javac -d clases Servidor.java
+java -javaagent:opentelemetry-javaagent.jar -cp clases Servidor
 ```
 
-El archivo de Compose se validó con `docker compose config`; no se levantó.
+Se compila antes porque, con `java Servidor.java`, el agente cree que lo lanza una herramienta del JDK y no se activa: lo avisa al arrancar con "agent will not be started".
+
+El archivo de Compose se levantó con Docker Compose y las trazas y métricas se consultaron desde Grafana.
 
 ## Ejemplo
 

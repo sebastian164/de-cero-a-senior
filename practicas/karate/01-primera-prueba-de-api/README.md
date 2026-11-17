@@ -1,6 +1,6 @@
 # 01 — Primera prueba de API con Karate
 
-Karate es un marco de código abierto para probar API: las pruebas se escriben en archivos de texto con una sintaxis propia, sin programar el pegamento entre el texto y el código. Esta ruta usa la serie 2 (2026), que requiere Java 21. Los archivos de esta sesión son ilustrativos: **no se ejecutaron** al preparar el curso, porque hace falta descargar Karate. La API contra la que corren sí se ejecutó y sus respuestas son las que las pruebas esperan.
+Karate es un marco de código abierto para probar API: las pruebas se escriben en archivos de texto con una sintaxis propia, sin programar el pegamento entre el texto y el código. Esta ruta usa la serie 2 (2026), que requiere Java 21. Los archivos de esta sesión se ejecutaron con Karate 2.1.4 y JDK 21, y la API contra la que corren responde lo que las pruebas esperan.
 
 ## Idea
 
@@ -168,7 +168,9 @@ Feature: API de la bitácora
 
 <!-- file: ejemplo/BitacoraTest.java -->
 ```java
-// El import de la clase Karate cambió entre la serie 1 y la 2: tómalo de la documentación de tu versión.
+// En la serie 1 la clase era com.intuit.karate.junit5.Karate; en la serie 2 cambió de paquete.
+import io.karatelabs.junit6.Karate;
+
 class BitacoraTest {
 
     @Karate.Test

@@ -1,4 +1,6 @@
-// El import de la clase Karate cambió entre la serie 1 y la 2: tómalo de la documentación de tu versión.
+// En la serie 1 la clase era com.intuit.karate.junit5.Karate; en la serie 2 cambió de paquete.
+import io.karatelabs.junit6.Karate;
+
 class BitacoraTest {
 
     @Karate.Test
