@@ -1,6 +1,6 @@
 # 06 — Kafka con Spring Boot
 
-El código de esta sesión usa Spring for Apache Kafka. Es ilustrativo: no se compiló al preparar el curso. Los nombres de algunas clases, sobre todo las de conversión a JSON, cambiaron entre las versiones 3 y 4 de la biblioteca; por eso los ejemplos convierten a mano y no dependen de ellas. Confirma el resto contra la documentación de tu versión.
+El código de esta sesión usa Spring for Apache Kafka. Se compiló con Spring Boot 4.1.2 y Spring for Apache Kafka 4.1.2 (los bloques de código no traen los `import`; `ExponentialBackOffWithMaxRetries` está en `org.springframework.kafka.support`), y un servicio completo se ejecutó contra Kafka 4.3.1 y PostgreSQL 17. Los nombres de algunas clases, sobre todo las de conversión a JSON, cambiaron entre las versiones 3 y 4 de la biblioteca; por eso los ejemplos convierten a mano y no dependen de ellas. Confirma el resto contra la documentación de tu versión.
 
 ## Idea
 

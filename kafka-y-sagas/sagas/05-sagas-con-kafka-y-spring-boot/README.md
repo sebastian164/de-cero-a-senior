@@ -1,6 +1,6 @@
 # 05 — Sagas con Kafka y Spring Boot
 
-El código de esta sesión es ilustrativo: no se compiló al preparar el curso. Une lo que ya probaste por separado: los temas y las claves de Kafka, el consumidor idempotente, outbox y la máquina de estados del orquestador.
+Los bloques de código de esta sesión se compilaron con Spring Boot 4.1.2 y Spring for Apache Kafka 4.1.2 (el "antes" y el "después", los dos; el "antes" da por existentes `leer`, `Pedido` y `PedidoRepository`, y usa `RestClient` de `spring-web`, y el "después" da por existentes `Respuesta`, `Paso`, `Salida` y los repositorios). Un servicio completo con las mismas ideas, con PostgreSQL 17 y Kafka 4.3.1, se ejecutó con las caídas del taller. Une lo que ya probaste por separado: los temas y las claves de Kafka, el consumidor idempotente, outbox y la máquina de estados del orquestador.
 
 ## Idea
 

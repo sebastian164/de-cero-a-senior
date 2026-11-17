@@ -73,20 +73,20 @@ kafka-topics.sh --describe --topic movimientos-de-cuenta
 
 # La clave va separada del valor: todo lo de cuenta-7 cae en la misma partición, en orden
 kafka-console-producer.sh --topic movimientos-de-cuenta \
-  --property parse.key=true --property key.separator=:
+  --reader-property parse.key=true --reader-property key.separator=:
 > cuenta-7:abono 100
 > cuenta-9:abono 50
 > cuenta-7:retiro 100
 
 kafka-console-consumer.sh --topic movimientos-de-cuenta --from-beginning \
-  --property print.key=true --property print.partition=true --property print.offset=true
+  --formatter-property print.key=true --formatter-property print.partition=true --formatter-property print.offset=true
 ```
 
 - El nombre del tema dice qué hechos contiene.
 - Tres particiones permiten hasta tres consumidores en paralelo.
 - La clave es la cuenta: los movimientos de una misma cuenta se leen en el orden en que se escribieron.
 
-Las órdenes son ilustrativas: no se ejecutaron al preparar el curso.
+Las órdenes se ejecutaron con la imagen `apache/kafka:4.3.1`. En esa versión, `--property` de la consola ya está obsoleto: se usan `--reader-property` en el productor y `--formatter-property` en el consumidor.
 
 ## Errores comunes
 

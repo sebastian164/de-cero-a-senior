@@ -40,7 +40,7 @@ El productor no envía mensaje por mensaje: agrupa. `linger.ms` es cuánto esper
 
 ## Ejemplo
 
-Código Java con el cliente oficial (`org.apache.kafka:kafka-clients`). Es ilustrativo: no se compiló al preparar el curso porque requiere descargar la biblioteca.
+Código Java con el cliente oficial (`org.apache.kafka:kafka-clients`). Se compiló y se ejecutó con `kafka-clients` 4.3.1 contra Kafka 4.3.1.
 
 ### Antes
 
@@ -78,7 +78,7 @@ config.put("key.serializer", StringSerializer.class.getName());
 config.put("value.serializer", StringSerializer.class.getName());
 config.put("acks", "all");
 config.put("enable.idempotence", "true");
-config.put("delivery.timeout.ms", "30000");      // tiempo total para lograrlo, reintentos incluidos
+config.put("delivery.timeout.ms", "60000");      // tiempo total para lograrlo, reintentos incluidos; no menos que linger.ms + request.timeout.ms (30 s por defecto)
 config.put("linger.ms", "10");
 config.put("compression.type", "zstd");
 
@@ -125,7 +125,7 @@ Parte A, con las herramientas de consola y el clúster de tres brokers ([`compos
 
 1. Crea un tema con tres particiones y factor de replicación 3. En la descripción, identifica la líder y las réplicas sincronizadas de cada partición.
 2. Detén un broker. Describe el tema otra vez. ¿Qué cambió? ¿Se puede seguir produciendo y consumiendo?
-3. Configura `min.insync.replicas=2` en el tema. Con un broker detenido, produce con `acks=all`. Detén un segundo broker y vuelve a producir. Copia el error exacto y explícalo.
+3. Configura `min.insync.replicas=2` en el tema. Con un broker detenido, produce con `acks=all`. Detén un segundo broker y vuelve a producir. Copia el error exacto y explícalo. En `compose.cluster.yaml` los tres nodos también son controladores: con dos detenidos el clúster pierde el quórum y el productor puede quedarse esperando o vencer por tiempo en lugar de recibir `NotEnoughReplicasException`. Para ver ese error exacto, crea el tema con `min.insync.replicas=3` y detén un solo broker, y produce con `--producer-property retries=0 --producer-property enable.idempotence=false` (o desde código, con esas dos opciones).
 4. Repite el paso 3 produciendo con `acks=1`. ¿Qué diferencia hay y qué riesgo estás aceptando?
 5. Vuelve a levantar los brokers y observa cómo se recupera el conjunto de réplicas sincronizadas.
 

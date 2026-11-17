@@ -13,6 +13,6 @@ Ocho talleres, en orden. Requisito: el [entorno](../entorno/) levantado.
 | 07 | [Outbox transaccional](07-outbox-transaccional/) | Reproducir la doble escritura y eliminarla |
 | 08 | [Kafka en un servicio hexagonal](08-kafka-en-un-servicio-hexagonal/) | Conectar pedidos e Inventario por Kafka sin tocar el dominio de ninguno |
 
-Las sesiones 03, 04 y 07 traen un ejemplo en Java puro que se ejecuta con `java Main.java`. La 08 trae un proyecto de varios archivos que se compila junto con el banco del módulo de [arquitectura hexagonal](../../hexagonal/). El resto del código es ilustrativo. El detalle está en el [índice de la ruta](../README.md#estado-del-código).
+Las sesiones 03, 04 y 07 traen un ejemplo en Java puro que se ejecuta con `java Main.java`. La 08 trae un proyecto de varios archivos que se compila junto con el banco del módulo de [arquitectura hexagonal](../../hexagonal/). El código con el cliente de Kafka de las sesiones 02 y 03 y los bloques de Spring de la 06 se compilaron y se ejecutaron (Kafka 4.3.1, Spring Boot 4.1.2), y las órdenes de la 01 se ejecutaron con la imagen del entorno. El detalle está en el [índice de la ruta](../README.md#estado-del-código).
 
 Sigue con las [sagas](../sagas/).

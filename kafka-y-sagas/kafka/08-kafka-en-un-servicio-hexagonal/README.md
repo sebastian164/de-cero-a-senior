@@ -573,7 +573,7 @@ Y lo que no aparece en ningún paso: `Cuenta`, `Transferencia` y `ServicioDeCuen
 
 ### Con Kafka de verdad
 
-Los dos adaptadores, con el cliente real y con Spring. **Ilustrativo: no se compiló.** La estructura es la misma; cambia lo que hay dentro del adaptador.
+Los dos adaptadores, con el cliente real y con Spring. Se compilaron y se ejecutaron contra Kafka 4.3.1 con `kafka-clients` 4.3.1 y Spring Boot 4.1.2. La estructura es la misma; cambia lo que hay dentro del adaptador.
 
 ```java
 /** Destino del mensajero. Espera la confirmación del broker antes de dar el evento por entregado. */

@@ -238,7 +238,7 @@ public class Main {
 - `p-3` falla y no deja ni pedido ni evento: no hay fantasmas.
 - El evento de `p-2` sale dos veces, y el consumidor lo descarta por su identificador.
 
-La tabla, en una base real (ilustrativo):
+La tabla, en una base real (se ejecutó tal cual en PostgreSQL 17):
 
 ```sql
 CREATE TABLE salida (

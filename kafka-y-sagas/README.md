@@ -65,8 +65,8 @@ Una rama por taller (`taller/kafka-03`, `taller/sagas-02`…), tu trabajo en `ta
 |---|---|
 | Ejemplos en Java puro (Kafka 03, 04 y 07; sagas 01 a 04): catorce programas | Compilados con `-Xlint:all -Werror` y ejecutados con JDK 21; la salida de cada uno es la que describe su sesión |
 | Ejemplos sobre el banco hexagonal (Kafka 08 y sagas 06): dos proyectos de varios archivos | Compilados con `-Xlint:all -Werror` junto con el núcleo de [`hexagonal/proyecto`](../hexagonal/proyecto/) y ejecutados; todas sus comprobaciones pasan |
-| Archivos de Compose del [entorno](entorno/) | Validados con `docker compose config` |
-| Código con el cliente de Kafka y con Spring | Ilustrativo: **no se compiló**, porque requiere descargar bibliotecas que no estaban disponibles |
-| Órdenes de consola de Kafka y el propio broker | **No se ejecutaron**: no había motor de Docker |
+| Archivos de Compose del [entorno](entorno/) | `compose.yaml` y `compose.cluster.yaml` se levantaron con `docker compose up` (Docker Desktop, imagen `apache/kafka:4.3.1`) y se usaron para las órdenes de consola de los talleres de Kafka 01 y 02; se detuvieron hasta dos de los tres brokers a la vez y se volvieron a levantar sin cambiar el archivo, y el clúster se recuperó (los tres nodos son también controladores: con dos detenidos se pierde el quórum, ver el taller de Kafka 02) |
+| Código con el cliente de Kafka y con Spring | Los fragmentos de Kafka 02, 03 y 08 se compilaron y se ejecutaron contra un broker real (Kafka 4.3.1, `kafka-clients` 4.3.1); los bloques de Spring de Kafka 06 y Sagas 05 se compilaron con Spring Boot 4.1.2 y Spring for Apache Kafka 4.1.2, y el yaml de Kafka 06 se enlazó con las propiedades reales de Spring Boot. Los servicios completos de los talleres de Kafka 06 y Sagas 05 se ejecutaron con Kafka, PostgreSQL 17 y Java 21, y sus pruebas de integración con Testcontainers 2.0.5 (`apache/kafka:4.3.1` y `postgres:17`) pasaron |
+| Órdenes de consola de Kafka y el propio broker | Se ejecutaron con la imagen `apache/kafka:4.3.1` del [entorno](entorno/), un broker y tres brokers. El SQL de Kafka 07 se ejecutó en PostgreSQL 17 |
 
 Versiones vigentes al escribir: Apache Kafka 4.3 (sin ZooKeeper desde la 4.0) y Spring for Apache Kafka 4. Si una orden o una clase no coincide con tu versión, manda la documentación oficial.

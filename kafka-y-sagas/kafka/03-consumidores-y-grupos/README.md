@@ -158,7 +158,7 @@ public class Main {
 
 Ya no se pierde nada. A cambio, `pago-3` se procesa dos veces. Ese es el trato de "al menos una vez", y por eso el consumidor tiene que ser idempotente: es el tema de la sesión siguiente.
 
-Con el cliente real, el mismo orden se escribe así (ilustrativo, no compilado):
+Con el cliente real, el mismo orden se escribe así (compilado y ejecutado con `kafka-clients` 4.3.1):
 
 ```java
 config.put("group.id", "conciliacion");
