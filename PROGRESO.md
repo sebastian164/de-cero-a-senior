@@ -111,6 +111,19 @@ Una lección pasa por tres estados: leída, taller entregado y aprobada. Solo "a
 | HikariCP 05 — Operación y taller integrador | ☐ | ☐ |
 | HikariCP 06 — El pool en un servicio hexagonal | ☐ | ☐ |
 
+## Talleres de NoSQL
+
+| Taller | En curso | Aprobado |
+|---|---|---|
+| NoSQL 01 — Modelar por consultas | ☐ | ☐ |
+| NoSQL 02 — Índices y explain | ☐ | ☐ |
+| NoSQL 03 — Consistencia en MongoDB | ☐ | ☐ |
+| NoSQL 04 — MongoDB en el banco hexagonal | ☐ | ☐ |
+| NoSQL 05 — Redis como caché | ☐ | ☐ |
+| NoSQL 06 — Redis más allá de la caché | ☐ | ☐ |
+| NoSQL 07 — Taller integrador | ☐ | ☐ |
+
+
 ## Talleres de prácticas
 
 | Taller | En curso | Aprobado |

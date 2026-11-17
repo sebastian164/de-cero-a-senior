@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  El padre de todos los ejemplos del módulo. Fija en un solo sitio las versiones de las bibliotecas,
+  las opciones del compilador y cómo se ejecuta cada ejemplo. Cada ejemplo tiene su propio pom.xml,
+  que hereda de este, y se ejecuta desde su carpeta con:  mvn -q compile exec:java
+  Desde aquí, "mvn -q compile" compila todos de una vez.
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>curso.nosql</groupId>
+    <artifactId>nosql</artifactId>
+    <version>1.0.0</version>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>01-modelar-por-consultas/ejemplo/antes</module>
+        <module>01-modelar-por-consultas/ejemplo/despues</module>
+        <module>02-indices-y-explain/ejemplo/antes</module>
+        <module>02-indices-y-explain/ejemplo/despues</module>
+        <module>03-consistencia-en-mongodb/ejemplo/antes</module>
+        <module>03-consistencia-en-mongodb/ejemplo/despues</module>
+        <module>04-mongodb-en-el-banco-hexagonal/ejemplo/antes</module>
+        <module>04-mongodb-en-el-banco-hexagonal/ejemplo/despues</module>
+        <module>05-redis-como-cache/ejemplo/antes</module>
+        <module>05-redis-como-cache/ejemplo/despues</module>
+        <module>06-redis-mas-alla-de-la-cache/ejemplo/antes</module>
+        <module>06-redis-mas-alla-de-la-cache/ejemplo/despues</module>
+    </modules>
+
+    <properties>
+        <maven.compiler.release>21</maven.compiler.release>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <mongodb.version>5.14.0</mongodb.version>
+        <lettuce.version>7.9.0.RELEASE</lettuce.version>
+        <slf4j.version>2.0.20</slf4j.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <!-- El controlador oficial de MongoDB, la variante síncrona. -->
+            <dependency>
+                <groupId>org.mongodb</groupId>
+                <artifactId>mongodb-driver-sync</artifactId>
+                <version>${mongodb.version}</version>
+            </dependency>
+            <!-- El cliente de Redis que usa Spring Data Redis por defecto. -->
+            <dependency>
+                <groupId>io.lettuce</groupId>
+                <artifactId>lettuce-core</artifactId>
+                <version>${lettuce.version}</version>
+            </dependency>
+            <!-- Las dos bibliotecas registran por SLF4J. Con este registrador, y el nivel "error" que fija exec más abajo,
+                 la salida de los ejemplos es solo la suya. -->
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-simple</artifactId>
+                <version>${slf4j.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <!-- Los ejemplos ponen su código en src/, sin src/main/java: hay pocos archivos y así se leen mejor. -->
+        <sourceDirectory>src</sourceDirectory>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.16.0</version>
+                    <configuration>
+                        <compilerArgs>
+                            <arg>-Xlint:all</arg>
+                            <arg>-Werror</arg>
+                        </compilerArgs>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>exec-maven-plugin</artifactId>
+                    <version>3.7.0</version>
+                    <configuration>
+                        <mainClass>Main</mainClass>
+                        <systemProperties>
+                            <systemProperty>
+                                <key>org.slf4j.simpleLogger.defaultLogLevel</key>
+                                <value>error</value>
+                            </systemProperty>
+                        </systemProperties>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>build-helper-maven-plugin</artifactId>
+                    <version>3.8.0</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+</project>

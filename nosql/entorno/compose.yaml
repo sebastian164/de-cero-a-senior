@@ -1,0 +1,33 @@
+# MongoDB como replica set de un nodo (sin replica set no hay transacciones) y Redis.
+# Los datos son efímeros: "docker compose down -v" los borra.
+services:
+  mongo:
+    image: mongo:9.0.8
+    command: ["mongod", "--replSet", "rs0", "--bind_ip_all"]
+    ports:
+      - "27017:27017"
+    healthcheck:
+      # La primera vez inicia el replica set; las siguientes solo comprueba que hay un primario.
+      # El miembro se anuncia como localhost:27017 para que tu equipo, que entra por el puerto publicado, lo alcance.
+      test:
+        - CMD
+        - mongosh
+        - --quiet
+        - --eval
+        - "try { rs.status().ok } catch (e) { rs.initiate({_id: 'rs0', members: [{_id: 0, host: 'localhost:27017'}]}).ok }; db.hello().isWritablePrimary || quit(1)"
+      interval: 5s
+      timeout: 10s
+      retries: 20
+      start_period: 5s
+
+  redis:
+    image: redis:8.10.3
+    # Sin límite de memoria ni desalojo: la sesión 06 guarda en Redis cosas que no se pueden perder por desalojo.
+    command: ["redis-server", "--appendonly", "no", "--save", ""]
+    ports:
+      - "6379:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 10

@@ -80,6 +80,15 @@ Para la ruta Java, después del Nivel 8 y del módulo de arquitectura hexagonal.
 |---|---|
 | [HikariCP: el pool de conexiones](hikaricp/) | 6 |
 
+## Talleres de NoSQL: MongoDB y Redis
+
+Para la ruta Java, después del Nivel 8 (su teoría está en la lección [06 — NoSQL y caché](java/nivel-08-bases-de-datos/06-nosql-y-cache/)) y del módulo de arquitectura hexagonal.
+
+| Tema | Sesiones |
+|---|---|
+| [NoSQL: MongoDB y Redis](nosql/) | 7 |
+
+
 ## Talleres de prácticas
 
 Comunes a las tres rutas. TDD va después del Nivel 4; las demás partes, cuando las necesites.

@@ -1,0 +1,2 @@
+# La regla salida/ de la raíz es para la carpeta de compilación; los paquetes que se llaman salida sí van al repositorio.
+!**/src/**/salida/
