@@ -12,3 +12,6 @@ hexagonal/proyecto/salida/
 **/ejemplos/*/salida/
 # Proyectos de verificación y soluciones de los talleres: comprueban que el curso corre, no se publican.
 .verificacion/
+
+# Configuración local de agentes: no forma parte del curso.
+.claude/
