@@ -1,0 +1,5 @@
+target/
+*.class
+*.log
+# claves de juguete que genera dev/Token.java
+dev/jwt-*.pem

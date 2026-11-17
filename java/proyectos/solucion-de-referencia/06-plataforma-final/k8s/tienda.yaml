@@ -1,0 +1,58 @@
+# La configuración va fuera de la imagen (ConfigMap) y el secreto fuera del repositorio (se crea con kubectl, ver el README).
+apiVersion: v1
+kind: ConfigMap
+metadata: {name: tienda-config, namespace: default}
+data:
+  PUERTO: "8080"
+  TIENDA_DB_URL: "jdbc:postgresql://host.docker.internal:5432/tienda"
+  TIENDA_DB_USUARIO: "tienda"
+  KAFKA_SERVIDORES: "host.docker.internal:9094"
+  OTLP_TRAZAS: "http://host.docker.internal:4318/v1/traces"     # trazas al colector de la pila de observabilidad
+  LOGGING_STRUCTURED_FORMAT_CONSOLE: "ecs"                      # registros en JSON, con el identificador de traza
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata: {name: tienda, namespace: default}
+spec:
+  replicas: 2
+  strategy:
+    type: RollingUpdate
+    rollingUpdate: {maxUnavailable: 0, maxSurge: 1}
+  selector: {matchLabels: {app: tienda}}
+  template:
+    metadata: {labels: {app: tienda}}
+    spec:
+      terminationGracePeriodSeconds: 40
+      containers:
+        - name: tienda
+          image: tienda:p6
+          imagePullPolicy: Never
+          ports: [{containerPort: 8080}]
+          envFrom: [{configMapRef: {name: tienda-config}}]
+          env:
+            - name: TIENDA_DB_CLAVE
+              valueFrom: {secretKeyRef: {name: tienda-secretos, key: db-clave}}
+          resources:
+            requests: {cpu: 250m, memory: 512Mi}
+            limits: {cpu: "1", memory: 768Mi}
+          startupProbe:
+            httpGet: {path: /actuator/health/liveness, port: 8080}
+            periodSeconds: 3
+            failureThreshold: 40
+          livenessProbe:
+            httpGet: {path: /actuator/health/liveness, port: 8080}
+            periodSeconds: 10
+          readinessProbe:
+            httpGet: {path: /actuator/health/readiness, port: 8080}
+            periodSeconds: 3
+          lifecycle:
+            preStop:
+              exec: {command: ["sleep", "5"]}   # deja que el Service saque al pod antes de apagar
+---
+apiVersion: v1
+kind: Service
+metadata: {name: tienda, namespace: default}
+spec:
+  type: NodePort
+  selector: {app: tienda}
+  ports: [{port: 8080, targetPort: 8080, nodePort: 30062}]

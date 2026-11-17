@@ -1,0 +1,60 @@
+# Infraestructura local de la plataforma: PostgreSQL, Kafka y la pila de observabilidad (otel-lgtm: Grafana, Tempo, Prometheus, Loki).
+#   docker compose up -d --wait     levanta todo con los puertos estándar
+#   docker compose down -v          lo baja y borra los datos
+# Kafka expone dos puertas: localhost:9092 para la tienda que ejecutas en tu equipo (mvn spring-boot:run)
+# y host.docker.internal:9094 para los pods de kind. Todos los puertos se pueden cambiar con variables, por ejemplo:
+#   PG_PUERTO=5433 docker compose up -d --wait
+name: plataforma
+
+services:
+  postgres:
+    image: postgres:18.7
+    environment:
+      POSTGRES_USER: tienda
+      POSTGRES_PASSWORD: tienda
+      POSTGRES_DB: tienda
+    ports: ["${PG_PUERTO:-5432}:5432"]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U tienda -d tienda"]
+      interval: 2s
+      retries: 30
+
+  kafka:
+    image: apache/kafka:4.3.1
+    environment:
+      KAFKA_NODE_ID: 1
+      KAFKA_PROCESS_ROLES: broker,controller
+      KAFKA_LISTENERS: PLAINTEXT://:${KAFKA_PUERTO:-9092},DOCKER://:${KAFKA_DOCKER_PUERTO:-9094},CONTROLLER://:9093
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:${KAFKA_PUERTO:-9092},DOCKER://host.docker.internal:${KAFKA_DOCKER_PUERTO:-9094}
+      KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT,DOCKER:PLAINTEXT
+      KAFKA_CONTROLLER_QUORUM_VOTERS: 1@localhost:9093
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+      KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
+      KAFKA_NUM_PARTITIONS: 3
+      KAFKA_HEAP_OPTS: "-Xmx512m -Xms256m"
+    ports:
+      - "${KAFKA_PUERTO:-9092}:${KAFKA_PUERTO:-9092}"
+      - "${KAFKA_DOCKER_PUERTO:-9094}:${KAFKA_DOCKER_PUERTO:-9094}"
+    healthcheck:
+      test: ["CMD-SHELL", "/opt/kafka/bin/kafka-topics.sh --bootstrap-server localhost:${KAFKA_PUERTO:-9092} --list >/dev/null 2>&1"]
+      interval: 3s
+      retries: 40
+
+  # Grafana en 3000 (usuario admin, clave admin), recibe trazas y métricas OTLP en 4318, Tempo en 3200, Prometheus en 9090.
+  observabilidad:
+    image: grafana/otel-lgtm:0.40.0
+    ports:
+      - "${GRAFANA_PUERTO:-3000}:3000"
+      - "${OTLP_PUERTO:-4318}:4318"
+      - "${TEMPO_PUERTO:-3200}:3200"
+      - "${PROMETHEUS_PUERTO:-9090}:9090"
+    volumes:
+      - ${PROMETHEUS_CONFIG:-./obs/prometheus.yaml}:/otel-lgtm/prometheus.yaml:ro
+      - ./alertas/alertas-tienda.yml:/otel-lgtm/alertas-tienda.yml:ro
+    healthcheck:
+      test: ["CMD-SHELL", "curl -sf http://localhost:3000/api/health && curl -sf http://localhost:3200/ready && curl -sf http://localhost:9090/-/ready"]
+      interval: 3s
+      retries: 60

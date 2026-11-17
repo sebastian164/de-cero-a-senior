@@ -1,0 +1,49 @@
+# Pipeline de integración y entrega continuas (GitHub Actions) de la tienda.
+# Para usarlo, cópialo a .github/workflows/tienda.yml en la raíz de tu repositorio.
+# Las pruebas levantan su propio PostgreSQL y Kafka con Testcontainers: el ejecutor de GitHub trae Docker.
+name: tienda
+on:
+  push: {branches: [main]}
+  pull_request:
+
+jobs:
+  construir-y-probar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with: {distribution: temurin, java-version: "21", cache: maven}
+      - name: Pruebas (incluye arquitectura y modularidad) y empaquetado
+        run: mvn -B verify
+      - name: Análisis de dependencias vulnerables (falla con una vulnerabilidad crítica)
+        run: |
+          command -v trivy >/dev/null || curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -s -- -b "$HOME/.local/bin"
+          export PATH="$HOME/.local/bin:$PATH"
+          trivy fs --scanners vuln,secret --severity CRITICAL --exit-code 1 --skip-version-check pom.xml
+      - uses: actions/upload-artifact@v4
+        with: {name: tienda-jar, path: target/tienda.jar}
+
+  imagen-y-despliegue:
+    needs: construir-y-probar
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with: {name: tienda-jar, path: target}
+      - name: Imagen
+        run: docker build -t "tienda:$GITHUB_SHA" .
+      - name: Análisis de la imagen (falla con una vulnerabilidad crítica)
+        run: |
+          command -v trivy >/dev/null || curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -s -- -b "$HOME/.local/bin"
+          export PATH="$HOME/.local/bin:$PATH"
+          trivy image --scanners vuln --severity CRITICAL --exit-code 1 --skip-version-check "tienda:$GITHUB_SHA"
+      - name: Despliegue (solo si el repositorio tiene el secreto KUBECONFIG de un clúster)
+        if: env.KUBECONFIG_DATOS != ''
+        env:
+          KUBECONFIG_DATOS: ${{ secrets.KUBECONFIG }}
+        run: |
+          echo "$KUBECONFIG_DATOS" > "$RUNNER_TEMP/kubeconfig"
+          export KUBECONFIG="$RUNNER_TEMP/kubeconfig"
+          kubectl set image deployment/tienda tienda="tienda:$GITHUB_SHA"
+          kubectl rollout status deployment/tienda --timeout=120s

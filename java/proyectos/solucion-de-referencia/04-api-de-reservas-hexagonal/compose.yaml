@@ -1,0 +1,18 @@
+# PostgreSQL para ejecutar la API a mano. Las pruebas NO lo necesitan: usan Testcontainers.
+#   docker compose up -d --wait     levanta la base en el puerto 5432
+#   docker compose down -v          la baja y borra los datos
+# Si el 5432 está ocupado en tu equipo: PG_PUERTO=5433 docker compose up -d --wait  (y RESERVAS_DB_URL con ese puerto)
+name: reservas
+
+services:
+  postgres:
+    image: postgres:18.7
+    environment:
+      POSTGRES_USER: reservas
+      POSTGRES_PASSWORD: reservas
+      POSTGRES_DB: reservas
+    ports: ["${PG_PUERTO:-5432}:5432"]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U reservas -d reservas"]
+      interval: 2s
+      retries: 30

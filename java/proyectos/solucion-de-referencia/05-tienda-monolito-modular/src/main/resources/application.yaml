@@ -1,0 +1,44 @@
+spring:
+  application.name: tienda
+  datasource:
+    url: ${TIENDA_DB_URL:jdbc:postgresql://localhost:5432/tienda}
+    username: ${TIENDA_DB_USUARIO:tienda}
+    password: ${TIENDA_DB_CLAVE:tienda}
+  kafka:
+    bootstrap-servers: ${KAFKA_SERVIDORES:localhost:9092}
+    consumer:
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+      acks: all
+    template.observation-enabled: true
+    listener.observation-enabled: true
+server:
+  port: ${PUERTO:8080}
+  shutdown: graceful
+spring.lifecycle.timeout-per-shutdown-phase: 20s
+management:
+  metrics.tags.application: tienda
+  metrics.distribution.percentiles-histogram.http.server.requests: true
+  # Trazas OTLP a un colector (el de la pila otel-lgtm del proyecto 6; si no hay colector, la tienda sigue funcionando). Muestreo completo: es una tienda de pruebas.
+  opentelemetry.tracing.export.otlp.endpoint: ${OTLP_TRAZAS:http://localhost:4318/v1/traces}
+  opentelemetry.resource-attributes.service.name: tienda
+  tracing.sampling.probability: ${TRAZAS_MUESTREO:1.0}
+  endpoints.web.exposure.include: health,prometheus,circuitbreakers
+  endpoint.health.probes.enabled: true
+  endpoint.health.show-details: always
+resilience4j:
+  circuitbreaker.instances.pasarela:
+    sliding-window-size: 4
+    minimum-number-of-calls: 4
+    failure-rate-threshold: 50
+    wait-duration-in-open-state: 2s
+    permitted-number-of-calls-in-half-open-state: 1
+  retry.instances.pasarela:
+    max-attempts: 2
+    wait-duration: 50ms
+    ignore-exceptions:
+      - io.github.resilience4j.circuitbreaker.CallNotPermittedException

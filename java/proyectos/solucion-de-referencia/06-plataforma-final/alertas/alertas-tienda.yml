@@ -1,0 +1,26 @@
+groups:
+  - name: tienda
+    rules:
+      - alert: TiendaErroresAltos
+        expr: |
+          sum(rate(http_server_requests_seconds_count{application="tienda",status=~"5.."}[5m]))
+            / sum(rate(http_server_requests_seconds_count{application="tienda"}[5m])) > 0.02
+        for: 2m
+        labels: {severity: page}
+        annotations:
+          summary: "Más del 2 % de las peticiones a la tienda responde 5xx"
+          runbook: |
+            1. Mitigar: si hubo un despliegue reciente, kubectl rollout undo deployment/tienda.
+            2. Mirar /actuator/circuitbreakers: si 'pasarela' está OPEN, el problema es la pasarela de pagos, no la tienda.
+            3. Revisar pedidos RECHAZADOS por motivo (SELECT motivo, count(*) FROM pedidos_pedidos GROUP BY 1).
+            4. Comunicar en el canal del incidente.
+      - alert: TiendaPasarelaCortada
+        expr: max(resilience4j_circuitbreaker_state{application="tienda",name="pasarela",state="open"}) == 1
+        for: 1m
+        labels: {severity: page}
+        annotations:
+          summary: "El cortacircuitos de la pasarela de pagos lleva un minuto abierto: no se están cobrando pedidos"
+          runbook: |
+            1. Confirmar con el proveedor de la pasarela si hay incidente; si es nuestro, revisar red y credenciales.
+            2. Mientras tanto los pedidos se rechazan rápido y el inventario se libera: no hay que corregir datos.
+            3. Cuando la pasarela vuelva, el cortacircuitos pasa a semiabierto solo (2 s en la prueba, configurable).

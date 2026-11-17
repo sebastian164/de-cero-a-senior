@@ -1,0 +1,30 @@
+# Configuración de Prometheus de la pila otel-lgtm 0.40.0 (la imagen trae esta misma) más lo marcado como "añadido".
+---
+global:
+  scrape_native_histograms: true
+otlp:
+  keep_identifying_resource_attributes: true
+  promote_resource_attributes:
+    - service.instance.id
+    - service.name
+    - service.namespace
+    - service.version
+    - deployment.environment
+    - deployment.environment.name
+    - k8s.namespace.name
+    - k8s.pod.name
+    - host.name
+storage:
+  tsdb:
+    out_of_order_time_window: 10m
+# --- añadido: las alertas de la tienda (alertas/alertas-tienda.yml se monta en /otel-lgtm/alertas-tienda.yml) ---
+rule_files:
+  - alertas-tienda.yml
+# --- añadido: Prometheus raspa las métricas de la tienda desplegada en kind (el NodePort sale por el puerto 8080 del anfitrión) ---
+scrape_configs:
+  - job_name: tienda
+    metrics_path: /actuator/prometheus
+    scrape_interval: 10s
+    scrape_timeout: 8s
+    static_configs:
+      - targets: ["host.docker.internal:8080"]

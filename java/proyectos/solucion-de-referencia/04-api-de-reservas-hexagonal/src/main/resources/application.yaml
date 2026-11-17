@@ -1,0 +1,11 @@
+spring:
+  datasource:
+    url: ${RESERVAS_DB_URL:jdbc:postgresql://localhost:5432/reservas}
+    username: ${RESERVAS_DB_USUARIO:reservas}
+    password: ${RESERVAS_DB_CLAVE:reservas}
+  security.oauth2.resourceserver.jwt:
+    # Clave pública que valida las firmas. En desarrollo la genera `java dev/Token.java` (ver el README);
+    # en producción se usaría issuer-uri apuntando a un proveedor de identidad.
+    public-key-location: ${JWT_CLAVE_PUBLICA:file:dev/jwt-publica.pem}
+server:
+  port: ${PUERTO:8080}

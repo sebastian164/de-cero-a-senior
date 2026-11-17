@@ -6,7 +6,7 @@ Reglas comunes:
 
 - Cada proyecto vive en su propio repositorio o en una carpeta `proyectos/<nombre>/solucion/`.
 - Lleva un `README` con cómo ejecutarlo, un `DECISIONES.md` con las decisiones de diseño y sus alternativas, y pruebas desde el proyecto 3.
-- No hay solución de referencia. La revisión se hace sobre tu entrega.
+- Hay una [solución de referencia](solucion-de-referencia/README.md) de cada proyecto, pero no es lo que se revisa: la revisión se hace sobre tu entrega. Intenta el proyecto antes de abrirla.
 - Antes de programar, escribe qué vas a construir y qué dejas fuera.
 - Los seis enunciados son realizables: se implementó y ejecutó una versión mínima de cada uno (Java 21, Spring Boot 4.1.1, PostgreSQL 18.7, Kafka 4.3.1, Testcontainers 2.0.5, Spring Security 7 y OpenTofu; el proyecto 6 en un clúster kind con una pila Grafana, Tempo y Prometheus). Lo que esa versión mínima **no** cubre, por proyecto: en el 1 al 3, las extensiones (revistas, promociones como datos, conversión de moneda); en el 4, el segundo adaptador de entrada y la validación de tokens contra un proveedor de identidad real (se probó con un JWT firmado con una clave local); en el 5, extraer un módulo a un servicio; en el 6, el despliegue en la nube, la ejecución del flujo en los servidores de GitHub (se ejecutó con `act`, sin su último paso de despliegue a un clúster remoto), el documento de diseño con estimaciones y el análisis estático de código. Y, por supuesto, lo que se evalúa en tu entrega: diseño, ADR, historial de commits y defensa.
 
@@ -104,3 +104,7 @@ Lleva el proyecto 5 (u otro de complejidad equivalente) a un estado de producci�
 **Entrega final:** una defensa de quince minutos del sistema: el problema, la arquitectura, las tres decisiones más importantes con sus alternativas, lo que harías distinto y cómo evolucionaría con diez veces la carga.
 
 **Se evalúa:** lo mismo que evalúa una entrevista o una revisión de arquitectura real: que puedas diseñar, implementar, probar, operar y defender una solución con criterio.
+
+## Soluciones de referencia
+
+Existe una implementación de referencia de cada proyecto en [solucion-de-referencia/](solucion-de-referencia/README.md): compila, pasa sus pruebas y arranca desde su carpeta, con su README y sus decisiones de diseño. **Intenta el proyecto antes de abrirla**: lo que se evalúa en tu entrega (diseño, decisiones, historial de commits y defensa) no está en ella, y ver la respuesta primero convierte el proyecto en lectura.

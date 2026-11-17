@@ -76,7 +76,7 @@ Cada taller trae su solución de referencia en `taller/solucion-de-referencia/`:
 
 Úsalas para guiarte cuando te atasques y para comparar cuando termines, no como punto de partida: ver la respuesta primero convierte un taller en lectura. Tu propia solución sigue yendo en `taller/solucion/`.
 
-Las soluciones se publican módulo a módulo a medida que se verifican. Hoy están en Java, niveles 1 a 9, y en arquitectura hexagonal.
+Las soluciones se publican módulo a módulo a medida que se verifican. Hoy están en Java (niveles 1 a 9 y los seis proyectos de la ruta) y en arquitectura hexagonal.
 
 ## Qué código se puede ejecutar tal cual
 
