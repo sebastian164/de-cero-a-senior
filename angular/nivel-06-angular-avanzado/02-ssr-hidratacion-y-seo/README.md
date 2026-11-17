@@ -34,7 +34,7 @@ No lo actives por defecto: un tablero interno tras inicio de sesión no gana nad
 
 Tras recibir el HTML, Angular "hidrata": reutiliza el DOM existente y le conecta los eventos, en lugar de destruirlo y volver a crearlo. La **hidratación incremental**, apoyada en `@defer`, hidrata partes de la página solo cuando hacen falta.
 
-**Desajuste de hidratación:** si el HTML del servidor y el que generaría el cliente difieren, hay errores y parpadeos. Causas típicas: fechas con la zona horaria del servidor, valores aleatorios, acceso a `window` al renderizar, HTML inválido.
+**Desajuste de hidratación:** si la **estructura** del HTML del servidor y la que generaría el cliente difieren, Angular lanza `NG0500` (solo en desarrollo; en producción no avisa) y la vista afectada queda inconsistente (Angular no recrea el DOM; comprobado con Angular 22.2). Causas típicas: HTML inválido que el navegador repara (una `<table>` sin `<tbody>`: "expected `<tr>` but found `<tbody>`"), manipulación directa del DOM y acceso a `window` al renderizar. Un desajuste solo de **texto** (fechas con la zona horaria del servidor, valores aleatorios) no da error: el navegador reescribe el texto sin avisar y el usuario ve el valor del servidor un instante; es un fallo silencioso.
 
 ### Código compatible con el servidor
 
@@ -72,9 +72,10 @@ Las peticiones hechas en el servidor se transfieren al cliente para no repetirla
 
 - SSR para una aplicación privada.
 - Acceso directo a APIs del navegador en constructores o plantillas.
-- Desajustes por fechas, aleatorios o identificadores generados.
+- Desajustes por fechas, aleatorios o identificadores generados (no avisan: el texto se reescribe en silencio).
+- Olvidar `security.allowedHosts` al activar SSR: el servidor responde 400 a todas las peticiones hasta declarar los hosts permitidos.
 - Peticiones duplicadas: una en el servidor y otra en el cliente.
-- Guardar estado por usuario en un servicio *singleton* del servidor: se comparte entre peticiones de usuarios distintos.
+- Guardar estado por usuario en una variable de módulo, una caché propia o un *singleton* que no pasa por la inyección de Angular: vive tanto como el proceso y se comparte entre peticiones de usuarios distintos. Un servicio `providedIn: 'root'` no se comparte: Angular lo crea de nuevo en cada petición (comprobado con tres peticiones seguidas).
 - Páginas de error con código 200.
 - Tokens o datos privados serializados en el HTML.
 

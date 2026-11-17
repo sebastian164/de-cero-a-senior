@@ -57,7 +57,7 @@ export const rutas: Routes = [
 export default [
   {
     path: '',
-    providers: [AlmacenPedidos],                       // vive mientras la funcionalidad esté activa
+    providers: [AlmacenPedidos],                       // una instancia para toda la funcionalidad (ver nota)
     children: [
       { path: '', component: ListaPedidosPagina },
       { path: ':id', component: DetallePedidoPagina },
@@ -65,6 +65,8 @@ export default [
   },
 ] satisfies Routes;
 ```
+
+El almacén provisto en `providers` de la ruta es una instancia propia de esa funcionalidad, compartida por todas sus páginas (se comprobó: la lista y el detalle ven el mismo objeto) y no existe fuera de ella. Pero **no se destruye al salir de la ruta**: el inyector de la ruta se crea la primera vez que se entra y se conserva mientras la aplicación esté abierta, de modo que al volver a `pedidos` el almacén conserva el estado de la visita anterior. Si necesitas empezar de cero en cada visita, reinicia el estado al entrar o provee el servicio en el componente de la página.
 
 El código de cada funcionalidad se descarga cuando se navega a ella. Dentro de una pantalla, `@defer` difiere partes pesadas (una gráfica, un editor) hasta que son visibles o se necesitan.
 

@@ -76,7 +76,7 @@ protected volver(): void {
 - Tokens de larga duración en `localStorage`.
 - Datos personales en parámetros de la URL.
 - Dependencias sin actualizar durante años.
-- CSP ausente o con `unsafe-inline` por todas partes.
+- CSP ausente o con `unsafe-inline` por todas partes. Con Angular, la CSP estricta de `script-src` exige desactivar el CSS crítico en línea del compilador de producción (`optimization.styles.inlineCritical: false`): inserta un `<script>` en línea que la política bloquea (comprobado en las 54 pantallas de la verificación).
 - Mensajes de error que revelan estructura interna.
 
 ## Taller

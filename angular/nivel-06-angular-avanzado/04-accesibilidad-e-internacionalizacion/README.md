@@ -68,6 +68,8 @@ Preparar la aplicación para varios idiomas y regiones no es solo traducir texto
 
 Angular ofrece internacionalización en tiempo de compilación (una versión de la aplicación por idioma, máximo rendimiento) y hay bibliotecas de traducción en ejecución (cambio de idioma sin recargar). Se elige según si el cambio de idioma en caliente es un requisito.
 
+Para usar el atributo `i18n` hay que agregar el paquete de localización (`ng add @angular/localize`): sin él, una plantilla con `i18n` falla al ejecutarse con `ReferenceError: $localize is not defined` (comprobado).
+
 ```html
 <!-- Mal: no se puede traducir bien -->
 <p>{{ 'Tienes ' + cantidad() + ' pedido' + (cantidad() === 1 ? '' : 's') }}</p>

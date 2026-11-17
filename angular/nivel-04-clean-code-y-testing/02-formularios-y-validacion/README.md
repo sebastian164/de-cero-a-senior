@@ -230,7 +230,7 @@ export class RegistroComponent {
 - Añadir un contacto es añadir un elemento a la lista del modelo.
 - La regla del documento es una función pura.
 
-La API de formularios con señales tiene más piezas que las mostradas, entre ellas una función `submit` y una directiva para el elemento `<form>` que se encargan del envío y de devolver errores del servidor a un campo concreto. Los nombres y las opciones se han ido afinando entre versiones: tómalos de la guía oficial (angular.dev, sección de formularios con señales) y no de este ejemplo, que es ilustrativo y no se compiló.
+La API de formularios con señales tiene más piezas que las mostradas, entre ellas una función `submit` y una directiva para el elemento `<form>` que se encargan del envío y de devolver errores del servidor a un campo concreto. Los nombres y las opciones se han ido afinando entre versiones: tómalos de la guía oficial (angular.dev, sección de formularios con señales) y no de este ejemplo, aunque este sí se compiló y se ejecutó con `@angular/forms` 22.2.
 
 ## Formularios reactivos: lo que vas a mantener
 
@@ -302,7 +302,7 @@ Cada campo con su `<label>` asociado; errores vinculados con `aria-describedby` 
 
 Construye el formulario de registro de una clínica con formularios con señales:
 
-1. Datos personales, documento según tipo (la regla cambia con el tipo), correo, clave con confirmación y fecha de nacimiento (mayor de edad).
+1. Datos personales, documento según tipo (la regla cambia con el tipo), correo, clave con confirmación y fecha de nacimiento válida (si la persona es menor de edad, aplica el punto 3).
 2. Una lista de contactos de emergencia: mínimo uno, máximo tres, con sus propias reglas.
 3. Un campo que solo existe y solo es obligatorio según otro (por ejemplo, el nombre del acudiente si es menor de edad).
 4. Comprobación de correo contra el servidor, con espera, y que no bloquee si el servidor falla.

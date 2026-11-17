@@ -38,7 +38,7 @@ Angular publica una versión mayor cada seis meses. Si usas una posterior, o una
 
 ## Sobre el código
 
-Todo el código de esta ruta es ilustrativo: no se compiló ni se ejecutó al preparar el curso. Hacerlo funcionar en un proyecto real es parte de cada taller.
+Los ejemplos "después" y las soluciones de los talleres de esta ruta se compilaron y se ejecutaron en una aplicación real con Angular 22.2, Vitest 5 y Playwright 1.65 (Node 26): pruebas unitarias, pruebas en el navegador y comprobación de que ninguna pantalla escribe errores en la consola. Los fragmentos de la sección "Antes" están mal a propósito. Donde la ejecución mostró un error del texto, el README de la sesión lo dice.
 
 ## Requisitos
 

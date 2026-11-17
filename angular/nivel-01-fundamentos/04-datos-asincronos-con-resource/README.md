@@ -115,7 +115,7 @@ protected readonly historial = rxResource({
 });
 ```
 
-El código es ilustrativo: no se compiló al preparar el curso.
+Comprobado: el ejemplo se compiló y se ejecutó con Angular 22.2 (pruebas unitarias y en el navegador).
 
 ## Dónde poner el recurso
 

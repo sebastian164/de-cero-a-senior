@@ -24,7 +24,7 @@ Las dependencias apuntan al dominio. `datos` implementa interfaces que el domini
 
 | Capa | Contiene | Puede importar |
 |---|---|---|
-| Dominio | Modelos, reglas, validaciones, cálculos, contratos (puertos) | Nada externo |
+| Dominio | Modelos, reglas, validaciones, cálculos, contratos (puertos) | Nada externo (los puertos pueden nombrar `Observable` de RxJS; nunca Angular) |
 | Aplicación | Casos de uso, almacenes | Dominio; lo mínimo de Angular |
 | Datos | Clientes HTTP, DTO, adaptadores, caché, almacenamiento local | Dominio, Angular, bibliotecas |
 | Interfaz | Componentes, tuberías, directivas | Aplicación, dominio |

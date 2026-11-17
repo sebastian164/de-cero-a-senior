@@ -148,7 +148,7 @@ protected readonly unidades = signal(1);
 - Un solo método cambia el valor y respeta los límites; `model` se encarga de avisar al padre.
 - No hay ganchos del ciclo de vida.
 
-El código es ilustrativo: no se compiló al preparar el curso.
+Comprobado: el ejemplo se compiló y se ejecutó con Angular 22.2 (pruebas unitarias y en el navegador).
 
 ## Errores comunes
 

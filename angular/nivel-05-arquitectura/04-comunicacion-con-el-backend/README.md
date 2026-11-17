@@ -77,6 +77,9 @@ const aErrorDeDominio = (error: HttpErrorResponse): Error => {
   return error;
 };
 
+// Solo se reintenta lo que puede arreglarse solo: fallos de red (estado 0) y 5xx.
+const esTransitorio = (error: unknown) => error instanceof HttpErrorResponse && (error.status === 0 || error.status >= 500);
+
 @Injectable({ providedIn: 'root' })
 export class PedidosApi {
   private readonly http = inject(HttpClient);
@@ -84,13 +87,15 @@ export class PedidosApi {
   obtener(id: string): Observable<Pedido> {
     return this.http.get<PedidoDto>(`/api/pedidos/${id}`).pipe(
       timeout(8000),
-      retry({ count: 2, delay: (_, intento) => timer(intento * 500) }),   // solo porque GET es idempotente
+      retry({ count: 2, delay: (error, intento) => (esTransitorio(error) ? timer(intento * 500) : throwError(() => error)) }),   // GET es idempotente; un 404 o un 422 no mejoran por insistir
       map(aPedido),
       catchError((error) => throwError(() => aErrorDeDominio(error))),
     );
   }
 }
 ```
+
+Comprobado con el servidor simulado: con `retry` sin filtrar, un 404 se pedía tres veces (el original reintentaba todo error, incluso los que no se arreglan solos), y cada intento tiene su propio tiempo límite de 8 s porque `timeout` va antes de `retry`: el peor caso son tres intentos y unos 26 s en total.
 
 ## Errores comunes
 

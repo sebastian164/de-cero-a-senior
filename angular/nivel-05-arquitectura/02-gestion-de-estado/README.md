@@ -109,8 +109,10 @@ export class ListaPedidosPagina {
   private readonly router = inject(Router);
   private readonly api = inject(PedidosApi);
 
-  readonly estado = input<EstadoPedido | 'todos'>('todos');   // enlazado al parámetro de consulta
-  readonly pagina = input(1, { transform: numberAttribute });
+  // Enlazadas al parámetro de consulta. Si la URL no trae el parámetro, `withComponentInputBinding` escribe
+  // `undefined` en la entrada (no conserva el valor por defecto): el `transform` lo devuelve.
+  readonly estado = input<EstadoPedido | 'todos', EstadoPedido | 'todos' | undefined>('todos', { transform: (v) => v ?? 'todos' });
+  readonly pagina = input(1, { transform: (v: unknown) => numberAttribute(v, 1) });
 
   protected readonly pedidos = toSignal(
     combineLatest([toObservable(this.estado), toObservable(this.pagina)]).pipe(
@@ -126,6 +128,10 @@ export class ListaPedidosPagina {
 ```
 
 El botón de atrás funciona, el enlace se puede compartir y no hay estado que sincronizar.
+
+Los parámetros solo se enlazan al componente **de la ruta**, no a sus hijos: si la página es un contenedor, ella recibe las entradas y se las pasa a sus hijas.
+
+Sin los `transform` anteriores, abrir `/pedidos` sin parámetros pedía `estado=undefined&pagina=NaN` al servidor (se comprobó con Angular 22.2): el enlace de entradas del router no respeta el valor por defecto cuando falta el parámetro.
 
 ## Errores comunes
 

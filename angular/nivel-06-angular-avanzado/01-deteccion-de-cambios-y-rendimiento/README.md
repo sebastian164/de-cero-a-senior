@@ -25,8 +25,10 @@ Consecuencia práctica: **señales + `OnPush` + datos inmutables** es la combina
 
 Dos consecuencias para quien mantiene código:
 
-- Al actualizar un proyecto existente, la migración automática marca como `Eager` los componentes que no declaraban estrategia, para que nada cambie de comportamiento. Esos componentes son tu lista de trabajo pendiente, no un estado final.
+- Al actualizar un proyecto existente, la migración automática marca como `Eager` los componentes que no declaraban estrategia (y cambia `Default` por `Eager` en los que la pedían), para que nada cambie de comportamiento; los que ya eran `OnPush` no se tocan (comprobado actualizando un proyecto de Angular 21 a 22). Esos componentes son tu lista de trabajo pendiente, no un estado final.
 - Un proyecto antiguo no se vuelve sin zona por actualizar la versión: se activa con `provideZonelessChangeDetection()` y se retira `zone.js`, después de comprobar que nada dependía de la revisión automática. El camino habitual es llevar primero todos los componentes a `OnPush` y luego quitar la zona.
+
+Dos precisiones comprobadas: en un proyecto sin zona, un componente `Eager` tampoco se actualiza solo cuando cambia un campo normal (solo se pinta si otra cosa provoca una revisión del anfitrión); y, con zona, un componente raíz `OnPush` impide que la revisión baje a sus hijos aunque la zona la dispare.
 
 Lo que se rompe al quitar la zona es siempre lo mismo: estado que cambia fuera de una señal, de una entrada o de un evento de la plantilla. Un `setTimeout` que asigna un campo normal, una biblioteca que llama a tu función desde fuera de Angular, un objeto modificado en el sitio.
 
