@@ -1,0 +1,59 @@
+{
+  "name": "De cero a senior",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu-24.04",
+  "features": {
+    "ghcr.io/devcontainers/features/java:1.8.3": {
+      "version": "21",
+      "jdkDistro": "tem",
+      "installMaven": "true",
+      "mavenVersion": "3.9.9"
+    },
+    "ghcr.io/devcontainers/features/node:2.1.2": {
+      "version": "26"
+    },
+    "ghcr.io/devcontainers/features/docker-in-docker:4.1.3": {},
+    "ghcr.io/devcontainers/features/kubectl-helm-minikube:1.2.2": {
+      "version": "1.36.1",
+      "helm": "none",
+      "minikube": "none"
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "vscjava.vscode-java-pack",
+        "vmware.vscode-boot-dev-pack",
+        "angular.ng-template",
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "ms-azuretools.vscode-docker",
+        "ms-kubernetes-tools.vscode-kubernetes-tools",
+        "redhat.vscode-yaml",
+        "karatelabs.karate",
+        "mongodb.mongodb-vscode",
+        "yzhang.markdown-all-in-one"
+      ],
+      "settings": {
+        "java.compile.nullAnalysis.mode": "automatic",
+        "java.configuration.updateBuildConfiguration": "automatic",
+        "java.import.exclusions": [
+          "**/node_modules/**",
+          "**/.metadata/**",
+          "**/archetype-resources/**",
+          "**/META-INF/maven/**",
+          "**/.verificacion/**"
+        ],
+        "files.watcherExclude": {
+          "**/.verificacion/**": true,
+          "**/node_modules/**": true
+        },
+        "search.exclude": {
+          "**/.verificacion/**": true,
+          "**/node_modules/**": true
+        }
+      }
+    }
+  },
+  "onCreateCommand": "bash .devcontainer/instalar-kind.sh",
+  "postCreateCommand": "java -version && mvn -v && node -v && npm -v && kubectl version --client && kind version"
+}

@@ -2,7 +2,7 @@
 
 > Intenta el taller antes de leer esto: ver la respuesta primero convierte el taller en lectura.
 
-Esta solución forma parte de la aplicación de referencia de la ruta, que contiene los talleres de `react-next`, `typescript` y `frontend-senior` en un solo proyecto. Su código está en [`../../../../solucion-de-referencia-app/talleres/react-next/nivel-05-arquitectura/04-renderizado-y-despliegue/`](../../../../solucion-de-referencia-app/talleres/react-next/nivel-05-arquitectura/04-renderizado-y-despliegue/).
+Esta solución forma parte de la aplicación de referencia de la ruta, que contiene los talleres de `react-next`, `typescript` y `frontend-senior` en un solo proyecto. Esta solución no tiene archivos propios bajo `talleres/`: su código está en `src/` de [la aplicación](../../../../solucion-de-referencia-app/) y su prueba de navegador en [`e2e/n5-04.spec.ts`](../../../../solucion-de-referencia-app/e2e/n5-04.spec.ts).
 
 ## Cómo ejecutar sus pruebas
 

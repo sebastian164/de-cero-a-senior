@@ -1,0 +1,2 @@
+Carpeta de relleno: mkdocs.yml exige un docs_dir que exista, pero hooks.py lo
+cambia a la raiz del repositorio antes de leer los archivos (ver hooks.py).

@@ -4,6 +4,13 @@ Ingeniería de software desde los fundamentos hasta el criterio de un senior, en
 
 Este repo no es una lista de definiciones para memorizar. Es un curso práctico en el que cada concepto se aprende viendo código que funciona pero está mal diseñado, entendiendo por qué duele, corrigiéndolo y después resolviendo un taller sin la solución a la vista.
 
+## Léelo en la web o ejecútalo sin instalar nada
+
+- **Sitio del curso:** [sebastian164.github.io/de-cero-a-senior](https://sebastian164.github.io/de-cero-a-senior/). Menú por rutas y niveles, buscador en español, tema claro y oscuro, y las soluciones de referencia plegadas al final de cada taller.
+- **Un entorno listo en el navegador:** abre el repositorio en GitHub Codespaces y tendrás JDK 21, Maven, Node, Docker, kubectl y kind ya instalados para ejecutar los talleres y sus soluciones. El plan gratuito de GitHub incluye una cuota mensual de horas.
+
+[![Abrir en GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/sebastian164/de-cero-a-senior)
+
 ## Para quién es
 
 - Para quien empieza y quiere bases sólidas.

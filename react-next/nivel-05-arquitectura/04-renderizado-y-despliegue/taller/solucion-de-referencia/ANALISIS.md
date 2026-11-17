@@ -1,6 +1,6 @@
 # Taller nivel-05/04: renderizado y despliegue
 
-> **Dónde está el código.** Vive en la aplicación de referencia, `react-next/solucion-de-referencia-app/` (desde la raíz del curso). Los archivos sin ruta (`taller.test.tsx`, `despues/…`, `ci/…`, etc.) están en `react-next/solucion-de-referencia-app/talleres/react-next/nivel-05-arquitectura/04-renderizado-y-despliegue/`; las rutas que empiezan por `src/`, `proyectos/`, `e2e/` o `scripts/` cuelgan de la raíz de esa aplicación. Los datos de `mediciones/` y las capturas de `capturas/` se generan al ejecutar las pruebas de navegador.
+> **Dónde está el código.** Vive en la aplicación de referencia, `react-next/solucion-de-referencia-app/` (desde la raíz del curso). Esta solución no tiene archivos propios bajo `talleres/`; las rutas que empiezan por `src/`, `proyectos/`, `e2e/` o `scripts/` cuelgan de la raíz de esa aplicación. Los datos de `mediciones/` y las capturas de `capturas/` se generan al ejecutar las pruebas de navegador.
 
 Next.js 16.4.6, `cacheComponents: true`, `output: 'standalone'`. Código en `src/app/(principal)/n5/04-renderizado/` (doce pantallas), `src/app/sitemap.ts` y `src/app/robots.ts`.
 Comprobaciones: `scripts/comprobar-estrategias.py` (lee la salida de `next build`), `e2e/n5-04.spec.ts` y `scripts/replicas.sh` (Docker). Cifras exactas: `mediciones/n5-04.json` y `mediciones/n5-04-replicas.json`.

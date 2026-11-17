@@ -1,0 +1,101 @@
+# Sitio del curso "De cero a senior". Los README son la fuente; todo lo demás
+# (menú, soluciones plegadas, enlaces a GitHub) lo resuelve hooks.py al construir.
+site_name: De cero a senior
+site_description: >-
+  Ingeniería de software desde los fundamentos hasta el criterio de un senior,
+  en tres rutas: Java con Spring Boot, Angular, y React con Next.js.
+site_url: https://sebastian164.github.io/de-cero-a-senior/
+repo_url: https://github.com/sebastian164/de-cero-a-senior
+repo_name: sebastian164/de-cero-a-senior
+copyright: Curso "De cero a senior"
+
+# hooks.py lo cambia a la raíz del repositorio (site_dir quedaría dentro de docs_dir
+# y MkDocs no lo permite en el YAML).
+docs_dir: paginas
+site_dir: site
+
+hooks:
+  - hooks.py
+
+use_directory_urls: true
+
+theme:
+  name: material
+  language: es
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/weather-night
+        name: Cambiar a tema oscuro
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/weather-sunny
+        name: Cambiar a tema claro
+  features:
+    - navigation.footer
+    - navigation.indexes
+    - navigation.top
+    - navigation.tracking
+    - toc.follow
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+  icon:
+    repo: fontawesome/brands/github
+
+plugins:
+  - search:
+      lang: es
+
+# Los README del curso son la fuente. Cualquier carpeta que no deba ni recorrerse
+# se corta aquí; el resto lo decide on_files (solo se publican páginas).
+exclude_docs: |
+  .git/
+  .github/
+  .vscode/
+  .devcontainer/
+  .verificacion/
+  node_modules/
+  target/
+  build/
+  dist/
+  out/
+  sitio/
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - tables
+  - toc:
+      permalink: true
+      toc_depth: 3
+      slugify: !!python/object/apply:pymdownx.slugs.slugify
+        kwds:
+          case: lower
+  - pymdownx.details
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tilde
+
+validation:
+  nav:
+    omitted_files: info
+    not_found: warn
+    absolute_links: warn
+  links:
+    not_found: warn
+    absolute_links: warn
+    unrecognized_links: warn
+    anchors: warn

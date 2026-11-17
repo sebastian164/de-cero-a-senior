@@ -15,3 +15,5 @@ hexagonal/proyecto/salida/
 
 # Configuración local de agentes: no forma parte del curso.
 .claude/
+# Salida de la construcción del sitio (MkDocs).
+sitio/site/
