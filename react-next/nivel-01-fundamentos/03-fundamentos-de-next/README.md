@@ -26,6 +26,8 @@ app/
     └── pedidos/route.ts    endpoint HTTP
 ```
 
+Si el segmento tiene `loading.tsx`, la respuesta ya empezó a enviarse con estado 200 cuando se ejecuta `notFound()`: Next muestra `not-found.tsx` y añade `noindex`, pero el estado HTTP no es 404 (comprobado con Next.js 16.4.6).
+
 Cada carpeta es un segmento de la URL. Los archivos especiales definen qué se muestra en cada situación.
 
 ### Componentes de servidor y de cliente

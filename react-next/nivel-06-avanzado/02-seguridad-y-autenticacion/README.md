@@ -73,7 +73,7 @@ export async function eliminarPedido(entrada: unknown): Promise<Resultado> {
   if (!pedido || pedido.clienteId !== usuario.id) return { ok: false, error: 'Pedido no encontrado' };
 
   await bd.pedido.delete({ where: { id: pedido.id } });
-  revalidateTag(`pedidos-${usuario.id}`);
+  updateTag(`pedidos-${usuario.id}`);                      // Next.js 16: ver la nota de nivel-05/02
   return { ok: true };
 }
 ```

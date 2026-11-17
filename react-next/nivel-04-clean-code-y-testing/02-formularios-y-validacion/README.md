@@ -92,17 +92,37 @@ Los valores se devuelven al formulario para que el usuario no pierda lo escrito,
 Cuando hace falta validar mientras se escribe, campos dinámicos o dependencias entre campos:
 
 ```tsx
-const { register, handleSubmit, formState: { errors, isSubmitting }, setError } =
-  useForm<DatosRegistro>({ resolver: zodResolver(EsquemaRegistro), mode: 'onBlur' });
+// registro/formulario-en-vivo.tsx
+'use client';
 
-const enviar = handleSubmit(async (datos) => {
-  const resultado = await registrarEnServidor(datos);
-  if (resultado.errores) {
-    Object.entries(resultado.errores).forEach(([campo, mensajes]) =>
-      setError(campo as keyof DatosRegistro, { message: mensajes?.[0] }));     // errores del servidor al campo
-  }
-});
+export function FormularioRegistroEnVivo() {
+  const { register, handleSubmit, formState: { errors, isSubmitting }, setError } =
+    useForm<DatosRegistro>({ resolver: zodResolver(EsquemaRegistro), mode: 'onBlur' });
+
+  const enviar = handleSubmit(async (datos) => {
+    const resultado = await registrarEnServidor(datos);
+    if (resultado.errores) {
+      Object.entries(resultado.errores).forEach(([campo, mensajes]) =>
+        setError(campo as keyof DatosRegistro, { message: mensajes?.[0] }));     // errores del servidor al campo
+    }
+  });
+
+  return (
+    <form onSubmit={enviar} noValidate>
+      <Campo etiqueta="Correo" type="email" autoComplete="email" {...register('correo')} error={errors.correo?.message} />
+      <Campo etiqueta="Documento" inputMode="numeric" {...register('documento')} error={errors.documento?.message} />
+      <Campo etiqueta="Clave" type="password" autoComplete="new-password" {...register('clave')} error={errors.clave?.message} />
+      <Campo etiqueta="Confirma la clave" type="password" autoComplete="new-password"
+             {...register('confirmacion')} error={errors.confirmacion?.message} />
+      <button type="submit" disabled={isSubmitting}>{isSubmitting ? 'Registrando…' : 'Registrarme'}</button>
+    </form>
+  );
+}
 ```
+
+Con `mode: 'onBlur'` cada campo se valida al salir de él, con el mismo esquema. La versión con acción de servidor, en cambio, solo valida al enviar. `registrarEnServidor` es una acción de servidor que devuelve el mismo `EstadoRegistro` que `registrar`, sin redirigir.
+
+Una advertencia para Next.js 16 con `cacheComponents: true` (comprobada con 16.4.6): si en la misma página conviven un formulario de biblioteca con lista dinámica de campos (`useFieldArray`) y uno de acción de servidor, el prerender de la página se aborta y el formulario de acción de servidor deja de salir en el HTML (sin JavaScript no habría nada que enviar). Carga el formulario de biblioteca solo en el navegador (`next/dynamic` con `ssr: false`); necesita JavaScript de todos modos. Y no evalúes `new Date()` al cargar el módulo del esquema (`.max(new Date())`): queda congelado en el primer arranque; compara dentro de un `refine`.
 
 ## La regla que no cambia
 

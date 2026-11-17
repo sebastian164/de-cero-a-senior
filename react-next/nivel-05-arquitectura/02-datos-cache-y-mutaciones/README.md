@@ -77,10 +77,12 @@ export async function cancelarPedido(pedidoId: string): Promise<Resultado> {
   if (!sePuedeCancelar(pedido, new Date())) return { ok: false, error: 'El pedido ya no se puede cancelar' };
 
   await marcarCancelado(pedido.id);
-  revalidateTag(`pedidos-${usuario.id}`);
+  updateTag(`pedidos-${usuario.id}`);                   // quien muta ve su cambio en la siguiente lectura
   return { ok: true };
 }
 ```
+
+**Nota de versión (Next.js 16).** `revalidateTag` exige un segundo argumento: el perfil de vida de la caché (`revalidateTag(etiqueta, 'max')`). Con un solo argumento ya no compila. Además funciona como *stale-while-revalidate*: la siguiente lectura todavía recibe el dato viejo mientras se regenera en segundo plano. Dentro de una acción de servidor, donde el usuario espera ver su propio cambio, se usa `updateTag(etiqueta)`, que expira la entrada de inmediato. `revalidateTag(etiqueta, 'max')` queda para los manejadores de ruta y los *webhooks*. Las dos se importan de `next/cache`. Comprobado con Next.js 16.4.6 (`next build` y `next start`): tras `revalidateTag(etiqueta, 'max')` la lectura siguiente recibió el dato viejo y la posterior el nuevo; tras `updateTag`, la respuesta de la propia acción ya trajo el dato nuevo. Un detalle observado: en una ruta prerenderizada con `generateStaticParams`, tras `updateTag` solo la respuesta de la propia acción trajo el dato nuevo; las peticiones posteriores, incluida la recarga de quien mutó y una pestaña nueva, siguieron recibiendo el valor anterior (observado con 16.4.6; es comportamiento de esa versión, no un contrato), así que para páginas estáticas que otros leen usa `revalidateTag(etiqueta, 'max')`. Y un *webhook* debe autenticar a quien llama (un secreto compartido o, mejor, una firma del cuerpo): si no, cualquiera puede vaciar tu caché.
 
 Los errores esperados se **devuelven** como valores; las excepciones quedan para lo inesperado.
 

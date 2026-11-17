@@ -83,7 +83,7 @@ new Intl.DateTimeFormat('es-CO', { dateStyle: 'long', timeZone: 'America/Bogota'
 new Intl.PluralRules('es').select(cantidad);
 ```
 
-**Cuidado con la hidratación:** formatear una fecha con la zona horaria del servidor y luego con la del navegador produce HTML distinto y un error de hidratación. Fija la zona horaria explícitamente, o formatea solo en un lado.
+**Cuidado con la hidratación:** formatear una fecha con la zona horaria del servidor y luego con la del navegador produce HTML distinto y un error de hidratación. Fija la zona horaria explícitamente, o formatea solo en un lado. Y no es solo la zona horaria: el texto exacto que producen `Intl` y `toLocaleString` depende del motor. Comprobado con Node 26, Chromium y WebKit: `timeStyle: 'short'` da `9:30 p. m.` en Node y Chromium pero `9:30 p.m.` en WebKit, y una moneda sin `maximumFractionDigits` da `$ 60.000,00` en WebKit frente a `$ 60.000` en los otros. Si el servidor y el navegador pueden diferir, fija también esas opciones (`hour12: false`, `maximumFractionDigits: 0`) o formatea solo en el cliente; si no, React informa el error de hidratación #418.
 
 ### SEO multilingüe
 

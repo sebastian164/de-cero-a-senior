@@ -65,23 +65,46 @@ Cada dependencia es peso, superficie de ataque y trabajo de mantenimiento. Antes
 ## Ejemplo: flujo de integración continua
 
 ```yaml
+name: calidad
+on:
+  pull_request:
+  push:
+    branches: [main]
+
 jobs:
   calidad:
+    runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with: { node-version: 26, cache: npm }
       - run: npm ci
       - run: npm run lint
       - run: npm run typecheck
       - run: npm test -- --coverage
-      - run: npm run build              # falla si se supera el presupuesto de tamaño
+      - run: npm run build # falla si se supera el presupuesto de tamaño
       - run: npm audit --audit-level=high
   e2e:
     needs: calidad
+    runs-on: ubuntu-latest
     steps:
-      - run: npx playwright test        # contra el entorno de vista previa
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with: { node-version: 26, cache: npm }
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: npm run build
+      - run: npx playwright test # contra la aplicación construida (next start); accesibilidad con axe en cada pantalla
+      - run: npm run lighthouse # arranca y apaga su propio next start; falla si baja el presupuesto de rendimiento
   desplegar:
     needs: e2e
     if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Desplegar el artefacto ya construido" # el paso concreto depende de la plataforma
 ```
+
+Cada trabajo corre en una máquina limpia: por eso cada uno clona el repositorio (`checkout`) e instala dependencias, y un trabajo sin `runs-on` ni pasos no es válido. Angular falla en `build` si se supera el presupuesto definido en `angular.json`; Next.js no trae presupuestos, así que el *script* `build` debe ejecutar, después de `next build`, una comprobación propia del tamaño (o una herramienta como size-limit).
 
 ## Errores comunes
 

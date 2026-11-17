@@ -27,7 +27,7 @@ React y, sobre todo, Next.js cambian rápido. Esta ruta usa componentes de funci
 
 ## Sobre el código
 
-Todo el código de esta ruta es ilustrativo: no se compiló ni se ejecutó al preparar el curso. Hacerlo funcionar en un proyecto real es parte de cada taller.
+El código de esta ruta se verificó en una aplicación Next.js 16.4.6 real (React 19.3.1, TypeScript 5.9.3, Node 26, PostgreSQL 17): los ejemplos "después" y las soluciones de los talleres se compilaron con `next build`, se ejecutaron con `next start` y se recorrieron en un navegador (Playwright 1.65.1, Chromium) sin errores de consola, con las pruebas de cada taller en Vitest 4.1.12. Aun así, tu versión puede diferir: ante cualquier diferencia manda la documentación oficial. Hacerlo funcionar en tu proyecto sigue siendo parte de cada taller.
 
 ## Requisitos
 

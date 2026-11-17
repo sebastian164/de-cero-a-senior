@@ -52,9 +52,9 @@ it('avisa cuando se cancela un pedido', async () => {
   expect(alCancelar).toHaveBeenCalledWith('p1');
 });
 
-it('muestra el error junto al campo', async () => {
+it('muestra el error junto al campo al salir de él', async () => {
   const usuario = userEvent.setup();
-  render(<FormularioRegistro />);
+  render(<FormularioRegistroEnVivo />);          // la versión con biblioteca: valida al salir del campo
 
   await usuario.type(screen.getByLabelText('Correo'), 'no-es-correo');
   await usuario.tab();

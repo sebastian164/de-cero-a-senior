@@ -79,7 +79,7 @@ function PaginaPedidos() {
   return (
     <section>
       <ListaPedidos pedidos={pedidos} onEliminar={eliminar} />
-      <p>Total: {total.toLocaleString('es-CO', { style: 'currency', currency: 'COP' })}</p>
+      <p>Total: {total.toLocaleString('es-CO', { style: 'currency', currency: 'COP', maximumFractionDigits: 0 })}</p>
     </section>
   );
 }

@@ -108,7 +108,7 @@ export const cancelarPedidoCasoDeUso = crearCancelarPedido(repositorioPostgres, 
 export async function cancelarPedido(pedidoId: string) {
   const usuario = await exigirUsuario();
   const resultado = await cancelarPedidoCasoDeUso(pedidoId, usuario.id);
-  if (resultado.ok) revalidateTag(`pedidos-${usuario.id}`);
+  if (resultado.ok) updateTag(`pedidos-${usuario.id}`);   // Next.js 16: ver la nota de la sesión 02
   return resultado;
 }
 ```
