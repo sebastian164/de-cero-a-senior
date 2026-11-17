@@ -1,0 +1,17 @@
+kata-antes        lineas 23/23 (100 %)  ramas 12/12 (100 %)  mutantes 17  muertos 16  sobreviven 1  sin cobertura 0
+    SURVIVED kata.Calculadora.lambda$rechazarNegativos$2 línea 50: ConditionalsBoundaryMutator
+kata-experimento  lineas 25/25 (100 %)  ramas 12/12 (100 %)  mutantes 17  muertos 10  sobreviven 7  sin cobertura 0
+    SURVIVED kata.Calculadora.lambda$rechazarNegativos$2 línea 56: ConditionalsBoundaryMutator
+    SURVIVED kata.Calculadora.lambda$sumar$0 línea 26: ConditionalsBoundaryMutator
+    SURVIVED kata.Calculadora.lambda$sumar$0 línea 26: NegateConditionalsMutator
+    SURVIVED kata.Calculadora.lambda$sumar$0 línea 26: returns.BooleanTrueReturnValsMutator
+    SURVIVED kata.Calculadora.numeros línea 37: returns.EmptyObjectReturnValsMutator
+    SURVIVED kata.Calculadora.sumar línea 25: VoidMethodCallMutator
+    SURVIVED kata.Calculadora.sumar línea 26: returns.PrimitiveReturnsMutator
+kata-despues      lineas 25/25 (100 %)  ramas 12/12 (100 %)  mutantes 17  muertos 17  sobreviven 0  sin cobertura 0
+bicis-antes       lineas 38/42 (90 %)  ramas 12/12 (100 %)  mutantes 33  muertos 29  sobreviven 3  sin cobertura 1
+    SURVIVED bicis.Tarifa.diasIniciados línea 42: MathMutator
+    SURVIVED bicis.DevolverBicicleta.ejecutar línea 30: VoidMethodCallMutator
+    SURVIVED bicis.DevolverBicicleta.ejecutar línea 32: returns.PrimitiveReturnsMutator
+    NO_COVERAGE bicis.RelojDelSistema.ahora línea 17: returns.NullReturnValsMutator
+bicis-despues     lineas 42/42 (100 %)  ramas 12/12 (100 %)  mutantes 33  muertos 33  sobreviven 0  sin cobertura 0

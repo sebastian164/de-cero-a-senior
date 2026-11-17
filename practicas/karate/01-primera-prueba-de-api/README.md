@@ -226,6 +226,8 @@ Para ejecutarlo hace falta un proyecto con la dependencia de Karate para JUnit (
 
 **Entrega:** rama `taller/karate-01`, con el proyecto en `taller/solucion/` y `ANALISIS.md`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## En el trabajo real
 
 Las pruebas de API son las que más valor dan por línea escrita en un servicio: son rápidas, no se rompen con los refactors internos y fallan cuando se rompe lo que un cliente usa. Corren en la integración continua contra un ambiente levantado para eso.

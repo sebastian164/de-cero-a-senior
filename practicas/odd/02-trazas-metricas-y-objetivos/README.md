@@ -156,6 +156,8 @@ Con eso, el mismo viernes es distinto: la alerta suena porque el presupuesto se 
 
 **Entrega:** rama `taller/odd-02`, con el código, el Compose y los paneles exportados en `taller/solucion/`, y `ANALISIS.md`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## En el trabajo real
 
 En Spring Boot, buena parte de esto viene hecho: Actuator y Micrometer exponen métricas y trazas, y el agente de OpenTelemetry instrumenta lo demás. Lo que no viene hecho, y es tu trabajo, son los atributos del negocio, los objetivos y las alertas. Y un aviso de costos: la telemetría se paga por volumen, y una etiqueta mal elegida puede multiplicar la factura.

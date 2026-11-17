@@ -1,0 +1,25 @@
+# El entorno del README (grafana/otel-lgtm) con otros puertos para no chocar con los de tu máquina,
+# más el nginx con el módulo OpenTelemetry delante de la API.
+#   VERSION_LGTM=0.40.0 docker compose -p odd02 up -d
+services:
+  observabilidad:
+    image: grafana/otel-lgtm:${VERSION_LGTM:?define VERSION_LGTM con la etiqueta vigente de la imagen}
+    ports:
+      - "48300:3000"     # la interfaz web
+      - "48317:4317"     # OTLP por gRPC
+      - "48318:4318"     # OTLP por HTTP
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fsS http://localhost:3000/api/health || exit 1"]
+      interval: 5s
+      timeout: 3s
+      retries: 60
+  web:
+    image: nginx:stable-alpine-otel
+    profiles: ["web"]
+    environment:
+      DESTINO_API: ${DESTINO_API:-http://host.docker.internal:48310}
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./default.conf.template:/etc/nginx/templates/default.conf.template:ro
+    ports:
+      - "48301:8080"

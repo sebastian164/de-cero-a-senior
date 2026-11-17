@@ -1,0 +1,54 @@
+name: karate
+
+# Humo en cada cambio; la suite completa en los pull requests. El informe se publica siempre.
+#
+# Raíz del repositorio (la carpeta donde vive .github/):
+#   .github/workflows/karate.yml   este flujo
+#   ci/compose.yaml                construye y levanta la API (contexto: api/)
+#   api/Servidor.java              la API que se prueba (en el repositorio del curso es docker-kubernetes/app/api/)
+#   pom.xml y src/test/java/       la suite de Karate
+# Variables y secretos del repositorio: el secreto CLAVE_CI (la clave de la API) y, si se quiere otro puerto, la variable PUERTO_CI.
+on:
+  push:
+  pull_request:
+
+jobs:
+  api:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    env:
+      CLAVE_CI: ${{ secrets.CLAVE_CI }}
+      PUERTO_CI: ${{ vars.PUERTO_CI || '8081' }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "21"
+      - name: Construir la imagen de la API y levantarla
+        run: docker compose -f ci/compose.yaml up -d --build --wait
+      - name: Esperar a /salud/listo
+        run: |
+          for _ in $(seq 1 60); do
+            [ "$(curl -s -o /dev/null -w '%{http_code}' "http://localhost:$PUERTO_CI/salud/listo")" = 200 ] && exit 0
+            sleep 1
+          done
+          echo "la API no quedó lista" >&2
+          docker compose -f ci/compose.yaml logs api
+          exit 1
+      - name: Suite de humo (en cada cambio)
+        if: github.event_name != 'pull_request'
+        run: mvn -B test -Dbitacora.clave="$CLAVE_CI" -Dbitacora.url="http://localhost:$PUERTO_CI" -Detiquetas=@humo -Dhilos=4
+      - name: Suite completa (en los pull requests)
+        if: github.event_name == 'pull_request'
+        run: mvn -B test -Dbitacora.clave="$CLAVE_CI" -Dbitacora.url="http://localhost:$PUERTO_CI" -Dhilos=4
+      - name: Publicar el informe, pase o falle
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: informe-karate
+          path: target/karate-reports
+          if-no-files-found: warn
+      - name: Bajar la API
+        if: always()
+        run: docker compose -f ci/compose.yaml down -v

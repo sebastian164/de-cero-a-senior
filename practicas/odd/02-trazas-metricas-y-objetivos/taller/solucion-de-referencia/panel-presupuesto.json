@@ -1,0 +1,26 @@
+{
+  "title": "Bitácora: servicio y presupuesto de error",
+  "uid": "bitacora-slo",
+  "schemaVersion": 39,
+  "time": { "from": "now-1h", "to": "now" },
+  "panels": [
+    { "id": 1, "type": "timeseries", "title": "Tasa por ruta (peticiones/s)", "gridPos": { "x": 0, "y": 0, "w": 12, "h": 8 },
+      "datasource": { "type": "prometheus", "uid": "prometheus" },
+      "targets": [ { "refId": "A", "expr": "sum by (ruta) (rate(bitacora_peticiones_total[1m]))", "legendFormat": "{{ruta}}" } ] },
+    { "id": 2, "type": "timeseries", "title": "Errores: proporción 5xx", "gridPos": { "x": 12, "y": 0, "w": 12, "h": 8 },
+      "datasource": { "type": "prometheus", "uid": "prometheus" },
+      "targets": [ { "refId": "A", "expr": "sum(rate(bitacora_peticiones_total{clase_estado=\"5xx\"}[1m])) / sum(rate(bitacora_peticiones_total[1m]))", "legendFormat": "5xx" } ] },
+    { "id": 3, "type": "timeseries", "title": "Duración p95 por ruta (ms)", "gridPos": { "x": 0, "y": 8, "w": 12, "h": 8 },
+      "datasource": { "type": "prometheus", "uid": "prometheus" },
+      "targets": [ { "refId": "A", "expr": "histogram_quantile(0.95, sum by (le, ruta) (rate(bitacora_duracion_milliseconds_bucket[5m])))", "legendFormat": "{{ruta}}" } ] },
+    { "id": 4, "type": "stat", "title": "Guardar una nota: SLI (buenas / total)", "gridPos": { "x": 12, "y": 8, "w": 6, "h": 8 },
+      "datasource": { "type": "prometheus", "uid": "prometheus" },
+      "targets": [ { "refId": "A", "expr": "sum(increase(bitacora_duracion_milliseconds_bucket{ruta=\"/api/notas\",metodo=\"POST\",clase_estado=\"2xx\",le=\"500\"}[1h])) / sum(increase(bitacora_duracion_milliseconds_count{ruta=\"/api/notas\",metodo=\"POST\"}[1h]))" } ] },
+    { "id": 5, "type": "gauge", "title": "Presupuesto de error que queda (1 = intacto, 0 = agotado)", "gridPos": { "x": 18, "y": 8, "w": 6, "h": 8 },
+      "datasource": { "type": "prometheus", "uid": "prometheus" },
+      "targets": [ { "refId": "A", "expr": "clamp_min(1 - ((1 - (sum(increase(bitacora_duracion_milliseconds_bucket{ruta=\"/api/notas\",metodo=\"POST\",clase_estado=\"2xx\",le=\"500\"}[1h])) / sum(increase(bitacora_duracion_milliseconds_count{ruta=\"/api/notas\",metodo=\"POST\"}[1h])))) / 0.01), 0)" } ] },
+    { "id": 6, "type": "stat", "title": "Notas guardadas (contador de negocio)", "gridPos": { "x": 0, "y": 16, "w": 12, "h": 6 },
+      "datasource": { "type": "prometheus", "uid": "prometheus" },
+      "targets": [ { "refId": "A", "expr": "sum by (resultado) (increase(bitacora_notas_guardadas_total[1h]))", "legendFormat": "{{resultado}}" } ] }
+  ]
+}

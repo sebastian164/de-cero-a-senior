@@ -1,0 +1,20 @@
+# Tres copias de la API en la máquina anfitriona (HOST_IP es su IPv4), repartidas por turnos.
+upstream bitacora {
+    server ${HOST_IP}:48410 max_fails=0;
+    server ${HOST_IP}:48411 max_fails=0;
+    server ${HOST_IP}:48412 max_fails=0;
+}
+
+server {
+    listen 8080;
+
+    location / {
+        return 200 "web\n";
+    }
+
+    location /api/ {
+        proxy_pass http://bitacora;
+        proxy_set_header Host $host;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    }
+}

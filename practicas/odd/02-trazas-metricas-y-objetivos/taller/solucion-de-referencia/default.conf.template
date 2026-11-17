@@ -1,0 +1,17 @@
+server {
+    listen 8080;
+
+    location / {
+        return 200 "web\n";
+    }
+
+    # La máquina anfitriona se resuelve por IPv4 y IPv6 y en Docker Desktop la IPv6 no responde: se resuelve solo la IPv4.
+    resolver 127.0.0.11 ipv6=off valid=30s;
+
+    location /api/ {
+        set $destino ${DESTINO_API};
+        proxy_pass $destino;
+        proxy_set_header Host $host;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    }
+}

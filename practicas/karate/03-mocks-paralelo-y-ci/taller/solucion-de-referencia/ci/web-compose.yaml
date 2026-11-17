@@ -1,0 +1,11 @@
+# La web de Bitácora (nginx) apuntando al simulador que corre en la máquina, para ver qué hace la página con cada fallo.
+services:
+  web:
+    image: nginx:1.27-alpine
+    environment:
+      DESTINO_API: http://host.docker.internal:48090
+    volumes:
+      - ../../../../../../docker-kubernetes/app/web/default.conf.template:/etc/nginx/templates/default.conf.template:ro
+      - ../../../../../../docker-kubernetes/app/web/index.html:/usr/share/nginx/html/index.html:ro
+    ports:
+      - "48082:8080"

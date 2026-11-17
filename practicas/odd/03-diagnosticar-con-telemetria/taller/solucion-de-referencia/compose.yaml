@@ -1,0 +1,35 @@
+# Entorno del simulacro: observabilidad + nginx con tres copias de la API detrás + (perfil "muestreo") un recolector con muestreo por cola.
+#   VERSION_LGTM=0.40.0 HOST_IP=<IPv4 del anfitrión> docker compose -p odd03 up -d
+services:
+  observabilidad:
+    image: grafana/otel-lgtm:${VERSION_LGTM:?define VERSION_LGTM}
+    ports:
+      - "48400:3000"
+      - "48417:4317"
+      - "48418:4318"
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fsS http://localhost:3000/api/health || exit 1"]
+      interval: 5s
+      timeout: 3s
+      retries: 60
+  web:
+    image: nginx:stable-alpine-otel
+    environment:
+      HOST_IP: ${HOST_IP:?define HOST_IP}
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./default.conf.template:/etc/nginx/templates/default.conf.template:ro
+    ports:
+      - "48401:8080"
+  colector:
+    image: otel/opentelemetry-collector-contrib:0.165.0
+    profiles: ["muestreo"]
+    command: ["--config=/etc/otelcol.yaml"]
+    volumes:
+      - ./otelcol.yaml:/etc/otelcol.yaml:ro
+    ports:
+      - "48419:4318"
+      - "48420:8888"
+    depends_on:
+      observabilidad:
+        condition: service_healthy

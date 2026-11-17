@@ -183,6 +183,8 @@ las que mencionan una palabra.
 
 **Entrega:** rama `taller/sdd-01`, con `taller/solucion/especificacion.md` y `ANALISIS.md`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## En el trabajo real
 
 Esto no es nuevo: es lo que siempre hizo un buen análisis de requisitos. Lo nuevo es el incentivo. Antes, una especificación floja se compensaba conversando con quien programaba. Con un asistente que genera quinientas líneas en un minuto, la calidad de lo que escribes antes decide casi todo lo que viene después.

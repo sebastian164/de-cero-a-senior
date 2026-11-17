@@ -227,6 +227,8 @@ Código de inicio: [`taller/inicio/Parqueadero.java`](taller/inicio/Parqueadero.
 
 **Entrega:** rama `taller/tdd-03`, con el código en `taller/solucion/` y `ANALISIS.md`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## En el trabajo real
 
 La mayor parte del trabajo de un desarrollador es sobre código que ya existe. Saber hacer TDD en un proyecto nuevo es útil; saber meter pruebas en un método de quinientas líneas sin romper nada es lo que te hace valioso en un equipo con un sistema de diez años.

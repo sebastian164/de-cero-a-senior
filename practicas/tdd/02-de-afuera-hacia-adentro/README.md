@@ -235,6 +235,8 @@ La prueba del espía además es peor en otro sentido: con la versión 1 pasa aun
 
 **Entrega:** rama `taller/tdd-02`, con el código en `taller/solucion/` y `ANALISIS.md`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## En el trabajo real
 
 En un servicio con arquitectura hexagonal, este es el flujo normal: la prueba del caso de uso define los puertos, los adaptadores reales se prueban aparte con pruebas de integración, y la lógica de negocio queda en funciones que se prueban en milisegundos. Las suites que tardan veinte minutos y se rompen con cada refactor casi siempre abusaron de los simulados.

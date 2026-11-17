@@ -169,6 +169,8 @@ Elige cómo trabajar: una herramienta de SDD, tu asistente habitual con archivos
 
 **Entrega:** rama `taller/sdd-02`, con especificación, plan, tareas y código en `taller/solucion/`, y `ANALISIS.md`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## En el trabajo real
 
 El valor no está en los archivos sino en **cuándo** aparece cada desacuerdo. Un malentendido que se descubre leyendo un plan de una página cuesta diez minutos. El mismo malentendido descubierto revisando cuatrocientas líneas generadas, o peor, en producción, cuesta días. Las puertas existen para mover los errores hacia la izquierda.

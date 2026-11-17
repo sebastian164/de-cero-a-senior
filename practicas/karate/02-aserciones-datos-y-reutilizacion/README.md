@@ -203,6 +203,8 @@ Feature: listado de notas
 
 **Entrega:** rama `taller/karate-02`, con el proyecto en `taller/solucion/` y `ANALISIS.md`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## En el trabajo real
 
 Una suite de API crece más rápido que el código que prueba. La diferencia entre una que el equipo mantiene y una que termina desactivada está en esto: esquemas en un lugar, datos fuera de los escenarios y nada que dependa del orden.

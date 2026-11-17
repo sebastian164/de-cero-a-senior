@@ -1,0 +1,11 @@
+# nginx de la web con la plantilla del taller, apuntando a la API que corre en la máquina (puerto 48100).
+services:
+  web:
+    image: nginx:1.27-alpine
+    environment:
+      DESTINO_API: http://host.docker.internal:48100
+    volumes:
+      - ./default.conf.template:/etc/nginx/templates/default.conf.template:ro
+      - ../../../../../docker-kubernetes/app/web/index.html:/usr/share/nginx/html/index.html:ro
+    ports:
+      - "48101:8080"

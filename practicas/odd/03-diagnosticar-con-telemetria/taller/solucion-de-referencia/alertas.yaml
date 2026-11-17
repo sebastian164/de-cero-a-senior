@@ -1,0 +1,48 @@
+# Paso 6: tres alertas de Bitácora. Cada una tiene la condición, por qué exige acción, y una guía de cinco líneas.
+groups:
+  - name: bitacora-alertas
+    rules:
+      - alert: GuardarNotaGastaElPresupuesto
+        # Exige acción porque el usuario no puede guardar (o espera más de 500 ms) a un ritmo que agota el presupuesto semanal en menos de 12 horas.
+        expr: |
+          (1 - sum(increase(bitacora_duracion_milliseconds_bucket{ruta="/api/notas",metodo="POST",clase_estado="2xx",le="500"}[10m]))
+               / sum(increase(bitacora_duracion_milliseconds_count{ruta="/api/notas",metodo="POST"}[10m]))) > (14.4 * 0.01)
+        for: 2m
+        labels: { severity: page }
+        annotations:
+          resumen: "Guardar una nota consume el presupuesto de error 14 veces más rápido de lo permitido"
+          guia: |
+            1. Mira el panel: ¿errores (5xx) o lentitud (p95)? Sube el ritmo desde cuándo.
+            2. Reparte los errores por copia: si una sola copia concentra el 5xx, sácala del reparto.
+            3. Abre una traza con error o lenta: la excepción o el tramo lento dicen la causa.
+            4. Comprueba si coincide con un cambio (despliegue, configuración, clave).
+            5. Revierte el cambio o apaga la copia; anota hora de inicio y de fin.
+      - alert: UnaCopiaRechazaOFalla
+        # Exige acción porque una copia se comporta distinto de las otras: el usuario ve fallos "al azar" (una de cada tres peticiones).
+        expr: |
+          (sum by (service_instance_id) (increase(bitacora_peticiones_total{ruta="/api/notas",metodo="POST",clase_estado=~"4xx|5xx"}[5m]))
+            / sum by (service_instance_id) (increase(bitacora_peticiones_total{ruta="/api/notas",metodo="POST"}[5m]))) > 0.5
+        for: 3m
+        labels: { severity: page }
+        annotations:
+          resumen: "Una copia de la API rechaza o falla más de la mitad de sus escrituras"
+          guia: |
+            1. ¿4xx o 5xx? Un 4xx suele ser configuración (clave); un 5xx, entorno (disco) o código.
+            2. Abre una traza de esa copia: excepción, o estado 401 en el tramo del servidor.
+            3. Compara la configuración con la de una copia sana (sin entrar al contenedor: por la plataforma).
+            4. Saca la copia del reparto mientras se corrige.
+            5. Añade la comprobación que lo habría detectado antes del despliegue.
+      - alert: LeerNotasLento
+        # Exige acción porque leer es lo que más hace el usuario y la lentitud crece con los datos: no se arregla sola.
+        expr: |
+          histogram_quantile(0.95, sum by (le) (increase(bitacora_duracion_milliseconds_bucket{ruta="/api/notas",metodo="GET"}[10m]))) > 500
+        for: 5m
+        labels: { severity: ticket }
+        annotations:
+          resumen: "El p95 de leer notas supera 500 ms durante cinco minutos"
+          guia: |
+            1. Mira la tendencia del p95: ¿sube con el tiempo (datos) o dio un salto (cambio)?
+            2. Abre una traza lenta: ¿el tiempo está en notas.leer?
+            3. Compara bitacora.notas.total de esa traza con las rápidas.
+            4. Si crece con los datos, es un problema de diseño: abre un ticket para paginar o indexar.
+            5. Mientras tanto, limita el tamaño de la respuesta o el historial visible.

@@ -130,6 +130,8 @@ Necesitas lo de las sesiones 01 y 02 y, si puedes, a otra persona. Si trabajas s
 
 **Entrega:** rama `taller/odd-03`, con el código, los paneles y los documentos en `taller/solucion/`, y `ANALISIS.md`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## En el trabajo real
 
 Las cuatro partes de esta ruta responden a la misma pregunta desde sitios distintos: **¿cómo sé que esto hace lo que debe?** TDD lo responde para una función en tu máquina. Karate, para el servicio visto desde fuera. SDD, para lo que se pidió frente a lo que se construyó. ODD, para el sistema real con usuarios reales. Un equipo senior no elige una: sabe cuál usar para cada duda.

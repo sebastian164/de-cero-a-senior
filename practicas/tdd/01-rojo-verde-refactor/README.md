@@ -216,6 +216,8 @@ Al terminar:
 
 **Entrega:** rama `taller/tdd-01`, con el código en `taller/solucion/` y `ANALISIS.md`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## En el trabajo real
 
 Casi nadie hace TDD estricto todo el tiempo, y quien dice que sí suele exagerar. Lo que distingue a quien lo domina es que puede **elegir**: cuando el problema es de lógica con muchos casos, lo saca con el ciclo; cuando es exploratorio, no. Esa elección solo la tiene quien practicó el ciclo hasta que le salió natural.

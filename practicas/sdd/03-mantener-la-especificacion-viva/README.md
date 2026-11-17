@@ -141,6 +141,8 @@ Después, en este orden: se actualiza el criterio en la especificación, se camb
 
 **Entrega:** rama `taller/sdd-03`, con todo en `taller/solucion/` y `ANALISIS.md`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## En el trabajo real
 
 Las herramientas de esta área cambian cada pocos meses y es probable que las de hoy no sean las de dentro de dos años. Lo que queda es el oficio: escribir qué se quiere de forma que se pueda comprobar, decidir el cómo a la vista de otros, trabajar en pasos pequeños y no dejar que el texto y el sistema se separen. Eso sirve con cualquier asistente y también sin ninguno.

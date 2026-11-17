@@ -1,0 +1,51 @@
+# Paso 12: alerta sobre el ritmo de gasto del presupuesto de error de "guardar una nota".
+# SLO: 99 % de los POST /api/notas responden 2xx en 500 ms o menos, en ventanas de 7 días. Presupuesto: 1 %.
+groups:
+  - name: bitacora-slo
+    rules:
+      - record: bitacora:guardar:malas_ratio_5m
+        expr: |
+          1 - (
+            sum(increase(bitacora_duracion_milliseconds_bucket{ruta="/api/notas",metodo="POST",clase_estado="2xx",le="500"}[5m]))
+            /
+            sum(increase(bitacora_duracion_milliseconds_count{ruta="/api/notas",metodo="POST"}[5m]))
+          )
+      - record: bitacora:guardar:malas_ratio_1h
+        expr: |
+          1 - (
+            sum(increase(bitacora_duracion_milliseconds_bucket{ruta="/api/notas",metodo="POST",clase_estado="2xx",le="500"}[1h]))
+            /
+            sum(increase(bitacora_duracion_milliseconds_count{ruta="/api/notas",metodo="POST"}[1h]))
+          )
+      - alert: GuardarNotaGastaElPresupuestoRapido
+        # Ritmo 14,4 veces el permitido durante una hora gasta el 8,6 % del presupuesto semanal (14,4 / 168 h).
+        # Las dos ventanas evitan avisar por un pico de un minuto y avisan pronto si el problema es real y sigue.
+        expr: |
+          bitacora:guardar:malas_ratio_1h > (14.4 * 0.01)
+          and
+          bitacora:guardar:malas_ratio_5m > (14.4 * 0.01)
+        for: 2m
+        labels:
+          severity: page
+        annotations:
+          summary: "Guardar una nota gasta el presupuesto de error 14 veces más rápido de lo permitido"
+          guia: |
+            1. Mira el panel de presupuesto: cuánto queda y desde cuándo baja.
+            2. Busca en trazas notas.escribir con duración mayor de 500 ms y compara sus atributos.
+            3. Comprueba si coincide con un despliegue o un cambio de configuración.
+            4. Si hay un cambio reciente, revierte; si no, escala a quien tenga el servicio.
+            5. Anota en el incidente la hora de inicio y el ritmo de gasto.
+      - alert: GuardarNotaGastaElPresupuestoLento
+        # Ritmo 6 veces el permitido durante 6 horas gasta el 21 % del presupuesto semanal (6 x 6 / 168). Es un ticket, no una página:
+        # el problema es real pero no urgente. Una de cada diez escrituras lentas (10x) cae aquí.
+        expr: |
+          (1 - sum(increase(bitacora_duracion_milliseconds_bucket{ruta="/api/notas",metodo="POST",clase_estado="2xx",le="500"}[6h]))
+               / sum(increase(bitacora_duracion_milliseconds_count{ruta="/api/notas",metodo="POST"}[6h]))) > (6 * 0.01)
+          and
+          (1 - sum(increase(bitacora_duracion_milliseconds_bucket{ruta="/api/notas",metodo="POST",clase_estado="2xx",le="500"}[30m]))
+               / sum(increase(bitacora_duracion_milliseconds_count{ruta="/api/notas",metodo="POST"}[30m]))) > (6 * 0.01)
+        for: 15m
+        labels:
+          severity: ticket
+        annotations:
+          summary: "Guardar una nota gasta el presupuesto de error 6 veces más rápido de lo permitido"

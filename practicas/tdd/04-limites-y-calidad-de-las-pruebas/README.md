@@ -153,6 +153,8 @@ Sobre tu kata de la sesión 01 y tu caso de uso de la sesión 02.
 
 **Entrega:** rama `taller/tdd-04`, con el código en `taller/solucion/` y `ANALISIS.md`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## En el trabajo real
 
 Los equipos que mejor prueban no discuten porcentajes: miran cuántos errores llegan a producción y cuánto tarda un cambio en desplegarse con confianza. Las pruebas de mutación suelen correr solo sobre el código modificado en cada cambio, porque sobre el proyecto entero son lentas.

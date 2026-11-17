@@ -253,6 +253,8 @@ Bitácora ya escribe una línea por petición. Tu punto de partida es `app/api/S
 
 **Entrega:** rama `taller/odd-01`, con el código en `taller/solucion/` y `ANALISIS.md`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## En el trabajo real
 
 La pregunta "¿cómo sabré que esto funciona en producción?" cabe en la plantilla de un pull request, y cambia la conversación de la revisión. Los equipos que la hacen en serio encuentran los problemas mirando sus datos el día del despliegue; los demás, cuando escribe un cliente.

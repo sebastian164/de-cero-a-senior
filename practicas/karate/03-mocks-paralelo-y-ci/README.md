@@ -177,6 +177,8 @@ Feature: el simulador responde con la misma forma que la API real
 
 **Entrega:** rama `taller/karate-03`, con el proyecto y el flujo en `taller/solucion/` y `ANALISIS.md`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## En el trabajo real
 
 Las pruebas de API son también el puente con la parte siguiente de esta ruta: un criterio de aceptación bien escrito en una especificación se convierte, casi palabra por palabra, en un escenario de Karate. Cuando eso ocurre, la especificación deja de ser un documento y pasa a ser algo que se ejecuta.

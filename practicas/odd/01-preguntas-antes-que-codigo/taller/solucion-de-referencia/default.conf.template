@@ -1,0 +1,26 @@
+# Plantilla de nginx de la sesión 01 de ODD: nginx genera el identificador de correlación y lo envía a la API.
+map $http_x_correlacion $correlacion_final {
+    default $http_x_correlacion;
+    ""      $request_id;
+}
+
+log_format con_correlacion '{"ts":"$time_iso8601","evento":"nginx","correlacion":"$correlacion_final","metodo":"$request_method","ruta":"$uri","estado":$status,"duracion_s":$request_time}';
+
+server {
+    listen 8080;
+    access_log /dev/stdout con_correlacion;
+
+    location / {
+        root /usr/share/nginx/html;
+        index index.html;
+        add_header X-Correlacion $request_id always;
+    }
+
+    location /api/ {
+        proxy_pass ${DESTINO_API};
+        proxy_set_header Host $host;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        # Si el cliente trae su propio identificador se respeta; si no, el de nginx.
+        proxy_set_header X-Correlacion $correlacion_final;
+    }
+}
