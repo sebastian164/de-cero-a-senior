@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <!-- Solo para heredar versiones coherentes de JUnit y de los plugins de Maven -->
+  <parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>4.1.2</version>
+    <relativePath/>
+  </parent>
+  <groupId>curso.nosql</groupId>
+  <artifactId>03-consistencia-en-mongodb-solucion</artifactId>
+  <version>1.0</version>
+  <properties>
+    <java.version>21</java.version>
+    <maven.compiler.release>21</maven.compiler.release>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <mongo.driver>5.14.0</mongo.driver>
+    <lettuce>7.9.0.RELEASE</lettuce>
+    <!-- El Compose del entorno del curso y su nombre de proyecto: las pruebas que detienen Redis lo necesitan. Se cambian con -D. -->
+    <infra.compose>${project.basedir}/../../../entorno/compose.yaml</infra.compose>
+    <infra.proyecto>nosql</infra.proyecto>
+  </properties>
+  <dependencyManagement>
+    <dependencies>
+      <!-- Spring Boot fija otras versiones del controlador de MongoDB; el curso usa la 5.14.0 en todo -->
+      <dependency><groupId>org.mongodb</groupId><artifactId>mongodb-driver-sync</artifactId><version>${mongo.driver}</version></dependency>
+      <dependency><groupId>org.mongodb</groupId><artifactId>mongodb-driver-core</artifactId><version>${mongo.driver}</version></dependency>
+      <dependency><groupId>org.mongodb</groupId><artifactId>bson</artifactId><version>${mongo.driver}</version></dependency>
+      <dependency><groupId>org.mongodb</groupId><artifactId>bson-record-codec</artifactId><version>${mongo.driver}</version></dependency>
+    </dependencies>
+  </dependencyManagement>
+  <dependencies>
+    <dependency><groupId>org.mongodb</groupId><artifactId>mongodb-driver-sync</artifactId><version>${mongo.driver}</version></dependency>
+    <dependency><groupId>org.slf4j</groupId><artifactId>slf4j-simple</artifactId><version>2.0.20</version></dependency>
+    <dependency><groupId>org.junit.jupiter</groupId><artifactId>junit-jupiter</artifactId><scope>test</scope></dependency>
+  </dependencies>
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <configuration>
+          <redirectTestOutputToFile>true</redirectTestOutputToFile>
+          <useManifestOnlyJar>false</useManifestOnlyJar>
+          <trimStackTrace>false</trimStackTrace>
+          <forkedProcessTimeoutInSeconds>2400</forkedProcessTimeoutInSeconds>
+          <systemPropertyVariables>
+            <junit.jupiter.execution.timeout.default>20m</junit.jupiter.execution.timeout.default>
+            <org.slf4j.simpleLogger.defaultLogLevel>error</org.slf4j.simpleLogger.defaultLogLevel>
+            <infra.compose>${infra.compose}</infra.compose>
+            <infra.proyecto>${infra.proyecto}</infra.proyecto>
+          </systemPropertyVariables>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>

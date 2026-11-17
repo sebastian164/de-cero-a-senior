@@ -387,6 +387,8 @@ Sobre tu servicio de pedidos del [módulo hexagonal](../../hexagonal/). Con el c
 
 **Entrega:** rama `taller/nosql-01`, con el programa, las mediciones y `ANALISIS.md` en `taller/solucion/`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## En el trabajo real
 
 Con Spring Data MongoDB, las clases anotadas con `@Document` se guardan tal cual, con sus listas incrustadas. La trampa habitual es anotar el grafo de entidades de JPA y reemplazar cada relación por una referencia: el resultado es el modelo relacional disfrazado, con muchas consultas por pantalla y ninguna unión que las junte. El modelo de documentos se decide antes de escribir la primera clase, con la tabla de consultas en la mano, y conviene dejarlo escrito en un registro de decisiones.

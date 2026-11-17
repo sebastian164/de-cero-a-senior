@@ -378,6 +378,8 @@ Sobre el modelo y los datos de tu [taller 01](../01-modelar-por-consultas/).
 
 **Entrega:** rama `taller/nosql-02`, con los programas, las salidas de `explain` y `ANALISIS.md` en `taller/solucion/`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## En el trabajo real
 
 Los índices se crean en las migraciones del despliegue, igual que las tablas de una base relacional, y no los crea la aplicación al arrancar (Spring Data MongoDB puede hacerlo con la creación automática de índices, que viene apagada por defecto y conviene dejar así fuera de desarrollo). En colecciones grandes, crear un índice consume recursos durante minutos u horas: se planifica.

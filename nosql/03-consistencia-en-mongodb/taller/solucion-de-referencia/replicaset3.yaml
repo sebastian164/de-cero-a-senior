@@ -1,0 +1,7 @@
+# Paso 6 (opcional) del taller 03: replica set de tres nodos, sin puertos publicados (se opera con docker exec).
+services:
+  mongo1: &m
+    image: mongo:9.0.8
+    command: ["mongod", "--replSet", "rs3", "--bind_ip_all"]
+  mongo2: *m
+  mongo3: *m

@@ -1150,6 +1150,8 @@ Sobre tu servicio de pedidos del [módulo hexagonal](../../hexagonal/) y el [ent
 
 **Entrega:** rama `taller/nosql-04`, con el código, las salidas y `ANALISIS.md` en `taller/solucion/`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## En el trabajo real
 
 Con Spring Data MongoDB el adaptador se escribe con `MongoTemplate` o con repositorios de Spring Data, `@Version` en la clase persistida, y `@Transactional` con un `MongoTransactionManager` declarado. Lo que no cambia es la forma: las clases que se guardan son del adaptador, no del dominio, y se traducen en un solo sitio. Spring traduce los errores de MongoDB a su jerarquía (`OptimisticLockingFailureException`, `DuplicateKeyException`…); el adaptador sigue siendo quien los convierte a las excepciones de tu aplicación.

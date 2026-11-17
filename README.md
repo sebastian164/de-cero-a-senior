@@ -84,7 +84,7 @@ Cada taller trae su solución de referencia en `taller/solucion-de-referencia/`:
 
 Úsalas para guiarte cuando te atasques y para comparar cuando termines, no como punto de partida: ver la respuesta primero convierte un taller en lectura. Tu propia solución sigue yendo en `taller/solucion/`.
 
-Las soluciones se publican módulo a módulo a medida que se verifican. Hoy están en Java (niveles 1 a 9 y los seis proyectos de la ruta), en arquitectura hexagonal, en Kafka y sagas, en HikariCP, en los talleres de prácticas (TDD, Karate, SDD y ODD) y en las rutas de Angular y de React y Next.js (con TypeScript y frontend senior).
+Las soluciones se publican módulo a módulo a medida que se verifican. Hoy están en Java (niveles 1 a 9 y los seis proyectos de la ruta), en arquitectura hexagonal, en Kafka y sagas, en HikariCP, en NoSQL con MongoDB y Redis, en los talleres de prácticas (TDD, Karate, SDD y ODD) y en las rutas de Angular y de React y Next.js (con TypeScript y frontend senior).
 
 ## Qué código se puede ejecutar tal cual
 

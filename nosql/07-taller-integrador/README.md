@@ -96,6 +96,8 @@ Un documento de tres páginas para quien vaya a operar el servicio:
 
 Rama `taller/nosql-07`, o un repositorio propio enlazado desde el pull request, con el código, el verificador, los resultados del simulacro y la defensa en `taller/solucion/`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## Preguntas de cierre
 
 Las que te harán en una entrevista senior cuando digas que has trabajado con MongoDB y Redis:

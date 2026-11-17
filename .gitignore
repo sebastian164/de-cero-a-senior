@@ -10,6 +10,7 @@ out/
 hexagonal/proyecto/salida/
 **/ejemplo/salida/
 **/ejemplos/*/salida/
+**/taller/solucion-de-referencia/salida/
 # Proyectos de verificación y soluciones de los talleres: comprueban que el curso corre, no se publican.
 .verificacion/
 

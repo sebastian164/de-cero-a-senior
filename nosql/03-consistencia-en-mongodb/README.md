@@ -449,6 +449,8 @@ Sobre tu modelo de documentos del [taller 01](../01-modelar-por-consultas/), con
 
 **Entrega:** rama `taller/nosql-03`, con los programas, sus salidas y `ANALISIS.md` en `taller/solucion/`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## En el trabajo real
 
 Con Spring Data MongoDB, un campo anotado con `@Version` da el bloqueo optimista de esta sesión: el repositorio añade la versión al filtro y lanza `OptimisticLockingFailureException` si no coincide. `@Transactional` funciona con MongoDB, pero solo si declaras un `MongoTransactionManager`: Spring Boot no lo crea por su cuenta, y sin él la anotación no hace nada con MongoDB y no avisa.

@@ -1,0 +1,62 @@
+# Todo el sistema con una orden: `docker compose up -d --build --wait`.
+# MongoDB como replica set de un nodo, Redis y dos instancias del servicio de pedidos.
+# Las instancias entran a MongoDB por el nombre del servicio con directConnection=true, como enseña nosql/entorno/README.md.
+x-servicio: &servicio
+  build: .
+  image: nosql-pedidos:1
+  depends_on:
+    mongo: {condition: service_healthy}
+    redis: {condition: service_healthy}
+  environment: &entorno
+    MONGO_URL: mongodb://mongo:27017/?directConnection=true
+    REDIS_URL: redis://redis:6379
+    DB: t07
+    PORT: "8080"
+    UMBRAL_CANCELACION_MS: ${UMBRAL_CANCELACION_MS:-1800000}
+    VIDA_CERROJO_MS: ${VIDA_CERROJO_MS:-3000}
+  healthcheck:
+    test: ["CMD-SHELL", "bash -c 'exec 3<>/dev/tcp/127.0.0.1/8080 && printf \"GET /metricas HTTP/1.0\\r\\n\\r\\n\" >&3 && head -1 <&3 | grep -q 200'"]
+    interval: 2s
+    timeout: 3s
+    retries: 40
+
+services:
+  mongo:
+    image: mongo:9.0.8
+    command: ["mongod", "--replSet", "rs0", "--bind_ip_all", "--setParameter", "transactionLifetimeLimitSeconds=15"]
+    ports: ["28017:27017"]
+    healthcheck:
+      test:
+        - CMD
+        - mongosh
+        - --quiet
+        - --eval
+        - "try { rs.status().ok } catch (e) { rs.initiate({_id: 'rs0', members: [{_id: 0, host: 'localhost:27017'}]}).ok }; db.hello().isWritablePrimary || quit(1)"
+      interval: 3s
+      timeout: 10s
+      retries: 30
+      start_period: 5s
+
+  redis:
+    image: redis:8.10.3
+    command: ["redis-server", "--appendonly", "no", "--save", ""]
+    ports: ["26379:6379"]
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 3s
+      timeout: 3s
+      retries: 10
+
+  servicio-a:
+    <<: *servicio
+    environment:
+      <<: *entorno
+      INSTANCIA: a
+    ports: ["18081:8080"]
+
+  servicio-b:
+    <<: *servicio
+    environment:
+      <<: *entorno
+      INSTANCIA: b
+    ports: ["18082:8080"]

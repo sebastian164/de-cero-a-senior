@@ -734,6 +734,8 @@ Sobre tu servicio de pedidos del [módulo hexagonal](../../hexagonal/), con Lett
 
 **Entrega:** rama `taller/nosql-06`, con el código, las salidas y `ANALISIS.md` en `taller/solucion/`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## En el trabajo real
 
 Spring no trae idempotencia por clave: se escribe como un filtro o un interceptor en el borde HTTP, con lo de esta sesión. Los límites de tasa suelen vivir en la pasarela de API, delante de los servicios; la de Spring Cloud Gateway, por ejemplo, implementa un cubo de fichas sobre Redis con un script de Lua. Para tareas programadas en varias instancias, bibliotecas como ShedLock guardan el cerrojo en Redis, MongoDB o la base relacional; y Redisson ofrece cerrojos que renuevan su vida mientras el dueño sigue vivo. Ninguna de las dos elimina el problema de la pausa: si la escritura no puede ocurrir dos veces, el turno o la condición tienen que estar en el recurso.

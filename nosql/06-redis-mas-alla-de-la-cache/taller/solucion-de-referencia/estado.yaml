@@ -1,0 +1,13 @@
+# Segundo Redis del paso 7: una instancia solo para el estado (5 MB y sin desalojo), aparte de la que hace de caché.
+# La prueba lo levanta y lo baja ella misma; no hace falta que lo arranques tú.
+services:
+  redis-estado:
+    image: redis:8.10.3
+    command: ["redis-server", "--appendonly", "no", "--save", "", "--port", "6380", "--maxmemory", "5mb", "--maxmemory-policy", "noeviction"]
+    ports:
+      - "6380:6380"
+    healthcheck:
+      test: ["CMD", "redis-cli", "-p", "6380", "ping"]
+      interval: 2s
+      timeout: 3s
+      retries: 15

@@ -597,6 +597,8 @@ Sobre tu servicio de pedidos del [módulo hexagonal](../../hexagonal/), con Lett
 
 **Entrega:** rama `taller/nosql-05`, con el código, las mediciones y `ANALISIS.md` en `taller/solucion/`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## En el trabajo real
 
 Con Spring, esta sesión es `@Cacheable` sobre el servicio de consulta con un `RedisCacheManager`: caducidad por caché (`entryTtl`), prefijo de claves y serialización en JSON en lugar de la serialización de Java. Tres detalles que la anotación no decide por ti. `@Cacheable(sync = true)` pide que un solo hilo cargue cada clave, pero con el `RedisCacheManager` por defecto no lo consigue (200 peticiones desde 50 hilos hicieron 50 cargas): la carga única exige un escritor con cerrojo, `RedisCacheWriter.lockingRedisCacheWriter`. `@CacheEvict` dentro de un método `@Transactional` borra **antes** de confirmar o después según el orden de los proxies: con la transacción por fuera (`@EnableTransactionManagement(order = Ordered.HIGHEST_PRECEDENCE)`) borra antes, salvo que el gestor de caché sea consciente de las transacciones (`transactionAware()`), que lo aplaza; con el orden por defecto de Spring Boot borró después de confirmar. Y el decorador del ejemplo es lo que hace el proxy de Spring, con la misma limitación de la lección del Nivel 8: las llamadas internas no pasan por él.
