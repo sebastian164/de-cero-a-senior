@@ -150,6 +150,8 @@ Parte B, con código (Java con el cliente oficial; si vienes de otra ruta, el cl
 
 **Entrega:** rama `taller/kafka-02`, con el código en `taller/solucion/` y `ANALISIS.md`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## En el trabajo real
 
 La configuración del productor suele venir de una biblioteca interna o de valores por defecto acordados por el equipo de plataforma, precisamente para que nadie publique datos importantes con `acks=1`. Tu trabajo es conocer qué garantiza cada opción para detectar cuándo esos valores no sirven para tu caso.

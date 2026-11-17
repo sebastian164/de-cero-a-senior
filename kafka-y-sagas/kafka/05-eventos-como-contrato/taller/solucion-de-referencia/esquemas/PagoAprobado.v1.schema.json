@@ -1,0 +1,58 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "PagoAprobado",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "tipo": {
+      "const": "PagoAprobado"
+    },
+    "version": {
+      "type": "integer"
+    },
+    "ocurridoEn": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "correlacion": {
+      "type": "string"
+    },
+    "causa": {
+      "type": "string"
+    },
+    "datos": {
+      "type": "object",
+      "properties": {
+        "pedidoId": {
+          "type": "string"
+        },
+        "pagoId": {
+          "type": "string"
+        },
+        "montoCentavos": {
+          "type": "integer"
+        },
+        "moneda": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "pedidoId",
+        "pagoId",
+        "montoCentavos",
+        "moneda"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "id",
+    "tipo",
+    "version",
+    "ocurridoEn",
+    "correlacion",
+    "datos"
+  ]
+}

@@ -1,0 +1,24 @@
+spring:
+  kafka:
+    bootstrap-servers: ${KAFKA_BOOTSTRAP:localhost:47092}
+    producer:
+      acks: all
+      properties:
+        enable.idempotence: true
+    consumer:
+      auto-offset-reset: earliest
+      properties:
+        session.timeout.ms: 6000
+        heartbeat.interval.ms: 2000
+    listener:
+      ack-mode: record
+  datasource:
+    url: ${PG_BASE:jdbc:postgresql://localhost:47432/taller}?currentSchema=s07_${tienda.servicio}
+    username: taller
+    password: taller
+  main:
+    web-application-type: none
+    banner-mode: off
+logging:
+  level:
+    root: warn

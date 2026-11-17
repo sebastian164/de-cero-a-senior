@@ -1,0 +1,19 @@
+# README de Kafka 06, "Después": configuración del cliente de Spring
+spring:
+  kafka:
+    bootstrap-servers: ${KAFKA_BOOTSTRAP:localhost:47092}
+    producer:
+      acks: all
+    consumer:
+      auto-offset-reset: earliest
+    listener:
+      ack-mode: record        # confirma tras cada mensaje procesado
+  datasource:
+    url: ${PG_URL:jdbc:postgresql://localhost:47432/taller?currentSchema=k06&options=-c%20lock_timeout%3D1000}
+    username: taller
+    password: taller
+  sql:
+    init:
+      mode: always
+  main:
+    web-application-type: none

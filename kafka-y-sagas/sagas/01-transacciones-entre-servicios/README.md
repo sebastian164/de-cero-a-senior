@@ -231,6 +231,8 @@ El dominio es el de la sesión 05 de Kafka: **Pedidos**, **Pagos**, **Inventario
 
 **Entrega:** rama `taller/sagas-01`, con el código en `taller/solucion/` y `ANALISIS.md`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## En el trabajo real
 
 La conversación más valiosa sobre una saga no es técnica: es con la gente del negocio. "¿Qué hacemos si ya cobramos y no hay existencias?" es una pregunta de negocio, y la respuesta (reembolsar, ofrecer espera, sustituir) define las compensaciones. Un equipo que diseña sagas sin esa conversación termina inventando reglas de negocio en el código.

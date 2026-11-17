@@ -186,6 +186,8 @@ Necesitas el entorno, tu productor y una base de datos (PostgreSQL en un contene
 
 **Entrega:** rama `taller/kafka-04`, con el código en `taller/solucion/` y `ANALISIS.md`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## En el trabajo real
 
 Casi todos los incidentes de datos en sistemas con mensajería son una de estas dos cosas: un consumidor que no era idempotente, o un mensaje envenenado que bloqueó una partición durante horas. Las dos se previenen en el diseño, y las dos se preguntan en una entrevista senior.

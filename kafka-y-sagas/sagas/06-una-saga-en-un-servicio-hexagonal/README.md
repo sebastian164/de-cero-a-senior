@@ -641,6 +641,8 @@ Sobre tu servicio de pedidos del [módulo hexagonal](../../../hexagonal/) y el d
 
 **Entrega:** rama `taller/sagas-06`, con el servicio en `taller/solucion/` y `ANALISIS.md` con la tabla de caminos y compensaciones del paso 6.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## En el trabajo real
 
 Esta es la forma de una saga orquestada en un servicio Spring: el orquestador es un servicio de aplicación sin anotaciones de mensajería, cada participante es un puerto cuyo adaptador publica una orden en Kafka y cuya respuesta llega por un consumidor que llama a otro puerto de entrada, y una tarea programada reanuda lo pendiente. Cuando el número de sagas y de pasos crece, esa mecánica se delega en un motor de flujos; la separación entre reglas, coordinación y transporte sigue siendo la misma.

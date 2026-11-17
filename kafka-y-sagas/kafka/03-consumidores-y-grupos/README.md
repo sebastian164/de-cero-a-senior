@@ -215,6 +215,8 @@ Necesitas el [entorno](../../entorno/) y tu productor de la sesión 02.
 
 **Entrega:** rama `taller/kafka-03`, con el código en `taller/solucion/` y `ANALISIS.md`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## En el trabajo real
 
 La alerta que más incidentes detecta en sistemas con Kafka es la de retraso del grupo. Y el error más caro es el silencioso: un consumidor que atrapa excepciones y sigue, perdiendo mensajes con todas las métricas en verde.

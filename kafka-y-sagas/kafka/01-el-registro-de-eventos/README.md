@@ -125,6 +125,8 @@ No hay archivos de inicio. Anota cada orden y su salida.
 
 **Entrega:** rama `taller/kafka-01`, con `taller/solucion/ANALISIS.md`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## En el trabajo real
 
 El número de particiones y la clave de cada tema son de las pocas decisiones de Kafka difíciles de cambiar después. En un equipo se discuten en la revisión de diseño, junto con el nombre del tema, la retención y quién es su dueño.

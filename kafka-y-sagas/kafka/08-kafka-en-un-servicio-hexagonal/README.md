@@ -647,6 +647,8 @@ Sobre tu servicio de pedidos del [módulo hexagonal](../../../hexagonal/) y el [
 
 **Entrega:** rama `taller/kafka-08`, con los dos servicios en `taller/solucion/` y `ANALISIS.md` con la evidencia de los pasos 7 y 8.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## En el trabajo real
 
 Esta es la forma en que se ve un servicio con mensajería en un equipo que cuida la arquitectura: el paquete de mensajería es pequeño, está en el borde y es lo único que cambia si un día el broker es otro. Cuando revisas un servicio ajeno, buscar dónde se importa el cliente de Kafka te dice en un minuto cuánto de su lógica depende del transporte.

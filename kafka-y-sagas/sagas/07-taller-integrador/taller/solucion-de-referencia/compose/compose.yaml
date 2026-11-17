@@ -1,0 +1,98 @@
+# La tienda completa con UNA orden:   docker compose -f compose/compose.yaml up --build
+# (antes, una vez: mvn package -DskipTests, que deja target/sagas-07-1.0.jar). Siete servicios, Kafka y PostgreSQL.
+# Puertos publicados: 47701, 47711 y 47743. Si los usas para otra cosa, cámbialos.
+x-servicio: &servicio
+  build:
+    context: ..
+    dockerfile: compose/Dockerfile
+  image: tienda-integrador:1.0
+  depends_on:
+    temas:
+      condition: service_completed_successfully
+    postgres:
+      condition: service_healthy
+  environment: &entorno
+    KAFKA_BOOTSTRAP: kafka:19092
+    PG_BASE: jdbc:postgresql://postgres:5432/taller
+    JAVA_TOOL_OPTIONS: "-Xmx160m"
+  restart: "no"
+
+services:
+  kafka:
+    image: apache/kafka:4.3.1
+    environment:
+      KAFKA_NODE_ID: 1
+      KAFKA_PROCESS_ROLES: broker,controller
+      KAFKA_LISTENERS: PLAINTEXT://:19092,CONTROLLER://:9093
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:19092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+      KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
+      KAFKA_CONTROLLER_QUORUM_VOTERS: 1@kafka:9093
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+      KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
+      KAFKA_AUTO_CREATE_TOPICS_ENABLE: "false"
+      KAFKA_HEAP_OPTS: "-Xmx384m -Xms384m"
+    healthcheck:
+      test: ["CMD-SHELL", "/opt/kafka/bin/kafka-broker-api-versions.sh --bootstrap-server localhost:19092 > /dev/null 2>&1"]
+      interval: 5s
+      timeout: 10s
+      retries: 30
+
+  # Con la creación automática apagada (como en el entorno del curso), los temas se crean aquí, una vez, antes que los servicios.
+  temas:
+    image: apache/kafka:4.3.1
+    depends_on:
+      kafka:
+        condition: service_healthy
+    entrypoint: ["/bin/bash", "-c"]
+    command:
+      - |
+        for t in compra.pedidos compra.ordenes.inventario compra.ordenes.pagos compra.ordenes.envios compra.respuestas compra.resultados compra.fallidos; do
+          /opt/kafka/bin/kafka-topics.sh --bootstrap-server kafka:19092 --create --if-not-exists --topic $$t --partitions 3 --replication-factor 1
+        done
+    restart: "no"
+
+  postgres:
+    image: postgres:17
+    ports:
+      - "47743:5432"
+    environment:
+      POSTGRES_USER: taller
+      POSTGRES_PASSWORD: taller
+      POSTGRES_DB: taller
+    volumes:
+      - ./schemas.sql:/docker-entrypoint-initdb.d/schemas.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U taller -d taller"]
+      interval: 3s
+      timeout: 5s
+      retries: 30
+
+  pedidos:
+    <<: *servicio
+    command: ["--tienda.servicio=pedidos", "--tienda.puerto=8080", "--tienda.http-host=0.0.0.0", "--logging.level.tienda=info"]
+    ports:
+      - "47701:8080"
+  orquestador:
+    <<: *servicio
+    command: ["--tienda.servicio=orquestador", "--tienda.puerto=8080", "--tienda.http-host=0.0.0.0", "--tienda.espera-ms=3000", "--logging.level.tienda=info"]
+    ports:
+      - "47711:8080"
+  inventario:
+    <<: *servicio
+    command: ["--tienda.servicio=inventario", "--logging.level.tienda=info"]
+  pagos:
+    <<: *servicio
+    command: ["--tienda.servicio=pagos", "--logging.level.tienda=info"]
+  envios:
+    <<: *servicio
+    command: ["--tienda.servicio=envios", "--logging.level.tienda=info"]
+  notificaciones:
+    <<: *servicio
+    command: ["--tienda.servicio=notificaciones", "--logging.level.tienda=info"]
+  fidelidad:
+    <<: *servicio
+    command: ["--tienda.servicio=fidelidad", "--logging.level.tienda=info"]

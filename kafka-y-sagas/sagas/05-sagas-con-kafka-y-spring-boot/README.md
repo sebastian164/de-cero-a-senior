@@ -232,6 +232,8 @@ Cuatro servicios: orquestador, Pagos, Inventario y Envíos. Pueden ser cuatro m�
 
 **Entrega:** rama `taller/sagas-05`, con el código en `taller/solucion/` y `ANALISIS.md`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## En el trabajo real
 
 Lo que acabas de construir es, en pequeño, lo que hace un motor de flujos duraderos. Haberlo escrito te deja en posición de decidir con criterio: si tu empresa tiene dos sagas, este código se mantiene bien; si tiene cuarenta, la tabla de sagas, el vigilante y los reintentos repetidos cuarenta veces son el argumento para adoptar un motor.

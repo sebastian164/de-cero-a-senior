@@ -302,6 +302,8 @@ Sobre el servicio de Pedidos de la tienda, con PostgreSQL y Kafka.
 
 **Entrega:** rama `taller/kafka-07`, con el código en `taller/solucion/` y `ANALISIS.md`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## En el trabajo real
 
 Outbox es el patrón que sostiene casi todo lo que viene después: sin él, las sagas de la segunda parte de esta ruta se quedan a medias cada vez que un proceso cae en mal momento. En Spring hay bibliotecas que lo implementan; conviene haberlo escrito una vez a mano para saber qué garantizan y qué no.

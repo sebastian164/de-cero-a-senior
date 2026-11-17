@@ -279,6 +279,8 @@ public class Main {
 
 **Entrega:** rama `taller/sagas-03`, con el código en `taller/solucion/`, el grafo y `ANALISIS.md`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## En el trabajo real
 
 La pregunta "¿orquestación o coreografía?" suele plantearse como una guerra de preferencias. La respuesta útil sale de dos datos: cuántos pasos y ramas tiene el flujo, y quién tiene que poder responder en qué va cada caso. Soporte, auditoría y negocio rara vez aceptan "hay que reconstruirlo leyendo los eventos".

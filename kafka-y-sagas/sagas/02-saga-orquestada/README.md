@@ -309,6 +309,8 @@ En Java puro y en memoria, como el ejemplo. El salto a Kafka es la sesión 05.
 
 **Entrega:** rama `taller/sagas-02`, con el código en `taller/solucion/` y `ANALISIS.md`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## En el trabajo real
 
 Escribir el orquestador a mano enseña el patrón; en producción, muchos equipos usan un motor de flujos duraderos (Temporal, Camunda y similares), que guarda el estado, reintenta y maneja tiempos límite por ti. La decisión entre uno y otro depende de cuántas sagas tengas y de quién va a operar el motor. En ambos casos, la tabla de transiciones la escribes tú.

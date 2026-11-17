@@ -251,6 +251,8 @@ Sobre tu orquestador de la sesión 02 (o la coreografía de la 03), en memoria.
 
 **Entrega:** rama `taller/sagas-04`, con el código en `taller/solucion/` y `ANALISIS.md`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## En el trabajo real
 
 Esta sesión es la diferencia entre una saga de demostración y una que aguanta producción. Los equipos con experiencia tienen la prueba del paso 9 corriendo en integración continua, y un tablero con las sagas atascadas y los casos en revisión humana. El número de ese tablero es una métrica de salud del sistema.

@@ -1,0 +1,82 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "PedidoConfirmado",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "tipo": {
+      "const": "PedidoConfirmado"
+    },
+    "version": {
+      "type": "integer"
+    },
+    "ocurridoEn": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "correlacion": {
+      "type": "string"
+    },
+    "causa": {
+      "type": "string"
+    },
+    "datos": {
+      "type": "object",
+      "properties": {
+        "pedidoId": {
+          "type": "string"
+        },
+        "clienteId": {
+          "type": "string"
+        },
+        "lineas": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "productoId": {
+                "type": "string"
+              },
+              "cantidad": {
+                "type": "integer"
+              },
+              "precioUnitarioCentavos": {
+                "type": "integer"
+              }
+            },
+            "required": [
+              "productoId",
+              "cantidad",
+              "precioUnitarioCentavos"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "totalCentavos": {
+          "type": "integer"
+        },
+        "moneda": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "pedidoId",
+        "clienteId",
+        "lineas",
+        "totalCentavos",
+        "moneda"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "id",
+    "tipo",
+    "version",
+    "ocurridoEn",
+    "correlacion",
+    "datos"
+  ]
+}

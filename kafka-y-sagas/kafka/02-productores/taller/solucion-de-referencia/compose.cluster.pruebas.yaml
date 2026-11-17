@@ -1,0 +1,21 @@
+# Se pone ENCIMA de kafka-y-sagas/entorno/compose.cluster.yaml (el del curso, sin cambios): solo publica 47291-47293,
+# anuncia esas direcciones y limita el montón. Sirve a las pruebas que detienen y arrancan brokers.
+# Arriba:  docker compose -p pub-kafka-y-sagas-kc -f ../../../../entorno/compose.cluster.yaml -f compose.cluster.pruebas.yaml up -d --wait
+x-heap: &heap
+  KAFKA_HEAP_OPTS: "-Xmx256m -Xms256m"
+services:
+  kafka-1:
+    ports: !override ["47291:9092"]
+    environment:
+      <<: *heap
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka-1:19092,PLAINTEXT_HOST://localhost:47291
+  kafka-2:
+    ports: !override ["47292:9092"]
+    environment:
+      <<: *heap
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka-2:19092,PLAINTEXT_HOST://localhost:47292
+  kafka-3:
+    ports: !override ["47293:9092"]
+    environment:
+      <<: *heap
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka-3:19092,PLAINTEXT_HOST://localhost:47293

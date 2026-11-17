@@ -1,0 +1,7 @@
+# Se aplica encima de kafka-y-sagas/entorno/compose.yaml sin modificarlo: quita el puerto publicado
+# (así no choca con nada que tengas en el 9092) y limita el montón. Las órdenes del curso se ejecutan dentro del contenedor.
+services:
+  kafka:
+    ports: !reset []
+    environment:
+      KAFKA_HEAP_OPTS: "-Xmx256m -Xms256m"

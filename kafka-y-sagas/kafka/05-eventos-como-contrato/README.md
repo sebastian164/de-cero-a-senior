@@ -162,6 +162,8 @@ El dominio que usarás hasta el final de la ruta: una tienda con cuatro servicio
 
 **Entrega:** rama `taller/kafka-05`, con los esquemas, el código en `taller/solucion/` y `ANALISIS.md`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## En el trabajo real
 
 En cuanto un tema tiene consumidores de otros equipos, cambiarlo es una negociación. Por eso los equipos maduros tratan los eventos como una API pública: con dueño, documentación, registro de esquemas, comprobación de compatibilidad en la integración continua y un proceso para retirarlos.

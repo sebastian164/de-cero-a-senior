@@ -113,3 +113,5 @@ Las que te harán en una entrevista senior cuando digas que has trabajado con sa
 4. ¿Por qué no usaste una transacción distribuida?
 5. Tu compañero propone quitar la tabla de salida "porque Kafka casi nunca se cae". ¿Qué le respondes?
 6. ¿Cuánto cuesta todo esto y cuándo no lo construirías?
+
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).

@@ -223,6 +223,8 @@ Usa los eventos que diseñaste en la sesión 05.
 
 **Entrega:** rama `taller/kafka-06`, con el servicio en `taller/solucion/` y `ANALISIS.md`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## En el trabajo real
 
 En un equipo Java, casi todo el Kafka que vas a leer está escrito así. Lo que distingue a quien lo domina no es conocer las anotaciones, sino saber responder: si este método lanza, ¿qué pasa con el mensaje?, ¿y con los siguientes de esa partición?, ¿y si el proceso cae justo ahí?

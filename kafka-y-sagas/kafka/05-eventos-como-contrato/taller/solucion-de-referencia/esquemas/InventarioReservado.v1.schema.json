@@ -1,0 +1,70 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "InventarioReservado",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "tipo": {
+      "const": "InventarioReservado"
+    },
+    "version": {
+      "type": "integer"
+    },
+    "ocurridoEn": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "correlacion": {
+      "type": "string"
+    },
+    "causa": {
+      "type": "string"
+    },
+    "datos": {
+      "type": "object",
+      "properties": {
+        "pedidoId": {
+          "type": "string"
+        },
+        "reservaId": {
+          "type": "string"
+        },
+        "lineas": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "productoId": {
+                "type": "string"
+              },
+              "cantidad": {
+                "type": "integer"
+              }
+            },
+            "required": [
+              "productoId",
+              "cantidad"
+            ],
+            "additionalProperties": false
+          }
+        }
+      },
+      "required": [
+        "pedidoId",
+        "reservaId",
+        "lineas"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "id",
+    "tipo",
+    "version",
+    "ocurridoEn",
+    "correlacion",
+    "datos"
+  ]
+}
