@@ -205,7 +205,7 @@ Con el [entorno](../entorno/), un pool de cinco y un servicio externo simulado q
 2. Con el servicio externo en 50 ms, lanza 20 usuarios concurrentes. Anota peticiones por segundo, errores, conexiones activas, pendientes y tiempo de uso de la conexión.
 3. Sube el servicio externo a 2 s. Repite. Mira a la vez la CPU de PostgreSQL. Describe lo que ves.
 4. Aplica la cuenta: con tu tráfico y tu tiempo de retención, ¿cuántas conexiones harían falta? ¿Las tienes?
-5. Reestructura: transacciones cortas alrededor de la base y la llamada externa fuera. **No cambies el tamaño del pool.** Repite los pasos 2 y 3.
+5. Reestructura: transacciones cortas alrededor de la base y la llamada externa fuera. **No cambies el tamaño del pool.** Repite los pasos 2 y 3. Si usas JPA, mira también `open-in-view`: con su valor por defecto la vista abierta retiene la conexión toda la petición y partir la transacción no se nota (es el paso 7); desactívalo para este paso.
 6. Ahora que no hay una sola transacción: haz que el guardado final falle después de una llamada externa exitosa. ¿En qué estado queda el sistema? Describe cómo lo resolverías; no hace falta implementarlo.
 7. **La vista abierta.** Con JPA y `open-in-view` en su valor por defecto, haz un extremo que lea una entidad y luego tarde un segundo en construir la respuesta. Mide cuánto se retiene la conexión. Desactívalo y repite. ¿Qué se rompe al desactivarlo y cómo lo arreglas?
 8. **Consulta lenta.** Quita un índice para que una consulta pase de 5 ms a 800 ms. ¿Cómo se ve en las métricas del pool? ¿En qué se diferencia del caso de la llamada externa?

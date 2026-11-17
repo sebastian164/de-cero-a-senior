@@ -53,6 +53,6 @@ select pg_sleep(0.5);
 
 ## Estado
 
-El archivo se validó con `docker compose config`. **No se levantó** al preparar el curso: no había motor de Docker. Las consultas son estándar de PostgreSQL, pero tampoco se ejecutaron.
+El archivo `compose.yaml` es el que se levantó al verificar el curso, con PostgreSQL 17 (el puerto se cambió para no chocar con otras bases, lo demás es igual), y las cinco consultas de arriba se ejecutaron tal cual contra esa base: la cuenta por estado, las transacciones abiertas, `show max_connections` (30), cortar sesiones, y la consulta lenta de 0,5 s. Los talleres de la ruta se resolvieron con k6 sobre ese entorno.
 
 Para los talleres que piden carga, cualquier herramienta sirve (k6, hey, wrk, JMeter). Lo que importa es poder fijar el número de usuarios concurrentes y leer el percentil 95.

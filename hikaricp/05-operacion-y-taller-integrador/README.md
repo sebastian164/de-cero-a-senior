@@ -1,6 +1,6 @@
 # 05 — Operación en producción y taller integrador
 
-Los nombres de las métricas y los mensajes de registro de esta sesión son los que emite HikariCP con Micrometer en las versiones recientes. Confírmalos en tu aplicación antes de construir alertas sobre ellos.
+Los nombres de las métricas y los cuatro mensajes de registro de esta sesión se comprobaron con una aplicación Spring Boot 4.1.1, Actuator, HikariCP 7.1.0 y PostgreSQL 17: las ocho métricas existen con esos nombres y la etiqueta `pool`, y cada mensaje salió tal como se cita. Las dos alertas de la sesión se cargaron en un Prometheus real y el panel en un Grafana real (en Prometheus las métricas se llaman `hikaricp_connections_pending`, `hikaricp_connections_timeout_total`, etc.; para el percentil 95 hay que activar `management.metrics.distribution.percentiles-histogram.hikaricp.connections=true` y exponer `prometheus`). Los nombres pueden cambiar con otras versiones: confírmalos en tu aplicación antes de construir alertas sobre ellos.
 
 ## Idea
 
@@ -57,7 +57,7 @@ Cada instancia tiene su pool. Con autoescalado, el total de conexiones crece con
 
 - El pool descarta las conexiones rotas y abre otras. Mientras tanto, las peticiones fallan tras `connectionTimeout`: por eso debe ser corto.
 - La comprobación de salud de la aplicación debería reflejar si puede conseguir una conexión, para que el tráfico no llegue a una instancia que no puede atender.
-- Al arrancar, HikariCP por defecto falla rápido si no puede conectar. En un orquestador eso se traduce en reinicios hasta que la base esté disponible.
+- Al arrancar, HikariCP por defecto falla rápido si no puede conectar, pero **solo si algo le pide la conexión al arrancar**. Con Spring Boot y solo `spring-boot-starter-jdbc`, el pool se crea en el primer uso: la aplicación arranca sin base y es la comprobación de disponibilidad (503) la que la deja fuera de rotación, sin reinicios. Con JPA (Hibernate toma una conexión al arrancar), con `spring.sql.init`, con migraciones o si creas el `HikariDataSource` a mano, el proceso termina con error, y en un orquestador eso se traduce en reinicios hasta que la base esté disponible. Ambos casos se comprobaron con Spring Boot 4.1.1 y HikariCP 7.1.0.
 - Al apagar, el pool se cierra y las conexiones se liberan. Un proceso que muere de golpe las deja abiertas en la base hasta que esta las detecta.
 
 ## Ejemplo
@@ -133,14 +133,14 @@ Con carga continua, provoca cada situación sin avisar a quien diagnostica (o so
 | Conexiones cortadas desde fuera | Terminar las sesiones desde PostgreSQL | El pool las repone; qué vio el usuario |
 | Demasiadas instancias | Arrancar seis en lugar de tres | Se alcanzó el límite de la base |
 
-4. Para cada una: tiempo hasta el diagnóstico, qué métrica dio la pista y qué faltó.
-5. Corrige lo que faltó y repite las dos que más te costaron.
+6. Para cada una: tiempo hasta el diagnóstico, qué métrica dio la pista y qué faltó.
+7. Corrige lo que faltó y repite las dos que más te costaron.
 
 ### Parte 4 — Decidir
 
-6. Pon PgBouncer delante de la base siguiendo su documentación y arranca seis instancias. ¿Qué cambia? ¿Qué característica dejó de funcionar o tuviste que ajustar?
-7. Escribe la guía de guardia del pool: para cada alerta, qué significa y el primer paso. Incluye, en mayúsculas si hace falta, lo que **no** se hace.
-8. Escribe la plantilla de configuración que propondrías para los servicios de tu equipo, con la cuenta que cada uno debe rellenar.
+8. Pon PgBouncer delante de la base siguiendo su documentación y arranca seis instancias. ¿Qué cambia? ¿Qué característica dejó de funcionar o tuviste que ajustar?
+9. Escribe la guía de guardia del pool: para cada alerta, qué significa y el primer paso. Incluye, en mayúsculas si hace falta, lo que **no** se hace.
+10. Escribe la plantilla de configuración que propondrías para los servicios de tu equipo, con la cuenta que cada uno debe rellenar.
 
 **Criterios de aceptación**
 
@@ -149,7 +149,7 @@ Con carga continua, provoca cada situación sin avisar a quien diagnostica (o so
 | Las siete situaciones se diagnostican solo con panel y registro | La tabla del simulacro |
 | Ninguna se "resolvió" subiendo el tamaño del pool sin justificación | `ANALISIS.md` |
 | La cuenta de conexiones cubre despliegue y autoescalado | Parte 1 |
-| La guía de guardia dice qué no hacer | Paso 7 |
+| La guía de guardia dice qué no hacer | Paso 9 |
 
 **Entrega:** rama `taller/hikari-05`, con el código, el panel exportado, los resultados y los documentos en `taller/solucion/`.
 

@@ -39,8 +39,8 @@ Una rama por taller (`taller/hikari-01`…), tu trabajo en `taller/solucion/` de
 | Qué | Cómo se comprobó al preparar el curso |
 |---|---|
 | Ejemplos en Java puro (sesiones 01, 03 y 04): seis programas | Compilados con `-Xlint:all -Werror` y ejecutados con JDK 21. El de la sesión 04 usa hilos y tiempos reales: en una máquina muy cargada, sus conteos pueden variar |
-| Ejemplo sobre el banco hexagonal (sesión 06): un proyecto de varios archivos, con un adaptador JDBC real | Compilado con `-Xlint:all -Werror` junto con el núcleo de [`hexagonal/proyecto`](../hexagonal/proyecto/) y ejecutado. El adaptador JDBC se ejercitó con conexiones falsas, **no contra una base de datos**. Usa hilos y tiempos reales: sus conteos pueden variar |
-| Compose del [entorno](entorno/) | Validado con `docker compose config`; no se levantó |
-| Código con HikariCP, archivos de configuración de Spring y consultas SQL | Ilustrativos: **no se ejecutaron** |
+| Ejemplo sobre el banco hexagonal (sesión 06): un proyecto de varios archivos, con un adaptador JDBC real | Compilado con `-Xlint:all -Werror` junto con el núcleo de [`hexagonal/proyecto`](../hexagonal/proyecto/) y ejecutado. El adaptador JDBC se ejercitó con conexiones falsas y también contra PostgreSQL 17 con HikariCP 7.1.0 (el contrato de repositorio del módulo hexagonal, la unidad anidada con el pool en 1, el defecto de los 300 ms y su arreglo con la bandeja de salida). Usa hilos y tiempos reales: sus conteos pueden variar |
+| Compose del [entorno](entorno/) | Validado con `docker compose config` y levantado (PostgreSQL 17, límite de 30 conexiones) |
+| Código con HikariCP, archivos de configuración de Spring y consultas SQL | Ejecutados: los fragmentos de las sesiones 01 y 06 contra PostgreSQL 17 (Java 21, HikariCP 7.1.0, controlador 42.7.13), los `application.yaml` de la sesión 02 en una aplicación Spring Boot 4.1.1 con Actuator, las métricas y los cuatro mensajes de registro de la sesión 05, y las consultas SQL del [entorno](entorno/). Los talleres se resolvieron con k6, y las alertas y el panel de la sesión 05 se probaron en un Prometheus y un Grafana reales. Las cifras absolutas dependen de la máquina |
 
 Versión vigente al escribir: HikariCP 7.1 (Java 11 o superior). Los valores por defecto que cita la sesión 02 son los de la serie 7; alguno cambió respecto a versiones anteriores.

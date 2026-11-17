@@ -309,9 +309,22 @@ public final class CuentasJdbc implements RepositorioDeCuentas {
 }
 ```
 
+La tabla que esperan esas consultas, en PostgreSQL. Es la misma que crea el [`schema.sql` del proyecto JPA](../../hexagonal/proyecto-jpa/src/main/resources/schema.sql):
+
+```sql
+create table if not exists cuenta (
+    id                    varchar(64)  primary key,
+    titular               varchar(120) not null,
+    saldo_centavos        bigint       not null check (saldo_centavos >= 0),
+    enviado_hoy_centavos  bigint       not null check (enviado_hoy_centavos >= 0),
+    dia_del_tope          date         not null,
+    version               bigint       not null
+);
+```
+
 Compara `guardar` con el de `AlmacenJpa` de la [sesión 07 del módulo hexagonal](../../hexagonal/07-persistencia-con-orm/): aquí el `where id = ? and version = ?` está a la vista; allí lo escribía Hibernate. El puerto es el mismo y el caso de uso no nota la diferencia. Los demás puertos de salida del banco (movimientos, órdenes atendidas, bandeja de salida) siguen el mismo patrón.
 
-La raíz de composición, con HikariCP (**ilustrativo: no se compiló**, requiere la biblioteca):
+La raíz de composición, con HikariCP (compilada y ejecutada con HikariCP 7.1.0 contra PostgreSQL 17; los adaptadores `CuentasJdbc` y `UnidadDeTrabajoJdbc` son los de [`ejemplo/`](ejemplo/)):
 
 ```java
 HikariConfig configuracion = new HikariConfig();
@@ -555,7 +568,7 @@ Sobre tu servicio de pedidos del [módulo hexagonal](../../hexagonal/) y el [ent
 4. Ejecuta el contrato de repositorio que escribiste en el módulo hexagonal contra los repositorios JDBC, con PostgreSQL real.
 5. Mide cuánto tiempo retiene la conexión "crear pedido" y calcula, con la cuenta de la sesión 02, el tamaño de pool para la carga que elijas. Compruébalo con carga real.
 6. Introduce el defecto: dentro de la unidad de trabajo, llama a un servicio que tarda 300 ms (un servidor de pega basta). Repite la carga y recoge la evidencia: errores, tiempos y las métricas del pool.
-7. Activa `leakDetectionThreshold` y lee el aviso. ¿Qué línea señala y qué te dice eso sobre dónde buscar?
+7. Activa `leakDetectionThreshold` y lee el aviso. ¿Qué línea señala y qué te dice eso sobre dónde buscar? (HikariCP desactiva, con un aviso en el registro, los umbrales menores de 2000 ms, como se comprobó con la 7.1.0: con el servicio de 300 ms no saltará nada. Para ver el aviso, sube la demora del servicio a 2,5 s y el umbral a 2000.)
 8. Arréglalo sin tocar `maximumPoolSize` ni `connectionTimeout`. Repite la carga y compara.
 9. Con el pool en 1, provoca el bloqueo de una unidad de trabajo anidada que pide otra conexión. Luego corrígelo.
 10. Escribe en una línea, para un compañero, la regla que relaciona tus casos de uso con el tamaño del pool.

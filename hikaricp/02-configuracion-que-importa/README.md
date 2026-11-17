@@ -117,7 +117,7 @@ spring:
 - Las conexiones se renuevan antes de que nadie las corte.
 - El pool tiene nombre: se distingue en los registros y en las métricas.
 
-Los dos archivos son ilustrativos: no se cargaron en una aplicación al preparar el curso.
+Los dos archivos se cargaron tal cual en una aplicación Spring Boot 4.1.1 con Actuator, HikariCP 7.1.0 y PostgreSQL 17, y los valores que informa el pool coinciden con los del archivo. Spring Boot 4.1.1 trae por sí solo HikariCP 7.0.2: para usar la 7.1 hay que fijar su versión en el `pom.xml`.
 
 ## Errores comunes
 
@@ -137,6 +137,8 @@ Los dos archivos son ilustrativos: no se cargaron en una aplicación al preparar
 **Sobre tu servicio hexagonal:** si hiciste el [módulo de arquitectura hexagonal](../../hexagonal/), el dato que alimenta la cuenta es cuánto retiene la conexión cada **caso de uso** dentro de su unidad de trabajo, no cuánto tarda cada consulta. Mídelo por caso de uso.
 
 Con el [entorno](../entorno/) (PostgreSQL limitado a 30 conexiones) y una aplicación Spring Boot mínima con un extremo que ejecute una consulta de unos 20 ms (por ejemplo, con `pg_sleep(0.02)`).
+
+Un aviso sobre `pg_sleep`, comprobado al preparar el curso (PostgreSQL 17, 12 núcleos visibles, 50 usuarios): solo **espera**, no gasta CPU de la base, y con ella el rendimiento sube casi lineal con el pool (de 2 a 28 conexiones pasó de unas 85 a unas 1150 peticiones/s). Sirve para los pasos 1, 2, 6, 7 y 8, pero no para el barrido del paso 3. Añade un segundo extremo que **trabaje**, por ejemplo con `select count(*) from generate_series(1, 300000)`, y haz con él los pasos 3 a 5: con la base limitada a un núcleo, el máximo aparece entre 2 y 5 conexiones y por encima solo crece la latencia.
 
 1. Arranca con la configuración por defecto. Averigua, sin leer la documentación, qué valores está usando: actívalo en el registro o consúltalo por las métricas.
 2. Lanza carga con 50 usuarios concurrentes durante un minuto. Anota peticiones por segundo y percentil 95.
