@@ -585,6 +585,8 @@ Sobre tu servicio de pedidos del [módulo hexagonal](../../hexagonal/) y el [ent
 
 **Entrega:** rama `taller/hikari-06`, con el código, las mediciones y `ANALISIS.md` en `taller/solucion/`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## En el trabajo real
 
 En Spring no escribes este adaptador: `@Transactional` toma la conexión al entrar y la devuelve al salir, y los repositorios usan la de la transacción en curso. Lo que sí sigue siendo tuyo es todo lo que demuestra esta sesión: qué hace cada caso de uso mientras tiene la conexión. Dos detalles que conviene conocer: con `open-in-view` activado, la conexión puede quedar retenida hasta que se termina de escribir la respuesta, y una propagación `REQUIRES_NEW` pide una segunda conexión con la primera en la mano, que es exactamente el paso 3.

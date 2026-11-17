@@ -1,0 +1,19 @@
+# Paso 10: la configuración final del taller 02. Cada valor dice de qué cuenta o de qué medición salió.
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/tienda
+    username: tienda
+    password: ${DB_PASSWORD}                # del entorno, nunca del repositorio
+    hikari:
+      pool-name: tienda
+      # La cuenta: max_connections=30, de las que 3 son superuser_reserved_connections (la aplicación no es superusuario)
+      # y 3 se reservan para administración y migraciones -> 24 para la aplicación.
+      # 3 instancias + 1 más durante el despliegue gradual = 4 a la vez -> 24 / 4 = 6 por instancia.
+      # Medición (resultados/resultados.md, paso 5): con la base limitada a 1 núcleo el rendimiento con /cpu no sube
+      # de 2 a 28 conexiones (baja). 6 queda en la meseta de esa base; el tope real lo pone la cuenta de arriba, no la medición.
+      maximum-pool-size: 6
+      # minimum-idle no se declara: igual al máximo. Paso 9: tras vaciarse, el primer pico paga las aperturas.
+      connection-timeout: 2000              # paso 7: con 30 s cada petición retuvo un hilo 30 s al caer la base; con 2 s, 2 s
+      max-lifetime: 1680000                 # 28 min: por debajo de cualquier corte por edad de un proxy (30 min habitual)
+      keepalive-time: 30000                 # paso 8: la base cierra sesiones ociosas al minuto; 30 s, la mitad de esos 60 s
+      leak-detection-threshold: 10000       # ninguna petición legítima de este servicio pasa de 20 ms con la conexión

@@ -161,6 +161,8 @@ Un aviso sobre `pg_sleep`, comprobado al preparar el curso (PostgreSQL 17, 12 n�
 
 **Entrega:** rama `taller/hikari-02`, con el código, los resultados y `ANALISIS.md` en `taller/solucion/`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## En el trabajo real
 
 El tamaño del pool es una decisión que se toma entre el equipo del servicio y quien administra la base, porque la base es compartida. Un servicio que sube su pool por su cuenta puede dejar sin conexiones a otros cinco.

@@ -1,0 +1,20 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:${DB_PUERTO:5432}/tienda
+    username: tienda
+    password: ${DB_PASSWORD:Tienda2026!}
+    hikari:
+      pool-name: clientes
+      maximum-pool-size: 5                 # el pool de cinco que pide el taller
+      connection-timeout: 2000             # fallar pronto: así el agotamiento se ve en segundos
+  sql:
+    init:
+      mode: always                         # schema.sql: la tabla cliente
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, metrics
+logging:
+  level:
+    com.zaxxer.hikari.pool.ProxyConnection: debug   # paso 8: avisa cuando revierte una transacción abierta al devolver

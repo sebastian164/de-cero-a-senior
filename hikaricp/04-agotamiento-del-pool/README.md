@@ -224,6 +224,8 @@ Con el [entorno](../entorno/), un pool de cinco y un servicio externo simulado q
 
 **Entrega:** rama `taller/hikari-04`, con el código, las mediciones y `ANALISIS.md` en `taller/solucion/`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## En el trabajo real
 
 El incidente clásico: un servicio de terceros se pone lento, y de repente fallan pantallas que no tienen nada que ver con él. La conexión era el recurso compartido, y una funcionalidad que la retenía durante la llamada externa dejó sin conexiones a todas las demás. La corrección casi nunca está en el pool: está en dónde empieza y dónde termina cada transacción.

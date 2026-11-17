@@ -1,0 +1,52 @@
+# Configuración del servicio del taller integrador, con la cuenta de conexiones junto a los valores.
+#
+# CUENTA (límite de la base: max_connections = 30, de las cuales PostgreSQL reserva 3 para superusuarios -> 27 para las aplicaciones;
+#         dejamos además 3 para administración con la cuenta de la aplicación -> 24 de presupuesto):
+#   instancias normales: 3. Despliegue gradual: sube una antes de bajar otra -> hasta 4. Autoescalado: tope de 4 instancias.
+#   24 de presupuesto / 4 instancias = 6 conexiones por instancia  ->  maximum-pool-size = 6.
+#   Comprobación: 4 x 6 = 24 <= 27. Con 5 instancias serían 30 > 27: el autoescalado NO puede pasar de 4 sin rehacer la cuenta.
+# DIMENSIONAMIENTO (sesión 02): conexiones ocupadas = peticiones/s x retención. Se confirma con carga en medir.sh.
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:${DB_PUERTO:5432}/tienda
+    username: tienda
+    password: ${DB_PASSWORD:Tienda2026!}
+    hikari:
+      pool-name: servicio
+      maximum-pool-size: 6                 # la cuenta de arriba
+      minimum-idle: 6                      # tamaño fijo: lo que se reservó se tiene
+      connection-timeout: 1000             # falla rápido: una petición que no consigue conexión en 1 s no la va a conseguir
+      max-lifetime: 1500000                # 25 min, por debajo de cualquier corte de la red o de la base
+      keepalive-time: 120000
+      leak-detection-threshold: 2000       # mayor que la operación legítima más larga (la llamada externa tarda ~55 ms)
+  sql:
+    init:
+      mode: always
+externo:
+  url: http://127.0.0.1:46799
+server:
+  tomcat:
+    mbeanregistry:
+      enabled: true
+management:
+  metrics:
+    distribution:
+      percentiles-histogram:
+        hikaricp.connections: true          # histogramas de acquire, usage y creation: con ellos el panel dibuja el percentil 95
+  endpoints:
+    web:
+      exposure:
+        include: health, metrics, prometheus   # prometheus: el formato que lee Prometheus (hikaricp_connections_active, ...)
+  endpoint:
+    health:
+      probes:
+        enabled: true
+      group:
+        liveness:
+          include: livenessState              # la vida NO depende de la base: reiniciar el proceso no arregla una base caída
+        readiness:
+          include: readinessState, db         # la disponibilidad sí: db pide una conexión al pool (espera como mucho connection-timeout)
+      show-details: always
+logging:
+  level:
+    com.zaxxer.hikari: info

@@ -153,6 +153,8 @@ Con carga continua, provoca cada situación sin avisar a quien diagnostica (o so
 
 **Entrega:** rama `taller/hikari-05`, con el código, el panel exportado, los resultados y los documentos en `taller/solucion/`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## En el trabajo real
 
 El pool de conexiones es de esas piezas que nadie mira hasta que tumba un sistema, y cuando lo tumba, el instinto de subir el número casi siempre empeora las cosas. Quien sabe leer cuatro métricas y hacer una multiplicación resuelve en minutos un tipo de incidente que a muchos equipos les cuesta una noche.

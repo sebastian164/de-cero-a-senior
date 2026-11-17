@@ -1,0 +1,18 @@
+# Paso 1: sin configuración del pool. Lo que use sale de los valores por defecto.
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:${DB_PUERTO:5432}/tienda
+    username: tienda
+    password: ${DB_PASSWORD}
+server:
+  tomcat:
+    mbeanregistry:
+      enabled: true          # para ver tomcat.threads.busy en las métricas (paso 7)
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, metrics
+logging:
+  level:
+    com.zaxxer.hikari.HikariConfig: debug     # paso 1: vuelca la configuración efectiva al arrancar

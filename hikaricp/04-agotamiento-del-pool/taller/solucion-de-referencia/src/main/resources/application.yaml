@@ -1,0 +1,27 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:${DB_PUERTO:5432}/tienda
+    username: tienda
+    password: ${DB_PASSWORD:Tienda2026!}
+    hikari:
+      pool-name: pedidos
+      maximum-pool-size: 5                 # el pool de cinco del taller: no se toca en todo el taller
+      connection-timeout: 3000
+  jpa:
+    hibernate:
+      ddl-auto: none
+    # open-in-view no se declara: queda en su valor por defecto (true). El paso 7 lo cambia por argumento.
+  sql:
+    init:
+      mode: always
+externo:
+  url: http://127.0.0.1:46499
+server:
+  tomcat:
+    mbeanregistry:
+      enabled: true
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, metrics

@@ -1,0 +1,19 @@
+# Las dos alertas del taller 05 y la detección de fugas, en formato de reglas de Prometheus.
+# Las métricas son las que expone Actuator con Micrometer en el formato de Prometheus (hikaricp_connections_pending, hikaricp_connections_timeout_total...).
+# Comprobado con promtool (check rules) y cargado en un Prometheus real que leía /actuator/prometheus: ver prometheus.sh.
+# El diagnóstico del simulacro (simulacro.sh) evalúa la MISMA lógica sobre las series grabadas (herramientas/diagnostico.py).
+groups:
+  - name: pool-de-conexiones
+    rules:
+      - alert: PoolConHilosEnEspera           # alerta temprana
+        expr: hikaricp_connections_pending{pool="servicio"} > 0
+        for: 1m                               # en el simulacro, que dura menos, la ventana se escala a 20 s (VENTANA_TEMPRANA en diagnostico.py)
+        labels: { severity: warning }
+        annotations:
+          resumen: "Hay hilos esperando una conexión desde hace un minuto en {{ $labels.instance }}. Mira activas y uso: retención, fuga o falta de capacidad."
+      - alert: PoolSinConexionesATiempo       # alerta grave
+        expr: increase(hikaricp_connections_timeout_total{pool="servicio"}[1m]) > 0
+        labels: { severity: critical }
+        annotations:
+          resumen: "Peticiones que se quedaron sin conexión en {{ $labels.instance }}. Los usuarios ya están afectados."
+# Detección de fugas: spring.datasource.hikari.leak-detection-threshold = 2000 (application.yaml), mayor que la operación legítima más larga (~55 ms).

@@ -255,6 +255,8 @@ Con el [entorno](../entorno/) y una aplicación Spring Boot con un pool de cinco
 
 **Entrega:** rama `taller/hikari-03`, con el código en `taller/solucion/` y `ANALISIS.md`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## En el trabajo real
 
 Cuando un servicio "se cuelga cada cierto tiempo y se arregla reiniciando", una fuga de conexiones es de las primeras sospechas. Dejar la detección de fugas activada, con un umbral holgado, cuesta casi nada y convierte una investigación de días en la lectura de una traza.

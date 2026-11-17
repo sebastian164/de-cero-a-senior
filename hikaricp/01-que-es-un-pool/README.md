@@ -239,6 +239,8 @@ Necesitas PostgreSQL en un contenedor (el [entorno](../entorno/) lo trae) y un p
 
 **Entrega:** rama `taller/hikari-01`, con el código en `taller/solucion/` y `ANALISIS.md`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## En el trabajo real
 
 Con Spring Boot nunca creas el pool a mano: aparece solo en cuanto hay un controlador de base de datos y una URL configurada. Precisamente por eso mucha gente lleva años usándolo sin saber que existe, hasta el día en que aparece en un registro la frase `Connection is not available`.

@@ -1,0 +1,16 @@
+# PostgreSQL con un límite de conexiones muy bajo, para que los talleres choquen con él enseguida.
+# Es el mismo de hikaricp/entorno/compose.yaml; solo el puerto publicado se puede cambiar con DB_PUERTO (por defecto, 5432).
+services:
+  db:
+    image: postgres:17
+    command: ["postgres", "-c", "max_connections=30"]
+    environment:
+      POSTGRES_DB: tienda
+      POSTGRES_PASSWORD: local          # solo para el taller
+    ports:
+      - "${DB_PUERTO:-5432}:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d tienda"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
