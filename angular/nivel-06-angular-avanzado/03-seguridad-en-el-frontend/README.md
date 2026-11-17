@@ -90,6 +90,8 @@ protected volver(): void {
 
 Rama `taller/ng-n6-03-seguridad`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## Preguntas senior
 
 1. ¿Por qué el frontend no puede ser responsable de la autorización?

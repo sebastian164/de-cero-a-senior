@@ -111,6 +111,8 @@ Prefiere el alcance más pequeño que funcione: el estado global es el equivalen
 
 Rama `taller/ng-n3-03-facade-estado`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## Preguntas senior
 
 1. ¿Qué oculta una fachada de estado y qué gana el componente?

@@ -120,6 +120,8 @@ Comprobado con el servidor simulado: con `retry` sin filtrar, un 404 se pedía t
 
 Rama `taller/ng-n5-04-backend`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## Preguntas senior
 
 1. ¿Dónde guardas un token en el navegador y por qué?

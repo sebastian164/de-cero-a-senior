@@ -1,0 +1,14 @@
+import { chromium } from '@playwright/test';
+import { spawn } from 'node:child_process';
+import { readFileSync } from 'node:fs';
+const CSP = "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'";
+const s = spawn('node',['servidor/servidor.mjs'],{env:{...process.env,PUERTO:'49273',RAIZ:'tmp/app-critico/browser',CSP}});
+await new Promise(r=>setTimeout(r,1200));
+const html = readFileSync('tmp/app-critico/browser/index.html','utf8');
+console.log('fragmentos de index.html con onload o <script> en línea:');
+for (const m of html.matchAll(/<link[^>]*onload=[^>]*>|<script(?![^>]*src=)[^>]*>[\s\S]{0,120}/g)) console.log('  ', m[0].slice(0,220));
+const b = await chromium.launch(); const p = await b.newPage(); const msgs=[];
+p.on('console',m=>{ if(m.type()==='error'||m.type()==='warning') msgs.push(m.text().slice(0,250)); });
+await p.goto('http://localhost:49273/n1-01/ejemplo'); await p.waitForLoadState('networkidle'); await p.waitForTimeout(500);
+console.log('mensajes de consola con la CSP:', msgs);
+await b.close(); s.kill();

@@ -142,6 +142,8 @@ En un componente de página está bien para una lectura que solo usa esa pantall
 
 Rama `taller/ng-n1-04-resource`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## Preguntas senior
 
 1. ¿Qué problema de fondo resuelve un recurso frente a "tres señales y una suscripción"?

@@ -111,6 +111,8 @@ Con dos variantes estables, un `if`. Sin dependencias ni estado, un mapa de func
 
 Rama `taller/ng-n3-02-estrategia`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## Preguntas senior
 
 1. ¿Cómo implementas Strategy en Angular sin un `switch`?

@@ -1,0 +1,27 @@
+openapi: 3.0.3
+info: { title: Pedidos, version: 1.0.0 }
+paths:
+  /api/pedidos/{id}:
+    get:
+      operationId: obtenerPedido
+      parameters: [{ name: id, in: path, required: true, schema: { type: string } }]
+      responses:
+        '200': { description: ok, content: { application/json: { schema: { $ref: '#/components/schemas/PedidoDto' } } } }
+        '404': { description: no existe }
+  /api/pedidos:
+    post:
+      operationId: crearPedido
+      requestBody: { required: true, content: { application/json: { schema: { $ref: '#/components/schemas/NuevoPedido' } } } }
+      responses:
+        '201': { description: creado, content: { application/json: { schema: { type: object, required: [id], properties: { id: { type: integer } } } } } }
+        '422': { description: datos inválidos }
+components:
+  schemas:
+    PedidoDto:
+      type: object
+      required: [id, cliente_nombre, valor_total]
+      properties: { id: { type: integer }, cliente_nombre: { type: string }, valor_total: { type: number } }
+    NuevoPedido:
+      type: object
+      required: [cliente]
+      properties: { cliente: { type: string } }

@@ -124,6 +124,8 @@ TestBed.configureTestingModule({
 
 Rama `taller/ng-n2-05-dip`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## Preguntas senior
 
 1. ¿Por qué usar inyección de dependencias no garantiza cumplir DIP?

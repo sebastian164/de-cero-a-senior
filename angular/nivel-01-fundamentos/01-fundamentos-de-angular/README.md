@@ -166,6 +166,8 @@ Construye una lista de tareas:
 
 Rama `taller/ng-n1-01-angular`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## Preguntas senior
 
 1. ¿Por qué el flujo de datos es unidireccional y qué problema evita?

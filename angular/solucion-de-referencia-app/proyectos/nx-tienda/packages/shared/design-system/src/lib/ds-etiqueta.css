@@ -1,0 +1,11 @@
+.ds-etiqueta { display: inline-block;
+padding: 0 var(--ds-espacio-2);
+border: 1px solid var(--ds-color-borde);
+border-radius: 999px;
+font-size: .85em;
+}
+    .ds-etiqueta[data-tono='exito'] { border-color: #1b7f3b;
+color: #14532d;
+} .ds-etiqueta[data-tono='error'] { border-color: var(--ds-color-peligro);
+color: var(--ds-color-peligro);
+}

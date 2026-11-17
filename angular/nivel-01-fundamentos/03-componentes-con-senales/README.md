@@ -173,6 +173,8 @@ Construye un componente de paginación y úsalo en una lista.
 
 Rama `taller/ng-n1-03-componentes`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## Preguntas senior
 
 1. ¿Qué gana un componente cuando sus entradas son señales?

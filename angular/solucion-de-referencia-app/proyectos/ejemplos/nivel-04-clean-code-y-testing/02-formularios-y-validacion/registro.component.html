@@ -1,0 +1,23 @@
+<form (submit)="enviar($event)" novalidate>
+  <label for="correo">Correo</label>
+  <input id="correo" type="email" autocomplete="email" [formField]="formulario.correo"
+         [attr.aria-invalid]="formulario.correo().touched() && formulario.correo().invalid()"
+         aria-describedby="correo-error" />
+  <p id="correo-error" role="alert">
+    @if (formulario.correo().touched() && formulario.correo().invalid()) {
+      {{ formulario.correo().errors()[0].message }}
+    }
+  </p>
+
+  @for (contacto of formulario.contactos; track $index) {
+    <fieldset>
+      <legend>Contacto de emergencia {{ $index + 1 }}</legend>
+      <label>Nombre <input [formField]="contacto.nombre" /></label>
+      <label>Teléfono <input inputmode="numeric" [formField]="contacto.telefono" /></label>
+    </fieldset>
+  }
+  <button type="button" (click)="agregarContacto()" [disabled]="modelo().contactos.length >= 3">Agregar contacto</button>
+
+  @if (errorGeneral()) { <p role="alert">{{ errorGeneral() }}</p> }
+  <button type="submit" [disabled]="enviando()">{{ enviando() ? 'Enviando…' : 'Registrarme' }}</button>
+</form>

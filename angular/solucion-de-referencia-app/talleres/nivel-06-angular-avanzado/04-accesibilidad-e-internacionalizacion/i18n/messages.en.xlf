@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="es-CO" target-language="en" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="titulo" datatype="html">
+        <source>Tus pedidos</source>
+        <target>Your orders</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">talleres/nivel-06-angular-avanzado/04-accesibilidad-e-internacionalizacion/i18n/pantalla.ts</context>
+          <context context-type="linenumber">11,12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="idioma" datatype="html">
+        <source>Idioma de esta compilación:</source>
+        <target>Language of this build:</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">talleres/nivel-06-angular-avanzado/04-accesibilidad-e-internacionalizacion/i18n/pantalla.ts</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="cero" datatype="html">
+        <source>Ninguno</source>
+        <target>None</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">talleres/nivel-06-angular-avanzado/04-accesibilidad-e-internacionalizacion/i18n/pantalla.ts</context>
+          <context context-type="linenumber">13,14</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="uno" datatype="html">
+        <source>Uno</source>
+        <target>One</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">talleres/nivel-06-angular-avanzado/04-accesibilidad-e-internacionalizacion/i18n/pantalla.ts</context>
+          <context context-type="linenumber">14,15</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="varios" datatype="html">
+        <source>Cinco</source>
+        <target>Five</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">talleres/nivel-06-angular-avanzado/04-accesibilidad-e-internacionalizacion/i18n/pantalla.ts</context>
+          <context context-type="linenumber">15,16</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="plural" datatype="html">
+        <source>{VAR_PLURAL, plural, =0 {No tienes pedidos} =1 {Tienes un pedido} other {Tienes <x id="INTERPOLATION"/> pedidos}}</source>
+        <target>{VAR_PLURAL, plural, =0 {You have no orders} =1 {You have one order} other {You have <x id="INTERPOLATION"/> orders}}</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">talleres/nivel-06-angular-avanzado/04-accesibilidad-e-internacionalizacion/i18n/pantalla.ts</context>
+          <context context-type="linenumber">16,17</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="fecha" datatype="html">
+        <source>Entrega:</source>
+        <target>Delivery:</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">talleres/nivel-06-angular-avanzado/04-accesibilidad-e-internacionalizacion/i18n/pantalla.ts</context>
+          <context context-type="linenumber">17</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="total" datatype="html">
+        <source>Total:</source>
+        <target>Total:</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">talleres/nivel-06-angular-avanzado/04-accesibilidad-e-internacionalizacion/i18n/pantalla.ts</context>
+          <context context-type="linenumber">18</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="bienvenida" datatype="html">
+        <source>Hola, <x id="INTERPOLATION" equiv-text="{{ nombre }}"/>: tienes <x id="INTERPOLATION_1" equiv-text="{{ cantidad() }}"/> pedidos activos.</source>
+        <target>Hello, <x id="INTERPOLATION" equiv-text="{{ nombre }}"/>: you have <x id="INTERPOLATION_1" equiv-text="{{ cantidad() }}"/> active orders.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">talleres/nivel-06-angular-avanzado/04-accesibilidad-e-internacionalizacion/i18n/pantalla.ts</context>
+          <context context-type="linenumber">19,21</context>
+        </context-group>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

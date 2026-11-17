@@ -1,0 +1,17 @@
+# Punto 7: comprobaciones automáticas de accesibilidad en la integración continua.
+name: accesibilidad
+on: [pull_request]
+jobs:
+  axe:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 24, cache: npm }
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: npm run build
+      # Las pruebas de idioma sirven la compilación localizada (es-CO y en), que no está en el repositorio: se construye aquí.
+      - run: npx ng build n6-04-i18n
+      # Cada pantalla nueva debe pasar axe (WCAG 2.1 AA) sin violaciones: el trabajo falla si aparece una.
+      - run: npx playwright test talleres/nivel-06-angular-avanzado/04-accesibilidad-e-internacionalizacion

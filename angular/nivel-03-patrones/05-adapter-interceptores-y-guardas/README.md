@@ -140,6 +140,8 @@ Interceptores, guardas y *resolvers* son hoy funciones. Las versiones basadas en
 
 Rama `taller/ng-n3-05-adapter-interceptores`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## Preguntas senior
 
 1. ¿Por qué separar DTO de modelo y cuándo no vale la pena?

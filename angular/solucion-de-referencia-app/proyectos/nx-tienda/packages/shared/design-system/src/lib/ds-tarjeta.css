@@ -1,0 +1,6 @@
+.ds-tarjeta { border: 1px solid var(--ds-color-borde);
+border-radius: var(--ds-radio);
+padding: var(--ds-espacio-3);
+font-family: var(--ds-fuente);
+} h3 { margin: 0 0 var(--ds-espacio-2);
+}

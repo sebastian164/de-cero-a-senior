@@ -95,6 +95,8 @@ Rama `taller/ng-n5-05-monorepo-microfrontends`.
 
 Comprobado con Nx 24 y Native Federation 22.2 (`@angular-architects/native-federation`): la regla `@nx/enforce-module-boundaries` hace fallar el lint ante una dependencia fuera de las etiquetas permitidas; `nx affected` ejecuta solo lo afectado; y un anfitrión y un remoto federados se cargan en el navegador compartiendo una sola copia de Angular. Problemas reales que aparecieron al componer: el remoto necesita CORS en su origen, no comparte los servicios del anfitrión (la sesión llega solo por un canal explícito, como `sessionStorage`) y hereda su `LOCALE_ID`. Con Vitest 5 y el complemento de Analog, los componentes con `styles: [...]` en línea no se pueden probar: usa `styleUrl`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## Preguntas senior
 
 1. ¿Qué problema resuelve un monorepo y cuál los microfrontends?

@@ -119,6 +119,8 @@ Aplicar la estructura completa a un CRUD produce tres archivos que solo reenvía
 
 Rama `taller/ng-n5-03-arquitectura-limpia`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## Preguntas senior
 
 1. ¿Qué es dominio en un frontend y qué no lo es?

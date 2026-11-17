@@ -1,0 +1,308 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "cli": {
+    "packageManager": "npm"
+  },
+  "newProjectRoot": "projects",
+  "projects": {
+    "app": {
+      "projectType": "application",
+      "schematics": {},
+      "root": "",
+      "sourceRoot": "src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular/build:application",
+          "options": {
+            "browser": "src/main.ts",
+            "tsConfig": "tsconfig.app.json",
+            "assets": [
+              {
+                "glob": "**/*",
+                "input": "public"
+              }
+            ],
+            "styles": [
+              "src/styles.css",
+              "@angular/cdk/overlay-prebuilt.css"
+            ],
+            "polyfills": [
+              "@angular/localize/init"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kB",
+                  "maximumError": "1MB"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "4kB",
+                  "maximumError": "8kB"
+                }
+              ],
+              "outputHashing": "all",
+              "optimization": {
+                "scripts": true,
+                "styles": {
+                  "minify": true,
+                  "inlineCritical": false
+                },
+                "fonts": true
+              }
+            },
+            "development": {
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular/build:dev-server",
+          "configurations": {
+            "production": {
+              "buildTarget": "app:build:production"
+            },
+            "development": {
+              "buildTarget": "app:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "test": {
+          "builder": "@angular/build:unit-test",
+          "options": {
+            "include": [
+              "../talleres/**/*.spec.ts",
+              "../proyectos/ejemplos/**/*.spec.ts",
+              "**/*.spec.ts"
+            ],
+            "setupFiles": [
+              "src/test-setup.ts"
+            ],
+            "watch": false,
+            "providersFile": "src/test-providers.ts"
+          }
+        }
+      }
+    },
+    "n5-01-eager": {
+      "projectType": "application",
+      "root": "",
+      "sourceRoot": "src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular/build:application",
+          "options": {
+            "browser": "talleres/nivel-05-arquitectura/01-estructura-por-funcionalidades/medicion/main-eager.ts",
+            "index": "src/index.html",
+            "tsConfig": "tsconfig.app.json",
+            "outputPath": "tmp/medicion-eager",
+            "outputHashing": "all"
+          }
+        }
+      }
+    },
+    "n5-01-lazy": {
+      "projectType": "application",
+      "root": "",
+      "sourceRoot": "src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular/build:application",
+          "options": {
+            "browser": "talleres/nivel-05-arquitectura/01-estructura-por-funcionalidades/medicion/main-lazy.ts",
+            "index": "src/index.html",
+            "tsConfig": "tsconfig.app.json",
+            "outputPath": "tmp/medicion-lazy",
+            "outputHashing": "all"
+          }
+        }
+      }
+    },
+    "n6-01-zona": {
+      "projectType": "application",
+      "root": "",
+      "sourceRoot": "src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular/build:application",
+          "options": {
+            "browser": "talleres/nivel-06-angular-avanzado/01-deteccion-de-cambios-y-rendimiento/zona/main-zona.ts",
+            "index": "src/index.html",
+            "tsConfig": "tsconfig.app.json",
+            "outputPath": "tmp/n6-01-zona",
+            "outputHashing": "none",
+            "polyfills": [
+              "zone.js"
+            ]
+          }
+        }
+      }
+    },
+    "n6-01-sin-zona": {
+      "projectType": "application",
+      "root": "",
+      "sourceRoot": "src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular/build:application",
+          "options": {
+            "browser": "talleres/nivel-06-angular-avanzado/01-deteccion-de-cambios-y-rendimiento/zona/main-sin-zona.ts",
+            "index": "src/index.html",
+            "tsConfig": "tsconfig.app.json",
+            "outputPath": "tmp/n6-01-sin-zona",
+            "outputHashing": "none"
+          }
+        }
+      }
+    },
+    "n6-02-ssr": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:class": {
+          "skipTests": true
+        },
+        "@schematics/angular:component": {
+          "skipTests": true
+        },
+        "@schematics/angular:directive": {
+          "skipTests": true
+        },
+        "@schematics/angular:guard": {
+          "skipTests": true
+        },
+        "@schematics/angular:interceptor": {
+          "skipTests": true
+        },
+        "@schematics/angular:pipe": {
+          "skipTests": true
+        },
+        "@schematics/angular:resolver": {
+          "skipTests": true
+        },
+        "@schematics/angular:service": {
+          "skipTests": true
+        }
+      },
+      "root": "proyectos/ssr",
+      "sourceRoot": "proyectos/ssr/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular/build:application",
+          "options": {
+            "browser": "proyectos/ssr/src/main.ts",
+            "tsConfig": "proyectos/ssr/tsconfig.app.json",
+            "assets": [
+              {
+                "glob": "**/*",
+                "input": "proyectos/ssr/public"
+              }
+            ],
+            "styles": [
+              "proyectos/ssr/src/styles.css"
+            ],
+            "server": "proyectos/ssr/src/main.server.ts",
+            "outputMode": "server",
+            "security": {
+              "allowedHosts": [
+                "localhost"
+              ]
+            },
+            "ssr": {
+              "entry": "proyectos/ssr/src/server.ts"
+            }
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kB",
+                  "maximumError": "1MB"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "4kB",
+                  "maximumError": "8kB"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular/build:dev-server",
+          "configurations": {
+            "production": {
+              "buildTarget": "n6-02-ssr:build:production"
+            },
+            "development": {
+              "buildTarget": "n6-02-ssr:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        }
+      }
+    },
+    "n6-04-i18n": {
+      "projectType": "application",
+      "root": "",
+      "sourceRoot": "src",
+      "prefix": "app",
+      "i18n": {
+        "sourceLocale": "es-CO",
+        "locales": {
+          "en": {
+            "translation": "talleres/nivel-06-angular-avanzado/04-accesibilidad-e-internacionalizacion/i18n/messages.en.xlf"
+          }
+        }
+      },
+      "architect": {
+        "build": {
+          "builder": "@angular/build:application",
+          "options": {
+            "browser": "talleres/nivel-06-angular-avanzado/04-accesibilidad-e-internacionalizacion/i18n/main.ts",
+            "index": "src/index.html",
+            "tsConfig": "tsconfig.app.json",
+            "outputPath": "tmp/n6-04-i18n",
+            "localize": [
+              "es-CO",
+              "en"
+            ],
+            "polyfills": [
+              "@angular/localize/init"
+            ],
+            "outputHashing": "none"
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular/build:extract-i18n",
+          "options": {
+            "buildTarget": "n6-04-i18n:build",
+            "outputPath": "talleres/nivel-06-angular-avanzado/04-accesibilidad-e-internacionalizacion/i18n",
+            "format": "xlf"
+          }
+        }
+      }
+    }
+  }
+}

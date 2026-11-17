@@ -119,6 +119,8 @@ Se busca por rol y por texto visible, como lo haría un lector de pantalla. Si l
 
 Rama `taller/ng-n4-03-pruebas`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## Preguntas senior
 
 1. ¿Qué significa probar un componente "como usuario" y por qué resiste mejor los cambios?

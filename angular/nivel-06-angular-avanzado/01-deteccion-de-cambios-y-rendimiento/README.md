@@ -117,6 +117,8 @@ export class TablaPedidosComponent {
 
 Rama `taller/ng-n6-01-rendimiento`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## Preguntas senior
 
 1. Explica cómo sabe Angular que debe actualizar la vista, con y sin Zone.js.

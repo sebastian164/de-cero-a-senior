@@ -84,6 +84,8 @@ export class PaginaPedidosComponent {
 
 Rama `taller/ng-n3-01-contenedor`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## Preguntas senior
 
 1. ¿Qué criterio usas para decidir si un componente inyecta servicios?

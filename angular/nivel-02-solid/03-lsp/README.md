@@ -96,6 +96,8 @@ Un control propio de formulario debe implementar `ControlValueAccessor` completo
 
 Rama `taller/ng-n2-03-lsp`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## Preguntas senior
 
 1. ¿Por qué el tipado estructural no garantiza la sustitución?

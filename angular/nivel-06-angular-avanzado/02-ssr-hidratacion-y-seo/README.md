@@ -91,6 +91,8 @@ Las peticiones hechas en el servidor se transfieren al cliente para no repetirla
 
 Rama `taller/ng-n6-02-ssr`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## Preguntas senior
 
 1. ¿Cuándo vale la pena el renderizado en servidor y cuándo no?

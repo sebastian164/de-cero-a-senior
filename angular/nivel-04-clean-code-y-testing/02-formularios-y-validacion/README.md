@@ -314,6 +314,8 @@ Construye el formulario de registro de una clínica con formularios con señales
 
 Rama `taller/ng-n4-02-formularios`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## Preguntas senior
 
 1. ¿Qué cambia de fondo entre un formulario reactivo y uno con señales?

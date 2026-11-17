@@ -92,6 +92,8 @@ export class ResumenComponent {
 
 Rama `taller/ng-n4-01-clean-code`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## Preguntas senior
 
 1. ¿Por qué evitar llamadas a métodos en la plantilla?

@@ -1,0 +1,12 @@
+/* Tokens del sistema de diseño: colores, espaciado y tipografía en un solo lugar. */
+:root {
+  --ds-color-primario: #1d3557;
+  --ds-color-sobre-primario: #ffffff;
+  --ds-color-peligro: #9b1c1c;
+  --ds-color-borde: #c7ced6;
+  --ds-espacio-1: 0.25rem;
+  --ds-espacio-2: 0.5rem;
+  --ds-espacio-3: 1rem;
+  --ds-radio: 0.375rem;
+  --ds-fuente: system-ui, sans-serif;
+}

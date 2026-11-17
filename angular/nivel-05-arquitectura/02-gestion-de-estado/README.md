@@ -154,6 +154,8 @@ Sin los `transform` anteriores, abrir `/pedidos` sin parámetros pedía `estado=
 
 Rama `taller/ng-n5-02-estado`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## Preguntas senior
 
 1. ¿Qué tipos de estado existen y dónde vive cada uno?

@@ -1,0 +1,17 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "types": [
+      "@angular/localize"
+    ]
+  },
+  "include": [
+    "src/**/*.ts",
+    "talleres/**/*.ts",
+    "proyectos/ejemplos/**/*.ts"
+  ],
+  "exclude": [
+    "**/*.spec.ts",
+    "**/*.e2e.ts"
+  ]
+}

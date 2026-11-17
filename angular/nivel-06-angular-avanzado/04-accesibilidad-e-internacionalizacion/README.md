@@ -101,6 +101,8 @@ Para usar el atributo `i18n` hay que agregar el paquete de localización (`ng ad
 
 Rama `taller/ng-n6-04-accesibilidad`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## Preguntas senior
 
 1. ¿Por qué empezar por HTML semántico antes que por ARIA?

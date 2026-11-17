@@ -94,6 +94,8 @@ De mejor a peor: `toSignal` · tubería `async` · `takeUntilDestroyed()` · gua
 
 Rama `taller/ng-n3-04-rxjs`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## Preguntas senior
 
 1. Observable frío frente a caliente, con un error que cause cada confusión.

@@ -1,0 +1,22 @@
+.ds-boton { font: inherit;
+padding: var(--ds-espacio-2) var(--ds-espacio-3);
+border-radius: var(--ds-radio);
+border: 1px solid var(--ds-color-primario);
+cursor: pointer;
+}
+    .ds-boton--primario { background: var(--ds-color-primario);
+color: var(--ds-color-sobre-primario);
+}
+    .ds-boton--secundario { background: transparent;
+color: var(--ds-color-primario);
+}
+    .ds-boton--peligro { background: var(--ds-color-peligro);
+color: var(--ds-color-sobre-primario);
+border-color: var(--ds-color-peligro);
+}
+    .ds-boton:focus-visible { outline: 3px solid #f4a261;
+outline-offset: 2px;
+}
+    .ds-boton:disabled { opacity: .5;
+cursor: not-allowed;
+}

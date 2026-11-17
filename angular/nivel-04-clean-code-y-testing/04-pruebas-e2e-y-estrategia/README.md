@@ -93,6 +93,8 @@ Criterios para decidir dónde va una prueba: lo más abajo posible que todavía 
 
 Rama `taller/ng-n4-04-e2e`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## Preguntas senior
 
 1. ¿Qué recorridos merecen una prueba E2E?

@@ -1,0 +1,14 @@
+api -> models
+api -> products
+data -> models
+feature-product-detail -> data
+feature-product-detail -> models
+feature-product-detail -> shared-ui
+feature-products -> data
+feature-products -> models
+feature-products -> shared-ui
+products -> models
+shared-ui -> models
+shop -> feature-product-detail
+shop -> feature-products
+shop-e2e -> shop

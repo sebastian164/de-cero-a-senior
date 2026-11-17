@@ -120,6 +120,8 @@ Menos estado, sin carrera entre peticiones, sin suscripciones manuales y sin rie
 
 Rama `taller/ng-n1-02-reactividad`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## Preguntas senior
 
 1. ¿Qué diferencia conceptual hay entre una señal y un observable?

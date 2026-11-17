@@ -121,6 +121,8 @@ Es el equivalente en Angular de un *hook* personalizado: comportamiento comparti
 
 Rama `taller/ng-n3-06-composicion`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## Preguntas senior
 
 1. ¿Qué alternativas a la herencia ofrece Angular para compartir comportamiento?

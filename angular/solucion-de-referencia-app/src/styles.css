@@ -1,0 +1,4 @@
+body { font-family: system-ui, sans-serif; margin: 0; color: #1b1b1b; background: #fff; }
+:focus-visible { outline: 3px solid #e76f51; outline-offset: 2px; }
+table { border-collapse: collapse; } td, th { border: 1px solid #ccc; padding: .2rem .4rem; }
+.urgente { border-left: 4px solid #c00; }

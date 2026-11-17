@@ -110,6 +110,8 @@ Con dos o tres variantes estables, un `@switch` es más claro que un registro de
 
 Rama `taller/ng-n2-02-ocp`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## Preguntas senior
 
 1. ¿Qué mecanismos de extensión ofrece Angular y cuándo usar cada uno?

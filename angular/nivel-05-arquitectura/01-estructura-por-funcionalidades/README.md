@@ -95,6 +95,8 @@ El código de cada funcionalidad se descarga cuando se navega a ella. Dentro de 
 
 Rama `taller/ng-n5-01-estructura`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## Preguntas senior
 
 1. ¿Por qué organizar por funcionalidad y no por tipo?

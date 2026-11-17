@@ -102,6 +102,8 @@ Un componente pequeño que hace una petición y muestra el resultado no necesita
 
 Rama `taller/ng-n2-01-srp`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## Preguntas senior
 
 1. ¿Qué responsabilidades puede tener legítimamente un componente?
