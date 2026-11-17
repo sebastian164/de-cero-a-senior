@@ -61,6 +61,7 @@ resource "aws_db_instance" "pedidos" {
   backup_retention_period = 7
   storage_encrypted       = true
   publicly_accessible     = false
+  username                = "pedidos"
   password                = data.aws_secretsmanager_secret_version.pedidos_db.secret_string
 }
 ```

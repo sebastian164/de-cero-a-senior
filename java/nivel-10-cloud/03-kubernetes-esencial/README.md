@@ -105,7 +105,7 @@ Comandos del día a día: `kubectl get pods`, `describe pod`, `logs -f`, `exec -
 3. Elimina un pod y observa cómo se recrea. Escala a cinco réplicas.
 4. Despliega una versión que no arranca y observa cómo la actualización progresiva protege al servicio. Revierte.
 5. Fija un límite de memoria bajo, provoca el *OOMKilled* y diagnostícalo con `describe`.
-6. Lanza carga durante un despliegue con y sin apagado ordenado, y cuenta las peticiones fallidas.
+6. Lanza carga durante un despliegue con y sin apagado ordenado, y cuenta las peticiones fallidas. (Desde Spring Boot 3.4 el apagado ordenado ya es el valor por defecto: la variante «sin» se pide con `server.shutdown=immediate`. Cambia una sola variable por prueba y deja el mismo `terminationGracePeriodSeconds` en todas.)
 
 Rama `taller/n10-03-kubernetes`.
 

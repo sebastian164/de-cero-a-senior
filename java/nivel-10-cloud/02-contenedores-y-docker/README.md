@@ -66,6 +66,8 @@ services:
     ports: ["8080:8080"]
     environment:
       SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/tienda
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: local
     depends_on:
       db:
         condition: service_healthy

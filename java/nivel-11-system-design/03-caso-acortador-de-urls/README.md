@@ -55,7 +55,7 @@ El acceso es por clave: `codigo → url_larga`. No hay uniones. Encaja en un alm
 | Rangos de contador por instancia | Cada instancia reserva un bloque de números | Sin contención por petición | Coordinación para repartir rangos |
 | Aleatorio con comprobación | Generar y verificar unicidad | Impredecible | Una lectura extra; colisiones crecen con el llenado |
 
-Elección razonable: **rangos de contador** (cada instancia pide un bloque de, por ejemplo, 10.000 números a un coordinador) y codificación en base 62, con una permutación reversible del número para que los códigos consecutivos no se parezcan.
+Elección razonable: **rangos de contador** (cada instancia pide un bloque de, por ejemplo, 10.000 números a un coordinador) y codificación en base 62, con una permutación reversible del número para que los códigos consecutivos no se parezcan. Ojo: una permutación afín (`n·A + B` módulo 62⁷) oculta la adyacencia pero es lineal: dos códigos consecutivos delatan el paso y, con él, todos los demás. Si los códigos deben ser impredecibles de verdad, usa la estrategia aleatoria o una permutación con clave secreta.
 
 ```java
 static String aBase62(long numero) {
