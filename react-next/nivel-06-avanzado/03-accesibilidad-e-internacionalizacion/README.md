@@ -113,6 +113,8 @@ Enlaces alternativos por idioma (`hreflang`), metadatos traducidos y un `sitemap
 
 Rama `taller/rx-n6-03-accesibilidad`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## Preguntas senior
 
 1. ¿Por qué preferir primitivas accesibles ya resueltas?

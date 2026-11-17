@@ -103,6 +103,8 @@ Problemas de los HOC que llevaron a abandonarlos: propiedades que chocan entre v
 
 Rama `taller/rx-n3-05-suspense-errores`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## Preguntas senior
 
 1. ¿Cómo decides dónde poner los límites de `Suspense`?

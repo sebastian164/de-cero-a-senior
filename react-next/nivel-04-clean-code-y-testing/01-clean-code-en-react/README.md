@@ -108,6 +108,8 @@ TypeScript estricto, ESLint con las reglas de hooks (no las silencies), reglas d
 
 Rama `taller/rx-n4-01-clean-code`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## Preguntas senior
 
 1. ¿Qué señales indican que un `useEffect` sobra?

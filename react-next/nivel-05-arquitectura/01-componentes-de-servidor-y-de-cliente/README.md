@@ -140,6 +140,8 @@ Una aplicación totalmente interactiva tras inicio de sesión (un editor, un tab
 
 Rama `taller/rx-n5-01-servidor-cliente`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## Preguntas senior
 
 1. ¿Qué significa realmente `'use client'`?

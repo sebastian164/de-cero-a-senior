@@ -144,6 +144,8 @@ La acción de servidor es un adaptador, igual que un controlador REST: autentica
 
 Rama `taller/rx-n5-03-arquitectura`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## Preguntas senior
 
 1. ¿Qué debe contener la carpeta `app/` y qué no?

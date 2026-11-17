@@ -1,0 +1,5 @@
+[
+  {"id": "1", "titulo": "Cien años de soledad", "autor": "Gabriel García Márquez", "anio": 1967, "resumen": "Saga de los **Buendía** en *Macondo*. Realismo mágico."},
+  {"id": "2", "titulo": "La vorágine", "autor": "José Eustasio Rivera", "anio": 1924, "resumen": "La selva y el caucho: una novela de **denuncia** y de *búsqueda*."},
+  {"id": "3", "titulo": "Delirio", "autor": "Laura Restrepo", "anio": 2004, "resumen": "Una mujer, un hotel y una **ciudad** que se desmorona. Premio *Alfaguara*."}
+]

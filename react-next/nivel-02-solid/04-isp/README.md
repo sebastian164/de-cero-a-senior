@@ -97,6 +97,8 @@ Si el componente usa casi todo el objeto, recibirlo entero es más claro que qui
 
 Rama `taller/rx-n2-04-isp`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## Preguntas senior
 
 1. ¿Qué gana un componente al recibir solo lo que usa?

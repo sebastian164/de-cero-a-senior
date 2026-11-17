@@ -1,0 +1,1 @@
+{ "compilerOptions": { "allowJs": true, "checkJs": true, "strict": true, "noEmit": true, "target": "ES2023", "module": "commonjs", "types": ["node"], "skipLibCheck": true }, "files": ["inventario.js"] }

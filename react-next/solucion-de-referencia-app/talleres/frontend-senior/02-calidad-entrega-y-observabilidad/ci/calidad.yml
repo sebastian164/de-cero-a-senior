@@ -1,0 +1,57 @@
+name: calidad
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  calidad:
+    runs-on: ubuntu-latest
+    # Las pruebas del contrato del repositorio de pedidos corren contra PostgreSQL real, no contra un simulacro.
+    services:
+      postgres:
+        image: postgres:17
+        env: { POSTGRES_USER: verificacion, POSTGRES_PASSWORD: verificacion, POSTGRES_DB: pedidos }
+        ports: ['49540:5432']
+        options: >-
+          --health-cmd "pg_isready -U verificacion -d pedidos" --health-interval 2s --health-timeout 3s --health-retries 30
+    env:
+      PEDIDOS_BD_URL: postgres://verificacion:verificacion@127.0.0.1:49540/pedidos
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with: { node-version: 26, cache: npm }
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run typecheck
+      - run: npm run formato
+      - run: npm test -- --coverage
+      - run: npm run build # falla si se supera el presupuesto de tamaño
+      - run: npm audit --audit-level=high
+  e2e:
+    needs: calidad
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:17
+        env: { POSTGRES_USER: verificacion, POSTGRES_PASSWORD: verificacion, POSTGRES_DB: pedidos }
+        ports: ['49540:5432']
+        options: >-
+          --health-cmd "pg_isready -U verificacion -d pedidos" --health-interval 2s --health-timeout 3s --health-retries 30
+    env:
+      PEDIDOS_BD_URL: postgres://verificacion:verificacion@127.0.0.1:49540/pedidos
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with: { node-version: 26, cache: npm }
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: npm run build
+      - run: npx playwright test # contra la aplicación construida (next start); accesibilidad con axe en cada pantalla
+      - run: npm run lighthouse # arranca y apaga su propio next start; falla si baja el presupuesto de rendimiento
+  desplegar:
+    needs: e2e
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Desplegar el artefacto ya construido" # el paso concreto depende de la plataforma

@@ -126,6 +126,8 @@ const total = (estado: EstadoCarrito) =>
 
 Rama `taller/ts-02-oo`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## Preguntas senior
 
 1. ¿Qué diferencia hay entre `private` y `#privado`?

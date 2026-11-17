@@ -1,0 +1,67 @@
+// Registro de pantallas: lo usan el índice de la aplicación y el recorrido de Playwright (e2e/navegar.spec.ts).
+export interface Pantalla {
+  readonly ruta: string;
+  readonly titulo: string;
+  readonly sesion: string;
+  /** Texto que debe aparecer en la pantalla cuando cargó bien. */
+  readonly espera: string;
+}
+
+export const PANTALLAS: readonly Pantalla[] = [
+  { ruta: '/n1/01-react', titulo: 'Fundamentos de React: pedidos, tareas y el índice como clave', sesion: 'nivel-01 · Fundamentos', espera: 'Taller: lista de tareas' },
+  { ruta: '/n1/02-hooks', titulo: 'Hooks y efectos: buscador, almacenamiento, conexión, carreras y key', sesion: 'nivel-01 · Fundamentos', espera: 'Taller 4: carrera entre peticiones' },
+  { ruta: '/pedidos', titulo: 'Ejemplo del README: /pedidos con acción de servidor', sesion: 'nivel-01 · Fundamentos', espera: 'Pedidos' },
+  { ruta: '/n1/03-next', titulo: 'Taller Next.js: inicio', sesion: 'nivel-01 · Fundamentos', espera: 'Biblioteca' },
+  { ruta: '/n1/03-next/libros', titulo: 'Taller Next.js: lista con acción de servidor', sesion: 'nivel-01 · Fundamentos', espera: 'Nuevo libro' },
+  { ruta: '/n1/03-next/libros/1', titulo: 'Taller Next.js: detalle', sesion: 'nivel-01 · Fundamentos', espera: 'Cien años de soledad' },
+  { ruta: '/n1/03-next/libros-cliente', titulo: 'Taller Next.js: la misma lista toda en el cliente', sesion: 'nivel-01 · Fundamentos', espera: 'La vorágine' },
+  { ruta: '/n2/01-srp', titulo: 'SRP: el editor de facturas antes y después de separarlo', sesion: 'nivel-02 · SOLID', espera: 'Factura FE-002' },
+  { ruta: '/n2/01-srp/facturas/2', titulo: 'SRP: la página de factura del README', sesion: 'nivel-02 · SOLID', espera: 'Factura FE-002' },
+  { ruta: '/n2/02-ocp', titulo: 'OCP: alerta, tarjeta, lista genérica y notificaciones', sesion: 'nivel-02 · SOLID', espera: 'Envío GU-778' },
+  { ruta: '/n2/03-lsp', titulo: 'LSP: Boton, Campo y Enlace', sesion: 'nivel-02 · SOLID', espera: 'Enfocar el campo' },
+  { ruta: '/n2/04-isp', titulo: 'ISP: proyección en el servidor, avatar y tema', sesion: 'nivel-02 · SOLID', espera: 'Ana' },
+  { ruta: '/n2/04-isp/sin-proyectar', titulo: 'ISP: el usuario completo hacia el cliente (antes)', sesion: 'nivel-02 · SOLID', espera: 'Hola, Ana' },
+  { ruta: '/n2/05-dip', titulo: 'DIP: dependencias por contexto y módulo de composición', sesion: 'nivel-02 · SOLID', espera: 'A-1' },
+  { ruta: '/n3/01-composicion', titulo: 'Composición: pestañas, acordeones, diálogo y children de servidor', sesion: 'nivel-03 · Patrones', espera: 'Acordeón compuesto' },
+  { ruta: '/n3/02-hooks', titulo: 'Hooks personalizados: tabla, paginación y formularios', sesion: 'nivel-03 · Patrones', espera: 'Ana Gómez' },
+  { ruta: '/n3/03-carrito', titulo: 'Carrito con reductor, contexto, persistencia y cupones', sesion: 'nivel-03 · Patrones', espera: 'El carrito está vacío.' },
+  { ruta: '/n3/04-datos', titulo: 'Capa de datos: consulta, mutación optimista y deduplicación', sesion: 'nivel-03 · Patrones', espera: 'Cancelar #101' },
+  { ruta: '/n3/04-datos/servidor?estado=1', titulo: 'Capa de datos: consumo en el servidor (README)', sesion: 'nivel-03 · Patrones', espera: 'Ana Gómez' },
+  { ruta: '/n3/05-suspense', titulo: 'Suspense por secciones y límites de error', sesion: 'nivel-03 · Patrones', espera: 'Te puede interesar' },
+  { ruta: '/n3/05-suspense/clientes/42', titulo: 'Suspense: PaginaCliente del README', sesion: 'nivel-03 · Patrones', espera: 'pagado' },
+  { ruta: '/n3/05-suspense/cls?modo=esqueleto', titulo: 'CLS con esqueleto', sesion: 'nivel-03 · Patrones', espera: 'Contenido de 320 px' },
+  { ruta: '/n3/05-suspense/cls?modo=giratorio', titulo: 'CLS con giratorio', sesion: 'nivel-03 · Patrones', espera: 'Contenido de 320 px' },
+  { ruta: '/n4/01-clean-code', titulo: 'Clean code: panel de pedidos antes y después, y memorización', sesion: 'nivel-04 · Clean code y pruebas', espera: 'nivel-04/01 · Clean code en React' },
+  { ruta: '/n4/02-formularios', titulo: 'Formularios: acción de servidor y biblioteca', sesion: 'nivel-04 · Clean code y pruebas', espera: 'ficha de clínica con biblioteca' },
+  { ruta: '/bienvenida', titulo: 'Destino del redirect del registro', sesion: 'nivel-04 · Clean code y pruebas', espera: 'Registro completo' },
+  { ruta: '/n5/01-servidor-cliente/antes/1', titulo: 'Servidor/cliente: ficha totalmente de cliente (antes)', sesion: 'nivel-05 · Arquitectura', espera: 'Café de Huila 500 g' },
+  { ruta: '/n5/01-servidor-cliente/productos/1', titulo: 'Servidor/cliente: ficha con servidor por defecto (después)', sesion: 'nivel-05 · Arquitectura', espera: 'Excelente aroma' },
+  { ruta: '/n5/01-servidor-cliente/fuga', titulo: 'Servidor/cliente: el registro completo cruza la frontera', sesion: 'nivel-05 · Arquitectura', espera: 'Ficha de cliente' },
+  { ruta: '/n5/01-servidor-cliente/proyectada', titulo: 'Servidor/cliente: proyección en el servidor', sesion: 'nivel-05 · Arquitectura', espera: 'Ficha de cliente' },
+  { ruta: '/n5/02-cache/catalogo', titulo: 'Caché: catálogo con tres estrategias', sesion: 'nivel-05 · Arquitectura', espera: 'Sin caché, precio exacto' },
+  { ruta: '/n5/02-cache/catalogo/1', titulo: 'Caché: detalle por etiqueta', sesion: 'nivel-05 · Arquitectura', espera: 'Detalle, por etiqueta' },
+  { ruta: '/n5/02-cache/usuario-actual?modo=sin-cache', titulo: 'Caché: usuario actual sin cache de React', sesion: 'nivel-05 · Arquitectura', espera: 'Sin cache' },
+  { ruta: '/n5/02-cache/por-usuario', titulo: 'Caché: datos por usuario', sesion: 'nivel-05 · Arquitectura', espera: 'Datos por usuario' },
+  { ruta: '/n5/03-arquitectura', titulo: 'Arquitectura: ingreso de demostración', sesion: 'nivel-05 · Arquitectura', espera: 'Ingresar como Ana' },
+  { ruta: '/n5/04-renderizado/inicio', titulo: 'Renderizado: inicio estático', sesion: 'nivel-05 · Arquitectura', espera: 'Tienda: inicio' },
+  { ruta: '/n5/04-renderizado/categoria/bebidas', titulo: 'Renderizado: categoría con regeneración por tiempo', sesion: 'nivel-05 · Arquitectura', espera: 'Chocolate de mesa' },
+  { ruta: '/n5/04-renderizado/producto/1', titulo: 'Renderizado: ficha con regeneración bajo demanda', sesion: 'nivel-05 · Arquitectura', espera: 'Café de Huila' },
+  { ruta: '/n5/04-renderizado/carrito', titulo: 'Renderizado: carrito, cáscara estática con hueco dinámico', sesion: 'nivel-05 · Arquitectura', espera: 'Artículos en el carrito' },
+  { ruta: '/n5/04-renderizado/busqueda?q=caf', titulo: 'Renderizado: búsqueda dinámica con transmisión', sesion: 'nivel-05 · Arquitectura', espera: 'Café de Huila' },
+  { ruta: '/n5/04-renderizado/mi-cuenta', titulo: 'Renderizado: mi cuenta, dinámica y sin indexar', sesion: 'nivel-05 · Arquitectura', espera: 'Sin sesión' },
+  { ruta: '/n5/04-renderizado/lenta/bloqueante', titulo: 'Transmisión: sin transmisión (bloquea)', sesion: 'nivel-05 · Arquitectura', espera: 'Sección lenta lista' },
+  { ruta: '/n5/04-renderizado/lenta/grueso', titulo: 'Transmisión: una sola frontera', sesion: 'nivel-05 · Arquitectura', espera: 'Sección lenta lista' },
+  { ruta: '/n5/04-renderizado/lenta/fino', titulo: 'Transmisión: frontera por sección', sesion: 'nivel-05 · Arquitectura', espera: 'Sección lenta lista' },
+  { ruta: '/n5/04-renderizado/hora-cacheada', titulo: 'Despliegue: caché local de cada réplica', sesion: 'nivel-05 · Arquitectura', espera: 'Generada en' },
+  { ruta: '/n5/04-renderizado/config-publica', titulo: 'Despliegue: variables públicas y privadas', sesion: 'nivel-05 · Arquitectura', espera: 'NEXT_PUBLIC_' },
+  { ruta: '/n5/04-renderizado/imagenes?modo=simple', titulo: 'Imágenes y fuentes: sin optimizar', sesion: 'nivel-05 · Arquitectura', espera: 'Portada (sin optimizar)' },
+  { ruta: '/n5/04-renderizado/imagenes?modo=optimizado', titulo: 'Imágenes y fuentes: next/image y next/font', sesion: 'nivel-05 · Arquitectura', espera: 'Portada (optimizada)' },
+  { ruta: '/n6/02-seguridad', titulo: 'Seguridad: ingreso con límite de tasa y CSP con nonce', sesion: 'nivel-06 · Avanzado', espera: 'nivel-06/02 · Seguridad y autenticación' },
+  { ruta: '/n6/03-accesibilidad', titulo: 'Accesibilidad: controles, diálogo nativo y campo del README', sesion: 'nivel-06 · Avanzado', espera: 'Abrir diálogo' },
+  { ruta: '/n6/03-accesibilidad/antes', titulo: 'Accesibilidad: el "antes" con controles solo de ratón', sesion: 'nivel-06 · Avanzado', espera: 'Antes: controles solo de ratón' },
+  { ruta: '/n6/03-accesibilidad/hidratacion/bien', titulo: 'Hidratación: fecha con zona horaria fija', sesion: 'nivel-06 · Avanzado', espera: 'Zona horaria: bien' },
+  { ruta: '/es/productos', titulo: 'i18n: productos en español', sesion: 'nivel-06 · Avanzado', espera: 'No hay artículos en el carrito' },
+  { ruta: '/en/productos', titulo: 'i18n: productos en inglés', sesion: 'nivel-06 · Avanzado', espera: 'No items in the cart' },
+  { ruta: '/fe/02-observabilidad', titulo: 'frontend-senior/02: límites de error, errores globales y bandera', sesion: 'frontend-senior', espera: 'Límites de error por sección' },
+  // PANTALLAS
+];

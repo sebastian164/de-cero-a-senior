@@ -92,6 +92,8 @@ Aplica el método, por escrito y con diagramas, a tres de los problemas clásico
 
 Rama `taller/fe-01-diseno-de-sistemas`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## Preguntas senior
 
 1. Diseña un desplazamiento infinito: ¿qué problemas aparecen con 50.000 elementos?

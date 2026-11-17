@@ -125,6 +125,8 @@ La lista se renderiza en el servidor sin enviar JavaScript; solo el botón es c�
 
 Rama `taller/rx-n1-03-next`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## Preguntas senior
 
 1. ¿Qué diferencia hay entre un componente de servidor y uno de cliente?

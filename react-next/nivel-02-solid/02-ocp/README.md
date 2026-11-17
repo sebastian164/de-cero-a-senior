@@ -127,6 +127,8 @@ Con dos o tres variantes estables, una propiedad `variante` basta. La composici�
 
 Rama `taller/rx-n2-02-ocp`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## Preguntas senior
 
 1. ¿Por qué las propiedades booleanas escalan mal?

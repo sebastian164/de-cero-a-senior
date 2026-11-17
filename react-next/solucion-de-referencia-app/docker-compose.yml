@@ -1,0 +1,7 @@
+# Base de datos de las pruebas de nivel-05/03. Bloque de puertos de la aplicación: 49500-50499.
+services:
+  pedidos-bd:
+    image: postgres:17
+    environment: { POSTGRES_USER: verificacion, POSTGRES_PASSWORD: verificacion, POSTGRES_DB: pedidos }
+    ports: ['49540:5432']
+    healthcheck: { test: ['CMD-SHELL', 'pg_isready -U verificacion -d pedidos'], interval: 2s, timeout: 3s, retries: 30 }

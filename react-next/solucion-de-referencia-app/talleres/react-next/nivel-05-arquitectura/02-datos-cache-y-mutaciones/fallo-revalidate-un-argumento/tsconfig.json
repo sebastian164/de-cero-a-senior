@@ -1,0 +1,1 @@
+{ "compilerOptions": { "strict": true, "noEmit": true, "target": "ES2023", "module": "esnext", "moduleResolution": "bundler", "skipLibCheck": true, "jsx": "react-jsx", "types": ["node"] }, "files": ["acciones.ts"] }

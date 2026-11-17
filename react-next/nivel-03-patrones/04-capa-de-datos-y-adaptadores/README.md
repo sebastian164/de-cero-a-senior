@@ -143,6 +143,8 @@ Los componentes deciden qué mostrar según el tipo de error, no según un códi
 
 Rama `taller/rx-n3-04-datos`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## Preguntas senior
 
 1. ¿Por qué validar en ejecución lo que ya está tipado?

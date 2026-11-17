@@ -1,0 +1,1 @@
+{ "compilerOptions": { "strict": true, "noEmit": true, "jsx": "react-jsx", "target": "ES2023", "module": "esnext", "moduleResolution": "bundler", "skipLibCheck": true, "types": [] , "typeRoots": ["../../../../../node_modules/@types"]}, "files": ["notificaciones.tsx"] }

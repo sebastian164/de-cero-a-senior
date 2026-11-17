@@ -131,6 +131,8 @@ it('rechaza un registro con correo ya usado', async () => {
 
 Rama `taller/rx-n4-03-pruebas`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## Preguntas senior
 
 1. ¿Por qué consultar por rol y no por identificador de prueba?

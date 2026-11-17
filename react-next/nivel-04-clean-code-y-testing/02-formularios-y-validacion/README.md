@@ -154,6 +154,8 @@ Construye el registro de una clínica:
 
 Rama `taller/rx-n4-02-formularios`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## Preguntas senior
 
 1. Controlado, no controlado o biblioteca: criterios.

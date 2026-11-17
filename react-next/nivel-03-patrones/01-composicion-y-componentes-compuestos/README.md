@@ -124,6 +124,8 @@ Quien las usa decide el contenido, el orden y qué va en cada pestaña. El compo
 
 Rama `taller/rx-n3-01-composicion`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## Preguntas senior
 
 1. ¿Qué ventajas tiene una API de componentes compuestos frente a una de configuración?

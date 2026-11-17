@@ -139,6 +139,8 @@ const cantidad = useAlmacenCarrito((estado) => estado.lineas.length);   // solo 
 
 Rama `taller/rx-n3-03-contexto`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## Preguntas senior
 
 1. ¿Cuándo el contexto es la herramienta correcta y cuándo no?

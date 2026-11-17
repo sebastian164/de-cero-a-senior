@@ -108,6 +108,8 @@ Con varias réplicas propias, la caché en disco de cada instancia diverge: hace
 
 Rama `taller/rx-n5-04-renderizado`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## Preguntas senior
 
 1. ¿Cómo eliges la estrategia de renderizado de una página?

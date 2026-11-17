@@ -105,6 +105,8 @@ async function cargarTableroTolerante(id: string): Promise<Tablero> {
 
 Rama `taller/ts-03-funciones`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## Preguntas senior
 
 1. ¿Por qué la inmutabilidad importa para la detección de cambios?

@@ -123,6 +123,8 @@ El hook queda como un conector delgado entre esa lógica y el estado de React.
 
 Rama `taller/rx-n3-02-hooks`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## Preguntas senior
 
 1. ¿Qué comparte un hook personalizado: lógica o estado?

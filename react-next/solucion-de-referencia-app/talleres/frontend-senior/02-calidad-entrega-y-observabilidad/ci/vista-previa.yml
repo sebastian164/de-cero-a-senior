@@ -1,0 +1,28 @@
+name: vista-previa
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, closed]
+
+jobs:
+  vista-previa:
+    # Un contenedor levantado en un ejecutor alojado por GitHub desaparece al terminar el trabajo y su dirección (127.0.0.1)
+    # no la ve nadie de diseño o producto. Para que la vista previa sea una URL compartible el trabajo corre en un ejecutor propio,
+    # un servidor de la organización que mantiene los contenedores vivos (o se sustituye el último paso por el despliegue a un proveedor).
+    runs-on: self-hosted
+    permissions: { pull-requests: write }
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with: { node-version: 26, cache: npm }
+      - run: npm ci
+      - run: npm run build
+      # Una imagen inmutable por pull request, con la configuración inyectada en ejecución:
+      - id: vista
+        env: { VISTA_HOST: '${{ vars.VISTA_HOST }}' }
+        run: echo "url=$(scripts/vista-previa.sh levantar ${{ github.event.pull_request.number }})" >> "$GITHUB_OUTPUT"
+        if: github.event.action != 'closed'
+      - run: 'gh pr comment ${{ github.event.pull_request.number }} --body "Vista previa de este pull request: ${{ steps.vista.outputs.url }}"'
+        if: github.event.action != 'closed'
+        env: { GH_TOKEN: '${{ github.token }}' }
+      - run: scripts/vista-previa.sh bajar ${{ github.event.pull_request.number }}
+        if: github.event.action == 'closed'

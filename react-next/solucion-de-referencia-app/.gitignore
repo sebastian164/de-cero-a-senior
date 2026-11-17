@@ -1,0 +1,9 @@
+node_modules/
+.next/
+.next-*/
+mediciones/
+capturas/
+test-results/
+playwright-report/
+tsconfig.tsbuildinfo
+.env.local

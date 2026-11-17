@@ -1,0 +1,9 @@
+node_modules
+.next
+.next-imagen/cache
+.next-imagen/dev
+talleres
+proyectos
+mediciones
+capturas
+test-results

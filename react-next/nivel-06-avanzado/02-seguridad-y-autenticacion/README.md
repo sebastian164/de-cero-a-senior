@@ -121,6 +121,8 @@ export async function eliminarPedido(entrada: unknown): Promise<Resultado> {
 
 Rama `taller/rx-n6-02-seguridad`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## Preguntas senior
 
 1. ¿Por qué una acción de servidor debe tratarse como un endpoint público?

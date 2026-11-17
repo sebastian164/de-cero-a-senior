@@ -130,6 +130,8 @@ Cada trabajo corre en una máquina limpia: por eso cada uno clona el repositorio
 
 Rama `taller/fe-02-calidad-entrega`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## Preguntas senior
 
 1. ¿Cómo te enteras de un error que solo ocurre en ciertos dispositivos?

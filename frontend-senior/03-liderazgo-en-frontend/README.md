@@ -74,6 +74,8 @@ El frontend tiene una ventaja: se puede mostrar. Vistas previas por cambio, cat�
 
 Rama `taller/fe-03-liderazgo`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## Preguntas senior
 
 1. ¿Cómo decides adoptar o no una biblioteca nueva?

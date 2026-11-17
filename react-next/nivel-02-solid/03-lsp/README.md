@@ -103,6 +103,8 @@ Una misma batería de pruebas puede ejecutarse contra todas las implementaciones
 
 Rama `taller/rx-n2-03-lsp`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## Preguntas senior
 
 1. ¿Qué responsabilidades asume un componente que envuelve un elemento nativo?

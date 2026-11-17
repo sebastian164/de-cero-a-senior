@@ -104,6 +104,8 @@ const Grafica = dynamic(() => import('./grafica-de-ventas'), {
 
 Rama `taller/rx-n6-01-rendimiento`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## Preguntas senior
 
 1. ¿Cuándo se vuelve a renderizar un componente?

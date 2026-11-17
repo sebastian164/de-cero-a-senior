@@ -94,6 +94,8 @@ La unión discriminada con comprobación `never` es el equivalente en TypeScript
 
 Rama `taller/ts-01-typescript`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## Preguntas senior
 
 1. ¿Qué es el tipado estructural y qué consecuencias tiene?

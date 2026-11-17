@@ -130,6 +130,8 @@ export const cancelarPedido = crearCancelarPedido(repositorioPostgres, () => new
 
 Rama `taller/rx-n2-05-dip`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## Preguntas senior
 
 1. ¿Cómo se inyectan dependencias en React sin un contenedor?

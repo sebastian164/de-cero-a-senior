@@ -135,6 +135,8 @@ Los manejadores de ruta (`route.ts`) son para lo que consumen terceros: *webhook
 
 Rama `taller/rx-n5-02-datos-cache`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## Preguntas senior
 
 1. ¿En qué capas puede quedar guardado un dato y cómo diagnosticas cuál es?

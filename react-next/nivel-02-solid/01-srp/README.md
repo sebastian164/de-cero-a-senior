@@ -113,6 +113,8 @@ Un componente pequeño que muestra una cosa no necesita cinco archivos. Extrae c
 
 Rama `taller/rx-n2-01-srp`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## Preguntas senior
 
 1. ¿Qué responsabilidades son legítimas en un componente?

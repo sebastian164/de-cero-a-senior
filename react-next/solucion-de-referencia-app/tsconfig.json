@@ -1,0 +1,63 @@
+{
+  "compilerOptions": {
+    "target": "ES2023",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "ES2024"
+    ],
+    "allowJs": false,
+    "skipLibCheck": true,
+    "strict": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "react-jsx",
+    "incremental": true,
+    "types": [
+      "vitest/globals",
+      "@testing-library/jest-dom"
+    ],
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "paths": {
+      "@/*": [
+        "./proyectos/*"
+      ],
+      "@talleres/*": [
+        "./talleres/*"
+      ],
+      "@app/*": [
+        "./src/*"
+      ]
+    }
+  },
+  "include": [
+    "next-env.d.ts",
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "proyectos/**/*.ts",
+    "proyectos/**/*.tsx",
+    "talleres/**/*.ts",
+    "talleres/**/*.tsx",
+    "e2e/**/*.ts",
+    ".next/types/**/*.ts",
+    ".next/dev/types/**/*.ts",
+    "vitest.config.ts",
+    "playwright.config.ts",
+    ".next-compilador/types/**/*.ts",
+    ".next-compilador/dev/types/**/*.ts",
+    ".next-imagen/types/**/*.ts",
+    ".next-imagen/dev/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "talleres/**/fallo-*/**"
+  ]
+}

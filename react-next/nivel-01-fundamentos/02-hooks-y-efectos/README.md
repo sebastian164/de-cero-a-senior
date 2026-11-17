@@ -131,6 +131,8 @@ En una aplicación real, `useProductos` se reemplaza por una biblioteca de datos
 
 Rama `taller/rx-n1-02-hooks`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## Preguntas senior
 
 1. ¿Para qué sirve `useEffect` y para qué no?

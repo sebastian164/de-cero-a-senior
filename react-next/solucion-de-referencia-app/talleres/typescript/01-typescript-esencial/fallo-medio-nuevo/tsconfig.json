@@ -1,0 +1,1 @@
+{ "compilerOptions": { "strict": true, "noEmit": true, "target": "ES2023", "module": "esnext", "moduleResolution": "bundler", "skipLibCheck": true }, "files": ["medios-de-pago.ts"] }
