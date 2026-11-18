@@ -100,6 +100,8 @@ Las credenciales se obtienen de los secretos de la plataforma o, mejor, con iden
 
 Rama `taller/n10-04-ci-cd`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## Preguntas senior
 
 1. Diferencia entre entrega continua y despliegue continuo.

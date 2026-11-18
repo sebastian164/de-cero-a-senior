@@ -112,6 +112,8 @@ Cliente → CDN / balanceador → Servicio de redirección → Caché → Base d
 
 Rama `taller/n11-03-acortador`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## Preguntas senior
 
 1. ¿Por qué separar el camino de lectura del de escritura?

@@ -1,0 +1,11 @@
+# LocalStack: emula S3, IAM, STS, EC2 (metadatos) y otros servicios de AWS en tu máquina.
+services:
+  localstack:
+    image: localstack/localstack:4.14.0
+    ports: ["127.0.0.1:${PUERTO_LOCALSTACK:-4566}:4566"]
+    environment:
+      SERVICES: s3,iam,sts,secretsmanager,rds,ec2,dynamodb
+    healthcheck:
+      test: ["CMD", "curl", "-sf", "http://localhost:4566/_localstack/health"]
+      interval: 2s
+      retries: 60

@@ -1,0 +1,53 @@
+diff --git a/gson/src/main/java/com/google/gson/internal/bind/TypeAdapters.java b/gson/src/main/java/com/google/gson/internal/bind/TypeAdapters.java
+index 45f9536b54..81c404c494 100644
+--- a/gson/src/main/java/com/google/gson/internal/bind/TypeAdapters.java
++++ b/gson/src/main/java/com/google/gson/internal/bind/TypeAdapters.java
+@@ -711,9 +711,6 @@ public URL read(JsonReader in) throws IOException {
+             return null;
+           }
+           String nextString = in.nextString();
+-          if (nextString.equals("null")) {
+-            return null;
+-          }
+           try {
+             return new URL(nextString);
+           } catch (MalformedURLException e) {
+@@ -739,9 +736,6 @@ public URI read(JsonReader in) throws IOException {
+             return null;
+           }
+           String nextString = in.nextString();
+-          if (nextString.equals("null")) {
+-            return null;
+-          }
+           try {
+             return new URI(nextString);
+           } catch (URISyntaxException e) {
+diff --git a/gson/src/test/java/com/google/gson/functional/DefaultTypeAdaptersTest.java b/gson/src/test/java/com/google/gson/functional/DefaultTypeAdaptersTest.java
+index ca8444f3af..31a7ec6c9b 100644
+--- a/gson/src/test/java/com/google/gson/functional/DefaultTypeAdaptersTest.java
++++ b/gson/src/test/java/com/google/gson/functional/DefaultTypeAdaptersTest.java
+@@ -214,6 +214,24 @@ public void testUriRoundTripWithNonAscii() throws Exception {
+     assertThat(roundTripUri.toString()).isEqualTo(uri.toString());
+   }
+ 
++  @Test
++  public void testUriRoundTripWithStringValueNull() throws Exception {
++    // "null" is a valid relative URI reference, not a JSON null; it must survive a roundtrip
++    URI uri = new URI("null");
++    String json = gson.toJson(uri);
++    assertThat(json).isEqualTo("\"null\"");
++    assertThat(gson.fromJson(json, URI.class)).isEqualTo(uri);
++  }
++
++  @Test
++  public void testUrlDeserializationOfNullString() {
++    // "null" is not a valid URL, so it must be rejected like any other malformed URL instead of
++    // being silently converted to null
++    var e = assertThrows(JsonSyntaxException.class, () -> gson.fromJson("\"null\"", URL.class));
++    assertThat(e.getMessage()).isEqualTo("Failed parsing 'null' as URL; at path $");
++    assertThat(e).hasCauseThat().isInstanceOf(MalformedURLException.class);
++  }
++
+   @Test
+   public void testNullSerialization() {
+     testNullSerializationAndDeserialization(Boolean.class);

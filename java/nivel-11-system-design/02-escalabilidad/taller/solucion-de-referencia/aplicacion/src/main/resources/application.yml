@@ -1,0 +1,35 @@
+# Sin datos de conexión ni secretos: la base llega por SPRING_DATASOURCE_* o por el perfil doce-factores.
+spring:
+  application:
+    name: pedidos
+  jpa:
+    open-in-view: false
+  cache:
+    type: ${CACHE_TIPO:none}
+    cache-names: reporte-cliente
+    caffeine:
+      spec: maximumSize=10000,expireAfterWrite=60s
+  kafka:
+    bootstrap-servers: ${KAFKA_SERVIDORES:localhost:9092}
+  autoconfigure:
+    # Sin el perfil "redis", la sesión vive en la memoria de la instancia.
+    exclude:
+      - org.springframework.boot.session.data.redis.autoconfigure.SessionDataRedisAutoConfiguration
+      - org.springframework.boot.data.redis.autoconfigure.DataRedisAutoConfiguration
+      - org.springframework.boot.data.redis.autoconfigure.DataRedisReactiveAutoConfiguration
+      - org.springframework.boot.data.redis.autoconfigure.DataRedisRepositoriesAutoConfiguration
+      - org.springframework.boot.data.redis.autoconfigure.health.DataRedisHealthContributorAutoConfiguration
+      - org.springframework.boot.data.redis.autoconfigure.health.DataRedisReactiveHealthContributorAutoConfiguration
+  threads:
+    virtual:
+      enabled: true
+
+management:
+  endpoint:
+    health:
+      probes:
+        enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics

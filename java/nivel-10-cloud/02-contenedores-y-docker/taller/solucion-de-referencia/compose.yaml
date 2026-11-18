@@ -1,0 +1,47 @@
+# Paso 3: aplicación, PostgreSQL y un broker Kafka, cada uno con su comprobación de salud.
+# El puerto del anfitrión se cambia con PUERTO_COMPOSE (por defecto 8080) y la clave con CLAVE_BD (obligatoria).
+services:
+  app:
+    image: ${IMAGEN_APP:-curso/pedidos:compose}
+    build: ./aplicacion
+    ports: ["127.0.0.1:${PUERTO_COMPOSE:-8080}:8080"]
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/tienda
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: ${CLAVE_BD:?define CLAVE_BD en el entorno}
+      KAFKA_SERVIDORES: broker:9092
+      APP_KAFKA_TOPICO: pedidos-creados
+      APP_AMBIENTE: compose
+    healthcheck:
+      test: ["CMD", "curl", "-sf", "http://localhost:8080/actuator/health/readiness"]
+      interval: 3s
+      retries: 40
+    depends_on:
+      db: { condition: service_healthy }
+      broker: { condition: service_healthy }
+  db:
+    image: postgres:16
+    environment:
+      POSTGRES_DB: tienda
+      POSTGRES_PASSWORD: ${CLAVE_BD:?define CLAVE_BD en el entorno}
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "postgres"]
+      interval: 2s
+      retries: 30
+  broker:
+    image: apache/kafka:4.3.1
+    environment:
+      KAFKA_NODE_ID: 1
+      KAFKA_PROCESS_ROLES: broker,controller
+      KAFKA_LISTENERS: PLAINTEXT://:9092,CONTROLLER://:9093
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://broker:9092
+      KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT
+      KAFKA_CONTROLLER_QUORUM_VOTERS: 1@broker:9093
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+    healthcheck:
+      test: ["CMD", "/opt/kafka/bin/kafka-broker-api-versions.sh", "--bootstrap-server", "localhost:9092"]
+      interval: 3s
+      retries: 40

@@ -96,6 +96,8 @@ Un registro de deuda:
 
 Rama `taller/n12-04-deuda-estimacion`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## Preguntas senior
 
 1. ¿Qué deuda técnica vale la pena pagar y cuál no?

@@ -1,0 +1,8 @@
+# Paso 1: una sola etapa. Lleva el JDK, Maven, el código fuente y la caché de dependencias,
+# y corre como root. Cualquier cambio en src invalida la capa que descarga las dependencias.
+FROM eclipse-temurin:21-jdk
+WORKDIR /app
+COPY . .
+RUN ./mvnw package -DskipTests
+EXPOSE 8080
+ENTRYPOINT ["java", "-jar", "target/pedidos-1.4.2.jar"]

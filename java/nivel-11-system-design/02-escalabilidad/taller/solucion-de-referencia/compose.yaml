@@ -1,0 +1,17 @@
+# Servicios de apoyo del taller 11-02: PostgreSQL (con 1.000.000 de pedidos) y Redis (sesiones).
+# Los puertos del anfitrión se cambian con PUERTO_PG y PUERTO_REDIS.
+services:
+  postgres:
+    image: postgres:16
+    container_name: ${PROYECTO:-n11-02}-postgres
+    ports: ["127.0.0.1:${PUERTO_PG:-5432}:5432"]
+    environment: { POSTGRES_PASSWORD: local, POSTGRES_DB: tienda }
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "postgres", "-d", "tienda"]
+      interval: 2s
+      retries: 30
+  redis:
+    image: redis:7
+    container_name: ${PROYECTO:-n11-02}-redis
+    ports: ["127.0.0.1:${PUERTO_REDIS:-6379}:6379"]
+    healthcheck: { test: ["CMD", "redis-cli", "ping"], interval: 2s, retries: 30 }

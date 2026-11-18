@@ -1,0 +1,7 @@
+spring:
+  autoconfigure:
+    exclude: []
+  data:
+    redis:
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PUERTO:6379}

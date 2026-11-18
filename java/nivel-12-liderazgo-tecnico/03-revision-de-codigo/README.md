@@ -87,6 +87,8 @@ El segundo dice qué pasa, por qué importa, propone una salida y deja margen.
 
 Rama `taller/n12-03-revision`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## Preguntas senior
 
 1. ¿Qué buscas primero al revisar un cambio?

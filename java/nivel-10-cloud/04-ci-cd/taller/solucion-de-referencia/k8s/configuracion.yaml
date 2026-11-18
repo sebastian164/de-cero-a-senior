@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: pedidos-config
+data:
+  SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/tienda
+  SPRING_DATASOURCE_USERNAME: postgres
+  APP_MENSAJE: hola-desde-kubernetes
+  APP_AMBIENTE: kind

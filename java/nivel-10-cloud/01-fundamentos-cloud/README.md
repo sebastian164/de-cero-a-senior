@@ -87,6 +87,8 @@ Después:
 
 Rama `taller/n10-01-fundamentos`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## Preguntas senior
 
 1. Explica el modelo de responsabilidad compartida con un ejemplo de fallo de cada lado.

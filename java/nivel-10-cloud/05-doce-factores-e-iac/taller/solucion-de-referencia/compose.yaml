@@ -1,0 +1,24 @@
+# Servicios de respaldo del taller: LocalStack (S3, IAM, Secrets Manager), Redis (sesiones) y PostgreSQL (datos).
+# Los puertos del anfitrión se cambian con PUERTO_LOCALSTACK, PUERTO_REDIS y PUERTO_PG.
+services:
+  localstack:
+    image: localstack/localstack:4.14.0
+    ports: ["127.0.0.1:${PUERTO_LOCALSTACK:-4566}:4566"]
+    environment:
+      SERVICES: s3,iam,sts,secretsmanager,rds,ec2,dynamodb
+    healthcheck:
+      test: ["CMD", "curl", "-sf", "http://localhost:4566/_localstack/health"]
+      interval: 2s
+      retries: 60
+  redis:
+    image: redis:7
+    ports: ["127.0.0.1:${PUERTO_REDIS:-6379}:6379"]
+    healthcheck: { test: ["CMD", "redis-cli", "ping"], interval: 2s, retries: 30 }
+  postgres:
+    image: postgres:16
+    ports: ["127.0.0.1:${PUERTO_PG:-5432}:5432"]
+    environment: { POSTGRES_PASSWORD: local, POSTGRES_DB: tienda }
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "postgres", "-d", "tienda"]
+      interval: 2s
+      retries: 30

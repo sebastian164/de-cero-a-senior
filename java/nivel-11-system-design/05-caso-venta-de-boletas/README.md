@@ -114,6 +114,8 @@ Usuarios ──► CDN ──► Sala de espera virtual ──► balanceador
 
 Rama `taller/n11-05-boletas`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## Preguntas senior
 
 1. ¿Cómo garantizas que un asiento no se venda dos veces? Defiende tu mecanismo frente a los otros.

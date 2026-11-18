@@ -100,6 +100,8 @@ spring:
 
 Rama `taller/n10-05-doce-factores-iac`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## Preguntas senior
 
 1. ¿Por qué una aplicación debe ser sin estado para escalar?

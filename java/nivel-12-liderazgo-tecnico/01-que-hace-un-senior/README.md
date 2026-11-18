@@ -67,6 +67,8 @@ Petición: "necesitamos que el reporte de ventas cargue más rápido".
 
 Rama `taller/n12-01-senior`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## Preguntas senior
 
 1. ¿Qué diferencia a un senior de un intermedio con muchos años?

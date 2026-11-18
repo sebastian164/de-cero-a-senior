@@ -86,6 +86,8 @@ Cada paso responde a un cuello de botella **medido**. Ninguno se da por adelanta
 
 Rama `taller/n11-02-escalabilidad`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## Preguntas senior
 
 1. ¿Cómo encuentras el cuello de botella de un sistema?

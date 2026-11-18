@@ -1,0 +1,6 @@
+# Spring: configuración por entorno, sin valores sensibles en el archivo
+spring:
+  datasource:
+    url: ${BD_URL}
+    username: ${BD_USUARIO}
+    password: ${BD_CLAVE}

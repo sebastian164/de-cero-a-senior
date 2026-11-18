@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: acortador
+  datasource:
+    url: ${BD_URL:jdbc:postgresql://localhost:5432/acortador}
+    username: ${BD_USUARIO:postgres}
+    password: ${BD_CLAVE:local}
+  threads:
+    virtual:
+      enabled: true
+server:
+  port: ${PUERTO:8080}
+acortador:
+  dominio: https://c.example/
+  estrategia: ${ESTRATEGIA:rangos}     # rangos | aleatorio
+  cache: ${CACHE:true}
+  tamano-rango: 10000
+  clave-secreta: ${CLAVE_CODIGOS}   # secreto de la permutación, sin valor por defecto: sin CLAVE_CODIGOS la aplicación no arranca (en producción viene de un gestor de secretos; en local, perfil "desarrollo")

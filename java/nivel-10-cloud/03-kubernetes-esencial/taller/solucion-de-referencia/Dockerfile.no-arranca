@@ -1,0 +1,4 @@
+# Versión que no arranca: el proceso termina al iniciar. Sirve para ver cómo la
+# actualización progresiva protege al servicio.
+FROM registro.example/pedidos:1.4.2
+ENTRYPOINT ["java", "-jar", "no-existe.jar"]

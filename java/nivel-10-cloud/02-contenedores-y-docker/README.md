@@ -102,6 +102,8 @@ services:
 
 Rama `taller/n10-02-docker`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 Para practicar a fondo, paso a paso y con criterios de aceptación, están los [seis talleres de Docker](../../../docker-kubernetes/docker/).
 
 ## Preguntas senior

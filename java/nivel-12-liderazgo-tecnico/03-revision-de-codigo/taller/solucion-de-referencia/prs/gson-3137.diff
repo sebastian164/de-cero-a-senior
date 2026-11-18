@@ -1,0 +1,32 @@
+diff --git a/gson/src/main/java/com/google/gson/stream/JsonReader.java b/gson/src/main/java/com/google/gson/stream/JsonReader.java
+index 7cf8e62421..192f4415f7 100644
+--- a/gson/src/main/java/com/google/gson/stream/JsonReader.java
++++ b/gson/src/main/java/com/google/gson/stream/JsonReader.java
+@@ -1616,7 +1616,7 @@ private boolean fillBuffer(int minimum) throws IOException {
+       limit += total;
+ 
+       // if this is the first read, consume an optional byte order mark (BOM) if it exists
+-      if (lineNumber == 0 && lineStart == 0 && limit > 0 && buffer[0] == '\ufeff') {
++      if (bufferStart == 0 && pos == 0 && limit > 0 && buffer[0] == '\ufeff') {
+         pos++;
+         lineStart++;
+         minimum++;
+diff --git a/gson/src/test/java/com/google/gson/stream/JsonReaderTest.java b/gson/src/test/java/com/google/gson/stream/JsonReaderTest.java
+index 1817989349..e7f5244ec4 100644
+--- a/gson/src/test/java/com/google/gson/stream/JsonReaderTest.java
++++ b/gson/src/test/java/com/google/gson/stream/JsonReaderTest.java
+@@ -1683,6 +1683,14 @@ public void testBomForbiddenAsOtherCharacterInDocument() throws IOException {
+     assertStrictError(e, "line 1 column 2 path $[0]");
+   }
+ 
++  @Test
++  public void testRepeatedBom() throws IOException {
++    JsonReader reader =
++        new JsonReader(new ChunkLimitingReader(new StringReader("\ufeff\ufefffoo"), 2));
++    reader.setStrictness(Strictness.LENIENT);
++    assertThat(reader.nextString()).isEqualTo("\ufefffoo");
++  }
++
+   @SuppressWarnings("UngroupedOverloads")
+   @Test
+   public void testFailWithPosition() throws IOException {

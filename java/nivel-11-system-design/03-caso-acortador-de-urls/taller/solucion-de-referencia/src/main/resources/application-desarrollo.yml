@@ -1,0 +1,3 @@
+# Solo para trabajar en local: java -jar acortador.jar --spring.profiles.active=desarrollo
+acortador:
+  clave-secreta: solo-para-desarrollo-no-usar-en-produccion

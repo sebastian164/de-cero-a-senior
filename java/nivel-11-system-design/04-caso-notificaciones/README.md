@@ -117,6 +117,8 @@ Flujo: validar → comprobar la idempotencia → aplicar preferencias → resolv
 
 Rama `taller/n11-04-notificaciones`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## Preguntas senior
 
 1. ¿Por qué `202` y no `200`?

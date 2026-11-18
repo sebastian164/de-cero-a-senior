@@ -119,6 +119,8 @@ Revisar si: el equipo supera las 20 personas, o un módulo necesita escalar por 
 
 Rama `taller/n12-02-decisiones`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## Preguntas senior
 
 1. ¿Cómo tomas una decisión técnica cuando el equipo está dividido?

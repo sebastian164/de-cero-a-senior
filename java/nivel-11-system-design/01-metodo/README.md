@@ -85,6 +85,8 @@ Para cada uno entrega: requisitos y lo que dejaste fuera, estimaciones con su ar
 
 Rama `taller/n11-01-metodo`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## Preguntas senior
 
 1. ¿Qué preguntas haces antes de diseñar?

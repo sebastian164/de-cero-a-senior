@@ -109,6 +109,8 @@ Comandos del día a día: `kubectl get pods`, `describe pod`, `logs -f`, `exec -
 
 Rama `taller/n10-03-kubernetes`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 Para practicar a fondo, paso a paso y con criterios de aceptación, están los [diez talleres de Kubernetes](../../../docker-kubernetes/kubernetes/).
 
 ## Preguntas senior

@@ -97,6 +97,8 @@ Es el objetivo final de este curso. Una defensa sólida:
 
 Rama `taller/n12-05-comunicacion`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## Preguntas senior
 
 1. Explícame algo técnico complejo como si yo no fuera técnico.

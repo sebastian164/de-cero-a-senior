@@ -1,0 +1,18 @@
+services:
+  app:
+    build: .
+    ports: ["${PUERTO_APP:-8080}:8080"]
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/tienda
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: local
+    depends_on:
+      db:
+        condition: service_healthy
+  db:
+    image: postgres:16
+    environment:
+      POSTGRES_DB: tienda
+      POSTGRES_PASSWORD: local
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "postgres"]

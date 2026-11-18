@@ -1,0 +1,11 @@
+# PostgreSQL de apoyo para el taller 11-05. El puerto del anfitrión se cambia con PUERTO_PG (por defecto 5432).
+services:
+  postgres:
+    image: postgres:16
+    container_name: ${PROYECTO:-n11-05}-postgres
+    ports: ["127.0.0.1:${PUERTO_PG:-5432}:5432"]
+    environment: { POSTGRES_PASSWORD: local }
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "postgres"]
+      interval: 2s
+      retries: 30

@@ -1,0 +1,60 @@
+name: n10-04-cd
+on:
+  push: { branches: [main] }
+  workflow_dispatch:
+    inputs:
+      romper: { description: "Desplegar una versión que arranca (las sondas pasan) pero falla la prueba de humo", default: "false" }
+
+# Los valores que dependen de tu máquina llegan como variables de entorno (act --env):
+#   NODO (contenedor del nodo kind), REGISTRO (registro local, host:puerto) y PUERTO_SERVICIO (Service en el anfitrión).
+# Si no se definen, se usan los valores por defecto de taller.sh.
+
+jobs:
+  construir:
+    runs-on: ubuntu-latest
+    outputs:
+      imagen: ${{ steps.publicar.outputs.imagen }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Construir una vez
+        run: docker build -t "${REGISTRO:-localhost:5001}/pedidos:${{ github.sha }}" .
+      - name: Publicar en el registro y quedarse con el digest (lo que se despliega es la imagen inmutable, no la etiqueta)
+        id: publicar
+        run: |
+          IMAGEN="${REGISTRO:-localhost:5001}/pedidos:${{ github.sha }}"
+          docker push "$IMAGEN"
+          echo "imagen=$(docker inspect --format '{{index .RepoDigests 0}}' "$IMAGEN")" >> "$GITHUB_OUTPUT"
+
+  desplegar:
+    needs: construir
+    runs-on: ubuntu-latest
+    environment: pruebas
+    steps:
+      - name: Desplegar la imagen
+        run: |
+          K="docker exec ${NODO:-pedidos-control-plane} kubectl --kubeconfig /etc/kubernetes/admin.conf"
+          $K rollout pause deployment/pedidos
+          $K set image deployment/pedidos pedidos="${{ needs.construir.outputs.imagen }}"
+          if [ "${{ github.event.inputs.romper }}" = "true" ]; then
+            $K set env deployment/pedidos APP_MENSAJE=version-rota
+          fi
+          $K rollout resume deployment/pedidos
+          $K rollout status deployment/pedidos --timeout=240s
+      - name: Prueba de humo (crea un pedido a través del Service)
+        run: |
+          curl -sf --retry 10 --retry-delay 2 --retry-all-errors http://host.docker.internal:${PUERTO_SERVICIO:-8081}/actuator/health/readiness
+          # 10 consultas: durante unos segundos pueden convivir pods viejos que terminan; todas deben dar la configuración esperada
+          for i in $(seq 1 10); do
+            curl -sf http://host.docker.internal:${PUERTO_SERVICIO:-8081}/api/info | grep -q '"mensaje":"hola-desde-kubernetes"' || { echo "la configuración no es la esperada"; exit 1; }
+            sleep 0.5
+          done
+          curl -sf -XPOST http://host.docker.internal:${PUERTO_SERVICIO:-8081}/api/pedidos -H 'Content-Type: application/json' -d '{"clienteId":9,"total":1}'
+          echo
+          echo "PRUEBA DE HUMO CORRECTA"
+      - name: Reversa automática si algo falló
+        if: failure()
+        run: |
+          K="docker exec ${NODO:-pedidos-control-plane} kubectl --kubeconfig /etc/kubernetes/admin.conf"
+          $K rollout undo deployment/pedidos
+          $K rollout status deployment/pedidos --timeout=240s
+          echo "REVERSA EJECUTADA"
