@@ -123,6 +123,18 @@ Una lección pasa por tres estados: leída, taller entregado y aprobada. Solo "a
 | NoSQL 06 — Redis más allá de la caché | ☐ | ☐ |
 | NoSQL 07 — Taller integrador | ☐ | ☐ |
 
+## Talleres de WebFlux
+
+| Taller | En curso | Aprobado |
+|---|---|---|
+| WebFlux 01 — Por qué reactivo (y cuándo no) | ☐ | ☐ |
+| WebFlux 02 — Reactor: Mono, Flux y nada pasa hasta suscribir | ☐ | ☐ |
+| WebFlux 03 — Contrapresión, schedulers y el bucle de eventos | ☐ | ☐ |
+| WebFlux 04 — WebFlux: rutas, WebClient, errores y flujos | ☐ | ☐ |
+| WebFlux 05 — R2DBC con PostgreSQL | ☐ | ☐ |
+| WebFlux 06 — MongoDB reactivo y flujos de cambios | ☐ | ☐ |
+| WebFlux 07 — El banco hexagonal reactivo | ☐ | ☐ |
+| WebFlux 08 — Pruebas reactivas y taller integrador | ☐ | ☐ |
 
 ## Talleres de prácticas
 

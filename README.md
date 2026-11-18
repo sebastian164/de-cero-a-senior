@@ -42,6 +42,7 @@ Talleres prácticos comunes a las tres rutas:
 | [Kafka y sagas](kafka-y-sagas/) | Registro de eventos, productores, consumidores, idempotencia, contratos, Spring Boot y outbox; sagas orquestadas y coreografiadas, fallos, aislamiento, la saga dentro de un servicio hexagonal y un taller integrador | 8 + 7 |
 | [HikariCP](hikaricp/) | El pool de conexiones: qué es, cómo se dimensiona, fugas, agotamiento, métricas, un simulacro de diagnóstico y el pool dentro de un servicio hexagonal | 6 |
 | [NoSQL: MongoDB y Redis](nosql/) | Modelar documentos a partir de las consultas, índices y planes, consistencia y transacciones en MongoDB, MongoDB como adaptador del banco hexagonal, Redis como caché (TTL, invalidación, estampida) y para idempotencia, límites de tasa y cerrojos | 7 |
+| [Programación reactiva con WebFlux](webflux/) | Cuándo conviene lo reactivo (y la comparación con hilos virtuales), Reactor, contrapresión y BlockHound, WebFlux y WebClient, R2DBC con PostgreSQL, MongoDB reactivo con flujos de cambios, el banco hexagonal reactivo y sus pruebas | 8 |
 | [Prácticas: TDD, Karate, SDD y ODD](practicas/) | Desarrollo guiado por pruebas, pruebas de API con Karate, desarrollo guiado por especificaciones y desarrollo guiado por la observabilidad | 4 + 3 + 3 + 3 |
 
 Cada ruta termina con sus **proyectos de aplicación**: [Java](java/proyectos/), [Angular](angular/proyectos/), [React y Next.js](react-next/proyectos/).
@@ -97,6 +98,7 @@ Las soluciones se publican módulo a módulo a medida que se verifican. Hoy est�
 | HikariCP | Los seis ejemplos en Java puro y el proyecto de la sesión 06 se compilaron y ejecutaron; el código con HikariCP y Spring es ilustrativo. El detalle está en [su índice](hikaricp/README.md#estado-del-código) |
 | Prácticas (TDD, Karate, SDD, ODD) | Los ejemplos en Java puro de TDD y ODD se compilaron y ejecutaron; los archivos de Karate son ilustrativos. El detalle está en [su índice](practicas/README.md#estado-del-código) |
 | NoSQL: MongoDB y Redis | Los doce ejemplos se compilaron con `-Xlint:all -Werror` y se ejecutaron contra MongoDB 9.0 y Redis 8.10 en Docker; las salidas de los README son de esas ejecuciones. El detalle está en [su índice](nosql/README.md) |
+| WebFlux | Los quince proyectos con Spring Boot 4.1 se compilaron, sus pruebas pasan (incluidas las de Testcontainers y BlockHound) y se ejecutaron contra PostgreSQL 18 y MongoDB 9.0. El detalle está en [su índice](webflux/README.md) |
 | Kafka y sagas | Los catorce ejemplos en Java puro y los dos proyectos sobre el banco hexagonal se compilaron y ejecutaron; el código con el cliente de Kafka y con Spring es ilustrativo. El detalle está en [su índice](kafka-y-sagas/README.md#estado-del-código) |
 | Docker y Kubernetes | La aplicación de práctica se ejecutó; los manifiestos estándar y los archivos de Compose se validaron; los Dockerfile y las órdenes no se ejecutaron. El detalle está en [su índice](docker-kubernetes/README.md#estado-del-código) |
 

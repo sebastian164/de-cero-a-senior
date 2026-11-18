@@ -88,6 +88,13 @@ Para la ruta Java, después del Nivel 8 (su teoría está en la lección [06 —
 |---|---|
 | [NoSQL: MongoDB y Redis](nosql/) | 7 |
 
+## Programación reactiva con WebFlux
+
+Para la ruta Java, después del Nivel 7 (Spring Boot), del módulo de arquitectura hexagonal y, para la sesión 06, del módulo de NoSQL.
+
+| Tema | Sesiones |
+|---|---|
+| [WebFlux, Reactor y bases de datos reactivas](webflux/) | 8 |
 
 ## Talleres de prácticas
 

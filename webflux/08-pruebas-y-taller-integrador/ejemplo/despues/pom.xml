@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>4.1.2</version>
+        <relativePath/>
+    </parent>
+
+    <groupId>curso.webflux</groupId>
+    <artifactId>s08-despues</artifactId>
+    <version>1.0.0</version>
+
+    <properties>
+        <java.version>21</java.version>
+        <start-class>banco.arranque.AplicacionBanco</start-class>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-webflux</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-r2dbc</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>r2dbc-postgresql</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <!-- WebTestClient -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-webflux-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <!-- StepVerifier -->
+        <dependency>
+            <groupId>io.projectreactor</groupId>
+            <artifactId>reactor-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <!-- Un PostgreSQL de verdad, desechable, por cada ejecución de las pruebas -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-testcontainers</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.testcontainers</groupId>
+            <artifactId>testcontainers-junit-jupiter</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.testcontainers</groupId>
+            <artifactId>testcontainers-postgresql</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.testcontainers</groupId>
+            <artifactId>testcontainers-r2dbc</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.projectreactor.tools</groupId>
+            <artifactId>blockhound</artifactId>
+            <version>1.0.18.RELEASE</version>              <!-- no la fija Spring Boot -->
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <!-- Aquí no hay código de producción propio: se prueba el banco reactivo de la sesión 07, compilado desde
+                 donde está (su núcleo, del módulo hexagonal; sus adaptadores y su configuración, de la sesión 07). -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>nucleo</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>add-source</goal>
+                        </goals>
+                        <configuration>
+                            <sources>
+                                <source>../../../../hexagonal/proyecto/src</source>
+                                <source>../../../07-el-banco-hexagonal-reactivo/ejemplo/despues/src/main/java</source>
+                            </sources>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>recursos-del-banco</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>add-resource</goal>
+                        </goals>
+                        <configuration>
+                            <resources>
+                                <resource>
+                                    <directory>../../../07-el-banco-hexagonal-reactivo/ejemplo/despues/src/main/resources</directory>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- Entra el dominio, sin cambios. De la aplicación entran las piezas que no hablan con el exterior
+                 (vistas, errores, eventos y el Reloj); el servicio y los puertos que hacen E/S se reescriben en
+                 banco.aplicacion.reactiva. Los adaptadores del núcleo y su Main se quedan fuera. -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <excludes>
+                        <exclude>banco/adaptadores/salida/memoria/**</exclude>
+                        <exclude>banco/adaptadores/salida/sistema/**</exclude>
+                        <exclude>banco/adaptadores/entrada/consola/**</exclude>
+                        <exclude>banco/adaptadores/entrada/http/**</exclude>
+                        <exclude>banco/Main.java</exclude>
+                        <exclude>banco/aplicacion/ServicioDeCuentas.java</exclude>
+                        <exclude>banco/aplicacion/puertos/entrada/**</exclude>
+                        <exclude>banco/aplicacion/puertos/salida/OrdenesProcesadas.java</exclude>
+                        <exclude>banco/aplicacion/puertos/salida/PublicadorDeEventos.java</exclude>
+                        <exclude>banco/aplicacion/puertos/salida/RegistroDeMovimientos.java</exclude>
+                        <exclude>banco/aplicacion/puertos/salida/RepositorioDeCuentas.java</exclude>
+                        <exclude>banco/aplicacion/puertos/salida/UnidadDeTrabajo.java</exclude>
+                    </excludes>
+                </configuration>
+            </plugin>
+            <!-- BlockHound necesita estas opciones de la JVM desde el JDK 13 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <argLine>-XX:+AllowRedefinitionToAddDeleteMethods -XX:+EnableDynamicAgentLoading</argLine>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+</project>

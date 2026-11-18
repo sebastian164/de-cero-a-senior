@@ -1,0 +1,11 @@
+server:
+  port: 8094
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5433/banco
+    username: banco
+    password: banco
+  sql:
+    init:
+      mode: always               # ejecuta schema.sql al arrancar

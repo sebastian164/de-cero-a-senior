@@ -1,0 +1,10 @@
+spring:
+  mongodb:
+    # directConnection: el conjunto de réplicas se anuncia como localhost:27017, que desde tu equipo es otro puerto
+    uri: mongodb://localhost:27018/banco?directConnection=true
+  main:
+    banner-mode: off
+
+logging:
+  level:
+    root: warn

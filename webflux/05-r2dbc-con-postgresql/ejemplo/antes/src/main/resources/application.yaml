@@ -1,0 +1,13 @@
+server:
+  port: 8092
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5433/cuentas
+    username: banco
+    password: banco
+    hikari:
+      maximum-pool-size: 20        # el mismo tamaño que el pool de R2DBC de la versión corregida
+  sql:
+    init:
+      mode: always                 # ejecuta schema.sql al arrancar

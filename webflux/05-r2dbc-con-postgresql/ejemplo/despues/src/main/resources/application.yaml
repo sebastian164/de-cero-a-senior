@@ -1,0 +1,13 @@
+server:
+  port: 8093
+
+spring:
+  r2dbc:
+    url: r2dbc:postgresql://localhost:5433/cuentas
+    username: banco
+    password: banco
+    pool:
+      max-size: 20                 # el mismo tamaño que el pool de HikariCP de la versión anterior
+  sql:
+    init:
+      mode: always                 # también funciona con R2DBC: ejecuta schema.sql al arrancar

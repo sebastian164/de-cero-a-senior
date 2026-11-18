@@ -1,0 +1,5 @@
+server:
+  port: 8090
+
+riesgo:
+  url: http://localhost:8099
