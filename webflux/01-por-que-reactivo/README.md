@@ -401,6 +401,8 @@ La conclusión de esta sesión no es "usa WebFlux". Es que el problema se llama 
 
 **Entrega:** rama `taller/webflux-01`, con el código en `taller/solucion/` y la recomendación en `ANALISIS.md`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## En el trabajo real
 
 La pregunta que se hace en una revisión de arquitectura no es "¿reactivo sí o no?", sino "¿dónde pasa el tiempo una petición?". Si la respuesta es "esperando a otros servicios" y el volumen es alto, hay que dejar de atar hilos a las esperas. Desde Java 21, lo habitual en un servicio Spring nuevo con JPA es MVC con hilos virtuales. WebFlux aparece en pasarelas (Spring Cloud Gateway es reactivo), en servicios de agregación que llaman a muchos otros, en streaming y en equipos que ya lo dominan. Lo que casi nunca sale bien es la mezcla: WebFlux por fuera y bloqueo por dentro.

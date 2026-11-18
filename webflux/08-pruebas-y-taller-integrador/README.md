@@ -775,6 +775,8 @@ Junta lo que construiste en las sesiones 02 a 07: dominio sin cambios del módul
 
 **Entrega:** rama `taller/webflux-08`, con el proyecto en `taller/solucion/` y `ANALISIS.md`. En la revisión se pedirá romper a propósito una línea de la aplicación (por ejemplo, cambiar un `flatMap` por un `doOnNext`) y ver qué prueba falla.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## En el trabajo real
 
 En los equipos que trabajan con WebFlux, las pruebas extremo a extremo con WebTestClient y Testcontainers son la red de seguridad principal, y BlockHound va en ellas desde el primer día: un bloqueo encontrado en una prueba cuesta minutos; en producción, un incidente. Las pruebas con StepVerifier cubren la lógica de composición (qué se llama, en qué orden, qué pasa con cada error) y son las que se ejecutan en cada guardado. Lo que se revisa con lupa en un *pull request* es cualquier `subscribe()` o `Thread.sleep` en una prueba: casi siempre esconden una prueba que pasa sin probar nada.

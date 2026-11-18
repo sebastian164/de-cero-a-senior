@@ -1,0 +1,10 @@
+server:
+  port: 8080
+spring:
+  r2dbc:
+    url: r2dbc:postgresql://localhost:5433/pedidos05?applicationName=r2dbc
+    username: banco
+    password: banco
+    pool:
+      max-size: 10
+consulta-lenta-ms: 100        # consulta artificial dentro de la transacción (pg_sleep), para ver la diferencia

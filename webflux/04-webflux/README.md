@@ -459,6 +459,8 @@ Sobre tu caso de uso "confirmar pedido" de las sesiones 02 y 03. Reutiliza `serv
 
 **Entrega:** rama `taller/webflux-04`, con el código en `taller/solucion/` y `ANALISIS.md` con las mediciones de los pasos 5, 6 y 7.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## En el trabajo real
 
 Un servicio WebFlux típico es una fachada: recibe una petición, consulta tres o cuatro servicios (a veces en paralelo con `Mono.zip`), combina y responde. Ahí brilla, y ahí se rompe si un solo cliente bloquea. Lo primero que se mira en una revisión es la lista de clientes HTTP y de bases de datos: si alguno es síncrono, todo lo demás da igual. Lo segundo, los tiempos límite y qué se responde cuando vencen; junto con reintentos acotados y cortocircuitos (Resilience4j tiene operadores para Reactor), es lo que evita que un servicio lento arrastre a los demás. SSE se usa para paneles y avances; para comunicación en las dos direcciones, WebSocket, que WebFlux también soporta.

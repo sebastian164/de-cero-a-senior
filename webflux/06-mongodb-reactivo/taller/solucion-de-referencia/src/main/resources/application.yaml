@@ -1,0 +1,18 @@
+server:
+  port: 8080
+spring:
+  mongodb:
+    uri: mongodb://localhost:27018/pedidosdb?directConnection=true
+  main:
+    banner-mode: off
+logging:
+  level:
+    root: warn
+modo: servicio              # servicio | confirmador | notificador | sondeo
+cambios: 100                # confirmador: cuántos cambios de estado hace
+intervalo-ms: 100           # confirmador: pausa entre cambios
+prefijo: c                  # confirmador: prefijo de los pedidos que crea
+indice-unico: true          # notificador: indice unico (pedidoId, estado) sobre los avisos
+parada-tras-aviso: 0        # notificador: si > 0, muere (halt) justo despues de insertar ese aviso y antes de guardar la ficha
+pausa-tras-aviso: 0         # notificador: si > 0, hace una pausa de pausa-ms justo despues de insertar ese aviso (para matarlo con kill -9 desde fuera)
+pausa-ms: 0

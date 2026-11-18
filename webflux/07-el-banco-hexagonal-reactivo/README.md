@@ -1028,6 +1028,8 @@ Sobre tu servicio de pedidos del [módulo hexagonal](../../hexagonal/) y lo que 
 
 **Entrega:** rama `taller/webflux-07`, con el código en `taller/solucion/` y `ANALISIS.md`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## En el trabajo real
 
 Esta discusión aparece cada vez que un equipo con una arquitectura limpia y síncrona decide "pasarse a reactivo". La respuesta madura casi nunca es reescribir la aplicación: es preguntar qué problema se quiere resolver. Si es la escalabilidad ante esperas, desde Java 21 los hilos virtuales lo resuelven con el núcleo intacto. Si es streaming, una pasarela o una composición intensa de llamadas, entonces el servicio nuevo nace reactivo desde los puertos, y el dominio se mantiene puro como aquí. Lo que sí se ve en proyectos reales, y conviene evitar, es la mezcla del "antes": una fachada WebFlux sobre servicios que bloquean, elegida por moda, que rinde peor que el MVC al que sustituyó.

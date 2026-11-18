@@ -443,6 +443,8 @@ Sobre tu servicio de pedidos del [módulo hexagonal](../../hexagonal/). No hace 
 
 **Entrega:** rama `taller/webflux-02`, con el código en `taller/solucion/` y un `ANALISIS.md` con lo que encontraste en el paso 7.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## En el trabajo real
 
 Los dos errores del ejemplo son los más frecuentes en revisiones de código reactivo, y casi nunca rompen una prueba unitaria superficial: rompen en producción, como datos que "a veces no se guardan" o como un tráfico inexplicable a un servicio que tenía caché. Las herramientas de análisis estático (algunas reglas de IntelliJ, Error Prone) avisan de un `Mono` cuyo resultado se ignora; vale la pena activarlas. En equipos con experiencia, la regla de revisión es simple: todo `Mono` o `Flux` creado debe acabar devuelto o encadenado, y todo `Mono.just` se mira dos veces.

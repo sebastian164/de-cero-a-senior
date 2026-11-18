@@ -1,0 +1,10 @@
+server:
+  port: 8080
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5433/pedidos05?ApplicationName=jdbc
+    username: banco
+    password: banco
+    hikari:
+      maximum-pool-size: 10
+consulta-lenta-ms: 100

@@ -372,6 +372,8 @@ Guarda tus pedidos en MongoDB (si hiciste el módulo [nosql](../../nosql/), reut
 
 **Entrega:** rama `taller/webflux-06`, con el código en `taller/solucion/` y `ANALISIS.md`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## En el trabajo real
 
 Los flujos de cambios se usan para invalidar cachés, alimentar índices de búsqueda, sincronizar con otros sistemas y empujar notificaciones a clientes. Para lo último, un servicio WebFlux con SSE encima de un flujo de cambios es una combinación natural. Para llevar cambios a muchos sistemas, lo habitual es un conector (Debezium o el conector de MongoDB para Kafka) que publica en Kafka y deja que cada consumidor lea a su ritmo: el flujo de cambios pasa a ser la fuente de un registro de eventos, con las mismas reglas de idempotencia. El tamaño del oplog (`replSetResizeOplog`) es una decisión de operación: tiene que cubrir la caída más larga que estés dispuesto a recuperar sin reconstruir.

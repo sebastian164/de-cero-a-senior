@@ -1,0 +1,17 @@
+server:
+  port: 8080
+spring:
+  r2dbc:
+    url: r2dbc:postgresql://localhost:5433/pedidos08?applicationName=t08
+    username: banco
+    password: banco
+    pool:
+      initial-size: 10
+      max-size: 30
+  sql:
+    init:
+      mode: always
+inventario:
+  url: http://localhost:8081
+pagos:
+  url: http://localhost:8082

@@ -486,6 +486,8 @@ Sobre el código del taller de la [sesión 02](../02-reactor/) (tu "confirmar pe
 
 **Entrega:** rama `taller/webflux-03`, con el código en `taller/solucion/` y `ANALISIS.md`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## En el trabajo real
 
 Bloquear el bucle de eventos es **el** incidente de los servicios reactivos. Los síntomas son siempre parecidos: latencias que se disparan con carga mientras la CPU está tranquila, *health checks* que fallan sin motivo aparente, y un volcado de hilos (`jcmd <pid> Thread.print`) donde los hilos `reactor-http-nio-*` aparecen en `TIMED_WAITING` o `WAITING` dentro de JDBC, de un cliente HTTP síncrono, de un `synchronized` muy disputado o de una escritura de registros. Los culpables habituales son bibliotecas de terceros que hacen E/S sin decirlo: un SDK de nube, un cliente de caché síncrono, la primera carga de una clase que lee un archivo. Por eso BlockHound se ejecuta en las pruebas de integración de cada servicio reactivo, con las excepciones que se decidan **anotadas una por una** (la sesión 08 tiene un caso real).

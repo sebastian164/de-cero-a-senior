@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent><groupId>org.springframework.boot</groupId><artifactId>spring-boot-starter-parent</artifactId><version>4.1.2</version><relativePath/></parent>
+    <groupId>curso.webflux</groupId><artifactId>t08-solucion</artifactId><version>1.0.0</version>
+    <properties><java.version>21</java.version><start-class>pedidos.arranque.Aplicacion</start-class></properties>
+    <dependencies>
+        <dependency><groupId>org.springframework.boot</groupId><artifactId>spring-boot-starter-webflux</artifactId></dependency>
+        <dependency><groupId>org.springframework.boot</groupId><artifactId>spring-boot-starter-webclient</artifactId></dependency>
+        <dependency><groupId>org.springframework.boot</groupId><artifactId>spring-boot-starter-data-r2dbc</artifactId></dependency>
+        <dependency><groupId>org.postgresql</groupId><artifactId>r2dbc-postgresql</artifactId><scope>runtime</scope></dependency>
+        <dependency><groupId>org.springframework.boot</groupId><artifactId>spring-boot-starter-test</artifactId><scope>test</scope></dependency>
+        <dependency><groupId>org.springframework.boot</groupId><artifactId>spring-boot-starter-webflux-test</artifactId><scope>test</scope></dependency>
+        <dependency><groupId>io.projectreactor</groupId><artifactId>reactor-test</artifactId><scope>test</scope></dependency>
+        <dependency><groupId>org.springframework.boot</groupId><artifactId>spring-boot-testcontainers</artifactId><scope>test</scope></dependency>
+        <dependency><groupId>org.testcontainers</groupId><artifactId>testcontainers-junit-jupiter</artifactId><scope>test</scope></dependency>
+        <dependency><groupId>org.testcontainers</groupId><artifactId>testcontainers-postgresql</artifactId><scope>test</scope></dependency>
+        <dependency><groupId>org.testcontainers</groupId><artifactId>testcontainers-r2dbc</artifactId><scope>test</scope></dependency>
+        <dependency><groupId>io.projectreactor.tools</groupId><artifactId>blockhound</artifactId><version>1.0.18.RELEASE</version><scope>test</scope></dependency>
+    </dependencies>
+    <build><plugins>
+        <!-- El dominio de la tienda NO se copia: se compila desde donde está publicado (hexagonal/08.../solucion-de-referencia/src). -->
+        <plugin><groupId>org.codehaus.mojo</groupId><artifactId>build-helper-maven-plugin</artifactId>
+            <executions><execution><id>dominio-de-la-tienda</id><phase>generate-sources</phase><goals><goal>add-source</goal></goals>
+                <configuration><sources><source>${project.basedir}/../../../../hexagonal/08-pruebas-y-limites/taller/solucion-de-referencia/src</source></sources></configuration>
+            </execution></executions></plugin>
+        <plugin><groupId>org.apache.maven.plugins</groupId><artifactId>maven-compiler-plugin</artifactId>
+            <configuration><includes>
+                <include>pedidos/**</include>
+                <include>tienda/dominio/**</include>
+                <include>tienda/aplicacion/ConflictoDeConcurrencia.java</include>
+                <include>tienda/aplicacion/PedidoNoEncontrado.java</include>
+            </includes></configuration></plugin>
+        <plugin><groupId>org.springframework.boot</groupId><artifactId>spring-boot-maven-plugin</artifactId></plugin>
+        <plugin><groupId>org.apache.maven.plugins</groupId><artifactId>maven-surefire-plugin</artifactId>
+            <configuration><argLine>-XX:+AllowRedefinitionToAddDeleteMethods -XX:+EnableDynamicAgentLoading</argLine></configuration></plugin>
+    </plugins></build>
+</project>

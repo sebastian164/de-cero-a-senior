@@ -1,0 +1,17 @@
+server:
+  port: 8080
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5433/pedidos07?ApplicationName=jdbc
+    username: banco
+    password: banco
+    hikari:
+      maximum-pool-size: 10
+  r2dbc:
+    url: r2dbc:postgresql://localhost:5433/pedidos07?applicationName=r2dbc
+    username: banco
+    password: banco
+    pool:
+      max-size: 10
+      initial-size: 10
+opcion: a            # a: puertos síncronos + JDBC en el bucle | b: igual, envuelto en boundedElastic | c: puertos reactivos + R2DBC

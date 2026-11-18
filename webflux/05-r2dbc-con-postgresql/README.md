@@ -526,6 +526,8 @@ Sobre el servicio WebFlux de tu taller de la [sesión 04](../04-webflux/). Usa l
 
 **Entrega:** rama `taller/webflux-05`, con el código en `taller/solucion/` y `ANALISIS.md`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## En el trabajo real
 
 R2DBC es maduro para PostgreSQL, MySQL, MariaDB, SQL Server y Oracle, pero su ecosistema es menor que el de JDBC: menos herramientas, menos ejemplos y ningún ORM completo. Las migraciones siguen siendo JDBC (Flyway y Liquibase no tienen versión reactiva): en un servicio R2DBC es normal tener el controlador JDBC solo para migrar al arrancar, fuera del camino de las peticiones. Lo que más se ve en revisión es SQL bien escrito con `DatabaseClient` para todo lo que no sea un CRUD trivial, y transacciones cortas declaradas en la capa de aplicación. Y una advertencia práctica: tras un reinicio de la base, el pool puede tener conexiones muertas que fallan una vez antes de descartarse (al preparar este curso se vio un `CannotCreateTransactionException` así); configura validación y `max-idle-time` del pool.
