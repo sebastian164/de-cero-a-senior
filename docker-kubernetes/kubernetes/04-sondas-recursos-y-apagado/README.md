@@ -131,7 +131,7 @@ spec:
 - `preStop` retrasa la señal unos segundos para que el tráfico deje de llegar; luego Spring termina las peticiones en curso.
 - Memoria: petición igual a límite, para que el comportamiento sea predecible. Sin límite de CPU, para no frenar la aplicación sin necesidad; es una decisión discutible y depende de las reglas de cada plataforma.
 
-El manifiesto es ilustrativo: la imagen no existe.
+La imagen del manifiesto no existe, así que solo se validó contra el servidor de la API de Kubernetes v1.37.0 (`kubectl apply --dry-run=server`), que acepta `preStop.sleep` y todos los campos.
 
 ## Errores comunes
 
@@ -154,7 +154,7 @@ Parte de tus manifiestos de la sesión 03. Bitácora ofrece `/salud/vivo`, `/sal
 4. Provoca el error clásico: pon una sonda de vida más impaciente que el arranque y sin sonda de arranque. Describe lo que ves en `get pods` y en los eventos.
 5. **Apagado.** Con las sondas bien puestas, ¿sigue habiendo algún error durante el reinicio? Si lo hay, explica de dónde sale y elimínalo. Tienes dos herramientas: `ESPERA_APAGADO_MS` y `preStop`. Ajusta `terminationGracePeriodSeconds` en consecuencia.
 6. **Memoria.** Declara peticiones y límites. Baja el límite de memoria hasta que el contenedor muera. Encuentra dónde dice Kubernetes por qué murió y con qué código de salida.
-7. **CPU.** Pon un límite de CPU de `100m` y mide el tiempo de respuesta de `/api/carga?ms=300`. Quita el límite y vuelve a medir. Explica la diferencia.
+7. **CPU.** Pon un límite de CPU de `100m` y mide el tiempo de respuesta de `/api/carga?ms=300` y el campo `resultado` de su respuesta (la API gasta CPU durante un tiempo fijo, así que fíjate en los dos valores). Quita el límite y vuelve a medir. Explica la diferencia.
 8. Pide más CPU de la que tiene cualquier nodo. ¿En qué estado queda el pod y qué dice el evento?
 9. Consulta la clase de calidad de servicio de tus pods. Consigue un pod de cada una de las tres clases y explica qué implica cada una cuando el nodo se queda sin memoria.
 

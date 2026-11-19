@@ -148,7 +148,7 @@ metadata:
 - El espacio de nombres rechaza cualquier pod que no cumpla el nivel `restricted`.
 - Todo el tráfico entrante está cerrado y se abre solo lo necesario.
 
-Los manifiestos no se probaron en un clúster.
+Los manifiestos se aplicaron en un clúster kind (Kubernetes v1.37.0, red `kindnet`, que sí hace cumplir las políticas de red): el espacio de nombres rechaza lo que no cumple `restricted` y el `Deployment` del ejemplo no produce avisos de seguridad.
 
 ## Errores comunes
 

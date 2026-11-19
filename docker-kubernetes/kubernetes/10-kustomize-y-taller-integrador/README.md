@@ -173,7 +173,7 @@ spec:
               memory: 1Gi
 ```
 
-La superposición de producción se lee en diez segundos y dice exactamente en qué se diferencia: versión, copias, nivel de registro y recursos. El ejemplo no se procesó con `kubectl kustomize` al preparar el curso.
+La superposición de producción se lee en diez segundos y dice exactamente en qué se diferencia: versión, copias, nivel de registro y recursos. El ejemplo se procesó con `kubectl kustomize` (Kustomize v5.8.1 integrado en `kubectl` v1.36.1) y se validó con `kubectl apply -k --dry-run=server` contra Kubernetes v1.37.0: el nombre del ConfigMap lleva el resumen, la etiqueta pasa a 2.3.1, las copias a 4 y `NIVEL_REGISTRO` a `WARN`.
 
 ## Errores comunes
 
@@ -226,7 +226,7 @@ Con el bucle de medición corriendo contra el nombre de host público, ejecuta e
 | Prueba | Qué debe pasar |
 |---|---|
 | Borrar un pod de la API | Cero errores |
-| Borrar todos los pods de la API a la vez | Errores durante unos segundos y recuperación sola. Mide cuánto |
+| Borrar todos los pods de la API a la vez | Errores durante unos segundos y recuperación sola. Mide cuánto. Con apagado ordenado, un borrado normal puede dar casi cero errores porque los pods que terminan siguen atendiendo; para simular un fallo usa `--force --grace-period=0` |
 | Reiniciar el Deployment | Cero errores |
 | Desplegar una versión que nunca está lista | Cero errores; la actualización se detiene |
 | Volver atrás | Cero errores |

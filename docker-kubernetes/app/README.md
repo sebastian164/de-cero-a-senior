@@ -61,4 +61,4 @@ La web solo necesita `DESTINO_API`, la dirección de la API (por ejemplo `http:/
 
 ## Estado del código
 
-La API se compiló y se ejecutó con JDK 21 al preparar el curso, y se probaron todas sus rutas. La página y la plantilla de nginx no se ejecutaron.
+La API se compiló y se ejecutó con JDK 21 al preparar el curso, y se probaron todas sus rutas. La página y la plantilla de nginx se ejecutaron con `nginx:1.28-alpine` en los talleres de Docker 02 a 05: la página carga, la plantilla se procesa con la variable `DESTINO_API` y `/api/` llega a la API.

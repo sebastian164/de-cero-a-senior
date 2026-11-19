@@ -120,7 +120,7 @@ spec:
               mountPath: /var/lib/postgresql/data
           readinessProbe:
             exec:
-              command: ["pg_isready", "-U", "postgres"]
+              command: ["pg_isready", "-h", "127.0.0.1", "-U", "postgres"]
             periodSeconds: 5
           resources:
             requests:
@@ -141,8 +141,9 @@ spec:
 - Una sola copia con disco propio. Es honesto: una base sin replicación configurada es una sola base.
 - El pod se llama siempre `db-0` y siempre recibe la petición `datos-db-0`.
 - `PGDATA` apunta a una subcarpeta, porque algunos volúmenes traen un `lost+found` en la raíz y PostgreSQL se niega a inicializarse ahí.
+- La sonda usa `-h 127.0.0.1` a propósito: al arrancar con un disco vacío, la imagen levanta un servidor temporal que solo escucha en el socket Unix y luego lo reinicia. Sin `-h`, `pg_isready` responde «listo» durante esa inicialización y el pod se marca disponible antes de que PostgreSQL acepte conexiones por red.
 
-El manifiesto no se probó en un clúster.
+El manifiesto se aplicó en un clúster kind (Kubernetes v1.37.0, StorageClass `standard` de `local-path`) con PostgreSQL 17.12: `db-0` se recrea con el mismo nombre y conserva los datos.
 
 ```bash
 kubectl get statefulset,pod,pvc,pv

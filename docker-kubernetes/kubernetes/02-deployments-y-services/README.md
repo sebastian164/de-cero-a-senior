@@ -106,7 +106,7 @@ spec:
 - El Service escucha en el 80 y envía al puerto llamado `http` del pod. Usar el nombre evita desajustes si el número cambia.
 - Los demás servicios usan `http://pedidos`.
 
-La imagen del ejemplo no existe: es ilustrativa.
+La imagen del ejemplo no existe, así que los pods no arrancarían tal cual. Los dos manifiestos se validaron contra el servidor de la API (Kubernetes v1.37.0) y se aplicaron en un clúster kind cambiando solo la imagen por una que sí existe (la API de Bitácora): el Deployment queda con 3 copias listas y el Service con 3 destinos, y `http://pedidos` responde desde dentro del clúster.
 
 ```bash
 kubectl get deployment,replicaset,pod -l app=pedidos

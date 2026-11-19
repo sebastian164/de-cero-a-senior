@@ -100,7 +100,7 @@ Las soluciones se publican módulo a módulo a medida que se verifican. Hoy est�
 | NoSQL: MongoDB y Redis | Los doce ejemplos se compilaron con `-Xlint:all -Werror` y se ejecutaron contra MongoDB 9.0 y Redis 8.10 en Docker; las salidas de los README son de esas ejecuciones. El detalle está en [su índice](nosql/README.md) |
 | WebFlux | Los quince proyectos con Spring Boot 4.1 se compilaron, sus pruebas pasan (incluidas las de Testcontainers y BlockHound) y se ejecutaron contra PostgreSQL 18 y MongoDB 9.0. El detalle está en [su índice](webflux/README.md) |
 | Kafka y sagas | Los catorce ejemplos en Java puro y los dos proyectos sobre el banco hexagonal se compilaron y ejecutaron; el código con el cliente de Kafka y con Spring es ilustrativo. El detalle está en [su índice](kafka-y-sagas/README.md#estado-del-código) |
-| Docker y Kubernetes | La aplicación de práctica se ejecutó; los manifiestos estándar y los archivos de Compose se validaron; los Dockerfile y las órdenes no se ejecutaron. El detalle está en [su índice](docker-kubernetes/README.md#estado-del-código) |
+| Docker y Kubernetes | Los Dockerfile, los archivos de Compose y las órdenes se ejecutaron con Docker; los manifiestos, Gateway API y Kustomize se aplicaron en un clúster kind. No se ejecutaron la nube real ni el enrutamiento con ingress-nginx. El detalle está en [su índice](docker-kubernetes/README.md#estado-del-código) |
 
 "Ilustrativo" significa que el código muestra la idea y la estructura, pero no se compiló al preparar el curso: puede requerir ajustes, y las versiones de los frameworks cambian. Hacerlo funcionar es parte de cada taller.
 

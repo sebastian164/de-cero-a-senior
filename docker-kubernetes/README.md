@@ -80,7 +80,9 @@ Igual que en el resto del curso: una rama por taller (`taller/docker-01`, `talle
 | API de Bitácora (`app/api/Servidor.java`) | Compilada y ejecutada con JDK 21; se probaron todas sus rutas, el arranque lento y el apagado con `SIGTERM` |
 | Manifiestos de Kubernetes con tipos estándar | Validados contra los esquemas de Kubernetes 1.37 |
 | Archivos de Compose | Validados con `docker compose config` |
-| Dockerfile, manifiestos de Gateway API, Kustomize y órdenes de terminal | Revisados, pero **no ejecutados**: no había motor de Docker ni clúster disponibles |
+| Dockerfile, archivos de Compose y órdenes de Docker | Construidos y ejecutados con Docker 29.9.3 y Buildx 0.38.1; la publicación se probó con un registro local en lugar de `ghcr.io`, que exige credenciales |
+| Manifiestos, Gateway API y Kustomize | Aplicados en un clúster kind con Kubernetes v1.37.0, Envoy Gateway v1.9.3 y el Kustomize integrado en `kubectl` |
+| Lo que no se ejecutó | El enrutamiento real con ingress-nginx (el controlador está retirado: solo se validó con `--dry-run=server`), la nube real (balanceadores, autoescalado de nodos, bases administradas) y la publicación en `ghcr.io` o Docker Hub |
 
 Las etiquetas de imagen de los ejemplos (`nginx:1.28-alpine`, `postgres:17`, `node:24-alpine`) existían al escribir esto. Cuando hagas el taller, usa la versión vigente y fíjala.
 

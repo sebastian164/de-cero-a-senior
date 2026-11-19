@@ -106,7 +106,7 @@ services:
     volumes:
       - datos-db:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      test: ["CMD-SHELL", "pg_isready -h 127.0.0.1 -U postgres"]
       interval: 5s
       timeout: 3s
       retries: 10
@@ -127,6 +127,7 @@ clave_db.txt
 - Versiones fijas.
 - La contraseña vive en un archivo que no se versiona y se monta en `/run/secrets/`. La imagen de PostgreSQL acepta `POSTGRES_PASSWORD_FILE`; la aplicación tiene que saber leer la suya de un archivo.
 - La aplicación espera a que la base esté sana.
+- La comprobación usa `-h 127.0.0.1` a propósito: durante la primera inicialización la imagen de PostgreSQL arranca un servidor temporal que solo escucha en el socket Unix. Sin `-h`, `pg_isready` daría «sano» en ese momento y la aplicación arrancaría antes de que la base acepte conexiones por red.
 - Los datos están en un volumen con nombre.
 - La base no publica ningún puerto.
 

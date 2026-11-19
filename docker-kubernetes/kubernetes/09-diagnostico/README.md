@@ -117,7 +117,7 @@ Al final, responde: ¿qué casos habría detectado una validación antes de apli
 
 **Entrega:** rama `taller/k8s-09`, con los manifiestos corregidos en `taller/solucion/averiado/` y `taller/solucion/ANALISIS.md`.
 
-Los casos no se ejecutaron en un clúster al preparar el curso. Si alguno no falla o falla de una forma que no tiene sentido, cuéntalo en tu entrega: eso también es un hallazgo.
+Los ocho casos se ejecutaron en un clúster kind (Kubernetes v1.37.0): todos fallan de la forma descrita y todos terminan respondiendo 200 una vez corregidos. Si alguno no falla o falla de una forma que no tiene sentido en tu clúster, cuéntalo en tu entrega: eso también es un hallazgo.
 
 ## En el trabajo real
 

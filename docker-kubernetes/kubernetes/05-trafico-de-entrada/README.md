@@ -150,7 +150,7 @@ kubectl get gateway,httproute
 kubectl describe httproute tienda     # mira las condiciones: Accepted y ResolvedRefs
 ```
 
-Los manifiestos son ilustrativos y no se probaron en un clúster.
+Los manifiestos se aplicaron en un clúster kind (Kubernetes v1.37.0) con Envoy Gateway v1.9.3, cambiando solo `gatewayClassName` por el de una `GatewayClass` creada aparte para ese controlador (el chart de Envoy Gateway no instala ninguna): el `Gateway` queda `Programmed`, la `HTTPRoute` `Accepted` y `ResolvedRefs`, y el reparto 90/10 de `httproute.yaml` se cumple (en 100 peticiones, entre 7 y 10 fueron a `pedidos-v2` en las mediciones; el número varía en cada ejecución). Si llegas desde el equipo por un `NodePort` (por ejemplo con un mapeo de puertos de kind) y el `Service` del proxy usa `externalTrafficPolicy: Local` (el valor por defecto de Envoy Gateway), solo responden los nodos que alojan una copia del proxy: mapea el puerto a uno de ellos o usa `Cluster`.
 
 ## Errores comunes
 

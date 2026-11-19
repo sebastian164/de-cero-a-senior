@@ -168,7 +168,7 @@ No hay archivos de inicio. Parte de tus manifiestos de la sesión 05. Para este 
 7. Repite el paso 6 con `maxUnavailable: 50%`. Compara.
 8. Cambia la estrategia a `Recreate` y mide el corte. ¿Cuándo es la opción correcta?
 9. Crea un presupuesto de interrupción y vacía un nodo con `kubectl drain`. Observa cómo espera. Luego pon `minAvailable` igual al número de copias y vuelve a intentarlo.
-10. Comprueba en qué nodos están tus copias. Añade una restricción de reparto y demuestra que quedan distribuidas.
+10. Comprueba en qué nodos están tus copias. Añade una restricción de reparto y demuestra que quedan distribuidas. Si usas `DoNotSchedule` en kind, el plano de control (con su taint) cuenta como un dominio vacío y deja pods en `Pending`: añade `nodeTaintsPolicy: Honor` a la restricción.
 
 **Criterios de aceptación**
 

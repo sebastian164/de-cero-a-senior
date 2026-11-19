@@ -80,7 +80,7 @@ trivy image --severity HIGH,CRITICAL --exit-code 1 "$IMAGEN:$VERSION"
 - Dos arquitecturas bajo el mismo nombre.
 - El análisis devuelve un código de error si hay vulnerabilidades altas o críticas, así que puede detener un flujo de integración continua.
 
-Las órdenes son ilustrativas: no se ejecutaron al preparar el curso. Las opciones de cada herramienta cambian con las versiones; confírmalas en su ayuda.
+Las órdenes se ejecutaron con Docker 29.9.3, Buildx 0.38.1 y Trivy 0.76.2, con un registro local (`registry:3`) en lugar de `ghcr.io` (que exige credenciales): `buildx` publicó las dos arquitecturas bajo un solo nombre, `imagetools inspect` las lista y la etiqueta `org.opencontainers.image.revision` lleva al commit. Las opciones de cada herramienta cambian con las versiones; confírmalas en su ayuda.
 
 ## Errores comunes
 
