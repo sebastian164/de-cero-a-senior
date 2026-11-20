@@ -1,0 +1,72 @@
+name: publicar
+# Al crear una etiqueta de versión (v1.2.3): construir, analizar y publicar. Sin intervención manual y sin secretos escritos
+# en el repositorio: el registro se autentica con el GITHUB_TOKEN que GitHub entrega a cada ejecución.
+on:
+  push:
+    tags: ["v*.*.*"]
+
+permissions:
+  contents: read
+  packages: write
+
+env:
+  REGISTRO: ghcr.io/${{ github.repository_owner }}
+
+jobs:
+  publicar:
+    runs-on: ubuntu-24.04
+    strategy:
+      matrix:
+        imagen: [api, web]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: docker/setup-qemu-action@v3
+      - uses: docker/setup-buildx-action@v3
+      - uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Datos de la versión
+        id: v
+        run: |
+          echo "version=${GITHUB_REF_NAME#v}" >> "$GITHUB_OUTPUT"
+          echo "commit=$(git rev-parse --short HEAD)" >> "$GITHUB_OUTPUT"
+      # 1. Construir (una arquitectura, en el ejecutor) y analizar ANTES de publicar nada.
+      - name: Construir para analizar
+        uses: docker/build-push-action@v6
+        with:
+          context: app/${{ matrix.imagen }}
+          load: true
+          tags: analisis/${{ matrix.imagen }}:${{ steps.v.outputs.version }}
+      - name: Analizar (falla con vulnerabilidades críticas que ya tienen arreglo)
+        uses: aquasecurity/trivy-action@0.28.0
+        with:
+          image-ref: analisis/${{ matrix.imagen }}:${{ steps.v.outputs.version }}
+          severity: CRITICAL
+          ignore-unfixed: true
+          exit-code: "1"
+      - name: Lista de componentes
+        uses: aquasecurity/trivy-action@0.28.0
+        with:
+          image-ref: analisis/${{ matrix.imagen }}:${{ steps.v.outputs.version }}
+          format: cyclonedx
+          output: bitacora-${{ matrix.imagen }}-${{ steps.v.outputs.version }}.cdx.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: sbom-${{ matrix.imagen }}
+          path: "*.cdx.json"
+      # 2. Solo si el análisis pasó: construir para las dos arquitecturas y publicar con versión y commit.
+      - name: Publicar
+        uses: docker/build-push-action@v6
+        with:
+          context: app/${{ matrix.imagen }}
+          platforms: linux/amd64,linux/arm64
+          push: true
+          tags: |
+            ${{ env.REGISTRO }}/bitacora-${{ matrix.imagen }}:${{ steps.v.outputs.version }}
+            ${{ env.REGISTRO }}/bitacora-${{ matrix.imagen }}:${{ steps.v.outputs.commit }}
+          labels: |
+            org.opencontainers.image.revision=${{ github.sha }}
+            org.opencontainers.image.source=${{ github.server_url }}/${{ github.repository }}
+            org.opencontainers.image.version=${{ steps.v.outputs.version }}

@@ -1,0 +1,78 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bitacora-api
+  labels: {app: bitacora-api}
+spec:
+  progressDeadlineSeconds: 90
+  strategy:
+    type: RollingUpdate
+    rollingUpdate: {maxUnavailable: 0, maxSurge: 1}
+  selector:
+    matchLabels: {app: bitacora-api}
+  template:
+    metadata:
+      labels: {app: bitacora-api}
+    spec:
+      automountServiceAccountToken: false
+      terminationGracePeriodSeconds: 30
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 10001
+        seccompProfile: {type: RuntimeDefault}
+      topologySpreadConstraints:
+        - maxSkew: 1
+          topologyKey: kubernetes.io/hostname
+          whenUnsatisfiable: ScheduleAnyway
+          labelSelector:
+            matchLabels: {app: bitacora-api}
+      containers:
+        - name: api
+          image: bitacora-api
+          envFrom:
+            - configMapRef: {name: bitacora-api-config}
+          env:
+            - {name: DIRECTORIO_DATOS, value: /datos}
+            - {name: ESPERA_APAGADO_MS, value: "5000"}
+            - name: CLAVE_API
+              valueFrom:
+                secretKeyRef: {name: bitacora-api-clave, key: CLAVE_API}   # se crea con guion/crear-secreto.sh; no está en el repositorio
+          ports:
+            - {name: http, containerPort: 8080}
+          startupProbe:
+            httpGet: {path: /salud/listo, port: http}
+            periodSeconds: 2
+            failureThreshold: 30
+          readinessProbe:
+            httpGet: {path: /salud/listo, port: http}
+            periodSeconds: 2
+            failureThreshold: 2
+          livenessProbe:
+            httpGet: {path: /salud/vivo, port: http}
+            periodSeconds: 5
+            failureThreshold: 3
+          lifecycle:
+            preStop:
+              sleep: {seconds: 15}
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities: {drop: ["ALL"]}
+          resources:
+            requests: {cpu: 100m, memory: 192Mi}
+            limits: {memory: 256Mi}
+          volumeMounts:
+            - {name: datos, mountPath: /datos}
+            - {name: temporales, mountPath: /tmp}
+      volumes:
+        - {name: datos, emptyDir: {}}
+        - {name: temporales, emptyDir: {}}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: bitacora-api
+spec:
+  selector: {app: bitacora-api}
+  ports:
+    - {name: http, port: 80, targetPort: http}

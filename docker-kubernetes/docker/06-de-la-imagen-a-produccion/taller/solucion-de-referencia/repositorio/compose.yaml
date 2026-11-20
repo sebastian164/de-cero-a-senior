@@ -1,0 +1,29 @@
+# Una sola imagen, dos ambientes: lo único que cambia es la configuración.
+#   REGISTRO=localhost:50900 VERSION_IMAGEN=1.0.1 MENSAJE="..." VERSION=... PUERTO_WEB=... \
+#     docker compose -p bitacora-dev up -d --wait
+services:
+  api:
+    image: ${REGISTRO:?}/bitacora-api:${VERSION_IMAGEN:?}
+    pull_policy: always
+    environment:
+      MENSAJE: ${MENSAJE:?}
+      VERSION: ${VERSION:?}
+    healthcheck:
+      test: ["CMD", "wget", "-q", "-O", "/dev/null", "http://127.0.0.1:8080/salud/listo"]
+      interval: 3s
+      retries: 10
+  web:
+    image: ${REGISTRO:?}/bitacora-web:${VERSION_IMAGEN_WEB:?}
+    pull_policy: always
+    ports:
+      - "127.0.0.1:${PUERTO_WEB:?}:8080"
+    environment:
+      DESTINO_API: http://api:8080
+    user: "101:101"
+    tmpfs:
+      - /var/cache/nginx:mode=1777
+      - /run:mode=1777
+      - /etc/nginx/conf.d:mode=1777
+    depends_on:
+      api:
+        condition: service_healthy

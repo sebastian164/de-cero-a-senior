@@ -1,0 +1,25 @@
+# Paso 9: solo lo necesario. Cada regla tiene su razón.
+# La web llama a la API (proxy de /api/).
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata: {name: web-a-api, namespace: bitacora-08}
+spec:
+  podSelector: {matchLabels: {app: bitacora-api}}
+  policyTypes: [Ingress]
+  ingress:
+    - from: [{podSelector: {matchLabels: {app: bitacora-web}}}]
+      ports: [{protocol: TCP, port: 8080}]
+---
+# El proxy de Envoy Gateway (espacio envoy-gateway-system) entrega /api a la API y / a la web.
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata: {name: entrada-a-api-y-web, namespace: bitacora-08}
+spec:
+  podSelector:
+    matchExpressions: [{key: app, operator: In, values: [bitacora-api, bitacora-web]}]
+  policyTypes: [Ingress]
+  ingress:
+    - from:
+        - namespaceSelector: {matchLabels: {kubernetes.io/metadata.name: envoy-gateway-system}}
+          podSelector: {matchLabels: {app.kubernetes.io/name: envoy}}
+      ports: [{protocol: TCP, port: 8080}]

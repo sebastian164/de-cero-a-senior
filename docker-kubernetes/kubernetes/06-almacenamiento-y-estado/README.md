@@ -185,6 +185,8 @@ No hay archivos de inicio. Parte de tus manifiestos anteriores.
 
 **Entrega:** rama `taller/k8s-06`, con los manifiestos y `taller/solucion/ANALISIS.md`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## En el trabajo real
 
 La recomendación más repetida, y con razón: si puedes, usa la base de datos administrada de tu proveedor y deja el clúster para lo que no tiene estado. Cuando sí se ejecutan bases dentro de Kubernetes, se hace con operadores que automatizan la replicación, la conmutación y los respaldos. En cualquiera de los dos casos, tu aplicación debe estar diseñada sin estado propio: sesiones, archivos subidos y cachés van a un servicio externo.

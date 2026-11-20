@@ -1,0 +1,80 @@
+# GatewayClass "eg" de Envoy Gateway. El proxy que crea para cada Gateway se publica como NodePort 30080
+# (mapeado al 50080 del equipo en kind.yaml) en lugar de LoadBalancer, que en kind no tiene quien lo atienda.
+# Dos copias del proxy en nodos distintos (reparto por nodo) y externalTrafficPolicy: Cluster, de modo que el NodePort responde
+# en cualquier nodo aunque el proxy esté en otro. Con Local (el valor por defecto de Envoy Gateway) solo responden los nodos
+# que alojan una copia del proxy: ese era el motivo de la petición que no respondía, no kind ni Docker Desktop.
+apiVersion: gateway.envoyproxy.io/v1alpha1
+kind: EnvoyProxy
+metadata:
+  name: nodeport
+  namespace: envoy-gateway-system
+spec:
+  provider:
+    type: Kubernetes
+    kubernetes:
+      envoyPDB:
+        minAvailable: 1
+      envoyDeployment:
+        replicas: 2
+        pod:
+          # Reparto por nodo de las copias de CADA Gateway (matchLabelKeys toma nombre y espacio de nombres del propio pod).
+          # No es anti-afinidad: una regla de anti-afinidad obligatoria también impide que se programen los proxies de
+          # otros Gateways (aquí, el de desarrollo) en los nodos donde ya hay uno.
+          topologySpreadConstraints:
+            - maxSkew: 1
+              topologyKey: kubernetes.io/hostname
+              whenUnsatisfiable: DoNotSchedule
+              nodeTaintsPolicy: Honor
+              labelSelector:
+                matchLabels: {app.kubernetes.io/component: proxy}
+              matchLabelKeys:
+                - gateway.envoyproxy.io/owning-gateway-namespace
+                - gateway.envoyproxy.io/owning-gateway-name
+      envoyService:
+        type: NodePort
+        externalTrafficPolicy: Cluster
+        patch:
+          type: StrategicMerge
+          value:
+            spec:
+              ports:
+                - port: 80
+                  nodePort: 30080
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: GatewayClass
+metadata:
+  name: eg
+spec:
+  controllerName: gateway.envoyproxy.io/gatewayclass-controller
+  parametersRef:
+    group: gateway.envoyproxy.io
+    kind: EnvoyProxy
+    name: nodeport
+    namespace: envoy-gateway-system
+---
+# Segunda clase para Gateways que no necesitan llegar desde el equipo (ejemplos y pruebas en paralelo):
+# su proxy queda como ClusterIP y no compite por el NodePort 30080.
+apiVersion: gateway.envoyproxy.io/v1alpha1
+kind: EnvoyProxy
+metadata:
+  name: clusterip
+  namespace: envoy-gateway-system
+spec:
+  provider:
+    type: Kubernetes
+    kubernetes:
+      envoyService:
+        type: ClusterIP
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: GatewayClass
+metadata:
+  name: eg-interno
+spec:
+  controllerName: gateway.envoyproxy.io/gatewayclass-controller
+  parametersRef:
+    group: gateway.envoyproxy.io
+    kind: EnvoyProxy
+    name: clusterip
+    namespace: envoy-gateway-system

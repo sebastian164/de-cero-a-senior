@@ -1,0 +1,8 @@
+# Paso 8: un ConfigMap inmutable.
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: bitacora-inmutable
+immutable: true
+data:
+  MENSAJE: no se puede cambiar

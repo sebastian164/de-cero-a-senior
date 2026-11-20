@@ -1,0 +1,30 @@
+# Red cerrada por defecto y abierta solo donde hace falta.
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata: {name: denegar-entrada}
+spec:
+  podSelector: {}
+  policyTypes: [Ingress]
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata: {name: web-a-api}
+spec:
+  podSelector: {matchLabels: {app: bitacora-api}}
+  policyTypes: [Ingress]
+  ingress:
+    - from: [{podSelector: {matchLabels: {app: bitacora-web}}}]
+      ports: [{protocol: TCP, port: 8080}]
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata: {name: entrada-a-api-y-web}
+spec:
+  podSelector:
+    matchExpressions: [{key: app, operator: In, values: [bitacora-api, bitacora-web]}]
+  policyTypes: [Ingress]
+  ingress:
+    - from:
+        - namespaceSelector: {matchLabels: {kubernetes.io/metadata.name: envoy-gateway-system}}
+          podSelector: {matchLabels: {app.kubernetes.io/name: envoy}}
+      ports: [{protocol: TCP, port: 8080}]

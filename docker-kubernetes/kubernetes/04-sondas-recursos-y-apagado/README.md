@@ -169,6 +169,8 @@ Parte de tus manifiestos de la sesión 03. Bitácora ofrece `/salud/vivo`, `/sal
 
 **Entrega:** rama `taller/k8s-04`, con los manifiestos, el guion de medición y `taller/solucion/ANALISIS.md` con una tabla de errores antes y después de cada cambio.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## En el trabajo real
 
 Estas tres cosas separan un despliegue de aficionado de uno profesional. La mayoría de los "microcortes" durante los despliegues, los reinicios en cadena y los nodos que se caen de madrugada vienen de sondas mal pensadas o de recursos sin declarar, no de errores del código.

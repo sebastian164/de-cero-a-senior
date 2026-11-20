@@ -1,0 +1,8 @@
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: bitacora-api
+spec:
+  minAvailable: 2
+  selector:
+    matchLabels: {app: bitacora-api}

@@ -1,0 +1,79 @@
+# Versión endurecida: cumple el nivel "restricted".
+apiVersion: apps/v1
+kind: Deployment
+metadata: {name: bitacora-api, namespace: bitacora-08, labels: {app: bitacora-api}}
+spec:
+  replicas: 2
+  selector: {matchLabels: {app: bitacora-api}}
+  template:
+    metadata: {labels: {app: bitacora-api}}
+    spec:
+      automountServiceAccountToken: false
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 10001
+        seccompProfile: {type: RuntimeDefault}
+      containers:
+        - name: api
+          image: bitacora-api:1.0.0
+          env:
+            - {name: DIRECTORIO_DATOS, value: /datos}      # con el sistema de archivos de solo lectura, los datos van a un volumen
+          ports: [{name: http, containerPort: 8080}]
+          readinessProbe: {httpGet: {path: /salud/listo, port: http}}
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities: {drop: ["ALL"]}
+          volumeMounts:
+            - {name: datos, mountPath: /datos}
+            - {name: temporales, mountPath: /tmp}
+      volumes:
+        - {name: datos, emptyDir: {}}
+        - {name: temporales, emptyDir: {}}
+---
+apiVersion: v1
+kind: Service
+metadata: {name: bitacora-api, namespace: bitacora-08}
+spec:
+  selector: {app: bitacora-api}
+  ports: [{name: http, port: 80, targetPort: http}]
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata: {name: bitacora-web, namespace: bitacora-08, labels: {app: bitacora-web}}
+spec:
+  replicas: 2
+  selector: {matchLabels: {app: bitacora-web}}
+  template:
+    metadata: {labels: {app: bitacora-web}}
+    spec:
+      automountServiceAccountToken: false
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 101                                    # el usuario "nginx" de la imagen
+        seccompProfile: {type: RuntimeDefault}
+      containers:
+        - name: web
+          image: bitacora-web:0.1.0
+          env: [{name: DESTINO_API, value: "http://bitacora-api"}]
+          ports: [{name: http, containerPort: 8080}]
+          readinessProbe: {httpGet: {path: /, port: http}}
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities: {drop: ["ALL"]}
+          volumeMounts:                                    # solo las rutas donde nginx escribe (descubiertas en los registros)
+            - {name: conf, mountPath: /etc/nginx/conf.d}   # el arranque genera default.conf desde la plantilla
+            - {name: cache, mountPath: /var/cache/nginx}   # temporales de proxy_pass
+            - {name: run, mountPath: /run}                 # nginx.pid
+      volumes:
+        - {name: conf, emptyDir: {}}
+        - {name: cache, emptyDir: {}}
+        - {name: run, emptyDir: {}}
+---
+apiVersion: v1
+kind: Service
+metadata: {name: bitacora-web, namespace: bitacora-08}
+spec:
+  selector: {app: bitacora-web}
+  ports: [{name: http, port: 80, targetPort: http}]

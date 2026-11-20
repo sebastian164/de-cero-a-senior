@@ -1,0 +1,35 @@
+# Paso 9: un pod de cada clase de calidad de servicio.
+apiVersion: v1
+kind: Pod
+metadata: {name: qos-guaranteed}
+spec:
+  terminationGracePeriodSeconds: 0
+  containers:
+    - name: c
+      image: busybox:1.37
+      command: [sleep, "100000"]
+      resources:
+        requests: {cpu: 50m, memory: 32Mi}
+        limits: {cpu: 50m, memory: 32Mi}
+---
+apiVersion: v1
+kind: Pod
+metadata: {name: qos-burstable}
+spec:
+  terminationGracePeriodSeconds: 0
+  containers:
+    - name: c
+      image: busybox:1.37
+      command: [sleep, "100000"]
+      resources:
+        requests: {cpu: 50m, memory: 32Mi}
+---
+apiVersion: v1
+kind: Pod
+metadata: {name: qos-besteffort}
+spec:
+  terminationGracePeriodSeconds: 0
+  containers:
+    - name: c
+      image: busybox:1.37
+      command: [sleep, "100000"]

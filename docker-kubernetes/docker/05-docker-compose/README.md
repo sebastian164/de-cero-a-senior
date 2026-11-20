@@ -186,6 +186,8 @@ services:
 
 **Entrega:** rama `taller/docker-05`, con `compose.yaml`, `.env.ejemplo`, `.gitignore` y `taller/solucion/ANALISIS.md`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## En el trabajo real
 
 Compose es la herramienta del entorno local y de las pruebas de integración: quien llega nuevo al equipo clona, ejecuta una orden y tiene la aplicación con su base y su broker. Para producción con varias máquinas se usa un orquestador; ese es el salto a Kubernetes.

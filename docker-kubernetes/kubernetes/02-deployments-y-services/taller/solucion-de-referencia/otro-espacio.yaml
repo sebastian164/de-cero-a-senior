@@ -1,0 +1,5 @@
+# Paso 11: un espacio de nombres ajeno desde el que se llega a la API como bitacora-api.bitacora.
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: otro-equipo

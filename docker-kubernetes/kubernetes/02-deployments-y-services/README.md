@@ -152,6 +152,8 @@ No hay archivos de inicio. Necesitas `bitacora-api:1.0.0` y `bitacora-web:0.1.0`
 
 **Entrega:** rama `taller/k8s-02`, con los manifiestos y `taller/solucion/ANALISIS.md`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## En el trabajo real
 
 Deployment y Service son la pareja con la que se despliega casi cualquier servicio sin estado, incluida una aplicación Spring Boot o un frontend servido con nginx. Las etiquetas, además, son como se filtra todo: registros, métricas, costos y políticas de red.

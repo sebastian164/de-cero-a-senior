@@ -1,0 +1,49 @@
+# Taller 06: primer intento: el mismo volumen ReadWriteOnce en tres copias
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bitacora-api
+  labels: {app: bitacora-api}
+spec:
+  replicas: 3
+  strategy:
+    type: RollingUpdate
+  selector:
+    matchLabels: {app: bitacora-api}
+  template:
+    metadata:
+      labels: {app: bitacora-api}
+    spec:
+      containers:
+        - name: api
+          image: bitacora-api:1.0.0
+          env:
+            - {name: DIRECTORIO_DATOS, value: /datos}
+          ports:
+            - {name: http, containerPort: 8080}
+          readinessProbe:
+            httpGet: {path: /salud/listo, port: http}
+            periodSeconds: 1
+          volumeMounts:
+            - {name: datos, mountPath: /datos}
+      volumes:
+        - name: datos
+          persistentVolumeClaim: {claimName: bitacora-datos}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: bitacora-api
+spec:
+  selector: {app: bitacora-api}
+  ports:
+    - {name: http, port: 80, targetPort: http}
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: bitacora-datos
+spec:
+  accessModes: [ReadWriteOnce]
+  resources:
+    requests: {storage: 100Mi}

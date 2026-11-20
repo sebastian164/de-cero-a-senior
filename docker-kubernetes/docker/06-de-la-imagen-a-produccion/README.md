@@ -116,6 +116,8 @@ Las órdenes se ejecutaron con Docker 29.9.3, Buildx 0.38.1 y Trivy 0.76.2, con 
 
 **Entrega:** enlace a tu repositorio en un pull request de la rama `taller/docker-06` de este repositorio, con `taller/solucion/ANALISIS.md`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 Los registros y los minutos de integración continua pueden tener costo según tu plan. Revisa los límites gratuitos antes de empezar.
 
 ## En el trabajo real

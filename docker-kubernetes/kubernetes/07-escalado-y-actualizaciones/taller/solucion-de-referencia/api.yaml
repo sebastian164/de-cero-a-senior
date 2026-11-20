@@ -1,0 +1,45 @@
+# Sin "replicas": el número lo gobierna el autoescalador (hpa.yaml).
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bitacora-api
+  labels: {app: bitacora-api}
+spec:
+  progressDeadlineSeconds: 60
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 0
+      maxSurge: 1
+  selector:
+    matchLabels: {app: bitacora-api}
+  template:
+    metadata:
+      labels: {app: bitacora-api}
+    spec:
+      containers:
+        - name: api
+          image: bitacora-api:1.0.0
+          env:
+            - {name: ESPERA_APAGADO_MS, value: "5000"}
+            - {name: DIRECTORIO_DATOS, value: /tmp/datos}
+          ports:
+            - {name: http, containerPort: 8080}
+          readinessProbe:
+            httpGet: {path: /salud/listo, port: http}
+            periodSeconds: 2
+          lifecycle:
+            preStop:
+              sleep: {seconds: 5}
+          resources:
+            requests: {cpu: 100m, memory: 192Mi}
+            limits: {memory: 256Mi}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: bitacora-api
+spec:
+  selector: {app: bitacora-api}
+  ports:
+    - {name: http, port: 80, targetPort: http}

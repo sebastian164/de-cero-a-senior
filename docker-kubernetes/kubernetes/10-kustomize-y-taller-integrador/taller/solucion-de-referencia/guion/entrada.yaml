@@ -1,0 +1,57 @@
+apiVersion: gateway.envoyproxy.io/v1alpha1
+kind: EnvoyProxy
+metadata: {name: nodeport, namespace: envoy-gateway-system}
+spec:
+  provider:
+    type: Kubernetes
+    kubernetes:
+      envoyPDB:
+        minAvailable: 1
+      envoyDeployment:
+        replicas: 2
+        pod:
+          # Reparto por nodo de las copias de CADA Gateway (matchLabelKeys toma nombre y espacio de nombres del propio pod).
+          # No es anti-afinidad: una regla de anti-afinidad obligatoria también impide que se programen los proxies de
+          # otros Gateways (aquí, el de desarrollo) en los nodos donde ya hay uno.
+          topologySpreadConstraints:
+            - maxSkew: 1
+              topologyKey: kubernetes.io/hostname
+              whenUnsatisfiable: DoNotSchedule
+              nodeTaintsPolicy: Honor
+              labelSelector:
+                matchLabels: {app.kubernetes.io/component: proxy}
+              matchLabelKeys:
+                - gateway.envoyproxy.io/owning-gateway-namespace
+                - gateway.envoyproxy.io/owning-gateway-name
+      envoyService:
+        type: NodePort
+        externalTrafficPolicy: Cluster
+        patch:
+          type: StrategicMerge
+          value:
+            spec:
+              ports:
+                - {port: 80, nodePort: 30080}
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: GatewayClass
+metadata: {name: eg}
+spec:
+  controllerName: gateway.envoyproxy.io/gatewayclass-controller
+  parametersRef: {group: gateway.envoyproxy.io, kind: EnvoyProxy, name: nodeport, namespace: envoy-gateway-system}
+---
+apiVersion: gateway.envoyproxy.io/v1alpha1
+kind: EnvoyProxy
+metadata: {name: clusterip, namespace: envoy-gateway-system}
+spec:
+  provider:
+    type: Kubernetes
+    kubernetes:
+      envoyService: {type: ClusterIP}
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: GatewayClass
+metadata: {name: eg-interno}
+spec:
+  controllerName: gateway.envoyproxy.io/gatewayclass-controller
+  parametersRef: {group: gateway.envoyproxy.io, kind: EnvoyProxy, name: clusterip, namespace: envoy-gateway-system}

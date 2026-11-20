@@ -1,0 +1,60 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: caso-3
+  namespace: averiado
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: caso-3
+  template:
+    metadata:
+      labels:
+        app: caso-3
+    spec:
+      containers:
+        - name: api
+          image: bitacora-api:1.0.0
+          env:
+            - name: DIRECTORIO_DATOS
+              value: /var/lib/bitacora
+          securityContext:
+            readOnlyRootFilesystem: true
+            allowPrivilegeEscalation: false
+          ports:
+            - name: http
+              containerPort: 8080
+          readinessProbe:
+            httpGet:
+              path: /salud/listo
+              port: http
+            periodSeconds: 5
+          livenessProbe:
+            httpGet:
+              path: /salud/vivo
+              port: http
+            periodSeconds: 10
+          volumeMounts:
+            - name: temporales
+              mountPath: /tmp
+            - name: datos
+              mountPath: /var/lib/bitacora
+      volumes:
+        - name: temporales
+          emptyDir: {}
+        - name: datos
+          emptyDir: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: caso-3
+  namespace: averiado
+spec:
+  selector:
+    app: caso-3
+  ports:
+    - name: http
+      port: 80
+      targetPort: http

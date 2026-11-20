@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: Pod
+metadata: {name: privilegiado, namespace: bitacora-08}
+spec:
+  containers:
+    - name: c
+      image: busybox:1.37
+      command: [sleep, "100"]
+      securityContext: {privileged: true}

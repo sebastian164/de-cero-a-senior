@@ -1,0 +1,15 @@
+# Pod suelto de la API de Bitácora (paso 3). Frágil a propósito: lo que pasa al borrarlo o perder su nodo es el taller.
+apiVersion: v1
+kind: Pod
+metadata:
+  name: bitacora-api
+  namespace: taller-k01
+  labels:
+    app: bitacora-api
+spec:
+  containers:
+    - name: api
+      image: bitacora-api:1.0.0
+      ports:
+        - name: http
+          containerPort: 8080

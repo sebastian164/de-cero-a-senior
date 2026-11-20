@@ -1,0 +1,17 @@
+# Variante intermedia (pasos 2 a 7): dos etapas, ejecución con la JRE de Temurin sobre Ubuntu.
+FROM eclipse-temurin:21-jdk AS construccion
+WORKDIR /src
+COPY Servidor.java .
+RUN javac -d /clases Servidor.java
+
+FROM eclipse-temurin:21-jre
+RUN groupadd --system --gid 10001 bitacora \
+ && useradd --system --uid 10001 --gid 10001 --no-create-home bitacora \
+ && mkdir /datos && chown 10001:10001 /datos
+COPY --from=construccion /clases /app
+ENV DIRECTORIO_DATOS=/datos
+USER 10001:10001
+EXPOSE 8080
+HEALTHCHECK --start-period=30s --interval=5s --timeout=3s --retries=3 \
+  CMD wget -q -O /dev/null http://127.0.0.1:8080/salud/listo || exit 1
+ENTRYPOINT ["java", "-XX:MaxRAMPercentage=75", "-XX:+UseSerialGC", "-Xss512k", "-XX:TieredStopAtLevel=1", "-cp", "/app", "Servidor"]

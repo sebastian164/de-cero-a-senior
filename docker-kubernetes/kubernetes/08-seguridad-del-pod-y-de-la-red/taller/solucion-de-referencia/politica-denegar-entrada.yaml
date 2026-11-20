@@ -1,0 +1,7 @@
+# Paso 8: nadie entra a ningún pod del espacio de nombres.
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata: {name: denegar-entrada, namespace: bitacora-08}
+spec:
+  podSelector: {}
+  policyTypes: [Ingress]

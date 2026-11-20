@@ -1,0 +1,24 @@
+# Clúster de la prueba: el kind/cluster.yaml de la sesión 01 (un plano de control y dos nodos de trabajo)
+# con el mapeo de puerto que pide el taller 05 (paso 2): el NodePort 30080 del proxy de Envoy Gateway
+# queda en 127.0.0.1:50080 del equipo. El nombre del clúster lo pone probar.sh con --name (CLUSTER=...)
+# y el puerto se puede cambiar con PUERTO_ENTRADA=... (probar.sh sustituye el 50080 al crearlo).
+# El mapeo va en un nodo de trabajo (etiquetado "entrada=si", solo como marca de cuál es). El proxy de
+# Envoy Gateway no se fija a ese nodo: su Service usa externalTrafficPolicy: Cluster (ver envoy.yaml) y
+# el NodePort responde en todos.
+kind: Cluster
+apiVersion: kind.x-k8s.io/v1alpha4
+nodes:
+  - role: control-plane
+  - role: worker
+    kubeadmConfigPatches:
+      - |
+        kind: JoinConfiguration
+        nodeRegistration:
+          kubeletExtraArgs:
+            node-labels: "entrada=si"
+    extraPortMappings:
+      - containerPort: 30080
+        hostPort: 50080
+        listenAddress: 127.0.0.1
+        protocol: TCP
+  - role: worker

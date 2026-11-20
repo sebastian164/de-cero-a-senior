@@ -1,0 +1,7 @@
+# Paso 10: la API no necesita iniciar ninguna conexión. Se cierra toda la salida.
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata: {name: api-sin-salida, namespace: bitacora-08}
+spec:
+  podSelector: {matchLabels: {app: bitacora-api}}
+  policyTypes: [Egress]

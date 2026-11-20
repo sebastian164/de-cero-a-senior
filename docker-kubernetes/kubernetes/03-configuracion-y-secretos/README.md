@@ -138,6 +138,8 @@ Parte de tus manifiestos de la sesión 02. No hay archivos de inicio.
 
 **Entrega:** rama `taller/k8s-03`, con los manifiestos y `taller/solucion/ANALISIS.md`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## En el trabajo real
 
 En Spring Boot, las variables de entorno se convierten en propiedades sin escribir código (`SPRING_DATASOURCE_URL` es `spring.datasource.url`), y los archivos montados pueden leerse con `spring.config.import=configtree:`. En un frontend, recuerda que lo que se compila dentro del paquete de JavaScript es público: ahí nunca va un secreto, venga de donde venga.

@@ -1,0 +1,80 @@
+# Bitácora completa. Un clon limpio levanta con:
+#   cp .env.ejemplo .env && docker compose up -d --build
+# Sin container_name ni nombre de proyecto fijo: con -p se levantan varias copias a la vez.
+
+services:
+  api:
+    build: ./app/api
+    # Sin "ports": a la API solo se llega desde la red del proyecto, a través de la web.
+    environment:
+      MENSAJE: ${MENSAJE:-Hola desde Compose}
+      VERSION: ${VERSION:-1.0.0}
+      RETARDO_ARRANQUE_MS: ${RETARDO_ARRANQUE_MS:-0}
+    # CLAVE_API llega como secreto de Compose: un archivo en /run/secrets/clave_api (con el valor de la variable CLAVE_API de .env).
+    # La imagen (app/api/entrada.sh) lo lee y lo exporta solo para el proceso de Java; aquí no se repiten las opciones de la JVM.
+    secrets:
+      - clave_api
+    volumes:
+      - notas:/datos
+    healthcheck:
+      test: ["CMD", "wget", "-q", "-O", "/dev/null", "http://127.0.0.1:8080/salud/listo"]
+      interval: 5s
+      timeout: 3s
+      retries: 3
+      start_period: 30s
+      start_interval: 1s
+    deploy:
+      resources:
+        limits:
+          memory: 128M
+          cpus: "0.50"
+    restart: unless-stopped
+
+  web:
+    build: ./app/web
+    ports:
+      - "${PUERTO_WEB:-8080}:8080"
+    environment:
+      DESTINO_API: http://api:8080
+    # La imagen oficial de nginx arranca como root: se fuerza el usuario nginx (101)
+    # y se le da escritura solo donde la necesita.
+    user: "101:101"
+    tmpfs:
+      - /var/cache/nginx:mode=1777
+      - /run:mode=1777
+      - /etc/nginx/conf.d:mode=1777
+    depends_on:
+      api:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "wget", "-q", "-O", "/dev/null", "http://127.0.0.1:8080/"]
+      interval: 5s
+      timeout: 3s
+      retries: 3
+    restart: unless-stopped
+
+  db:
+    image: postgres:17
+    profiles: ["datos"]
+    environment:
+      POSTGRES_PASSWORD_FILE: /run/secrets/clave_db
+    secrets:
+      - clave_db
+    volumes:
+      - datos-db:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -h 127.0.0.1 -U postgres"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+volumes:
+  notas:
+  datos-db:
+
+# Origen "environment": el valor sale de la variable (definida en .env, que no se versiona), no de un archivo del repositorio.
+secrets:
+  clave_api:
+    environment: CLAVE_API
+  clave_db:
+    environment: CLAVE_DB

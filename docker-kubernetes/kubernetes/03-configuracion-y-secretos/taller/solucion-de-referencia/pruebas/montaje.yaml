@@ -1,0 +1,21 @@
+# Paso 5: la clave MENSAJE del ConfigMap entregada como archivo en /config/MENSAJE.
+apiVersion: v1
+kind: Pod
+metadata:
+  name: prueba-montaje
+spec:
+  terminationGracePeriodSeconds: 0
+  containers:
+    - name: lector
+      image: busybox:1.37
+      command: ["sh", "-c", "sleep 100000"]
+      volumeMounts:
+        - name: config
+          mountPath: /config
+  volumes:
+    - name: config
+      configMap:
+        name: bitacora-api-config
+        items:
+          - key: MENSAJE
+            path: MENSAJE

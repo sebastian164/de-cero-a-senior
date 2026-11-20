@@ -252,6 +252,8 @@ Escribe un documento de dos páginas para alguien que va a operar esto sin conoc
 
 **Entrega:** rama `taller/k8s-10`, o un repositorio propio enlazado desde el pull request, con `taller/solucion/ANALISIS.md` y el documento de defensa.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 Todo este taller se hace en un clúster local y no cuesta nada. Si decides repetirlo en una nube, activa antes una alerta de presupuesto y elimina los recursos al terminar: un clúster administrado y sus balanceadores se cobran por hora.
 
 ## En el trabajo real

@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bitacora-web
+  namespace: bitacora
+  labels:
+    app: bitacora-web
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: bitacora-web
+  template:
+    metadata:
+      labels:
+        app: bitacora-web
+    spec:
+      containers:
+        - name: web
+          image: bitacora-web:0.1.0
+          env:
+            # Nombre del Service de la API, nunca la IP de un pod.
+            - name: DESTINO_API
+              value: http://bitacora-api
+          ports:
+            - name: http
+              containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: bitacora-web
+  namespace: bitacora
+spec:
+  selector:
+    app: bitacora-web
+  ports:
+    - name: http
+      port: 80
+      targetPort: http

@@ -103,6 +103,8 @@ No hay archivos de inicio. Trabaja en la terminal y anota cada orden y su result
 
 **Entrega:** rama `taller/docker-01`, archivo `taller/solucion/ANALISIS.md` con las órdenes, las salidas relevantes y tus explicaciones.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## En el trabajo real
 
 Casi nunca arrancarás contenedores a mano en producción, pero estas órdenes son las que usas cuando algo falla a las tres de la tarde: ver los registros, entrar a mirar, inspeccionar con qué configuración arrancó. Quien las domina diagnostica en minutos lo que a otros les toma una tarde.

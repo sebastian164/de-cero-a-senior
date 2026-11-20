@@ -106,6 +106,8 @@ Usa tus imágenes `bitacora-api:1.0.0` y `bitacora-web:0.1.0`.
 
 **Entrega:** rama `taller/docker-04`, con `taller/solucion/ANALISIS.md` y los cambios que hayas hecho al Dockerfile.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## En el trabajo real
 
 En producción los datos casi nunca viven en un volumen local del servidor: van a una base de datos administrada o a almacenamiento en red, porque el contenedor puede aparecer mañana en otra máquina. Lo que aprendes aquí —separar el proceso de sus datos y encontrar servicios por nombre— es exactamente la idea que Kubernetes lleva a varias máquinas.

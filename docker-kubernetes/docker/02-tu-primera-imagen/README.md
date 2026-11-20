@@ -119,6 +119,8 @@ Copia la carpeta `app/` a `taller/solucion/` y trabaja ahí.
 
 **Entrega:** rama `taller/docker-02`, con los Dockerfile, los `.dockerignore` y `taller/solucion/ANALISIS.md`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## En el trabajo real
 
 El Dockerfile vive en el repositorio de la aplicación y pasa por revisión como cualquier otro código. Una mala decisión aquí se paga en cada construcción de la integración continua: minutos de más, multiplicados por cada cambio de cada persona del equipo.

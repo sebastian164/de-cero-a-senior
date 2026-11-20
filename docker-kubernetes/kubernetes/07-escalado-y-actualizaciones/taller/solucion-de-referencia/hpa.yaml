@@ -1,0 +1,15 @@
+# Mínimo 2 y máximo 6. Objetivo 50 % de la PETICIÓN de CPU (100m): el autoescalador reacciona cuando el uso medio pasa de 50m
+# por copia; con el 100 % no quedaría margen para el arranque (20 s en pruebas) de las copias nuevas.
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: bitacora-api
+spec:
+  scaleTargetRef: {apiVersion: apps/v1, kind: Deployment, name: bitacora-api}
+  minReplicas: 2
+  maxReplicas: 6
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target: {type: Utilization, averageUtilization: 50}

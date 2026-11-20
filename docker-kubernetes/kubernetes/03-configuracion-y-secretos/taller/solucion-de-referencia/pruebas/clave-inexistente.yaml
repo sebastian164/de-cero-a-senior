@@ -1,0 +1,15 @@
+# Paso 6: referencia a una clave que no existe en el ConfigMap.
+apiVersion: v1
+kind: Pod
+metadata:
+  name: clave-inexistente
+spec:
+  containers:
+    - name: api
+      image: bitacora-api:1.0.0
+      env:
+        - name: MENSAJE
+          valueFrom:
+            configMapKeyRef:
+              name: bitacora-api-config
+              key: MENSAJE_QUE_NO_EXISTE

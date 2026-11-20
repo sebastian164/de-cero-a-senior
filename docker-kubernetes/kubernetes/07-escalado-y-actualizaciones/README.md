@@ -181,6 +181,8 @@ No hay archivos de inicio. Parte de tus manifiestos de la sesión 05. Para este 
 
 **Entrega:** rama `taller/k8s-07`, con los manifiestos, los guiones de carga y `taller/solucion/ANALISIS.md`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## En el trabajo real
 
 El escalado automático por CPU es el punto de partida. En sistemas reales se escala también por métricas propias (peticiones por segundo, mensajes pendientes en una cola) con herramientas como KEDA, y los nodos del clúster se añaden y retiran solos. Volver atrás una versión es fácil para el código y difícil para los datos: por eso los cambios de esquema se hacen compatibles hacia atrás.

@@ -1,0 +1,25 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: bitacora-dev
+resources:
+  - ../../base
+  - espacio-de-nombres.yaml
+images:
+  - {name: bitacora-api, newTag: 1.0.0}
+  - {name: bitacora-web, newTag: 0.1.0}
+replicas:
+  - {name: bitacora-api, count: 1}
+  - {name: bitacora-web, count: 1}
+configMapGenerator:
+  - name: bitacora-api-config
+    behavior: merge
+    literals:
+      - MENSAJE=Ambiente de desarrollo
+      - VERSION=dev
+patches:
+  - target: {kind: HTTPRoute, name: bitacora}
+    patch: |-
+      - {op: replace, path: /spec/hostnames/0, value: dev.bitacora.localhost}
+  - target: {kind: Gateway, name: entrada}
+    patch: |-
+      - {op: replace, path: /spec/gatewayClassName, value: eg-interno}

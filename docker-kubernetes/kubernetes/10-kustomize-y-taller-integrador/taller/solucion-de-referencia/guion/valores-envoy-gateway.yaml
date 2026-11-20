@@ -1,0 +1,15 @@
+# Valores del chart de Envoy Gateway para que vaciar un nodo no deje sin servir al controlador de la entrada:
+# dos copias en nodos distintos (reparto por nodo) y un presupuesto de interrupciones que impide expulsar a las dos a la vez.
+deployment:
+  replicas: 2
+  pod:
+    topologySpreadConstraints:
+      - maxSkew: 1
+        topologyKey: kubernetes.io/hostname
+        whenUnsatisfiable: DoNotSchedule
+        nodeTaintsPolicy: Honor
+        labelSelector:
+          matchLabels:
+            control-plane: envoy-gateway
+podDisruptionBudget:
+  minAvailable: 1

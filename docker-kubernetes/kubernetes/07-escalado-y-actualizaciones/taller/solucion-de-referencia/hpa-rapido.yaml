@@ -1,0 +1,19 @@
+# Paso 4: bajar más rápido. Riesgo: si la carga vuelve en oleadas, se bajan copias para volver a subirlas (aleteo) y cada subida cuesta un arranque.
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: bitacora-api
+spec:
+  scaleTargetRef: {apiVersion: apps/v1, kind: Deployment, name: bitacora-api}
+  minReplicas: 2
+  maxReplicas: 6
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target: {type: Utilization, averageUtilization: 50}
+  behavior:
+    scaleDown:
+      stabilizationWindowSeconds: 30
+      policies:
+        - {type: Percent, value: 100, periodSeconds: 15}

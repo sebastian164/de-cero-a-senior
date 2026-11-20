@@ -1,0 +1,16 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - api.yaml
+  - web.yaml
+  - gateway.yaml
+# Cambia un valor aquí o en una superposición: el nombre del ConfigMap cambia (lleva un resumen) y el Deployment se actualiza solo.
+configMapGenerator:
+  - name: bitacora-api-config
+    literals:
+      - MENSAJE=Hola desde la base
+      - VERSION=base
+labels:
+  - pairs:
+      app.kubernetes.io/part-of: bitacora
+    includeSelectors: false

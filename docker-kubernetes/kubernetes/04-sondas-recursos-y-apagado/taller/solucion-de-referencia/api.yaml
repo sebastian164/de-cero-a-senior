@@ -1,0 +1,70 @@
+# Versión final del taller 04: sondas, recursos y apagado ordenado.
+# Se aplica con: kubectl apply -n bitacora -f api.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bitacora-api
+  labels:
+    app: bitacora-api
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: bitacora-api
+  template:
+    metadata:
+      labels:
+        app: bitacora-api
+    spec:
+      terminationGracePeriodSeconds: 30     # preStop (5 s) + ESPERA_APAGADO_MS (5 s) + parada (2 s) caben de sobra
+      containers:
+        - name: api
+          image: bitacora-api:1.0.0
+          env:
+            - name: RETARDO_ARRANQUE_MS
+              value: "20000"
+            - name: ESPERA_APAGADO_MS
+              value: "5000"
+          ports:
+            - name: http
+              containerPort: 8080
+          startupProbe:                      # arranque medido: unos 21 s hasta estar listo; se permite el triple
+            httpGet:
+              path: /salud/listo
+              port: http
+            periodSeconds: 2
+            failureThreshold: 30             # hasta 60 s
+          readinessProbe:
+            httpGet:
+              path: /salud/listo
+              port: http
+            periodSeconds: 2
+            failureThreshold: 2              # fuera del Service en 4 s como mucho
+          livenessProbe:                     # solo comprueba que el proceso responde, no sus dependencias
+            httpGet:
+              path: /salud/vivo
+              port: http
+            periodSeconds: 5
+            failureThreshold: 3
+          lifecycle:
+            preStop:
+              sleep:
+                seconds: 5                   # margen para que el pod salga de los Service antes de SIGTERM
+          resources:
+            requests:
+              cpu: 100m
+              memory: 192Mi
+            limits:
+              memory: 256Mi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: bitacora-api
+spec:
+  selector:
+    app: bitacora-api
+  ports:
+    - name: http
+      port: 80
+      targetPort: http

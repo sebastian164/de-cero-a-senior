@@ -1,0 +1,11 @@
+# Paso 8: el nombre bitacora-api no desaparece nunca; solo cambia a qué pods apunta. Así la web, que lo resuelve al arrancar
+# (nginx falla con "host not found in upstream" si no existe), sigue funcionando después de cualquier reinicio.
+apiVersion: v1
+kind: Service
+metadata:
+  name: bitacora-api
+  namespace: bitacora
+spec:
+  selector: {app: bitacora-api-v2}
+  ports:
+    - {name: http, port: 80, targetPort: http}

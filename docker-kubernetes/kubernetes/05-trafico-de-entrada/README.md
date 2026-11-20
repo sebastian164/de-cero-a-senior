@@ -187,6 +187,8 @@ No hay archivos de inicio. Parte de tus manifiestos de la sesión 04.
 
 **Entrega:** rama `taller/k8s-05`, con los manifiestos, las órdenes de instalación que usaste y `taller/solucion/ANALISIS.md`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## En el trabajo real
 
 La entrada al clúster la suele administrar un equipo de plataforma, y a ti te toca escribir la ruta de tu servicio. Los proveedores de nube tienen sus propios controladores, que crean balanceadores reales y cuestan dinero. Y las migraciones de Ingress a Gateway API son trabajo corriente ahora mismo: saber hacer una sin corte es una habilidad que se paga.

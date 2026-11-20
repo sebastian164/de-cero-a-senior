@@ -1,0 +1,39 @@
+# Paso 6: la versión nueva de la API, con su propio Deployment y su propio Service.
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bitacora-api-v2
+  namespace: bitacora
+  labels: {app: bitacora-api-v2}
+spec:
+  replicas: 3
+  selector:
+    matchLabels: {app: bitacora-api-v2}
+  template:
+    metadata:
+      labels: {app: bitacora-api-v2}
+    spec:
+      containers:
+        - name: api
+          image: bitacora-api:1.0.1
+          env:
+            - {name: VERSION, value: "2.0.0"}
+            - {name: ESPERA_APAGADO_MS, value: "5000"}
+          ports:
+            - {name: http, containerPort: 8080}
+          readinessProbe:
+            httpGet: {path: /salud/listo, port: http}
+            periodSeconds: 2
+          lifecycle:
+            preStop:
+              sleep: {seconds: 5}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: bitacora-api-v2
+  namespace: bitacora
+spec:
+  selector: {app: bitacora-api-v2}
+  ports:
+    - {name: http, port: 80, targetPort: http}

@@ -145,6 +145,8 @@ Parte de tu Dockerfile de la sesión 02. No hay archivo de inicio.
 
 **Entrega:** rama `taller/docker-03`, con el Dockerfile y `taller/solucion/ANALISIS.md`: una tabla antes y después, y la justificación de la imagen base.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## En el trabajo real
 
 En Spring Boot, además del Dockerfile, existen `./mvnw spring-boot:build-image` (Buildpacks) y Jib, que construyen la imagen sin que escribas la receta. Son buenas opciones cuando el equipo no quiere mantener Dockerfile; conviene conocer el Dockerfile igual, porque es lo que vas a leer cuando algo no cuadre.

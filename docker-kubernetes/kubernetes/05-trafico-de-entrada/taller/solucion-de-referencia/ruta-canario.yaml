@@ -1,0 +1,36 @@
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: bitacora
+  namespace: bitacora
+spec:
+  parentRefs:
+    - name: entrada
+  hostnames:
+    - bitacora.localhost
+  rules:
+    # Paso 10: /notas redirige a /
+    - matches:
+        - path: {type: Exact, value: /notas}
+      filters:
+        - type: RequestRedirect
+          requestRedirect:
+            path: {type: ReplaceFullPath, replaceFullPath: /}
+            statusCode: 302
+    # Paso 7: quien manda X-Probador: si va siempre a la versión nueva
+    - matches:
+        - path: {type: PathPrefix, value: /api}
+          headers:
+            - {name: X-Probador, value: "si"}
+      backendRefs:
+        - {name: bitacora-api-v2, port: 80}
+    # Paso 6: reparto por pesos
+    - matches:
+        - path: {type: PathPrefix, value: /api}
+      backendRefs:
+        - {name: bitacora-api, port: 80, weight: PESO_V1}
+        - {name: bitacora-api-v2, port: 80, weight: PESO_V2}
+    - matches:
+        - path: {type: PathPrefix, value: /}
+      backendRefs:
+        - {name: bitacora-web, port: 80}

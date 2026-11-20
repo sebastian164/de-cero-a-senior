@@ -1,0 +1,4 @@
+# Lista blanca: al contexto solo entra lo que la imagen necesita.
+*
+!Servidor.java
+!entrada.sh

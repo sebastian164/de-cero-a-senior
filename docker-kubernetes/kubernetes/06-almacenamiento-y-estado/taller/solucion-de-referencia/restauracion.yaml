@@ -1,0 +1,23 @@
+# Paso 10: una base vacía (sin los datos de db-0) con el volumen de respaldos montado de solo lectura.
+apiVersion: v1
+kind: Pod
+metadata:
+  name: restauracion
+spec:
+  terminationGracePeriodSeconds: 0
+  containers:
+    - name: postgres
+      image: postgres:17
+      env:
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            secretKeyRef: {name: db, key: password}
+      readinessProbe:
+        exec:
+          command: ["pg_isready", "-h", "127.0.0.1", "-U", "postgres"]
+        periodSeconds: 2
+      volumeMounts:
+        - {name: respaldos, mountPath: /respaldos, readOnly: true}
+  volumes:
+    - name: respaldos
+      persistentVolumeClaim: {claimName: respaldos}

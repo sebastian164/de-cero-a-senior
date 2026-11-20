@@ -1,0 +1,20 @@
+# Paso 9: el Ingress equivalente a ruta-basica.yaml. No hay controlador de Ingress en el clúster: solo se valida contra la API.
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: bitacora
+  namespace: bitacora
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: bitacora.localhost
+      http:
+        paths:
+          - path: /api
+            pathType: Prefix
+            backend:
+              service: {name: bitacora-api, port: {number: 80}}
+          - path: /
+            pathType: Prefix
+            backend:
+              service: {name: bitacora-web, port: {number: 80}}

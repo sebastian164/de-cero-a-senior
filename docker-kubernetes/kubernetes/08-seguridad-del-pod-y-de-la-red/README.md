@@ -189,6 +189,8 @@ No hay archivos de inicio. Parte de tus manifiestos de la sesión 07.
 
 **Entrega:** rama `taller/k8s-08`, con los manifiestos y `taller/solucion/ANALISIS.md`, incluida la tabla del inventario antes y después.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## En el trabajo real
 
 En una empresa, estas reglas no son opcionales: las impone la plataforma con controladores de admisión, y un manifiesto que no cumple se rechaza en el flujo de integración continua antes de llegar al clúster. Saber por qué existe cada una te ahorra la tentación de pedir una excepción.

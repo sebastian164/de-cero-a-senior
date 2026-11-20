@@ -1,0 +1,45 @@
+# Punto de partida (sesión 07): sin ningún endurecimiento.
+apiVersion: apps/v1
+kind: Deployment
+metadata: {name: bitacora-api, namespace: bitacora-08, labels: {app: bitacora-api}}
+spec:
+  replicas: 2
+  selector: {matchLabels: {app: bitacora-api}}
+  template:
+    metadata: {labels: {app: bitacora-api}}
+    spec:
+      containers:
+        - name: api
+          image: bitacora-api:1.0.0
+          ports: [{name: http, containerPort: 8080}]
+          readinessProbe: {httpGet: {path: /salud/listo, port: http}}
+---
+apiVersion: v1
+kind: Service
+metadata: {name: bitacora-api, namespace: bitacora-08}
+spec:
+  selector: {app: bitacora-api}
+  ports: [{name: http, port: 80, targetPort: http}]
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata: {name: bitacora-web, namespace: bitacora-08, labels: {app: bitacora-web}}
+spec:
+  replicas: 2
+  selector: {matchLabels: {app: bitacora-web}}
+  template:
+    metadata: {labels: {app: bitacora-web}}
+    spec:
+      containers:
+        - name: web
+          image: bitacora-web:0.1.0
+          env: [{name: DESTINO_API, value: "http://bitacora-api"}]
+          ports: [{name: http, containerPort: 8080}]
+          readinessProbe: {httpGet: {path: /, port: http}}
+---
+apiVersion: v1
+kind: Service
+metadata: {name: bitacora-web, namespace: bitacora-08}
+spec:
+  selector: {app: bitacora-web}
+  ports: [{name: http, port: 80, targetPort: http}]

@@ -1,0 +1,44 @@
+# Paso 10: volcado periódico de la base db-0 hacia otro volumen (respaldos).
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: respaldos
+spec:
+  accessModes: [ReadWriteOnce]
+  resources:
+    requests: {storage: 1Gi}
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: respaldo
+spec:
+  schedule: "0 * * * *"            # cada hora; en la prueba se lanza a mano
+  concurrencyPolicy: Forbid
+  successfulJobsHistoryLimit: 3
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: Never
+          containers:
+            - name: volcado
+              image: postgres:17
+              command:
+                - sh
+                - -c
+                - |
+                  set -e
+                  archivo=/respaldos/bitacora-$(date +%Y%m%d-%H%M%S).sql
+                  pg_dump -h db-0.db -U postgres -d bitacora --clean --if-exists > "$archivo"
+                  cp "$archivo" /respaldos/ultimo.sql
+                  ls -l /respaldos
+              env:
+                - name: PGPASSWORD
+                  valueFrom:
+                    secretKeyRef: {name: db, key: password}
+              volumeMounts:
+                - {name: respaldos, mountPath: /respaldos}
+          volumes:
+            - name: respaldos
+              persistentVolumeClaim: {claimName: respaldos}

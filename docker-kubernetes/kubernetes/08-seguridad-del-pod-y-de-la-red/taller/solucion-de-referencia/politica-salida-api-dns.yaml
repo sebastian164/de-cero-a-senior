@@ -1,0 +1,14 @@
+# Paso 10, regla más estrecha: solo la resolución de nombres (kube-dns, puerto 53).
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata: {name: api-sin-salida, namespace: bitacora-08}
+spec:
+  podSelector: {matchLabels: {app: bitacora-api}}
+  policyTypes: [Egress]
+  egress:
+    - to:
+        - namespaceSelector: {matchLabels: {kubernetes.io/metadata.name: kube-system}}
+          podSelector: {matchLabels: {k8s-app: kube-dns}}
+      ports:
+        - {protocol: UDP, port: 53}
+        - {protocol: TCP, port: 53}

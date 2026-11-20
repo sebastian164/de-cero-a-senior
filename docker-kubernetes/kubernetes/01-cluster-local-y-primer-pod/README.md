@@ -141,6 +141,8 @@ No hay archivos de inicio. Necesitas tu imagen `bitacora-api:1.0.0` del taller d
 
 **Entrega:** rama `taller/k8s-01`, con tus manifiestos y `taller/solucion/ANALISIS.md`.
 
+Cuando lo hayas intentado, compara con la [solución de referencia](taller/solucion-de-referencia/README.md).
+
 ## En el trabajo real
 
 Nadie despliega pods sueltos. Pero `get`, `describe`, `logs` y `exec` sobre pods son el ochenta por ciento del diagnóstico diario, aunque el despliegue lo haga un flujo automático que nunca tocas.

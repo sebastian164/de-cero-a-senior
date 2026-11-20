@@ -1,0 +1,45 @@
+# Igual en todos los ambientes: sin espacio de nombres y sin ningún valor que cambie por ambiente.
+# Se aplica con: kubectl apply -n <ambiente> -f api.yaml -f web.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bitacora-api
+  labels:
+    app: bitacora-api
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: bitacora-api
+  template:
+    metadata:
+      labels:
+        app: bitacora-api
+    spec:
+      containers:
+        - name: api
+          image: bitacora-api:1.0.0
+          envFrom:
+            - configMapRef:
+                name: bitacora-api-config      # valores por ambiente en el ConfigMap
+          env:
+            - name: CLAVE_API
+              valueFrom:
+                secretKeyRef:
+                  name: bitacora-api-clave      # se crea con crear-secreto.sh, nunca desde el repositorio
+                  key: CLAVE_API
+          ports:
+            - name: http
+              containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: bitacora-api
+spec:
+  selector:
+    app: bitacora-api
+  ports:
+    - name: http
+      port: 80
+      targetPort: http

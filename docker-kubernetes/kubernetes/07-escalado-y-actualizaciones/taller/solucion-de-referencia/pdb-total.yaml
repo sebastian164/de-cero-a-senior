@@ -1,0 +1,9 @@
+# Paso 9, segunda parte: minAvailable igual al número de copias (4). Ningún nodo con copias se puede vaciar.
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: bitacora-api
+spec:
+  minAvailable: 4
+  selector:
+    matchLabels: {app: bitacora-api}

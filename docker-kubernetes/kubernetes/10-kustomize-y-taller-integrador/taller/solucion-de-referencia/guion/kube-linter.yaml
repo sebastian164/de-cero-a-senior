@@ -1,0 +1,7 @@
+# Reglas por defecto de kube-linter. Se desactivan solo las que no aplican a este despliegue, con motivo:
+checks:
+  addAllBuiltIn: false
+  doNotAutoAddDefaults: false
+  exclude:
+    - no-anti-affinity            # el reparto se exige con topologySpreadConstraints (ver 07, paso 10), no con anti-afinidad
+    - minimum-three-replicas      # el ambiente de desarrollo usa una sola copia a propósito; producción tiene HPA con mínimo 3
